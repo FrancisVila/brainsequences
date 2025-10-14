@@ -4,22 +4,22 @@ const BrainContext = createContext(null);
 
 const BrainDispatchContext = createContext(null);
 
-export function TasksProvider({ children }) {
+export function BrainProvider({ children }) {
   const [brainData, dispatch] = useReducer(
     dataReducer,
     initialBrainData
   );
 
   return (
-    <BrainContext value={brainData}>
-      <BrainDispatchContext value={dispatch}>
+    <BrainContext.Provider value={brainData}>
+      <BrainDispatchContext.Provider value={dispatch}>
         {children}
-      </BrainDispatchContext>
-    </BrainContext>
+      </BrainDispatchContext.Provider>
+    </BrainContext.Provider>
   );
 }
 
-export function useTasks() {
+export function useBrain() {
   return useContext(BrainContext);
 }
 
