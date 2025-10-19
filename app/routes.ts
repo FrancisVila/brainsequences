@@ -1,3 +1,8 @@
-import { type RouteConfig, index } from "@react-router/dev/routes";
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
-export default [index("routes/home.tsx")] satisfies RouteConfig;
+// Register the app pages and API routes. The API handler at
+// `app/routes/api/notes.js` should be exposed at `/api/notes`.
+export default [
+	index("routes/home.tsx"),
+	route("/api/notes", "routes/api/notes.js"),
+] satisfies RouteConfig;

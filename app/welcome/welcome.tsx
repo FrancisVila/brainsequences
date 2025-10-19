@@ -11,7 +11,7 @@ export function Welcome() {
 
   useEffect(() => {
     let mounted = true;
-    fetch('routes/api/notes')
+  fetch('/api/notes')
       .then(r => r.json())
       .then(data => { if (mounted) setNotes(data); })
       .catch(() => {});
@@ -69,7 +69,7 @@ export function Welcome() {
                 // optimistic id until server returns
                 optimistic = { id: Date.now(), content: content.trim() };
                 setNotes(prev => [optimistic as Note, ...prev]);
-                const res = await fetch('routes/api/notes', {
+                const res = await fetch('/api/notes', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ content: content.trim() })
