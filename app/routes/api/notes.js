@@ -1,7 +1,8 @@
 import { all, run } from '../../server/db.js';
 
+// Return latest notes
+// activated by fetch('/api/notes')  .then(r => r.json()) ...
 export async function loader() {
-  // GET /api/notes - return latest notes
   const rows = all('SELECT id, content, created_at FROM notes ORDER BY id DESC LIMIT 100');
   return new Response(JSON.stringify(rows), {
     status: 200,
@@ -9,6 +10,8 @@ export async function loader() {
   });
 }
 
+// Insert a new note
+// activated by await fetch('/api/notes', { method: 'POST' ...
 export async function action({ request }) {
   // POST /api/notes - insert a new note
   const body = await request.json();
