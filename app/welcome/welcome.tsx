@@ -77,6 +77,7 @@ export function Welcome() {
                 const json = await res.json();
                 if (res.ok && json?.id && optimistic) {
                   // replace optimistic id with real id
+                  // optimistic!.id means "trust me, this value exists here" (use sparingly)
                   setNotes(prev => prev.map(n => n.id === optimistic!.id ? { ...n, id: json.id } : n));
                 } else if (optimistic) {
                   // rollback on error
