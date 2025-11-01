@@ -14,10 +14,10 @@ export default function Brainparts() {
 
   useEffect(() => { load(); }, []);
 
-  async function handleDelete(id: number) {
-    const ok = window.confirm('Delete this brainpart?');
+  async function handleDelete(p: any) {
+    const ok = window.confirm('Delete this brainpart: ' + p.title + '?');
     if (!ok) return;
-    await fetch('/api/brainparts', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) });
+    await fetch('/api/brainparts', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: p.id }) });
     load();
   }
 
@@ -48,7 +48,7 @@ export default function Brainparts() {
                 <td>{p.is_part_of}</td>
                 <td>{p.created_at}</td>
                 <td className="brainparts-actions"><a href={`/brainparts/update?id=${p.id}`}>✎</a></td>
-                <td className="brainparts-actions"><button onClick={() => handleDelete(p.id)}>🗑️</button></td>
+                <td className="brainparts-actions"><button onClick={() => handleDelete(p)}>🗑️</button></td>
               </tr>
             ))}
           </tbody>
