@@ -1,0 +1,1 @@
+Add an attribute named is_part_of to the brainparts database.

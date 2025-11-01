@@ -32,7 +32,9 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    is_part_of INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (is_part_of) REFERENCES brainparts(id) ON DELETE SET NULL
   );
 
   -- More info links for brain parts (many-to-many)
@@ -67,3 +69,20 @@ db.exec(`
     FOREIGN KEY (step_id) REFERENCES steps(id) ON DELETE CASCADE
   );
 `);
+
+// Ensure `is_part_of` column exists on older DBs where the table was created
+// before that column was added. SQLite doesn't support adding a foreign key
+// with ALTER TABLE easily, but we can add the column if missing.
+(function ensureIsPartOfColumn() {
+  try {
+    const row = db.prepare("PRAGMA table_info('brainparts')").all();
+    const has = row.some(r => r.name === 'is_part_of');
+    if (!has) {
+      console.log('Adding missing column is_part_of to brainparts...');
+      db.exec('ALTER TABLE brainparts ADD COLUMN is_part_of INTEGER');
+      // Note: foreign key constraint cannot be added via ALTER TABLE in SQLite.
+    }
+  } catch (err) {
+    console.error('Error ensuring is_part_of column:', err);
+  }
+})();

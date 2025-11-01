@@ -43,10 +43,10 @@ export function addBrainpartToStep(step_id, brainpart_id) {
 }
 
 // Brain Parts
-export function createBrainpart({ title, description }) {
+export function createBrainpart({ title, description, is_part_of = null }) {
   const info = run(
-    'INSERT INTO brainparts (title, description) VALUES (?, ?)',
-    [title, description]
+    'INSERT INTO brainparts (title, description, is_part_of) VALUES (?, ?, ?)',
+    [title, description, is_part_of]
   );
   return { id: info.lastInsertRowid };
 }

@@ -1,0 +1,5 @@
+/* minimal styles for brainparts list */
+.brainparts-table { width: 100%; border-collapse: collapse; }
+.brainparts-table th, .brainparts-table td { border: 1px solid #ddd; padding: 8px; }
+.brainparts-actions { display:flex; gap:8px; }
+.big-plus { font-size: 28px; padding: 6px 10px; border: 1px solid #333; border-radius: 6px; cursor: pointer; }
