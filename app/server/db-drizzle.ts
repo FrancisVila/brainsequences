@@ -1,16 +1,7 @@
 import { eq, and } from 'drizzle-orm';
 import { db } from './drizzle';
-import { notes, sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows } from '../../drizzle/schema';
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows } from '../../drizzle/schema';
 
-// Notes operations
-export async function getNotes(limit = 100) {
-  return await db.select().from(notes).orderBy(notes.id).limit(limit);
-}
-
-export async function createNote(content: string) {
-  const result = await db.insert(notes).values({ content }).returning({ id: notes.id });
-  return result[0];
-}
 
 // Sequences operations
 export async function getSequence(id: number) {
@@ -58,17 +49,6 @@ export async function createSequence({ title, description }: { title: string; de
   return result[0];
 }
 
-// Steps operations
-export async function createStep({ sequenceId, title, description }: { sequenceId: number; title: string; description?: string | null }) {
-  const result = await db.insert(steps).values({ sequenceId, title, description }).returning({ id: steps.id });
-  return result[0];
-}
-
-export async function addBrainpartToStep(stepId: number, brainpartId: number) {
-  await db.insert(stepBrainparts).values({ stepId, brainpartId });
-}
-
-// Brainparts operations
 export async function createBrainpart({ title, description, isPartOf }: { title: string; description?: string | null; isPartOf?: number | null }) {
   const result = await db.insert(brainparts).values({ title, description, isPartOf }).returning({ id: brainparts.id });
   return result[0];

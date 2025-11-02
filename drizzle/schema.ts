@@ -1,11 +1,7 @@
 import { sqliteTable, integer, text, numeric, foreignKey, primaryKey } from "drizzle-orm/sqlite-core"
-  import { sql } from "drizzle-orm"
+import { sql } from "drizzle-orm"
 
-export const notes = sqliteTable("notes", {
-	id: integer().primaryKey({ autoIncrement: true }),
-	content: text().notNull(),
-	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
-});
+
 
 export const sequences = sqliteTable("sequences", {
 	id: integer().primaryKey({ autoIncrement: true }),
