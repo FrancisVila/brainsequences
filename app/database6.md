@@ -1,0 +1,1 @@
+Ok let's implement Drizzle in this application. Are the alternative strategies to implementing Drizzle? If so, what are they?
