@@ -2,12 +2,7 @@ import { db } from './db.js';
 
 // Initialize schema (idempotent)
 db.exec(`
-  -- Notes table (existing)
-  CREATE TABLE IF NOT EXISTS notes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    content TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
+
 
   -- Sequences table
   CREATE TABLE IF NOT EXISTS sequences (

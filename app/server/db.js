@@ -6,14 +6,6 @@ import path from 'path';
 const dbPath = path.resolve(process.cwd(), 'data', 'app.db');
 const db = new Database(dbPath);
 
-// Initialize schema (idempotent)
-db.exec(`
-  CREATE TABLE IF NOT EXISTS notes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    content TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
-`);
 
 export function run(sql, params = []) {
   const stmt = db.prepare(sql);

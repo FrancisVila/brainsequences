@@ -2,21 +2,12 @@ import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 import { useEffect, useState } from "react";
 
-type Note = { id: number; content: string; created_at?: string };
 
 export function Welcome() {
-  const [notes, setNotes] = useState<Note[]>([]);
   const [content, setContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    let mounted = true;
-  fetch('/api/notes')
-      .then(r => r.json())
-      .then(data => { if (mounted) setNotes(data); })
-      .catch(() => {});
-    return () => { mounted = false; };
-  }, []);
+
 
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
@@ -58,49 +49,9 @@ export function Welcome() {
           </nav>
 
           <section className="rounded-2xl border p-4 space-y-4">
-            <h3 className="font-semibold mb-2">Latest notes</h3>
+            <h3 className="font-semibold mb-2">Insert content here</h3>
 
-            <form onSubmit={async (e) => {
-              e.preventDefault();
-              if (!content.trim()) return;
-              setSubmitting(true);
-              let optimistic: Note | null = null;
-              try {
-                // optimistic id until server returns
-                optimistic = { id: Date.now(), content: content.trim() };
-                setNotes(prev => [optimistic as Note, ...prev]);
-                const res = await fetch('/api/notes', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ content: content.trim() })
-                });
-                const json = await res.json();
-                if (res.ok && json?.id && optimistic) {
-                  // replace optimistic id with real id
-                  // optimistic!.id means "trust me, this value exists here" (use sparingly)
-                  setNotes(prev => prev.map(n => n.id === optimistic!.id ? { ...n, id: json.id } : n));
-                } else if (optimistic) {
-                  // rollback on error
-                  setNotes(prev => prev.filter(n => n.id !== optimistic!.id));
-                }
-                setContent('');
-              } catch (err) {
-                if (optimistic) setNotes(prev => prev.filter(n => n.id !== optimistic!.id));
-              } finally {
-                setSubmitting(false);
-              }
-            }}>
-              <div className="flex gap-2">
-                <textarea value={content} onChange={e => setContent(e.target.value)} className="flex-1 p-2 border rounded" rows={2} />
-                <button type="submit" disabled={submitting} className="px-3 py-2 bg-blue-600 text-white rounded">{submitting ? 'Adding...' : 'Add'}</button>
-              </div>
-            </form>
-
-            <ul>
-              {notes.map((n: any) => (
-                <li key={n.id} className="text-sm text-gray-700">{n.content}</li>
-              ))}
-            </ul>
+       
           </section>
         </div>
       </div>
