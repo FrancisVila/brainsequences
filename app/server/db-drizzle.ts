@@ -44,6 +44,10 @@ export async function getSequence(id: number) {
   };
 }
 
+export async function getAllSequences(limit = 1000) {
+  return await db.select().from(sequences).orderBy(sequences.id).limit(limit);
+}
+
 export async function createSequence({ title, description }: { title: string; description?: string | null }) {
   const result = await db.insert(sequences).values({ title, description }).returning({ id: sequences.id });
   return result[0];

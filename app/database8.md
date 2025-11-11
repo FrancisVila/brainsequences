@@ -1,0 +1,4 @@
+Create a route for viewing a sequence. The url of the route is <server>/sequences/<id>. The filename is sequence.tsx, located in the routes/ folder, the name of the component is Sequence.
+The title of the sequence is followed by a down chevron. When the user clicks on the title of the sequence, the page displays a list of links to the available sequences, beneath the title.
+The component lists the steps in the selected sequence. Each sequence shows its title. One step at a time is selected. The user can click on a step to select it. The selected step shows its description, unselected steps do not. The selected step also shows the list of brainparts associated to it.
+Above the list of steps, reserve space for a graphic representation of the step, which will be created later. For the moment, in that area, indicate the title of the selected step.
