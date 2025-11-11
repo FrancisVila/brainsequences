@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import "./sequence.css"
 
 export default function Sequence() {
 
@@ -57,13 +58,7 @@ export default function Sequence() {
           <span style={{ fontSize: '0.7em' }}>▼</span>
         </h1>
         {showSequenceList && (
-          <div style={{ 
-            marginTop: '10px', 
-            padding: '10px', 
-            border: '1px solid #ccc', 
-            borderRadius: '4px',
-          }}>
-            <h3>Available Sequences:</h3>
+          <div className="list_of_sequences">
             <ul style={{ listStyle: 'none', padding: 0 }}>
               {allSequences.map((seq: any) => (
                 <li key={seq.id} style={{ marginBottom: '8px' }}>
