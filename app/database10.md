@@ -1,0 +1,1 @@
+replace (Graphic representation will be added here) with a set of images with urls given by the image attribute of the associated brainparts of the step. Add the title of the brainpart below each step.

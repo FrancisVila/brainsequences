@@ -14,6 +14,7 @@ export async function getSequence(id: number) {
       step: steps,
       brainpartIds: stepBrainparts.brainpartId,
       brainpartTitles: brainparts.title,
+      brainpartImages: brainparts.image,
     })
     .from(steps)
     .leftJoin(stepBrainparts, eq(steps.id, stepBrainparts.stepId))
@@ -21,18 +22,20 @@ export async function getSequence(id: number) {
     .where(eq(steps.sequenceId, id));
 
   // Group brainparts by step
-  const stepsWithParts = sequenceSteps.reduce((acc, { step, brainpartIds, brainpartTitles }) => {
+  const stepsWithParts = sequenceSteps.reduce((acc, { step, brainpartIds, brainpartTitles, brainpartImages }) => {
     const existingStep = acc.find(s => s.id === step.id);
     if (existingStep) {
       if (brainpartIds) {
         existingStep.brainpart_ids = (existingStep.brainpart_ids || []).concat(brainpartIds);
         existingStep.brainpart_titles = (existingStep.brainpart_titles || []).concat(brainpartTitles || '');
+        existingStep.brainpart_images = (existingStep.brainpart_images || []).concat(brainpartImages || '');
       }
     } else {
       acc.push({
         ...step,
         brainpart_ids: brainpartIds ? [brainpartIds] : [],
         brainpart_titles: brainpartTitles ? [brainpartTitles] : [],
+        brainpart_images: brainpartImages ? [brainpartImages] : [],
       });
     }
     return acc;

@@ -8,7 +8,6 @@ export default function Sequence() {
   const { id } = useParams();
   const [sequence, setSequence] = useState<any>(null);
   const [allSequences, setAllSequences] = useState<any[]>([]);
-  const [showSequenceList, setShowSequenceList] = useState(false);
   const [selectedStepId, setSelectedStepId] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -47,86 +46,51 @@ export default function Sequence() {
   const selectedStep = sequence.steps?.find((s: any) => s.id === selectedStepId);
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="sequence-container">
       {/* Sequence title with dropdown */}
-      <div style={{ marginBottom: '20px' }}>
-        <h1 
-          onClick={() => setShowSequenceList(!showSequenceList)}
-          style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
-        >
-          {sequence.title}
-          <span style={{ fontSize: '0.7em' }}>▼</span>
-        </h1>
-        {showSequenceList && (
-          <div className="list_of_sequences">
-            <ul style={{ listStyle: 'none', padding: 0 }}>
+      <div className="title-container">
+        <h1><select 
+              value={id}
+              onChange={(e) => window.location.href = `/sequences/${e.target.value}`}
+              className='title'
+            >
               {allSequences.map((seq: any) => (
-                <li key={seq.id} style={{ marginBottom: '8px' }}>
-                  <a 
-                    href={`/sequences/${seq.id}`}
-                    style={{ 
-                      textDecoration: seq.id === Number(id) ? 'underline' : 'none',
-                      fontWeight: seq.id === Number(id) ? 'bold' : 'normal'
-                    }}
-                  >
-                    {seq.title}
-                  </a>
-                </li>
+                <option key={seq.id} value={seq.id}>
+                  {seq.title}
+                </option>
               ))}
-            </ul>
-          </div>
-        )}
+            </select></h1>
       </div>
-
-      {/* Placeholder for graphic representation of selected step */}
-      <div style={{ 
-        padding: '30px', 
-        border: '2px dashed #ccc', 
-        borderRadius: '8px',
-        marginBottom: '30px',
-        textAlign: 'center'
-      }}>
-        <h2>{selectedStep ? selectedStep.title : 'No step selected'}</h2>
-        <p style={{ color: '#666', fontStyle: 'italic' }}>
-          (Graphic representation will be added here)
-        </p>
-      </div>
-
-      {/* Steps list */}
+      <div className='steps'>
+              {/* Steps list */}
       <div>
-        <h2>Steps</h2>
         {sequence.steps && sequence.steps.length > 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {sequence.steps.map((step: any) => {
+          <div className="steps-list">
+            {sequence.steps.map((step: any, index: number) => {
               const isSelected = step.id === selectedStepId;
               return (
                 <div 
+                 id={`step_${step.id}`}
                   key={step.id}
                   onClick={() => setSelectedStepId(step.id)}
-                  style={{
-                    padding: '15px',
-                    border: isSelected ? '2px solid #007bff' : '1px solid #ddd',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s'
-                  }}
+                  className={`step-item ${isSelected ? 'selected' : ''}`}
                 >
-                  <h3 style={{ margin: '0 0 10px 0' }}>{step.title}</h3>
+                  <h3 className="step-title">Step #{index + 1} {step.title}</h3>
                   
                   {isSelected && (
                     <>
                       {step.description && (
-                        <p style={{ margin: '10px 0', color: '#333' }}>
+                        <p className="step-description">
                           {step.description}
                         </p>
                       )}
                       
                       {step.brainpart_titles && step.brainpart_titles.length > 0 && (
-                        <div style={{ marginTop: '15px' }}>
-                          <h4 style={{ margin: '0 0 8px 0', fontSize: '0.9em', color: '#666' }}>
+                        <div className="brainparts-container">
+                          <h4 className="brainparts-title">
                             Associated Brainparts:
                           </h4>
-                          <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                          <ul className="brainparts-list">
                             {step.brainpart_titles.map((title: string, idx: number) => (
                               <li key={idx}>{title}</li>
                             ))}
@@ -139,9 +103,40 @@ export default function Sequence() {
               );
             })}
           </div>
+          
         ) : (
           <p>No steps in this sequence</p>
         )}
+        </div>
+      {/* Placeholder for graphic representation of selected step */}
+      <div id="graphic_representation" className="graphic-placeholder">
+        <h2>{selectedStep ? selectedStep.title : 'No step selected'}</h2>
+        {selectedStep && selectedStep.brainpart_images && selectedStep.brainpart_images.length > 0 ? (
+          <div className="brainpart-images-grid">
+            {selectedStep.brainpart_images.map((image: string, idx: number) => (
+              <div key={idx} className="brainpart-image-item">
+                {image ? (
+                  <>
+                    <img src={image} alt={selectedStep.brainpart_titles[idx]} className="brainpart-image" />
+                    <p className="brainpart-image-title">{selectedStep.brainpart_titles[idx]}</p>
+                  </>
+                ) : (
+                  <div className="brainpart-no-image">
+                    <p>{selectedStep.brainpart_titles[idx]}</p>
+                    <p className="no-image-text">(No image available)</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="graphic-placeholder-text">
+            {selectedStep ? 'No brainparts associated with this step' : '(Select a step to view brainparts)'}
+          </p>
+        )}
+      </div>
+
+
       </div>
     </div>
   );

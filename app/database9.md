@@ -1,0 +1,2 @@
+for each existing brainpart, find the url of an image (from Wikipedia for example), and write a migration file to add that url to the image field of the brainpart. 
+Run the migration file, then delete it.
