@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import "./sequence.css"
+import HighlightedImage from '../components/HighlightedImage';
+import toto from '../images/tim_taylor.svg';
+import tata from '../images/welcome.png';
 
 export default function Sequence() {
 
@@ -110,7 +113,6 @@ export default function Sequence() {
         </div>
       {/* Placeholder for graphic representation of selected step */}
       <div id="graphic_representation" className="graphic-placeholder">
-        <h2>{selectedStep ? selectedStep.title : 'No step selected'}</h2>
         {selectedStep && selectedStep.brainpart_images && selectedStep.brainpart_images.length > 0 ? (
           <div className="brainpart-images-grid">
             {selectedStep.brainpart_images.map((image: string, idx: number) => (
@@ -138,6 +140,11 @@ export default function Sequence() {
 
 
       </div>
+      <HighlightedImage 
+        highlightedSvg={toto}
+        highlightedIds={["path1", "path2", "path3"]}
+      />
+
     </div>
   );
 }
