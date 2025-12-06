@@ -14,6 +14,8 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
     const svgContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+
+
         if (!svgContainerRef.current) return;
 
         // Load and parse the SVG
@@ -46,6 +48,23 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                         path.classList.add('highlighted');
                     }
                 });
+
+                // Find the path with id Precuneus-7 and copy it to group named showtime
+                const precuneusPath = svgElement.querySelector('#Precuneus-7');
+                let showtimeGroup = svgElement.querySelector('#showtime');
+                
+                if (precuneusPath) {
+                    // Create showtime group if it doesn't exist
+                    if (!showtimeGroup) {
+                        showtimeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                        showtimeGroup.setAttribute('id', 'showtime');
+                        svgElement.appendChild(showtimeGroup);
+                    }
+                    
+                    // Clone the path and append to showtime group
+                    const clonedPath = precuneusPath.cloneNode(true) as SVGPathElement;
+                    showtimeGroup.appendChild(clonedPath);
+                }
 
                 // Clear container and append the modified SVG
                 if (svgContainerRef.current) {
