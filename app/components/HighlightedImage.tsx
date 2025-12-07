@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './highlightedImage.css';
 
 export interface HighlightedImageProps {
     highlightedSvg: string;
@@ -26,8 +27,10 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 const parser = new DOMParser();
                 const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
                 const svgElement = svgDoc.documentElement;
-                // specify the width of the image as 1000px
-                svgElement.setAttribute('width', '1000px');
+                
+                // Remove width and height attributes
+                svgElement.removeAttribute('width');
+                svgElement.removeAttribute('height');
 
                 // Get all path elements
                 const paths = svgElement.querySelectorAll('path');
@@ -66,6 +69,22 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     showtimeGroup.appendChild(clonedPath);
                 }
 
+                // Remove brain_parts group but keep all its child elements
+                const brainPartsGroup = svgElement.querySelector('#brain_parts');
+                 ;
+                if (brainPartsGroup && brainPartsGroup.parentNode) {
+                    // Move all children to the parent before removing the group
+                    const root = brainPartsGroup.parentNode;
+                    const brainPartsHere = svgElement.querySelector('#brain_parts_here');
+                    while (brainPartsGroup.firstChild) {
+                        if (brainPartsHere) {
+                            root.insertBefore(brainPartsHere, brainPartsGroup);
+                        }
+                    }
+                    // Remove the now-empty group
+                    brainPartsGroup.remove();
+                }
+
                 // Clear container and append the modified SVG
                 if (svgContainerRef.current) {
                     svgContainerRef.current.innerHTML = '';
@@ -102,31 +121,13 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     }
                 `}
             </style>
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-                {backgroundImage && (
-                <img 
-                    src={backgroundImage} 
-                    alt="Background" 
-                    style={{ 
-                        display: 'block',
-                        width: '100%',
-                        height: 'auto'
-                    }} 
-                />
-            )}
+
             
             <div 
                 ref={svgContainerRef}
-                style={{ 
-                    position: backgroundImage ? 'absolute' : 'relative',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    pointerEvents: 'none'
-                }}
+                className="svg-container"
             />
-            </div>
+    
         </>
     );
 };
