@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import "./sequence.css"
 import HighlightedImage from '../components/HighlightedImage';
-import toto from '../images/tim_taylor.svg';
+import toto from '../images/tim_taylor_ungroup.svg';
 import tata from '../images/welcome.png';
 
 export default function Sequence() {
