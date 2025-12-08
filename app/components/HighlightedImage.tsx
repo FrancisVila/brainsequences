@@ -52,21 +52,23 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     }
                 });
 
-                // Find the path with id Precuneus-7 and copy it to group named showtime
+                // Find the path with id Precuneus-7 and copy it to the end of all paths
                 const precuneusPath = svgElement.querySelector('#Precuneus-7');
-                let showtimeGroup = svgElement.querySelector('#showtime');
                 
                 if (precuneusPath) {
-                    // Create showtime group if it doesn't exist
-                    if (!showtimeGroup) {
-                        showtimeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                        showtimeGroup.setAttribute('id', 'showtime');
-                        svgElement.appendChild(showtimeGroup);
-                    }
-                    
-                    // Clone the path and append to showtime group
+                    // Clone the path
                     const clonedPath = precuneusPath.cloneNode(true) as SVGPathElement;
-                    showtimeGroup.appendChild(clonedPath);
+                    // Set fill-opacity to 1 in the style attribute
+                    const currentStyle = clonedPath.getAttribute('style') || '';
+                    const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
+                    if (!updatedStyle.includes('fill-opacity')) {
+                        clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
+                    } else {
+                        clonedPath.setAttribute('style', updatedStyle);
+                    }
+                    // Append it at     the end of the SVG (last position)
+                    svgElement.appendChild(clonedPath);
+                    
                 }
 
                 // Remove brain_parts group but keep all its child elements
