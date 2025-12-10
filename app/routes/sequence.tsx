@@ -142,7 +142,7 @@ export default function Sequence() {
       </div>
       <HighlightedImage 
         highlightedSvg={toto}
-        highlightedIds={["path1", "path2", "path3"]}
+        highlightedIds={["Cerebral_Aqueduct-8", "Choroid_Plexus-2", "Cerebellum-1"]}
       />
 
     </div>

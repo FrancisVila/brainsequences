@@ -1,0 +1,1 @@
+get list of items to highlight and copy to showtime group from the highlightedIds parameter of HighlightedImage.tsx

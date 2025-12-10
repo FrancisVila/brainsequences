@@ -49,43 +49,22 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     if (pathId && (normalizedHighlightedIds.includes(pathId) || 
                         normalizedHighlightedIds.includes(String(Number(pathId))))) {
                         path.classList.add('highlighted');
+
+                        const clonedPath = path.cloneNode(true) as SVGPathElement;
+                        // Set fill-opacity to 1 in the style attribute
+                        const currentStyle = clonedPath.getAttribute('style') || '';
+                        const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
+                        if (!updatedStyle.includes('fill-opacity')) {
+                            clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
+                        } else {
+                            clonedPath.setAttribute('style', updatedStyle);
+                        }
+                        // Append it at     the end of the SVG (last position)
+                        svgElement.appendChild(clonedPath);
                     }
                 });
 
-                // Find the path with id Precuneus-7 and copy it to the end of all paths
-                const precuneusPath = svgElement.querySelector('#Precuneus-7');
-                
-                if (precuneusPath) {
-                    // Clone the path
-                    const clonedPath = precuneusPath.cloneNode(true) as SVGPathElement;
-                    // Set fill-opacity to 1 in the style attribute
-                    const currentStyle = clonedPath.getAttribute('style') || '';
-                    const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
-                    if (!updatedStyle.includes('fill-opacity')) {
-                        clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
-                    } else {
-                        clonedPath.setAttribute('style', updatedStyle);
-                    }
-                    // Append it at     the end of the SVG (last position)
-                    svgElement.appendChild(clonedPath);
-                    
-                }
 
-                // Remove brain_parts group but keep all its child elements
-                const brainPartsGroup = svgElement.querySelector('#brain_parts');
-                 ;
-                if (brainPartsGroup && brainPartsGroup.parentNode) {
-                    // Move all children to the parent before removing the group
-                    const root = brainPartsGroup.parentNode;
-                    const brainPartsHere = svgElement.querySelector('#brain_parts_here');
-                    while (brainPartsGroup.firstChild) {
-                        if (brainPartsHere) {
-                            root.insertBefore(brainPartsHere, brainPartsGroup);
-                        }
-                    }
-                    // Remove the now-empty group
-                    brainPartsGroup.remove();
-                }
 
                 // Clear container and append the modified SVG
                 if (svgContainerRef.current) {
