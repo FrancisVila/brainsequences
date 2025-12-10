@@ -59,8 +59,15 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                         } else {
                             clonedPath.setAttribute('style', updatedStyle);
                         }
-                        // Append it at     the end of the SVG (last position)
-                        svgElement.appendChild(clonedPath);
+                        
+                        // Append clonedPath to the group with id 'showtime'
+                        let showtimeGroup = svgElement.querySelector('#showtime');
+                        if (!showtimeGroup) {
+                            showtimeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                            showtimeGroup.setAttribute('id', 'showtime');
+                            svgElement.appendChild(showtimeGroup);
+                        }
+                        showtimeGroup.appendChild(clonedPath);
                     }
                 });
 
