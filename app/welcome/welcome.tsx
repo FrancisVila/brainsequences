@@ -1,7 +1,7 @@
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 import { useEffect, useState } from "react";
-import tim_taylor from '../images/tim_taylor_out.svg';
+import tim_taylor from '../images/tim_taylor.svg';
 import brain_id_opt_3 from '../images/brain_id_opt_3.svg' 
 import glands3 from '../images/glands3.svg'
 import HighlightedImage from "~/components/HighlightedImage"; 
