@@ -55,12 +55,12 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 }
 
                 // Get all path elements
-                const paths = svgElement.querySelectorAll('path, text');
+                const paths_and_texts = svgElement.querySelectorAll('path, text');
                 
                 // Assign IDs to paths that don't have one (based on position)
-                paths.forEach((path, index) => {
-                    if (!path.hasAttribute('id')) {
-                        path.setAttribute('id', String(index));
+                paths_and_texts.forEach((path_or_text, index) => {
+                    if (!path_or_text.hasAttribute('id')) {
+                        path_or_text.setAttribute('id', String(index));
                     }
                 });
 
@@ -73,13 +73,21 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     });
                 }
 
-                // Apply highlighting to matching paths
-                const normalizedHighlightedIds = highlightedIds.map(id => String(id));
-                paths.forEach((path) => {
-                    const pathId = path.getAttribute('id');
-                    if (pathId && (normalizedHighlightedIds.includes(pathId) || 
-                        normalizedHighlightedIds.includes(String(Number(pathId))))) {
-                        path.classList.add('highlighted');
+                // Apply highlighting to paths matching the highlightedIds, and texts matching highlightedIds with _text suffix
+                const normalizedHighlightedIds = highlightedIds.flatMap(id => {
+                    const strId = String(id);
+                    return [strId, strId + '_text'];
+                });
+                paths_and_texts.forEach((path_or_text) => {
+                    const pathId = path_or_text.getAttribute('id');
+                    console.log('Checking path ID:', pathId);
+                    if (pathId && 
+                        (normalizedHighlightedIds.includes(pathId) || 
+                        (normalizedHighlightedIds.includes(String(Number(pathId))) 
+                        )))
+                    
+                    {
+                        path_or_text.classList.add('highlighted');
 
 
                     }

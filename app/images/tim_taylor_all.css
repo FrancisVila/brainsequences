@@ -11,11 +11,18 @@
 	display:inline !important;
 }
 
-.highlighted {
+.body_part.highlighted {
 	fill:#FF0000 !important;
 	fill-opacity:0.2 !important;
 	stroke-width:3 !important;
 	display:inline !important;
 	stroke:#FF0000 !important;
 	stroke-opacity:1 !important;
+}
+
+.body_part_text.highlighted {
+	display:inline !important;
+	font-size:32px !important;
+	font-weight: bold !important;
+	fill:#600000 !important;
 }
