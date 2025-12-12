@@ -5,12 +5,14 @@ export interface HighlightedImageProps {
     highlightedSvg: string;
     backgroundImage?: string;
     highlightedIds?: (string | number)[];
+    view?: 'sketch' | 'bitmap' | 'all';
 }
 
 const HighlightedImage: React.FC<HighlightedImageProps> = ({ 
     highlightedSvg, 
     backgroundImage, 
-    highlightedIds = []
+    highlightedIds = [],
+    view = 'sketch'
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
 
@@ -31,6 +33,21 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 // Remove width and height attributes
                 svgElement.removeAttribute('width');
                 svgElement.removeAttribute('height');
+
+                // Set visibility of background groups based on view parameter
+                const sketchBackgrounds = svgElement.querySelector('#sketch_backgrounds');
+                const bitmapBackgrounds = svgElement.querySelector('#bitmap_backgrounds');
+                
+                if (view === 'sketch') {
+                    if (sketchBackgrounds) sketchBackgrounds.setAttribute('style', 'display:inline');
+                    if (bitmapBackgrounds) bitmapBackgrounds.setAttribute('style', 'display:none');
+                } else if (view === 'bitmap') {
+                    if (sketchBackgrounds) sketchBackgrounds.setAttribute('style', 'display:none');
+                    if (bitmapBackgrounds) bitmapBackgrounds.setAttribute('style', 'display:inline');
+                } else if (view === 'all') {
+                    if (sketchBackgrounds) sketchBackgrounds.setAttribute('style', 'display:none');
+                    if (bitmapBackgrounds) bitmapBackgrounds.setAttribute('style', 'display:inline');
+                }
 
                 // Get all path elements
                 const paths = svgElement.querySelectorAll('path');
@@ -85,10 +102,14 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
         };
 
         loadSvg();
-    }, [highlightedSvg, highlightedIds]);
+    }, [highlightedSvg, highlightedIds, view]);
+
+    // Determine which CSS file to link based on view
+    const cssFile = view === 'all' ? 'tim_taylor_all.css' : 'tim_taylor.css';
 
     return (
         <>
+            <link rel="stylesheet" type="text/css" href={cssFile} />
             <style>
                 {`
                     .leaflet-interactive {

@@ -1,11 +1,4 @@
 .body_part {
-	fill:#FF0000 !important;
-}
-
-.sketch {
-
-}
-
-.image_background {
-	display: none !important;
+	fill:none !important;
+	stroke: none !important
 }
