@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './highlightedImage.css';
-import '../images/tim_taylor.css';
-import '../images/tim_taylor_all.css';
+import timTaylorCss from '../images/tim_taylor.css?raw';
+import timTaylorAllCss from '../images/tim_taylor_all.css?raw';
 
 export interface HighlightedImageProps {
     highlightedSvg: string;
@@ -17,6 +17,9 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
     view = 'sketch'
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
+    
+    // Select appropriate CSS based on view
+    const cssContent = view === 'all' ? timTaylorAllCss : timTaylorCss;
 
     useEffect(() => {
 
@@ -118,6 +121,7 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
     return (
         <>
             <style>
+                {cssContent}
                 {`
                     .highlighted {
                         stroke-opacity: 1 !important;
