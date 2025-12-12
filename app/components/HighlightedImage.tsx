@@ -55,7 +55,7 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 }
 
                 // Get all path elements
-                const paths = svgElement.querySelectorAll('path');
+                const paths = svgElement.querySelectorAll('path, text');
                 
                 // Assign IDs to paths that don't have one (based on position)
                 paths.forEach((path, index) => {
@@ -67,7 +67,7 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 // Add body_part class to all paths inside body_parts group
                 const bodyPartsGroup = svgElement.querySelector('#body_parts');
                 if (bodyPartsGroup) {
-                    const bodyPartPaths = bodyPartsGroup.querySelectorAll('path');
+                    const bodyPartPaths = bodyPartsGroup.querySelectorAll('path, text');
                     bodyPartPaths.forEach(path => {
                         path.classList.add('body_part');
                     });
@@ -81,24 +81,7 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                         normalizedHighlightedIds.includes(String(Number(pathId))))) {
                         path.classList.add('highlighted');
 
-                        const clonedPath = path.cloneNode(true) as SVGPathElement;
-                        // // Set fill-opacity to 1 in the style attribute
-                        // const currentStyle = clonedPath.getAttribute('style') || '';
-                        // const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
-                        // if (!updatedStyle.includes('fill-opacity')) {
-                        //     clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
-                        // } else {
-                        //     clonedPath.setAttribute('style', updatedStyle);
-                        // }
-                        
-                        // Append clonedPath to the group with id 'showtime'
-                        let showtimeGroup = svgElement.querySelector('#showtime');
-                        if (!showtimeGroup) {
-                            showtimeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                            showtimeGroup.setAttribute('id', 'showtime');
-                            svgElement.appendChild(showtimeGroup);
-                        }
-                        showtimeGroup.appendChild(clonedPath);
+
                     }
                 });
 
@@ -122,13 +105,6 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
         <>
             <style>
                 {cssContent}
-                {`
-                    .highlighted {
-                        stroke-opacity: 1 !important;
-                        stroke-width: 2 !important;
-                        fill-opacity: 0.6 !important;
-                    }
-                `}
             </style>
 
             
