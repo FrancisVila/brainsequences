@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import "./sequence.css"
 import HighlightedImage from '../components/HighlightedImage';
 import toto from '../images/tim_taylor.svg';
-import tata from '../images/welcome.png';
 
 export default function Sequence() {
 
@@ -142,6 +141,7 @@ export default function Sequence() {
       </div>
       <HighlightedImage 
         highlightedSvg={toto}
+        view='bitmap'
         highlightedIds={["Cerebral_Aqueduct-8", "Choroid_Plexus-2", "Cerebellum-1"]}
       />
 

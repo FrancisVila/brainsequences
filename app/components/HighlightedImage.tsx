@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './highlightedImage.css';
+import '../images/tim_taylor.css';
+import '../images/tim_taylor_all.css';
 
 export interface HighlightedImageProps {
     highlightedSvg: string;
@@ -59,6 +61,15 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                     }
                 });
 
+                // Add body_part class to all paths inside body_parts group
+                const bodyPartsGroup = svgElement.querySelector('#body_parts');
+                if (bodyPartsGroup) {
+                    const bodyPartPaths = bodyPartsGroup.querySelectorAll('path');
+                    bodyPartPaths.forEach(path => {
+                        path.classList.add('body_part');
+                    });
+                }
+
                 // Apply highlighting to matching paths
                 const normalizedHighlightedIds = highlightedIds.map(id => String(id));
                 paths.forEach((path) => {
@@ -68,14 +79,14 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                         path.classList.add('highlighted');
 
                         const clonedPath = path.cloneNode(true) as SVGPathElement;
-                        // Set fill-opacity to 1 in the style attribute
-                        const currentStyle = clonedPath.getAttribute('style') || '';
-                        const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
-                        if (!updatedStyle.includes('fill-opacity')) {
-                            clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
-                        } else {
-                            clonedPath.setAttribute('style', updatedStyle);
-                        }
+                        // // Set fill-opacity to 1 in the style attribute
+                        // const currentStyle = clonedPath.getAttribute('style') || '';
+                        // const updatedStyle = currentStyle.replace(/fill-opacity:\s*[\d.]+/g, 'fill-opacity:1');
+                        // if (!updatedStyle.includes('fill-opacity')) {
+                        //     clonedPath.setAttribute('style', currentStyle + ';fill-opacity:1');
+                        // } else {
+                        //     clonedPath.setAttribute('style', updatedStyle);
+                        // }
                         
                         // Append clonedPath to the group with id 'showtime'
                         let showtimeGroup = svgElement.querySelector('#showtime');
@@ -104,25 +115,10 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
         loadSvg();
     }, [highlightedSvg, highlightedIds, view]);
 
-    // Determine which CSS file to link based on view
-    const cssFile = view === 'all' ? 'tim_taylor_all.css' : 'tim_taylor.css';
-
     return (
         <>
-            <link rel="stylesheet" type="text/css" href={cssFile} />
             <style>
                 {`
-                    .leaflet-interactive {
-                        stroke: #038103;
-                        stroke-opacity: 1;
-                        stroke-width: 1;
-                        stroke-linecap: round;
-                        stroke-linejoin: round;
-                        fill: #038103;
-                        fill-opacity: 0;
-                        fill-rule: evenodd;
-                    }
-
                     .highlighted {
                         stroke-opacity: 1 !important;
                         stroke-width: 2 !important;

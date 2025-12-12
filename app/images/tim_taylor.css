@@ -1,4 +1,10 @@
 .body_part {
+	fill-opacity:0 !important;
+	stroke-width:0 !important;
+	display:none !important;
 	fill:none !important;
-	stroke: none !important
+	fill-opacity:0 !important;
+	stroke:none !important;
+	stroke-width:0 !important;
+	stroke-opacity:0 !important;
 }

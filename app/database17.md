@@ -1,0 +1,2 @@
+in the page, the svg image does not take into account the styles I'm putting into tim_taylor.css. The path items inside the body_parts group appear as green, while I want to make them hidden.
+Also moved all extra svg files to C:\projects\brainsequences\old-images
