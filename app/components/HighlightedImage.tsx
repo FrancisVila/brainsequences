@@ -75,12 +75,11 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
 
                 // Apply highlighting to paths matching the highlightedIds, and texts matching highlightedIds with _text suffix
                 const normalizedHighlightedIds = highlightedIds.flatMap(id => {
-                    const strId = String(id);
+                    const strId = String(id).toLowerCase().trim();
                     return [strId, strId + '_text'];
                 });
                 paths_and_texts.forEach((path_or_text) => {
-                    const pathId = path_or_text.getAttribute('id');
-                    console.log('Checking path ID:', pathId);
+                    const pathId = path_or_text.getAttribute('id')?.toString().toLowerCase().trim();
                     if (pathId && 
                         (normalizedHighlightedIds.includes(pathId) || 
                         (normalizedHighlightedIds.includes(String(Number(pathId))) 

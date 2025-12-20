@@ -10,3 +10,7 @@
     height: auto;
     display: block;
 }
+
+.text_curve {
+    display: none;
+}
