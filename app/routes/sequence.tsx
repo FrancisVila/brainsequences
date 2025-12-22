@@ -179,6 +179,7 @@ export default function Sequence() {
         highlightedSvg={toto}
         view={view}
         highlightedIds={["Cerebellum", "pons", "Medulla"]}
+        links={[{from: 'VTA', to: 'Frontal_Pole', label: 'dopamine'}]}
       />
 
     </div>
