@@ -1,0 +1,1 @@
+move selected radio buttons and dependent declarations into the HighlightedImage.tsx file

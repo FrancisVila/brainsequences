@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './highlightedImage.css';
 import timTaylorCss from '../images/tim_taylor.css?raw';
 import timTaylorAllCss from '../images/tim_taylor_all.css?raw';
@@ -13,7 +13,6 @@ export interface HighlightedImageProps {
     highlightedSvg: string;
     backgroundImage?: string;
     highlightedIds?: (string | number)[];
-    view?: 'sketch' | 'bitmap' | 'all';
     links?: Link[];
 }
 
@@ -21,10 +20,10 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
     highlightedSvg, 
     backgroundImage, 
     highlightedIds = [],
-    view = 'sketch',
     links = []
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
+    const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
     
     // Select appropriate CSS based on view
     const cssContent = view === 'all' ? timTaylorAllCss : timTaylorCss;
@@ -227,6 +226,39 @@ const HighlightedImage: React.FC<HighlightedImageProps> = ({
                 {cssContent}
             </style>
 
+            <div style={{ margin: '20px 0' }}>
+                <label style={{ marginRight: '15px', fontWeight: 'bold' }}>View Mode:</label>
+                <label style={{ marginRight: '15px' }}>
+                    <input 
+                        type="radio" 
+                        value="sketch" 
+                        checked={view === 'sketch'} 
+                        onChange={(e) => setView(e.target.value as 'sketch')}
+                        style={{ marginRight: '5px' }}
+                    />
+                    Sketch
+                </label>
+                <label style={{ marginRight: '15px' }}>
+                    <input 
+                        type="radio" 
+                        value="bitmap" 
+                        checked={view === 'bitmap'} 
+                        onChange={(e) => setView(e.target.value as 'bitmap')}
+                        style={{ marginRight: '5px' }}
+                    />
+                    Bitmap
+                </label>
+                <label>
+                    <input 
+                        type="radio" 
+                        value="all" 
+                        checked={view === 'all'} 
+                        onChange={(e) => setView(e.target.value as 'all')}
+                        style={{ marginRight: '5px' }}
+                    />
+                    All
+                </label>
+            </div>
             
             <div 
                 ref={svgContainerRef}

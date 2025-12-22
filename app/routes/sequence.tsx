@@ -12,7 +12,6 @@ export default function Sequence() {
   const [allSequences, setAllSequences] = useState<any[]>([]);
   const [selectedStepId, setSelectedStepId] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
 
   async function loadSequence() {
     if (!id) return;
@@ -140,44 +139,9 @@ export default function Sequence() {
 
 
       </div>
-      
-      <div style={{ margin: '20px 0' }}>
-        <label style={{ marginRight: '15px', fontWeight: 'bold' }}>View Mode:</label>
-        <label style={{ marginRight: '15px' }}>
-          <input 
-            type="radio" 
-            value="sketch" 
-            checked={view === 'sketch'} 
-            onChange={(e) => setView(e.target.value as 'sketch')}
-            style={{ marginRight: '5px' }}
-          />
-          Sketch
-        </label>
-        <label style={{ marginRight: '15px' }}>
-          <input 
-            type="radio" 
-            value="bitmap" 
-            checked={view === 'bitmap'} 
-            onChange={(e) => setView(e.target.value as 'bitmap')}
-            style={{ marginRight: '5px' }}
-          />
-          Bitmap
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            value="all" 
-            checked={view === 'all'} 
-            onChange={(e) => setView(e.target.value as 'all')}
-            style={{ marginRight: '5px' }}
-          />
-          All
-        </label>
-      </div>
 
       <HighlightedImage 
         highlightedSvg={toto}
-        view={view}
         highlightedIds={["Cerebellum", "pons", "Medulla"]}
         links={[{from: 'VTA', to: 'Frontal_Pole', label: 'dopamine'}]}
       />
