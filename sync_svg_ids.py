@@ -20,7 +20,9 @@ root = tree.getroot()
 def sync_ids(element):
     label = element.get('{http://www.inkscape.org/namespaces/inkscape}label')
     if label:
-        element.set('id', label)
+        # Replace spaces with underscores in the label
+        new_id = label.replace(' ', '_')
+        element.set('id', new_id)
     
     for child in element:
         sync_ids(child)
