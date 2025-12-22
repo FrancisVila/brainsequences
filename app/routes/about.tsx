@@ -9,13 +9,14 @@ export default function About() {
             <h2>The Atlas</h2>
                   <AtlasImage 
         atlasSvg={toto}
-        atlasIds={["Cerebellum", "pons", "Medulla"]}
+        highlightedIds={["Cerebellum", "pons", "Medulla"]}
       />
           <ul>
+                      <li>In this example, the highlighted areas are <i>Pons</i> and <i>Cerebellum</i>.</li>
             <li>Brain Sequences provides an Atlas of brain regions, sensory organs, and the endocrine system. The user can select different <i>views</i> of the atlas, but the <i>layout</i> always remains the same. This is to provide an invariant reference map where users can locate areas they have learned about. It conforms with the UX principles of <i>consistency</i> and <i>stay on the page</i>. </li>
 
             <li>To avoid overwhelming the users with excess information, the default view is a sketch that focusses on the atlas items. </li>
-          <li>In this example, the highlighted areas are <i>Pons</i> and <i>Cerebellum</i>.</li>
+
           </ul>
         </section>
       <div>

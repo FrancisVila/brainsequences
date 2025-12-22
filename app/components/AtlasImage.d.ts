@@ -3,7 +3,7 @@ import React from 'react';
 export interface AtlasImageProps {
     atlasSvg: string;
     backgroundImage?: string;
-    atlasIds?: (string | number)[];
+    highlightedIds?: (string | number)[];
     cssFile: string;
 }
 

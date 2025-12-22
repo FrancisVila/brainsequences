@@ -12,13 +12,13 @@ export interface Link {
 export interface AtlasImageProps {
     atlasSvg: string;
     backgroundImage?: string;
-    atlasIds?: (string | number)[];
+    highlightedIds?: (string | number)[];
 }
 
 const AtlasImage: React.FC<AtlasImageProps> = ({ 
     atlasSvg, 
     backgroundImage, 
-    atlasIds = [],
+    highlightedIds = [],
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
@@ -78,16 +78,16 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                     });
                 }
 
-                // Apply highlighting to paths matching the atlasIds, and texts matching atlasIds with _text suffix
-                const normalizedAtlasIds = atlasIds.flatMap(id => {
+                // Apply highlighting to paths matching the highlightedIds, and texts matching highlightedIds with _text suffix
+                const normalizedHighlightedIds = highlightedIds.flatMap(id => {
                     const strId = String(id).toLowerCase().trim();
                     return [strId, strId + '_text'];
                 });
                 paths_and_texts.forEach((path_or_text) => {
                     const pathId = path_or_text.getAttribute('id')?.toString().toLowerCase().trim();
                     if (pathId && 
-                        (normalizedAtlasIds.includes(pathId) || 
-                        (normalizedAtlasIds.includes(String(Number(pathId))) 
+                        (normalizedHighlightedIds.includes(pathId) || 
+                        (normalizedHighlightedIds.includes(String(Number(pathId))) 
                         )))
                     
                     {
@@ -110,7 +110,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
         };
 
         loadSvg();
-    }, [atlasSvg, atlasIds, view]);
+    }, [atlasSvg, highlightedIds, view]);
 
     return (
         <>

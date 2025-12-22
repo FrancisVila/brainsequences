@@ -142,8 +142,7 @@ export default function Sequence() {
 
       <AtlasImage 
         atlasSvg={toto}
-        atlasIds={["Cerebellum", "pons", "Medulla"]}
-        links={[{from: 'VTA', to: 'Frontal_Pole', label: 'dopamine'}]}
+        highlightedIds={["Cerebellum", "pons", "Medulla"]}
       />
 
     </div>
