@@ -1,0 +1,16 @@
+.svg-container {
+    width: 700px;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.svg-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text_curve {
+    display: none;
+}

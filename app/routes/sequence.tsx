@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import "./sequence.css"
-import HighlightedImage from '../components/HighlightedImage';
+import AtlasImage from '../components/AtlasImage';
 import toto from '../images/tim_taylor.svg';
 
 export default function Sequence() {
@@ -140,9 +140,9 @@ export default function Sequence() {
 
       </div>
 
-      <HighlightedImage 
-        highlightedSvg={toto}
-        highlightedIds={["Cerebellum", "pons", "Medulla"]}
+      <AtlasImage 
+        atlasSvg={toto}
+        atlasIds={["Cerebellum", "pons", "Medulla"]}
         links={[{from: 'VTA', to: 'Frontal_Pole', label: 'dopamine'}]}
       />
 

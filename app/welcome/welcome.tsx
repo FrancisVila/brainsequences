@@ -2,7 +2,7 @@ import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 import { useEffect, useState } from "react";
 import tim_taylor from '../images/tim_taylor.svg';
-import HighlightedImage from "~/components/HighlightedImage"; 
+import AtlasImage from "~/components/AtlasImage"; 
 
 
 export function Welcome() {
@@ -13,7 +13,7 @@ export function Welcome() {
 
   return (
     <main >
-      <HighlightedImage highlightedSvg={tim_taylor}  />
+      <AtlasImage atlasSvg={tim_taylor}  />
 
       
     </main>

@@ -1,4 +1,4 @@
-import HighlightedImage from "~/components/HighlightedImage";
+import AtlasImage from "../components/AtlasImage";
 import toto from '../images/tim_taylor.svg';
 
 export default function About() {
@@ -20,9 +20,9 @@ export default function About() {
 
         <section className="mb-8">
             <h2>Atlas</h2>
-                  <HighlightedImage 
-        highlightedSvg={toto}
-        highlightedIds={["Cerebellum", "pons", "Medulla"]}
+                  <AtlasImage 
+        atlasSvg={toto}
+        atlasIds={["Cerebellum", "pons", "Medulla"]}
         links={[{from: 'VTA', to: 'Frontal_Pole', label: 'dopamine'}]}
       />
 
@@ -32,7 +32,7 @@ export default function About() {
           <h2 className="text-2xl font-semibold mb-4">Means to reach these goals</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>Design an Atlas of brain regions, sensory organs, and the endocrine system. The use can select different views of the atlas, but the layout always remains the same. This is to provide an invariant reference map where users can locate areas they have learned about. It conforms with the UX principles of consistency and stay on the page. </li>
-            <li>To avoid overwhelming the users with excess information, the default view is a sketch that focusses on the highlighted items. </li>
+            <li>To avoid overwhelming the users with excess information, the default view is a sketch that focusses on the atlas items. </li>
             <li>Learn about brain part connections and functions</li>
             <li>Educational resources and detailed information</li>
           </ul>

@@ -11,7 +11,7 @@
 	display:inline !important;
 }
 
-.body_part.highlighted {
+.body_part.atlas {
 	fill:#FF0000 !important;
 	fill-opacity:0.2 !important;
 	stroke-width:3 !important;
@@ -20,7 +20,7 @@
 	stroke-opacity:1 !important;
 }
 
-.body_part_text.highlighted {
+.body_part_text.atlas {
 	display:inline !important;
 	font-size:32px !important;
 	font-weight: bold !important;
