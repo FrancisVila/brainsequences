@@ -3,6 +3,7 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 // Register the app pages and API routes. 
 export default [
 	index("routes/home.tsx"),
+	route("/about", "routes/about.tsx"),
 	// Brainparts pages
 	route("/brainparts", "routes/brainparts.tsx"),
 	route("/brainparts/create", "routes/brainparts/create.tsx"),
