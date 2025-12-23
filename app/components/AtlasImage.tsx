@@ -22,6 +22,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
+    const [isFullscreen, setIsFullscreen] = useState(false);
     
     // Select appropriate CSS based on view
     const cssContent = view === 'all' ? timTaylorAllCss : timTaylorCss;
@@ -118,45 +119,131 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 {cssContent}
             </style>
 
-            <div style={{ margin: '20px 0' }}>
-                <label style={{ marginRight: '15px', fontWeight: 'bold' }}>View Mode:</label>
-                <label style={{ marginRight: '15px' }}>
-                    <input 
-                        type="radio" 
-                        value="sketch" 
-                        checked={view === 'sketch'} 
-                        onChange={(e) => setView(e.target.value as 'sketch')}
-                        style={{ marginRight: '5px' }}
-                    />
-                    Sketch
-                </label>
-                <label style={{ marginRight: '15px' }}>
-                    <input 
-                        type="radio" 
-                        value="bitmap" 
-                        checked={view === 'bitmap'} 
-                        onChange={(e) => setView(e.target.value as 'bitmap')}
-                        style={{ marginRight: '5px' }}
-                    />
-                    Bitmap
-                </label>
-                <label>
-                    <input 
-                        type="radio" 
-                        value="all" 
-                        checked={view === 'all'} 
-                        onChange={(e) => setView(e.target.value as 'all')}
-                        style={{ marginRight: '5px' }}
-                    />
-                    All
-                </label>
+            <div style={{ position: 'relative' }}>
+                <div style={{ margin: '20px 0' }}>
+                    <label style={{ marginRight: '15px', fontWeight: 'bold' }}>View Mode:</label>
+                    <label style={{ marginRight: '15px' }}>
+                        <input 
+                            type="radio" 
+                            value="sketch" 
+                            checked={view === 'sketch'} 
+                            onChange={(e) => setView(e.target.value as 'sketch')}
+                            style={{ marginRight: '5px' }}
+                        />
+                        Sketch
+                    </label>
+                    <label style={{ marginRight: '15px' }}>
+                        <input 
+                            type="radio" 
+                            value="bitmap" 
+                            checked={view === 'bitmap'} 
+                            onChange={(e) => setView(e.target.value as 'bitmap')}
+                            style={{ marginRight: '5px' }}
+                        />
+                        Bitmap
+                    </label>
+                    <label>
+                        <input 
+                            type="radio" 
+                            value="all" 
+                            checked={view === 'all'} 
+                            onChange={(e) => setView(e.target.value as 'all')}
+                            style={{ marginRight: '5px' }}
+                        />
+                        All
+                    </label>
+                    
+                    <button
+                        onClick={() => setIsFullscreen(true)}
+                        style={{
+                            marginLeft: '20px',
+                            padding: '8px 12px',
+                            border: '1px solid #ccc',
+                            borderRadius: '4px',
+                            background: '#fff',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            float: 'right',
+                            position: 'relative',
+                            top: '-5px'
+                        }}
+                        title="View fullscreen"
+                    >
+                        ⛶
+                    </button>
+                </div>
+                
+                <div 
+                    ref={svgContainerRef}
+                    className="svg-container"
+                />
             </div>
-            
-            <div 
-                ref={svgContainerRef}
-                className="svg-container"
-            />
-    
+
+            {isFullscreen && (
+                <div
+                    onClick={() => setIsFullscreen(false)}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        zIndex: 9999,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '20px'
+                    }}
+                >
+                    <button
+                        onClick={() => setIsFullscreen(false)}
+                        style={{
+                            position: 'absolute',
+                            top: '20px',
+                            right: '20px',
+                            padding: '10px 15px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            background: '#fff',
+                            cursor: 'pointer',
+                            fontSize: '20px',
+                            zIndex: 10000
+                        }}
+                        title="Close fullscreen"
+                    >
+                        ✕
+                    </button>
+                    
+                    <div
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            width: '95vw',
+                            height: '95vh',
+                            overflow: 'auto',
+                            background: '#fff',
+                            borderRadius: '8px',
+                            padding: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <div 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                            dangerouslySetInnerHTML={{ 
+                                __html: svgContainerRef.current?.innerHTML || '' 
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
         </>
     );
 };
