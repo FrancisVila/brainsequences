@@ -40,6 +40,13 @@ export default function About() {
             a fast and interactive learning experience.
           </p>
         </section>
+        <section>
+          <h2>Credits</h2>
+          <p>
+            Built with React Router, Vite, SVG, and other modern web technologies to provide
+            a fast and interactive learning experience.
+          </p>
+        </section>
       </div>
     </main>
   );
