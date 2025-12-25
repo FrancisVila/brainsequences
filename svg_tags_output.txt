@@ -1,0 +1,713 @@
+id=svg41
+id=defs41
+id=rect19
+id=ConcaveTriangle
+id=path17
+id=path-effect12
+id=path-effect11
+id=path-effect10
+id=path-effect9
+id=path-effect8
+id=path-effect7
+id=path-effect5
+id=path-effect4
+id=path-effect2
+id=path-effect1
+id=path-effect163
+id=perspective28
+id=clipPath1
+id=rect2
+id=clipPath2
+id=rect3
+id=filter3, inkscape:label=Opacity ***
+id=feColorMatrix3
+id=feComposite3
+id=feColorMatrix4
+id=feColorMatrix5
+id=feComposite5
+id=feColorMatrix6
+id=feColorMatrix7
+id=feComposite7
+id=feColorMatrix10
+id=feColorMatrix11
+id=feComposite11
+id=clipPath1-5
+id=rect2-1
+id=filter3-7, inkscape:label=Opacity ***
+id=feColorMatrix3-1
+id=feComposite3-1
+id=feColorMatrix4-5
+id=feColorMatrix5-2
+id=feComposite5-7
+id=feColorMatrix6-6
+id=feColorMatrix7-1
+id=feComposite7-4
+id=feColorMatrix10-2
+id=feColorMatrix11-3
+id=feComposite11-2
+id=clipPath2-2
+id=rect3-1
+id=clipPath1-0
+id=rect2-9
+id=filter3-0, inkscape:label=Opacity ***
+id=feColorMatrix3-0
+id=feComposite3-6
+id=feColorMatrix4-1
+id=feColorMatrix5-3
+id=feComposite5-8
+id=feColorMatrix6-9
+id=feColorMatrix7-3
+id=feComposite7-44
+id=feColorMatrix10-6
+id=feColorMatrix11-0
+id=feComposite11-6
+id=clipPath2-6
+id=rect3-18
+id=clipPath2-7
+id=rect3-8
+id=clipPath1-3
+id=rect2-8
+id=filter3-3, inkscape:label=Opacity ***
+id=feColorMatrix3-7
+id=feComposite3-10
+id=feColorMatrix4-7
+id=feColorMatrix5-34
+id=feComposite5-9
+id=feColorMatrix6-65
+id=feColorMatrix7-10
+id=feComposite7-9
+id=feColorMatrix10-9
+id=feColorMatrix11-6
+id=feComposite11-8
+id=mask1
+id=rect4
+id=mask6
+id=rect6
+id=mask6-7
+id=rect6-4
+id=mask6-7-7
+id=rect6-4-9
+id=clipPath2-7-4
+id=rect3-8-4
+id=clipPath1-3-6
+id=rect2-8-0
+id=filter3-3-7, inkscape:label=Lightness-Contrast ***
+id=feColorMatrix3-7-1
+id=feComposite3-10-7
+id=feColorMatrix4-7-7
+id=feColorMatrix5-34-7
+id=feComposite5-9-7
+id=feColorMatrix6-65-3
+id=feColorMatrix7-10-3
+id=feComposite7-9-5
+id=feColorMatrix10-9-9
+id=feColorMatrix11-6-9
+id=feComposite11-8-8
+id=feColorMatrix25
+id=feColorMatrix26
+id=filter5, inkscape:label=Edge Detect ***
+id=feConvolveMatrix5
+id=clipPath1-3-0
+id=rect2-8-9
+id=filter3-3-4, inkscape:label=Opacity ***
+id=feColorMatrix3-7-8
+id=feComposite3-10-8
+id=feColorMatrix4-7-2
+id=feColorMatrix5-34-4
+id=feComposite5-9-5
+id=feColorMatrix6-65-5
+id=feColorMatrix7-10-1
+id=feComposite7-9-7
+id=feColorMatrix10-9-1
+id=feColorMatrix11-6-1
+id=feComposite11-8-5
+id=clipPath1-3-8
+id=rect2-8-6
+id=filter3-3-0, inkscape:label=Opacity ***
+id=feColorMatrix3-7-2
+id=feComposite3-10-4
+id=feColorMatrix4-7-8
+id=feColorMatrix5-34-6
+id=feComposite5-9-50
+id=feColorMatrix6-65-9
+id=feColorMatrix7-10-0
+id=feComposite7-9-0
+id=feColorMatrix10-9-6
+id=feColorMatrix11-6-13
+id=feComposite11-8-89
+id=filter125, inkscape:label=Marbled Ink ***
+id=feGaussianBlur123
+id=feTurbulence123
+id=feColorMatrix123
+id=feComposite123
+id=feGaussianBlur124
+id=feDisplacementMap124
+id=feComposite124
+id=feComposite125
+id=feBlend125
+id=filter130, inkscape:label=Marbled Ink ***
+id=feGaussianBlur128
+id=feTurbulence128
+id=feColorMatrix128
+id=feComposite128
+id=feGaussianBlur129
+id=feDisplacementMap129
+id=feComposite129
+id=feComposite130
+id=feBlend130
+id=filter134, inkscape:label=Marbled Ink ***
+id=feGaussianBlur132
+id=feTurbulence132
+id=feColorMatrix132
+id=feComposite132
+id=feGaussianBlur133
+id=feDisplacementMap133
+id=feComposite133
+id=feComposite134
+id=feBlend134
+id=filter137, inkscape:label=Film Grain ***
+id=feTurbulence136
+id=feColorMatrix136
+id=feComposite136
+id=feBlend136
+id=feComposite137
+id=filter139, inkscape:label=Film Grain ***
+id=feTurbulence137
+id=feColorMatrix137
+id=feComposite138
+id=feBlend138
+id=feComposite139
+id=filter141, inkscape:label=Film Grain ***
+id=feTurbulence139
+id=feColorMatrix139
+id=feComposite140
+id=feBlend140
+id=feComposite141
+id=path-effect3
+id=filter12, inkscape:label=Channel Transparency ***
+id=feColorMatrix12
+id=feComposite12
+id=feColorMatrix27
+id=feColorMatrix28
+id=feComposite28
+id=feColorMatrix29
+id=feColorMatrix30
+id=feComposite30
+id=filter8, inkscape:label=Channel Transparency ***
+id=feColorMatrix8
+id=feComposite8
+id=feColorMatrix9
+id=feColorMatrix13
+id=feComposite13
+id=feColorMatrix14
+id=feColorMatrix15
+id=feComposite15
+id=feColorMatrix16
+id=feColorMatrix17
+id=feComposite17
+id=feColorMatrix18
+id=feColorMatrix19
+id=feComposite19
+id=feColorMatrix20
+id=feColorMatrix21
+id=feComposite21
+id=filter139-2, inkscape:label=Film Grain ***
+id=feTurbulence137-2
+id=feColorMatrix137-1
+id=feComposite138-6
+id=feBlend138-8
+id=feComposite139-5
+id=filter139-1, inkscape:label=Film Grain ***
+id=feTurbulence137-8
+id=feColorMatrix137-9
+id=feComposite138-2
+id=feBlend138-7
+id=feComposite139-9
+id=filter139-3, inkscape:label=Film Grain ***
+id=feTurbulence137-87
+id=feColorMatrix137-4
+id=feComposite138-27
+id=feBlend138-79
+id=feComposite139-3
+id=filter139-8, inkscape:label=Film Grain ***
+id=feTurbulence137-6
+id=feColorMatrix137-5
+id=feComposite138-0
+id=feBlend138-2
+id=feComposite139-8
+id=filter139-24, inkscape:label=Film Grain ***
+id=feTurbulence137-86
+id=feColorMatrix137-50
+id=feComposite138-9
+id=feBlend138-0
+id=feComposite139-0
+id=filter139-38, inkscape:label=Film Grain ***
+id=feTurbulence137-9
+id=feColorMatrix137-3
+id=feComposite138-4
+id=feBlend138-4
+id=feComposite139-6
+id=filter139-6, inkscape:label=Film Grain ***
+id=feTurbulence137-1
+id=feColorMatrix137-8
+id=feComposite138-49
+id=feBlend138-6
+id=feComposite139-37
+id=filter139-29, inkscape:label=Film Grain ***
+id=feTurbulence137-13
+id=feColorMatrix137-59
+id=feComposite138-8
+id=feBlend138-40
+id=feComposite139-7
+id=filter139-61, inkscape:label=Film Grain ***
+id=feTurbulence137-5
+id=feColorMatrix137-42
+id=feComposite138-09
+id=feBlend138-73
+id=feComposite139-72
+id=filter139-4, inkscape:label=Film Grain ***
+id=feTurbulence137-3
+id=feColorMatrix137-98
+id=feComposite138-80
+id=feBlend138-87
+id=feComposite139-78
+id=filter139-37, inkscape:label=Film Grain ***
+id=feTurbulence137-10
+id=feColorMatrix137-7
+id=feComposite138-3
+id=feBlend138-49
+id=feComposite139-65
+id=filter139-9, inkscape:label=Film Grain ***
+id=feTurbulence137-96
+id=feColorMatrix137-83
+id=feComposite138-48
+id=feBlend138-499
+id=feComposite139-2
+id=filter69, inkscape:label=Fill Background ***
+id=feFlood68
+id=feImage68
+id=feBlend68
+id=feMerge69
+id=feMergeNode68
+id=feMergeNode69
+id=filter169, inkscape:label=Cutout Glow ***
+id=feOffset169
+id=feGaussianBlur169
+id=feFlood169
+id=feComposite169
+id=feBlend169
+id=feComposite170
+id=feComposite171
+id=filter137-2, inkscape:label=Film Grain ***
+id=feTurbulence136-4
+id=feColorMatrix136-2
+id=feComposite136-5
+id=feBlend136-8
+id=feComposite137-6
+id=filter139-15, inkscape:label=Film Grain ***
+id=feTurbulence137-27
+id=feColorMatrix137-6
+id=feComposite138-1
+id=feBlend138-42
+id=feComposite139-32
+id=filter137-27, inkscape:label=Film Grain ***
+id=feTurbulence136-9
+id=feColorMatrix136-5
+id=feComposite136-4
+id=feBlend136-3
+id=feComposite137-1
+id=filter137-3, inkscape:label=Film Grain ***
+id=feTurbulence136-8
+id=feColorMatrix136-7
+id=feComposite136-42
+id=feBlend136-7
+id=feComposite137-7
+id=namedview41
+id=page41
+id=misc, inkscape:label=misc
+id=image1-0
+id=g15
+id=path18, inkscape:label=link_circle1 ***
+id=link_circle1, inkscape:label=link_text111 ***
+id=link_text111
+id=path6
+id=image1-5
+id=rectangle_backgrounds, inkscape:label=rectangle_backgrounds
+id=rect_round_3, inkscape:label=rect_round_3
+id=rect_round_2, inkscape:label=rect_round_2
+id=rect_round_1, inkscape:label=rect_round_1
+id=sketch_backgrounds, inkscape:label=sketch_backgrounds
+id=path359-4-4
+id=pancreas, inkscape:label=pancreas
+id=path9-9-1
+id=senses_background
+id=adrenal_right, inkscape:label=adrenal_right
+id=adrenal_left, inkscape:label=adrenal_left
+id=adrenal_right_background, inkscape:label=adrenal_right_background
+id=adrenal_left_background, inkscape:label=adrenal_left_background
+id=muscles, inkscape:label=muscles
+id=Hypothalamus, inkscape:label=Hypothalamus
+id=Pineal_Gland, inkscape:label=Pineal_Gland
+id=Pituitary_Gland-7-5-8, inkscape:label=Pituitary_Gland ***
+id=cortices_sketch, inkscape:label=cortices_sketch
+id=brain_center_sketch, inkscape:label=brain_center_sketch
+id=brain_main_sketch, inkscape:label=brain_main_sketch
+id=path1-6
+id=path1-85
+id=outer_sketch, inkscape:label=outer_sketch
+id=path4-14
+id=path11-2
+id=path11-7-3
+id=g11
+id=bitmap_backgrounds, inkscape:label=bitmap_backgrounds
+id=endocrine_background, inkscape:label=endocrine_background
+id=thymus, inkscape:label=thymus
+id=thyroid, inkscape:label=thyroid
+id=brain_outer_background, inkscape:label=brain_outer_background
+id=brain_main_background, inkscape:label=brain_main_background
+id=brain_center_background, inkscape:label=brain_center_background
+id=cortices_background, inkscape:label=cortices_background
+id=pancreas_background, inkscape:label=pancreas_background
+id=path1, inkscape:label=adrenal_right_background ***
+id=path2, inkscape:label=adrenal_left_background ***
+id=muscles_background
+id=path8-0, inkscape:label=muscles_background ***
+id=smell_bitmap, inkscape:label=smell_bitmap
+id=sight_bitmap, inkscape:label=sight_bitmap
+id=hearing_bitmap, inkscape:label=hearing_bitmap
+id=taste_bitmap, inkscape:label=taste_bitmap
+id=touch_bitmap, inkscape:label=touch_bitmap
+id=brain_parts, inkscape:label=brain_parts
+id=senses
+id=smell
+id=sight
+id=hearing
+id=taste
+id=touch
+id=cortices, inkscape:label=cortices
+id=path2-3-8
+id=sensory_face, inkscape:label=sensory_face
+id=motor_elbow, inkscape:label=motor_elbow
+id=sensory_hand, inkscape:label=sensory_hand
+id=motor_hip, inkscape:label=motor_hip
+id=sensory_mouth, inkscape:label=sensory_mouth
+id=motor_larynx, inkscape:label=motor_larynx
+id=sensory_eye, inkscape:label=sensory_eye
+id=motor_fingers, inkscape:label=motor_fingers
+id=motor_face, inkscape:label=motor_face
+id=motor_ankle, inkscape:label=motor_ankle
+id=motor_thumb, inkscape:label=motor_thumb
+id=motor_brow, inkscape:label=motor_brow
+id=sensory_elbow, inkscape:label=sensory_elbow
+id=motor_eyelid, inkscape:label=motor_eyelid
+id=path20-5-2, inkscape:label=sensory_fingers ***
+id=path21-1-21, inkscape:label=sensory_foot ***
+id=path22-20-6, inkscape:label=sensory_head ***
+id=path23-1-8, inkscape:label=sensory_leg ***
+id=path24-6-57, inkscape:label=sensory_genitalia ***
+id=path25-4-6, inkscape:label=motor_neck ***
+id=path26-0-1, inkscape:label=motor_knee ***
+id=path27-6-8, inkscape:label=sensory_neck ***
+id=path28-1-9, inkscape:label=motor_lips ***
+id=path29-89-27, inkscape:label=sensory_lips ***
+id=path30-8-9, inkscape:label=sensory_thumb ***
+id=path31-4-5, inkscape:label=motor_trunk ***
+id=path32-1-43, inkscape:label=motor_shoulder ***
+id=path33-4-12, inkscape:label=motor_wrist ***
+id=path34-3-3, inkscape:label=motor_tongue ***
+id=path35-9-3, inkscape:label=motor_toes ***
+id=path5-5-4, inkscape:label=sensory_area ***
+id=path4-3-2, inkscape:label=motor_area ***
+id=Pons_text, inkscape:label=sensory_mouth_text ***
+id=tspan18
+id=Pons_text-3, inkscape:label=sensory_lips_text ***
+id=tspan103
+id=Pons_text-3-2, inkscape:label=sensory_face_text ***
+id=tspan104
+id=Pons_text-3-2-6, inkscape:label=sensory_eye_text ***
+id=tspan105
+id=Pons_text-3-2-6-2, inkscape:label=sensory_thumb_text ***
+id=tspan106
+id=Pons_text-3-2-6-2-1, inkscape:label=sensory_hand_text ***
+id=tspan107
+id=Pons_text-3-2-6-2-1-8, inkscape:label=sensory_fingers_text ***
+id=tspan108
+id=Pons_text-3-2-6-2-1-8-4, inkscape:label=sensory_elbows_text ***
+id=tspan110
+id=Pons_text-3-2-6-2-1-8-4-5, inkscape:label=sensory_head_text ***
+id=tspan111
+id=Pons_text-3-2-6-2-1-8-4-5-9, inkscape:label=sensory_neck_text ***
+id=tspan112
+id=Pons_text-3-2-6-2-1-8-4-5-9-9, inkscape:label=sensory_leg_text ***
+id=tspan113
+id=Pons_text-3-2-6-2-1-8-4-5-9-9-9, inkscape:label=sensory_foot_text ***
+id=tspan114
+id=Pons_text-3-2-6-2-1-8-4-5-9-9-9-6, inkscape:label=sensory_genitals_text ***
+id=tspan115
+id=tspan116
+id=brain_outer, inkscape:label=brain_outer
+id=path3
+id=path6-9
+id=path6-1
+id=path3-2
+id=path3-9
+id=path3-9-8
+id=path1-60, inkscape:label=Cerebrum ***
+id=path2-38, inkscape:label=Superior Parietal Lobule ***
+id=path3-0, inkscape:label=Angular Gyrus ***
+id=path4-1, inkscape:label=Cerebellum ***
+id=Frontal_Pole, inkscape:label=Frontal Pole ***
+id=path6-0, inkscape:label=Inferior Frontal Gyrus ***
+id=path7-94, inkscape:label=Inferior Parietal Lobule ***
+id=path8-78, inkscape:label=Inferior Temporal Gyrus ***
+id=path9-3, inkscape:label=Medulla Oblongata ***
+id=path10-5, inkscape:label=Middle Frontal Gyrus ***
+id=path11-12, inkscape:label=Middle Temporal Gyrus ***
+id=path12-0, inkscape:label=Occipital Pole ***
+id=path13-1, inkscape:label=Postcentral Gyrus ***
+id=path14-6, inkscape:label=pons ***
+id=path15-40, inkscape:label=Precentral Gyrus ***
+id=path16-6, inkscape:label=Precentral Sulcus ***
+id=path17-18, inkscape:label=Supramarginal Gyrus ***
+id=path15
+id=path18-9, inkscape:label=Superior Temporal Gyrus ***
+id=path19-84, inkscape:label=Central_Sulcus-of_Rolando ***
+id=path19-84-1
+id=path20-1, inkscape:label=Temporal Pole ***
+id=Temporal Pole, inkscape:label=Temporal Pole
+id=text1-9, inkscape:label=Middle Temporal Gyrus_text ***
+id=tspan117
+id=tspan118
+id=text1-9-3, inkscape:label=Middle Frontal Gyrus_text ***
+id=tspan119
+id=text1-9-2, inkscape:label=Supramarginal Gyrus_text ***
+id=textPath4
+id=tspan22
+id=text1-9-2-4, inkscape:label=Angular Gyrus_text ***
+id=tspan120
+id=tspan121
+id=text1-9-2-4-8, inkscape:label=Central Sulcus of Rolando_text ***
+id=textPath8
+id=tspan4-2
+id=text1-9-2-4-8-5, inkscape:label=Angular Gyrus_text ***
+id=textPath5
+id=text1-9-2-4-8-5-2, inkscape:label=Postcentral Gyrus_text ***
+id=textPath3
+id=text1-9-7, inkscape:label=Inferior Temporal Gyrus_text ***
+id=tspan122
+id=tspan123
+id=text1-9-7-1, inkscape:label=Inferior Temporal Gyrus_text ***
+id=textPath6
+id=tspan109
+id=text1-9-5, inkscape:label=Superior Temporal Gyrus_text ***
+id=tspan124
+id=tspan125
+id=body, inkscape:label=body
+id=Pineal_Gland-2-5-1, inkscape:label=Pineal_Gland ***
+id=Tuber_Cinereum-76-0, inkscape:label=Pineal_Gland_text ***
+id=tspan126
+id=tspan127
+id=path4, inkscape:label=pancreas ***
+id=Tuber_Cinereum-84-2-7-9-2, inkscape:label=pancreas_text ***
+id=tspan128
+id=Tuber_Cinereum-84-2-7-9-2-0, inkscape:label=thymus_text ***
+id=tspan129
+id=Tuber_Cinereum-84-2-7-9-2-0-0, inkscape:label=thyroid_text ***
+id=tspan130
+id=g3, inkscape:label=svg_backgrounds ***
+id=path5
+id=path1-3
+id=path9-9
+id=path7, inkscape:label=adrenal_left ***
+id=path8, inkscape:label=adrenal_right ***
+id=g4-4, inkscape:label=adrenal ***
+id=path68, inkscape:label=adrenal ***
+id=Tuber_Cinereum-84-2-7-9, inkscape:label=adrenal_text ***
+id=tspan131
+id=Tuber_Cinereum-84-2-7-9-1, inkscape:label=kidneys_text ***
+id=tspan133
+id=path9, inkscape:label=muscles ***
+id=brain_center, inkscape:label=brain_center
+id=brain_center_svg, inkscape:label=brain_center_svg
+id=path9-2
+id=rect7, inkscape:label=hide_unamed_part ***
+id=path24-1
+id=path10
+id=path1-32
+id=path20-12, inkscape:label=Inferior_Colliculus ***
+id=path14-2, inkscape:label=Choroid_Plexus_of_3rd_Ventricle ***
+id=path7-7, inkscape:label=Thalamus ***
+id=path17-5, inkscape:label=Corpus_Callosum ***
+id=Fornix, inkscape:label=Fornix
+id=Anterior_Commissure_of_Brain-1, inkscape:label=Anterior_Commissure_of_Brain ***
+id=Hypothalamic_Sulcus-4, inkscape:label=Hypothalamic_Sulcus ***
+id=Hypothalamus-3, inkscape:label=Hypothalamus ***
+id=Hypothalamus-3-8, inkscape:label=Hypothalamus ***
+id=Interthalamic_Adhesion-3, inkscape:label=Interthalamic_Adhesion ***
+id=Lamina_Terminalis-3, inkscape:label=Lamina_Terminalis ***
+id=Optic_Chiasm-4, inkscape:label=Optic_Chiasm ***
+id=Optic_Recess-3, inkscape:label=Optic_Recess ***
+id=Paraterminal_Gyrus-8, inkscape:label=Paraterminal_Gyrus ***
+id=Pineal_Gland-2, inkscape:label=Pineal_Gland ***
+id=Pituitary_Gland-7, inkscape:label=Pituitary_Gland ***
+id=Pituitary_Gland-7-5, inkscape:label=Pituitary_Gland ***
+id=Septum_Pellucidum-9, inkscape:label=Septum_Pellucidum ***
+id=Sulcus_of_Corpus_Callosum-3, inkscape:label=Sulcus_of_Corpus_Callosum ***
+id=Tuber_Cinereum-8, inkscape:label=Tuber_Cinereum ***
+id=Tuber_Cinereum-44-2, inkscape:label=Inferior_Colliculus_text ***
+id=tspan134
+id=tspan135
+id=Tuber_Cinereum-84-2-7, inkscape:label=Choroid_Plexus_of_3rd_Ventricle_text ***
+id=tspan136
+id=tspan137
+id=Tuber_Cinereum-44-2-5, inkscape:label=Thalamus_text ***
+id=tspan138
+id=Tuber_Cinereum-84-2, inkscape:label=Corpus_Callosum_text ***
+id=tspan139
+id=Tuber_Cinereum-44, inkscape:label=Anterior_Commissure_of_Brain_text ***
+id=tspan140
+id=tspan141
+id=tspan142
+id=Tuber_Cinereum-6, inkscape:label=Interthalamic_Adhesion_text ***
+id=tspan143
+id=tspan144
+id=Superior_Colliculus-6, inkscape:label=Superior_Colliculus ***
+id=Tuber_Cinereum-84, inkscape:label=Fornix_text ***
+id=tspan145
+id=Tuber_Cinereum-61, inkscape:label=Hypothalamic_Sulcus_text ***
+id=tspan146
+id=tspan147
+id=Hippocampus, inkscape:label=Hippocampus_text ***
+id=tspan148
+id=Tuber_Cinereum-65, inkscape:label=Hypothalamus_text ***
+id=tspan149
+id=Tuber_Cinereum-65-4, inkscape:label=Hypothalamus_text ***
+id=tspan150
+id=Tuber_Cinereum-86, inkscape:label=Lamina_Terminalis_text ***
+id=tspan151
+id=tspan152
+id=tspan153
+id=Tuber_Cinereum-27, inkscape:label=Optic_Chiasm_text ***
+id=tspan154
+id=tspan155
+id=Tuber_Cinereum-13, inkscape:label=Optic_Recess_text ***
+id=tspan156
+id=tspan157
+id=Tuber_Cinereum-1, inkscape:label=Paraterminal_Gyrus_text ***
+id=tspan158
+id=tspan159
+id=Tuber_Cinereum-76, inkscape:label=Pineal_Gland_text ***
+id=tspan160
+id=tspan161
+id=Tuber_Cinereum-21, inkscape:label=Pituitary_Gland_text ***
+id=tspan162
+id=tspan163
+id=Tuber_Cinereum-21-2, inkscape:label=Pituitary_Gland_text ***
+id=tspan164
+id=tspan165
+id=Tuber_Cinereum-4, inkscape:label=Septum_Pellucidum_text ***
+id=tspan166
+id=tspan167
+id=Tuber_Cinereum-2, inkscape:label=Sulcus_of_Corpus_Callosum_text ***
+id=tspan168
+id=tspan169
+id=Tuber_Cinereum, inkscape:label=Tuber_Cinereum_text ***
+id=tspan170
+id=tspan171
+id=text5-8-8-0-6-8, inkscape:label=Superior_Colliculus_text ***
+id=tspan172
+id=tspan174
+id=circle9
+id=brain_main, inkscape:label=brain_main
+id=path6-5
+id=path10-0
+id=path24-6
+id=path1-8, inkscape:label=accumbens_node ***
+id=VTA, inkscape:label=ventral_tegmental_area ***
+id=Cerebellum, inkscape:label=Cerebellum
+id=path3-8, inkscape:label=Cerebrum ***
+id=path5-3-9, inkscape:label=Brain_stem ***
+id=Cerebral_Aqueduct-8, inkscape:label=Cerebral_Aqueduct ***
+id=Choroid_Plexus-2, inkscape:label=Choroid_Plexus ***
+id=Cingulate_Gyrus-1, inkscape:label=Cingulate_Gyrus ***
+id=Cingulate_Sulcus-3, inkscape:label=Cingulate_Sulcus ***
+id=Cuneus-1, inkscape:label=Cuneus ***
+id=Parietooccipital_Sulcus-2, inkscape:label=Parietooccipital_Sulcus ***
+id=Precuneus-7, inkscape:label=Precuneus ***
+id=Calcarine_Sulcus-7, inkscape:label=Calcarine_Sulcus ***
+id=4th_Ventricle-5, inkscape:label=4th_Ventricle ***
+id=Paracentral_Lobule-4, inkscape:label=Paracentral_Lobule ***
+id=Brain_stem_text, inkscape:label=Brain_stem_text
+id=tspan175
+id=Cerebellum_text, inkscape:label=Cerebellum_text
+id=tspan176
+id=Cerebrum_text, inkscape:label=Cerebrum_text
+id=tspan177
+id=Cerebral_Aqueduct_text, inkscape:label=Cerebral_Aqueduct_text
+id=tspan178
+id=Choroid_Plexus_text, inkscape:label=Choroid_Plexus_text
+id=tspan179
+id=Cingulate_Gyrus_text, inkscape:label=Cingulate_Gyrus_text
+id=tspan180
+id=Cingulate_Sulcus_text, inkscape:label=Cingulate_Sulcus_text
+id=tspan181
+id=Cuneus_text, inkscape:label=Cuneus_text
+id=tspan182
+id=Parietooccipital_Sulcus_text, inkscape:label=Parietooccipital_Sulcus_text
+id=tspan183
+id=Calcarine_Sulcus_text, inkscape:label=Calcarine_Sulcus_text
+id=textPath7
+id=tspan173
+id=4th_Ventricle_text, inkscape:label=4th_Ventricle_text
+id=tspan184
+id=tspan185
+id=Precuneus_text, inkscape:label=Precuneus_text
+id=tspan186
+id=Paracentral_Lobule_text, inkscape:label=Paracentral_Lobule_text
+id=tspan187
+id=tspan188
+id=pons, inkscape:label=pons
+id=pons_text, inkscape:label=pons_text
+id=tspan189
+id=pons_text-9, inkscape:label=ventral_tegmental_area_text ***
+id=tspan190
+id=pons_text-9-2, inkscape:label=accumbens_node_text ***
+id=tspan1
+id=tspan1-45
+id=tspan2
+id=tspan3
+id=texts, inkscape:label=always_on_top ***
+id=text5-9, inkscape:label=body_text ***
+id=tspan5-4
+id=text5-9-8, inkscape:label=senses_text ***
+id=tspan132
+id=text5-8, inkscape:label=endocrine_text ***
+id=tspan191
+id=tspan192
+id=text5-8-8, inkscape:label=front_back_text ***
+id=tspan193
+id=tspan194
+id=text5-8-8-1, inkscape:label=front_back_text ***
+id=tspan195
+id=text5-8-8-0-6, inkscape:label=inner_text ***
+id=tspan196
+id=text5-8-8-2, inkscape:label=sensory_motor_text ***
+id=tspan197
+id=tspan198
+id=text5-8-8-2-2, inkscape:label=sensory_motor_text ***
+id=tspan199
+id=text5-8-8-2-6, inkscape:label=sensory_motor_text ***
+id=tspan200
+id=text5-8-5, inkscape:label=muscle_text ***
+id=tspan7-1
+id=text5, inkscape:label=Brain_text ***
+id=tspan5
+id=path11
+id=path12, inkscape:label=dotted_line_2 ***
+id=path13, inkscape:label=dotted_line_1 ***
+id=links, inkscape:label=links
+id=link0, inkscape:label=link0
+id=link_text0, inkscape:label=link_text0
+id=g12
+id=path14, inkscape:label=Hippocampus ***
+id=path11-7, inkscape:label=Amigdala ***
