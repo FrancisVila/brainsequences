@@ -1,159 +1,24 @@
-
-id=Pituitary_Gland-7-5-8, inkscape:label=Pituitary_Gland ***
 id=path1, inkscape:label=adrenal_right_background ***
 id=path2, inkscape:label=adrenal_left_background ***
-id=path8-0, inkscape:label=muscles_background ***
-id=path20-5-2, inkscape:label=sensory_fingers ***
-id=path21-1-21, inkscape:label=sensory_foot ***
-id=path22-20-6, inkscape:label=sensory_head ***
-id=path23-1-8, inkscape:label=sensory_leg ***
-id=path24-6-57, inkscape:label=sensory_genitalia ***
-id=path25-4-6, inkscape:label=motor_neck ***
-id=path26-0-1, inkscape:label=motor_knee ***
-id=path27-6-8, inkscape:label=sensory_neck ***
-id=path28-1-9, inkscape:label=motor_lips ***
-id=path29-89-27, inkscape:label=sensory_lips ***
-id=path30-8-9, inkscape:label=sensory_thumb ***
-id=path31-4-5, inkscape:label=motor_trunk ***
-id=path32-1-43, inkscape:label=motor_shoulder ***
-id=path33-4-12, inkscape:label=motor_wrist ***
-id=path34-3-3, inkscape:label=motor_tongue ***
-id=path35-9-3, inkscape:label=motor_toes ***
-id=path5-5-4, inkscape:label=sensory_area ***
-id=path4-3-2, inkscape:label=motor_area ***
-id=Pons_text, inkscape:label=sensory_mouth_text ***
-id=Pons_text-3, inkscape:label=sensory_lips_text ***
-id=Pons_text-3-2, inkscape:label=sensory_face_text ***
-id=Pons_text-3-2-6, inkscape:label=sensory_eye_text ***
-id=Pons_text-3-2-6-2, inkscape:label=sensory_thumb_text ***
-id=Pons_text-3-2-6-2-1, inkscape:label=sensory_hand_text ***
-id=Pons_text-3-2-6-2-1-8, inkscape:label=sensory_fingers_text ***
-id=Pons_text-3-2-6-2-1-8-4, inkscape:label=sensory_elbows_text ***
-id=Pons_text-3-2-6-2-1-8-4-5, inkscape:label=sensory_head_text ***
-id=Pons_text-3-2-6-2-1-8-4-5-9, inkscape:label=sensory_neck_text ***
-id=Pons_text-3-2-6-2-1-8-4-5-9-9, inkscape:label=sensory_leg_text ***
-id=Pons_text-3-2-6-2-1-8-4-5-9-9-9, inkscape:label=sensory_foot_text ***
-id=Pons_text-3-2-6-2-1-8-4-5-9-9-9-6, inkscape:label=sensory_genitals_text ***
-id=path1-60, inkscape:label=Cerebrum ***
-id=path2-38, inkscape:label=Superior Parietal Lobule ***
-id=path3-0, inkscape:label=Angular Gyrus ***
-id=path4-1, inkscape:label=Cerebellum ***
-id=Frontal_Pole, inkscape:label=Frontal Pole ***
-id=path6-0, inkscape:label=Inferior Frontal Gyrus ***
-id=path7-94, inkscape:label=Inferior Parietal Lobule ***
-id=path8-78, inkscape:label=Inferior Temporal Gyrus ***
-id=path9-3, inkscape:label=Medulla Oblongata ***
-id=path10-5, inkscape:label=Middle Frontal Gyrus ***
-id=path11-12, inkscape:label=Middle Temporal Gyrus ***
-id=path12-0, inkscape:label=Occipital Pole ***
-id=path13-1, inkscape:label=Postcentral Gyrus ***
-id=path14-6, inkscape:label=pons ***
-id=path15-40, inkscape:label=Precentral Gyrus ***
-id=path16-6, inkscape:label=Precentral Sulcus ***
-id=path17-18, inkscape:label=Supramarginal Gyrus ***
-id=path18-9, inkscape:label=Superior Temporal Gyrus ***
-id=path19-84, inkscape:label=Central_Sulcus-of_Rolando ***
-id=path20-1, inkscape:label=Temporal Pole ***
-id=Temporal Pole, inkscape:label=Temporal Pole
-id=text1-9, inkscape:label=Middle Temporal Gyrus_text ***
-id=text1-9-3, inkscape:label=Middle Frontal Gyrus_text ***
-id=text1-9-2, inkscape:label=Supramarginal Gyrus_text ***
-id=text1-9-2-4, inkscape:label=Angular Gyrus_text ***
-id=text1-9-2-4-8, inkscape:label=Central Sulcus of Rolando_text ***
-id=text1-9-2-4-8-5, inkscape:label=Angular Gyrus_text ***
-id=text1-9-2-4-8-5-2, inkscape:label=Postcentral Gyrus_text ***
-id=text1-9-7, inkscape:label=Inferior Temporal Gyrus_text ***
-id=text1-9-7-1, inkscape:label=Inferior Temporal Gyrus_text ***
-id=text1-9-5, inkscape:label=Superior Temporal Gyrus_text ***
-id=body, inkscape:label=body
-id=Pineal_Gland-2-5-1, inkscape:label=Pineal_Gland ***
-id=Tuber_Cinereum-76-0, inkscape:label=Pineal_Gland_text ***
-id=path4, inkscape:label=pancreas ***
-id=Tuber_Cinereum-84-2-7-9-2, inkscape:label=pancreas_text ***
-id=Tuber_Cinereum-84-2-7-9-2-0, inkscape:label=thymus_text ***
-id=Tuber_Cinereum-84-2-7-9-2-0-0, inkscape:label=thyroid_text ***
-id=g3, inkscape:label=svg_backgrounds ***
-id=path7, inkscape:label=adrenal_left ***
-id=path8, inkscape:label=adrenal_right ***
-id=g4-4, inkscape:label=adrenal ***
-id=path68, inkscape:label=adrenal ***
-id=Tuber_Cinereum-84-2-7-9, inkscape:label=adrenal_text ***
-id=Tuber_Cinereum-84-2-7-9-1, inkscape:label=kidneys_text ***
-id=path9, inkscape:label=muscles ***
-id=rect7, inkscape:label=hide_unamed_part ***
-id=path20-12, inkscape:label=Inferior_Colliculus ***
-id=path14-2, inkscape:label=Choroid_Plexus_of_3rd_Ventricle ***
-id=path7-7, inkscape:label=Thalamus ***
-id=path17-5, inkscape:label=Corpus_Callosum ***
-id=Anterior_Commissure_of_Brain-1, inkscape:label=Anterior_Commissure_of_Brain ***
-id=Hypothalamic_Sulcus-4, inkscape:label=Hypothalamic_Sulcus ***
-id=Hypothalamus-3, inkscape:label=Hypothalamus ***
-id=Hypothalamus-3-8, inkscape:label=Hypothalamus ***
-id=Interthalamic_Adhesion-3, inkscape:label=Interthalamic_Adhesion ***
-id=Lamina_Terminalis-3, inkscape:label=Lamina_Terminalis ***
-id=Optic_Chiasm-4, inkscape:label=Optic_Chiasm ***
-id=Optic_Recess-3, inkscape:label=Optic_Recess ***
-id=Paraterminal_Gyrus-8, inkscape:label=Paraterminal_Gyrus ***
-id=Pineal_Gland-2, inkscape:label=Pineal_Gland ***
-id=Pituitary_Gland-7, inkscape:label=Pituitary_Gland ***
-id=Pituitary_Gland-7-5, inkscape:label=Pituitary_Gland ***
-id=Septum_Pellucidum-9, inkscape:label=Septum_Pellucidum ***
-id=Sulcus_of_Corpus_Callosum-3, inkscape:label=Sulcus_of_Corpus_Callosum ***
-id=Tuber_Cinereum-8, inkscape:label=Tuber_Cinereum ***
-id=Tuber_Cinereum-44-2, inkscape:label=Inferior_Colliculus_text ***
-id=Tuber_Cinereum-84-2-7, inkscape:label=Choroid_Plexus_of_3rd_Ventricle_text ***
-id=Tuber_Cinereum-44-2-5, inkscape:label=Thalamus_text ***
-id=Tuber_Cinereum-84-2, inkscape:label=Corpus_Callosum_text ***
-id=Tuber_Cinereum-44, inkscape:label=Anterior_Commissure_of_Brain_text ***
-id=Tuber_Cinereum-6, inkscape:label=Interthalamic_Adhesion_text ***
-id=Superior_Colliculus-6, inkscape:label=Superior_Colliculus ***
-id=Tuber_Cinereum-84, inkscape:label=Fornix_text ***
-id=Tuber_Cinereum-61, inkscape:label=Hypothalamic_Sulcus_text ***
-id=Hippocampus, inkscape:label=Hippocampus_text ***
-id=Tuber_Cinereum-65, inkscape:label=Hypothalamus_text ***
-id=Tuber_Cinereum-65-4, inkscape:label=Hypothalamus_text ***
-id=Tuber_Cinereum-86, inkscape:label=Lamina_Terminalis_text ***
-id=Tuber_Cinereum-27, inkscape:label=Optic_Chiasm_text ***
-id=Tuber_Cinereum-13, inkscape:label=Optic_Recess_text ***
-id=Tuber_Cinereum-1, inkscape:label=Paraterminal_Gyrus_text ***
-id=Tuber_Cinereum-76, inkscape:label=Pineal_Gland_text ***
-id=Tuber_Cinereum-21, inkscape:label=Pituitary_Gland_text ***
-id=Tuber_Cinereum-21-2, inkscape:label=Pituitary_Gland_text ***
-id=Tuber_Cinereum-4, inkscape:label=Septum_Pellucidum_text ***
-id=Tuber_Cinereum-2, inkscape:label=Sulcus_of_Corpus_Callosum_text ***
-id=Tuber_Cinereum, inkscape:label=Tuber_Cinereum_text ***
-id=text5-8-8-0-6-8, inkscape:label=Superior_Colliculus_text ***
-id=brain_main, inkscape:label=brain_main
-id=path1-8, inkscape:label=accumbens_node ***
-id=VTA, inkscape:label=ventral_tegmental_area ***
-id=Cerebellum, inkscape:label=Cerebellum
-id=path3-8, inkscape:label=Cerebrum ***
-id=path5-3-9, inkscape:label=Brain_stem ***
-id=Cerebral_Aqueduct-8, inkscape:label=Cerebral_Aqueduct ***
-id=Choroid_Plexus-2, inkscape:label=Choroid_Plexus ***
-id=Cingulate_Gyrus-1, inkscape:label=Cingulate_Gyrus ***
-id=Cingulate_Sulcus-3, inkscape:label=Cingulate_Sulcus ***
-id=Cuneus-1, inkscape:label=Cuneus ***
-id=Parietooccipital_Sulcus-2, inkscape:label=Parietooccipital_Sulcus ***
-id=Precuneus-7, inkscape:label=Precuneus ***
-id=Calcarine_Sulcus-7, inkscape:label=Calcarine_Sulcus ***
-id=4th_Ventricle-5, inkscape:label=4th_Ventricle ***
-id=Paracentral_Lobule-4, inkscape:label=Paracentral_Lobule ***
-id=pons_text-9, inkscape:label=ventral_tegmental_area_text ***
-id=pons_text-9-2, inkscape:label=accumbens_node_text ***
-id=texts, inkscape:label=always_on_top ***
-id=text5-9, inkscape:label=body_text ***
-id=text5-9-8, inkscape:label=senses_text ***
-id=text5-8, inkscape:label=endocrine_text ***
-id=text5-8-8, inkscape:label=front_back_text ***
-id=text5-8-8-1, inkscape:label=front_back_text ***
-id=text5-8-8-0-6, inkscape:label=inner_text ***
-id=text5-8-8-2, inkscape:label=sensory_motor_text ***
-id=text5-8-8-2-2, inkscape:label=sensory_motor_text ***
-id=text5-8-8-2-6, inkscape:label=sensory_motor_text ***
-id=text5-8-5, inkscape:label=muscle_text ***
-id=text5, inkscape:label=Brain_text ***
-id=path12, inkscape:label=dotted_line_2 ***
-id=path13, inkscape:label=dotted_line_1 ***
-id=path14, inkscape:label=Hippocampus ***
-id=path11-7, inkscape:label=Amigdala ***
+id=path3, inkscape:label=muscles_background ***
+id=path5, inkscape:label=Temporal Pole ***
+id=text5, inkscape:label=Angular Gyrus_text ***
+id=text6, inkscape:label=Inferior Temporal Gyrus_text ***
+id=path7, inkscape:label=Pineal_Gland ***
+id=path8, inkscape:label=pancreas ***
+id=path10, inkscape:label=adrenal_left ***
+id=path11, inkscape:label=adrenal_right ***
+id=g12, inkscape:label=adrenal ***
+id=path12, inkscape:label=muscles ***
+id=path14, inkscape:label=Hypothalamus ***
+id=path16, inkscape:label=Hypothalamus ***
+id=path19, inkscape:label=Pineal_Gland ***
+id=path20, inkscape:label=Pituitary_Gland ***
+id=path21, inkscape:label=Pituitary_Gland ***
+id=text21, inkscape:label=Hypothalamus_text ***
+id=text22, inkscape:label=Pineal_Gland_text ***
+id=text23, inkscape:label=Pituitary_Gland_text ***
+id=path24, inkscape:label=Cerebrum ***
+id=text25, inkscape:label=front_back_text ***
+id=text26, inkscape:label=sensory_motor_text ***
+id=text27, inkscape:label=sensory_motor_text ***

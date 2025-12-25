@@ -24,9 +24,12 @@ with open(output_file, 'w', encoding='utf-8') as f:
         # Get inkscape:label attribute
         inkscape_label = elem.get('{http://www.inkscape.org/namespaces/inkscape}label')
         
-        # Only write if both attributes exist and they are different (case insensitive)
+        # Only write if both attributes exist and they are different (case insensitive, treating spaces and underscores as equivalent)
         if elem_id and inkscape_label:
-            if elem_id.lower() != inkscape_label.lower():
+            # Normalize by replacing spaces with underscores for comparison
+            normalized_id = elem_id.lower().replace(' ', '_')
+            normalized_label = inkscape_label.lower().replace(' ', '_')
+            if normalized_id != normalized_label:
                 line = f"id={elem_id}, inkscape:label={inkscape_label} ***"
                 f.write(line + '\n')
 

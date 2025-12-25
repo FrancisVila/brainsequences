@@ -61,3 +61,26 @@ print(f"\nTotal elements updated: {updated_count}")
 # Write the modified SVG back to file
 tree.write(output_svg, encoding='UTF-8', xml_declaration=True)
 print(f"Updated SVG saved to {output_svg}")
+
+# Replace all spaces in id attributes with underscores
+print("\nReplacing spaces with underscores in id attributes...")
+with open(output_svg, 'r', encoding='UTF-8') as f:
+    content = f.read()
+
+# Run the replacement multiple times until no more matches are found
+pattern = r'id="([^"]*) '
+replacement = r'id="\1_'
+replacements_made = 0
+
+while True:
+    new_content, count = re.subn(pattern, replacement, content)
+    if count == 0:
+        break
+    replacements_made += count
+    content = new_content
+
+print(f"Replaced {replacements_made} spaces with underscores in id attributes")
+
+# Write back the modified content
+with open(output_svg, 'w', encoding='UTF-8') as f:
+    f.write(content)
