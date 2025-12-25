@@ -24,23 +24,10 @@ with open(output_file, 'w', encoding='utf-8') as f:
         # Get inkscape:label attribute
         inkscape_label = elem.get('{http://www.inkscape.org/namespaces/inkscape}label')
         
-        # Only write if at least one attribute exists
-        if elem_id or inkscape_label:
-            line_parts = []
-            
-            if elem_id:
-                line_parts.append(f"id={elem_id}")
-            
-            if inkscape_label:
-                line_parts.append(f"inkscape:label={inkscape_label}")
-            
-            line = ", ".join(line_parts)
-            
-            # Check if they are different (case insensitive)
-            if elem_id and inkscape_label:
-                if elem_id.lower() != inkscape_label.lower():
-                    line += " ***"
-            
-            f.write(line + '\n')
+        # Only write if both attributes exist and they are different (case insensitive)
+        if elem_id and inkscape_label:
+            if elem_id.lower() != inkscape_label.lower():
+                line = f"id={elem_id}, inkscape:label={inkscape_label} ***"
+                f.write(line + '\n')
 
 print(f"Output written to {output_file}")
