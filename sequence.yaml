@@ -1,0 +1,13 @@
+sequence: 
+ title: I'll have that chocolate after dinner
+ description: I see that chocolate on the plate. I'm tempted to eat it now, but I'm having dinner soon so I'll wait till dessert.
+ steps: 
+  - name: See chocolate
+    description: I see the chocolate on the plate in front of me
+    mechanism: |
+      <div> 
+        <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.
+        <p> The light is converted into electrical signals and finds its way to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
+        <p> For a more detailed description of how this works, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
+      </div>
+    highlight: sight, cuneus, 

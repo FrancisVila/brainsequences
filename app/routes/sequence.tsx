@@ -142,7 +142,7 @@ export default function Sequence() {
 
       <AtlasImage 
         atlasSvg={toto}
-        highlightedIds={["Cerebellum", "pons", "Medulla"]}
+        highlightedIds={["sight", "cuneus", "sight2cuneus"]}
       />
 
     </div>

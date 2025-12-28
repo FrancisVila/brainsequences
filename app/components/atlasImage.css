@@ -14,3 +14,13 @@
 .text_curve {
     display: none;
 }
+
+path.link.body_part {
+    fill: none !important;
+    stroke: #a00e0e  !important;
+    stroke-width: 10  !important;
+    stroke-linejoin: round;
+    stroke-dasharray: none;
+    stroke-opacity: 1;
+    marker-end: url(#Triangle);
+}
