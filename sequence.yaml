@@ -1,13 +1,51 @@
 sequence: 
+ id: chocolate_after_dinner
  title: I'll have that chocolate after dinner
  description: I see that chocolate on the plate. I'm tempted to eat it now, but I'm having dinner soon so I'll wait till dessert.
  steps: 
-  - name: See chocolate
-    description: I see the chocolate on the plate in front of me
-    mechanism: |
+  - id: see_chocolate
+    title: See chocolate
+    description: |
       <div> 
+        <h3>I see the chocolate on the plate in front of me<h3>
         <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.
-        <p> The light is converted into electrical signals and finds its way to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
-        <p> For a more detailed description of how this works, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
+        <p> The light from the chocoalte signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
+        <p> For details on how light gets transformed into nerve signals in the retina, enters the optic tract, crosses over left to right in the optic chiasm, gets relayed by LGNs to the Cuneus, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
       </div>
-    highlight: sight, cuneus, 
+    step_brainparts: sight, cuneus, sight2cuneus
+  - id: recognize_chocolate
+    title: Recognize chocolate
+    description: |
+      <div> 
+        <h3>I recognize it as chocolate<h3>
+        <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.
+        <p> The light from the chocoalte signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
+        <p> For details on how light gets transformed into nerve signals in the retina, enters the optic tract, crosses over left to right in the optic chiasm, gets relayed by LGNs to the Cuneus, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
+      </div>
+    step_brainparts: cuneus, Inferior_Temporal_Gyrus, cuneus2ITG
+  - id: remember_pleasure
+    title: Remember pleasure
+    description: |
+      <div> 
+        <h3>I like chocolate<h3>
+        <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.
+        <p> The light from the chocoalte signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
+        <p> For details on how light gets transformed into nerve signals in the retina, enters the optic tract, crosses over left to right in the optic chiasm, gets relayed by LGNs to the Cuneus, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
+      </div>
+    step_brainparts: Inferior_Temporal_Gyrus, hippocampus, ITG2hippocampus
+  - id: yummy
+    title: Yummy
+    description: |
+      <div> 
+        <h3>Yummy<h3>
+        <p>Pleasant memories from the <a data-part='hippocampus'>hippocampus</a> send a trigger to the ventral tegmental area (VTA), to release dopamine. This spreads the news in the brain that this is something good.</p>
+      </div>
+    step_brainparts: hippocampus2VTA, VTA2dopamine
+  - id: maybe_later
+    title: Maybe later
+    description: |
+      <div> 
+        <h3>Maybe later<h3>
+        <p>The decision-making areas of the frontal cortex, and particularly the <a data-part='frontal_lobe'>frontal lobe</a> weigh the pros and cons and decide it's too close to dinner time to eat the chocolate now.</p>
+      </div>
+    step_brainparts: frontal_lobe
