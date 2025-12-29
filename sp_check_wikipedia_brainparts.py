@@ -184,8 +184,10 @@ def generate_report(report_data: Dict, report_filename: str):
             for item in report_data['added']:
                 f.write(f"\nID: {item['id']}\n")
                 f.write(f"SVG ID: {item['svg_id']}\n")
-                f.write(f"Title: {item['title']}\n")
-                f.write(f"Match Type: {item['match_type']}\n")                
+                f.write(f"Brainpart Title: {item['title']}\n")
+                f.write(f"Match Type: {item['match_type']}\n")
+                if item.get('wikipedia_article'):
+                    f.write(f"Wikipedia Article: {item['wikipedia_article']}\n")                
                 if item.get('wikipedia_url'):
                     f.write(f"Wikipedia URL: {item['wikipedia_url']}\n")                
                 f.write(f"Description: {item['description'][:200]}...\n" if len(item['description']) > 200 else f"Description: {item['description']}\n")
@@ -256,8 +258,8 @@ def main():
     )
     parser.add_argument(
         '--report',
-        default='brainparts_change_report.txt',
-        help='Output report file path (default: brainparts_change_report.txt)'
+        default='svg_brainparts_change_report.txt',
+        help='Output report file path (default: svg_brainparts_change_report.txt)'
     )
     args = parser.parse_args()
     
@@ -303,25 +305,16 @@ def main():
     created_exact = []
     created_approximate = []
     not_found = []
-    skip_all = False
     
     print("\nSearching Wikipedia for missing brainparts...")
     for idx, svg_id in enumerate(missing, 1):
-        if skip_all:
-            # If user chose to skip all, add remaining to not_created
-            report_data['not_created'].append({
-                'svg_id': svg_id,
-                'reason': 'User skipped all remaining approximate matches',
-                'suggested_match': None
-            })
-            continue
-            
         print(f"\n[{idx}/{len(missing)}] Checking: {svg_id}")
         
         exact_match, title, description, wiki_url = search_wikipedia(svg_id)
         
         if exact_match:
             print(f"  → Found EXACT match: {title}")
+            print(f"  → URL: {wiki_url}")
             print(f"  → {description[:100]}...")
             success, new_id = create_brainpart(args.db, title, description, wiki_url)
             if success:
@@ -331,6 +324,7 @@ def main():
                     'svg_id': svg_id,
                     'title': title,
                     'match_type': 'EXACT',
+                    'wikipedia_article': title,
                     'description': description,
                     'wikipedia_url': wiki_url
                 })
@@ -338,64 +332,42 @@ def main():
                 report_data['not_created'].append({
                     'svg_id': svg_id,
                     'reason': 'Database error or duplicate title',
-                    'suggested_match': title
+                    'suggested_match': title,
+                    'wikipedia_url': wiki_url
                 })
         elif title:
             print(f"  → Found APPROXIMATE match: {title}")
+            print(f"  → URL: {wiki_url}")
             print(f"  → {description[:100] if description else 'No description'}...")
+            print(f"  → Creating brainpart automatically...")
             
-            while True:
-                response = input(f"  → Create brainpart for '{svg_id}' using '{title}'? (y/n/s=skip all): ").lower()
-                if response == 'y':
-                    success, new_id = create_brainpart(args.db, title, description or '', wiki_url)
-                    if success:
-                        created_approximate.append((svg_id, title))
-                        report_data['added'].append({
-                            'id': new_id,
-                            'svg_id': svg_id,
-                            'title': title,
-                            'match_type': 'APPROXIMATE (User Confirmed)',
-                            'description': description or '',
-                            'wikipedia_url': wiki_url
-                        })
-                    else:
-                        report_data['not_created'].append({
-                            'svg_id': svg_id,
-                            'reason': 'Database error or duplicate title',
-                            'suggested_match': title
-                        })
-                    break
-                elif response == 'n':
-                    print("  → Skipped")
-                    not_found.append(svg_id)
-                    report_data['not_created'].append({
-                        'svg_id': svg_id,
-                        'reason': 'User rejected approximate match',
-                        'suggested_match': title
-                    })
-                    break
-                elif response == 's':
-                    print("  → Skipping all remaining approximate matches")
-                    not_found.append(svg_id)
-                    report_data['not_created'].append({
-                        'svg_id': svg_id,
-                        'reason': 'User skipped this approximate match',
-                        'suggested_match': title
-                    })
-                    skip_all = True
-                    break
-                else:
-                    print("  → Please enter 'y', 'n', or 's'")
-            
-            if skip_all:
-                continue
+            success, new_id = create_brainpart(args.db, title, description or '', wiki_url)
+            if success:
+                created_approximate.append((svg_id, title))
+                report_data['added'].append({
+                    'id': new_id,
+                    'svg_id': svg_id,
+                    'title': title,
+                    'match_type': 'APPROXIMATE',
+                    'wikipedia_article': title,
+                    'description': description or '',
+                    'wikipedia_url': wiki_url
+                })
+            else:
+                report_data['not_created'].append({
+                    'svg_id': svg_id,
+                    'reason': 'Database error or duplicate title',
+                    'suggested_match': title,
+                    'wikipedia_url': wiki_url
+                })
         else:
             print(f"  → No Wikipedia match found")
             not_found.append(svg_id)
             report_data['not_created'].append({
                 'svg_id': svg_id,
                 'reason': 'No Wikipedia match found',
-                'suggested_match': None
+                'suggested_match': None,
+                'wikipedia_url': None
             })
         
         # Be nice to Wikipedia's API
