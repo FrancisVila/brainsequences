@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import DOMPurify from 'dompurify';
 import "./sequence.css"
 import AtlasImage from '../components/AtlasImage';
 import toto from '../images/tim_taylor.svg';
@@ -82,11 +83,21 @@ export default function Sequence() {
                   {isSelected && (
                     <>
                       {step.description && (
-                        <p className="step-description">
-                          {step.description}
-                        </p>
+                        <div 
+                          className="step-description"
+                          dangerouslySetInnerHTML={{ 
+                            __html: DOMPurify.sanitize(step.description, {
+                              ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li'],
+                              ALLOWED_ATTR: ['href', 'target', 'data-part']
+                            })
+                          }}
+                        />
                       )}
                       
+      <AtlasImage 
+        atlasSvg={toto}
+        highlightedIds={step.brainpart_titles}
+      />
                       {step.brainpart_titles && step.brainpart_titles.length > 0 && (
                         <div className="brainparts-container">
                           <h4 className="brainparts-title">
@@ -140,10 +151,6 @@ export default function Sequence() {
 
       </div>
 
-      <AtlasImage 
-        atlasSvg={toto}
-        highlightedIds={["sight", "cuneus", "sight2cuneus"]}
-      />
 
     </div>
   );

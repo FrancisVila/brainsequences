@@ -405,6 +405,58 @@ def main():
     for svg_id in not_found:
         print(f"  - {svg_id}")
     
+    # Ask user if they want to create brainparts not found in Wikipedia
+    if not_found:
+        print(f"\n{'='*60}")
+        print("CREATE BRAINPARTS WITHOUT WIKIPEDIA DATA")
+        print(f"{'='*60}")
+        print(f"\nThere are {len(not_found)} brainparts without Wikipedia matches.")
+        print("Would you like to create them anyway (without Wikipedia data)?")
+        print()
+        
+        created_without_wiki = []
+        for svg_id in not_found:
+            while True:
+                response = input(f"Create brainpart '{svg_id}'? (y/n/s=skip remaining): ").lower()
+                if response == 'y':
+                    # Create with svg_id as title and empty description
+                    success, new_id = create_brainpart(args.db, svg_id, '', None)
+                    if success:
+                        created_without_wiki.append(svg_id)
+                        # Update report data - remove from not_created and add to added
+                        report_data['not_created'] = [item for item in report_data['not_created'] 
+                                                     if item['svg_id'] != svg_id]
+                        report_data['added'].append({
+                            'id': new_id,
+                            'svg_id': svg_id,
+                            'title': svg_id,
+                            'match_type': 'MANUAL (No Wikipedia)',
+                            'wikipedia_article': None,
+                            'description': '',
+                            'wikipedia_url': None
+                        })
+                    break
+                elif response == 'n':
+                    print(f"  → Skipped {svg_id}")
+                    break
+                elif response == 's':
+                    print(f"  → Skipping all remaining brainparts")
+                    break
+                else:
+                    print("  → Please enter 'y', 'n', or 's'")
+            
+            if response == 's':
+                break
+        
+        # Update counts
+        report_data['added_count'] = len(report_data['added'])
+        report_data['not_created_count'] = len(report_data['not_created'])
+        
+        if created_without_wiki:
+            print(f"\n✓ Created {len(created_without_wiki)} brainparts without Wikipedia data:")
+            for svg_id in created_without_wiki:
+                print(f"  - {svg_id}")
+    
     # Generate detailed report file
     generate_report(report_data, args.report)
     print(f"\n{'='*60}")
