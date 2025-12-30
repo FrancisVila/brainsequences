@@ -78,7 +78,7 @@ export default function Sequence() {
                   onClick={() => setSelectedStepId(step.id)}
                   className={`step-item ${isSelected ? 'selected' : ''}`}
                 >
-                  <h3 className="step-title">Step #{index + 1} {step.title}</h3>
+                  <h3 className="step-title">#{index + 1} {step.title}</h3>
                   
                   {isSelected && (
                     <>
@@ -121,32 +121,7 @@ export default function Sequence() {
           <p>No steps in this sequence</p>
         )}
         </div>
-      {/* Placeholder for graphic representation of selected step */}
-      <div id="graphic_representation" className="graphic-placeholder">
-        {selectedStep && selectedStep.brainpart_images && selectedStep.brainpart_images.length > 0 ? (
-          <div className="brainpart-images-grid">
-            {selectedStep.brainpart_images.map((image: string, idx: number) => (
-              <div key={idx} className="brainpart-image-item">
-                {image ? (
-                  <>
-                    <img src={image} alt={selectedStep.brainpart_titles[idx]} className="brainpart-image" />
-                    <p className="brainpart-image-title">{selectedStep.brainpart_titles[idx]}</p>
-                  </>
-                ) : (
-                  <div className="brainpart-no-image">
-                    <p>{selectedStep.brainpart_titles[idx]}</p>
-                    <p className="no-image-text">(No image available)</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="graphic-placeholder-text">
-            {selectedStep ? 'No brainparts associated with this step' : '(Select a step to view brainparts)'}
-          </p>
-        )}
-      </div>
+ 
 
 
       </div>

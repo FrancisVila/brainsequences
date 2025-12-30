@@ -65,8 +65,8 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 
                 // Assign IDs to paths that don't have one (based on position)
                 paths_and_texts.forEach((path_or_text, index) => {
-                    if (!path_or_text.hasAttribute('id')) {
-                        path_or_text.setAttribute('id', String(index));
+                    if (!path_or_text.hasAttribute('inkscape:label')) {
+                        path_or_text.setAttribute('inkscape:label', String(index));
                     }
                 });
 
@@ -80,12 +80,12 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 }
 
                 // Apply highlighting to paths matching the highlightedIds, and texts matching highlightedIds with _text suffix
-                const normalizedHighlightedIds = highlightedIds.flatMap(id => {
-                    const strId = String(id).toLowerCase().trim();
+                const normalizedHighlightedIds = highlightedIds.flatMap(label => {
+                    const strId = String(label).toLowerCase().trim();
                     return [strId, strId + '_text'];
                 });
                 paths_and_texts.forEach((path_or_text) => {
-                    const pathId = path_or_text.getAttribute('id')?.toString().toLowerCase().trim();
+                    const pathId = path_or_text.getAttribute('inkscape:label')?.toString().toLowerCase().trim();
                     if (pathId && 
                         (normalizedHighlightedIds.includes(pathId) || 
                         (normalizedHighlightedIds.includes(String(Number(pathId))) 
