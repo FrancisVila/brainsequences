@@ -87,8 +87,8 @@ export default function Sequence() {
                           className="step-description"
                           dangerouslySetInnerHTML={{ 
                             __html: DOMPurify.sanitize(step.description, {
-                              ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li'],
-                              ALLOWED_ATTR: ['href', 'target', 'data-part']
+                              ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'img'],
+                              ALLOWED_ATTR: ['href', 'target', 'data-part', 'src', 'alt'],
                             })
                           }}
                         />

@@ -81,11 +81,11 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
 
                 // Apply highlighting to paths matching the highlightedIds, and texts matching highlightedIds with _text suffix
                 const normalizedHighlightedIds = highlightedIds.flatMap(label => {
-                    const strId = String(label).toLowerCase().trim();
-                    return [strId, strId + '_text'];
+                    const strId = String(label).toLowerCase().trim().replace(/[\s_-]/g, '');
+                    return [strId, strId + 'text'];
                 });
                 paths_and_texts.forEach((path_or_text) => {
-                    const pathId = path_or_text.getAttribute('inkscape:label')?.toString().toLowerCase().trim();
+                    const pathId = path_or_text.getAttribute('inkscape:label')?.toString().toLowerCase().trim().replace(/[\s_-]/g, '');
                     if (pathId && 
                         (normalizedHighlightedIds.includes(pathId) || 
                         (normalizedHighlightedIds.includes(String(Number(pathId))) 
