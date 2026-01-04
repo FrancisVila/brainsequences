@@ -1,0 +1,4 @@
+step:
+  id: step_3
+  title: See chocolate
+  description: "<div> \n  <h3>I see the chocolate on the plate in front of me</h3>\n  <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.</p>\n  <p> The light from the chocoalte signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>\n  <p>The diagram below illustrates how light gets transformed into nerve signals in the retina, enters the optic nerve, mixes signals from the left and right eyes in the optic chiasm, gets relayed by LGNs to the Cuneus.</p>\n  <img src=\"/images/optic_chiasm.png\" width=\"300px\" alt=\"Optic Chiasm\" />\n  <p> For details on this process, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.\n</div>"

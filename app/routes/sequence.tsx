@@ -79,9 +79,13 @@ export default function Sequence() {
                   className={`step-item ${isSelected ? 'selected' : ''}`}
                 >
                   <h3 className="step-title">#{index + 1} {step.title}</h3>
-                  
+
                   {isSelected && (
                     <>
+                                            <AtlasImage 
+        atlasSvg={toto}
+        highlightedIds={step.brainpart_titles}
+      />
                       {step.description && (
                         <div 
                           className="step-description"
@@ -94,10 +98,7 @@ export default function Sequence() {
                         />
                       )}
                       
-      <AtlasImage 
-        atlasSvg={toto}
-        highlightedIds={step.brainpart_titles}
-      />
+
                       {step.brainpart_titles && step.brainpart_titles.length > 0 && (
                         <div className="brainparts-container">
                           <h4 className="brainparts-title">
