@@ -1,3 +1,5 @@
+
+
 .list_of_sequences {
     position: absolute;
     opacity: 1;
@@ -29,6 +31,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
+    background-color: #FFF;
 }
 
 .step-item.selected {

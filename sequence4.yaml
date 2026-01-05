@@ -1,0 +1,53 @@
+sequence:
+  id: sequence_3
+  title: I'll have that chocolate after dinner
+  description: I see that chocolate on the plate. I'm tempted to eat it now, but I'm having dinner soon so I'll wait till dessert.
+  steps:
+  - id: step_3
+    title: See chocolate
+    description: |
+      <div> 
+        <h3>I see the chocolate on the plate in front of me</h3>
+        <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.</p>
+        <p> The light from the chocolate signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
+        <p>The diagram below illustrates how light gets transformed into nerve signals in the retina, enters the optic nerve, mixes signals from the left and right eyes in the optic chiasm, gets relayed by LGNs to the Cuneus.</p>
+        <img src='/images/optic_chiasm.png' width='300px' alt='Optic Chiasm' />
+        <p> For more information about this process, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
+      </div>
+    step_brainparts: Cuneus, Sight, sight2cuneus
+  - id: step_4
+    title: Recognize chocolate
+    description: |
+      <div> 
+        <h3>I recognize it as chocolate</h3>
+        <p>Once the image has been processed in the <a data-part='cuneus'>cuneus</a>, different areas of the brain handle different tasks to make sense of it. The area most related to recognizing objects, such as our piece of chocolate, is the <a data-part='Inferior_temporal_gyrus'>Inferior temporal gyrus</a>. The <a data-part='Inferior_temporal_gyrus'>Inferior temporal gyrus</a> also contains a large chunk responsible for recognizing faces, but that is for another sequence.</p>
+      </div>
+
+    step_brainparts: Cuneus, Inferior_temporal_gyrus, cuneus2ITG
+  - id: step_5
+    title: Remember pleasure
+    description: |
+      <div> 
+        <h3>I like chocolate</h3>
+        <p>Now that my <a data-part='Inferior_temporal_gyrus'>Inferior temporal gyrus</a> has recognized that dark brown patch to be a piece of chocolate, the information is picked up by the <a data-part='hippocampus'>hippocampus</a>. The hippocampus being essential for memory formation and emotional processing, this is where the brain relates the recognition of chocolate with memories of previous sensations of pleasure.</p>
+      </div>
+
+    step_brainparts: Hippocampus, ITG2hippocampus, Inferior_temporal_gyrus
+  - id: step_6
+    title: Yummy
+    description: |
+      <div> 
+        <h3>Yummy</h3>
+        <p>Now that the <a data-part='hippocampus'>hippocampus</a> has established the relationship between chocolate and pleasure, a trigger reaches the ventral tegmental area (VTA), to release dopamine. This spreads the news in the brain that this is something good. Note that the brain does not have to wait until the chocolate is eaten to start releasing dopamine.</p>
+      </div>
+
+    step_brainparts: Hippocampus, VTA2dopamine, Ventral_tegmental_area, hippocampus2VTA
+  - id: step_7
+    title: Maybe later
+    description: |
+      <div> 
+        <h3>Maybe later</h3>
+        <p>The decision-making areas of the frontal cortex, and particularly the <a data-part='Frontal_pole'>frontal pole</a> weigh the pros and cons and decide it's too close to dinner time to eat the chocolate now.</p>
+      </div>
+
+    step_brainparts: Frontal_pole

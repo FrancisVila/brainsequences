@@ -3,23 +3,8 @@ import argparse
 import yaml
 import os
 import glob
+import re
 from typing import Dict, List, Optional
-
-# Custom YAML Dumper that uses literal style for multiline strings
-class LiteralDumper(yaml.Dumper):
-    pass
-
-def literal_str_representer(dumper, data):
-    """Use literal block style (|) for multi-line strings."""
-    if '\n' in data or '\r' in data:
-        # Normalize line endings to \n
-        data = data.replace('\r\n', '\n').replace('\r', '\n')
-        # Force literal style, no matter what special characters exist
-        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
-    return dumper.represent_str(data)
-
-# Register the custom representer with our custom dumper
-LiteralDumper.add_representer(str, literal_str_representer)
 
 def get_next_sequence_filename() -> str:
     """Find the next available sequence filename.
@@ -186,8 +171,8 @@ def export_sequence_to_yaml(db_path: str, sequence_id: int, output_file: str):
     # Write to YAML file
     print(f"\nWriting to file: {output_file}")
     with open(output_file, 'w', encoding='utf-8') as f:
-        yaml.dump(yaml_data, f, Dumper=LiteralDumper, default_flow_style=False, 
-                  allow_unicode=True, sort_keys=False, width=float("inf"))
+        yaml.dump(yaml_data, f, default_flow_style=False, allow_unicode=True, 
+                  sort_keys=False, width=float("inf"))
     
     # Post-process the file to fix description formatting
     print("Post-processing YAML format...")

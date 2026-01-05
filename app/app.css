@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #DDD;
 }
 
 /* Basic styling for semantic HTML elements */
@@ -35,6 +36,8 @@ p {
   border: none;
   cursor: pointer;
   font-size: 28px;
+  background-color: #FFF;
+  border-radius: 8px;
 }
 
 .title option{
