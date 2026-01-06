@@ -63,12 +63,6 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 // Get all path elements
                 const paths_and_texts = svgElement.querySelectorAll('path, text');
                 
-                // Assign IDs to paths that don't have one (based on position)
-                paths_and_texts.forEach((path_or_text, index) => {
-                    if (!path_or_text.hasAttribute('inkscape:label')) {
-                        path_or_text.setAttribute('inkscape:label', String(index));
-                    }
-                });
 
                 // Add body_part class to all paths inside body_parts group
                 const bodyPartsGroup = svgElement.querySelector('#body_parts');
@@ -119,9 +113,16 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 {cssContent}
             </style>
 
-            <div style={{ position: 'relative' }}>
-                <div style={{ margin: '20px 0' }}>
-                    <label style={{ marginRight: '15px', fontWeight: 'bold' }}>View Mode:</label>
+            <div style={{ position: 'relative', maxWidth: '700px' }}>
+
+                
+                <div 
+                    ref={svgContainerRef}
+                    className="svg-container"
+                />
+                 <div >
+                    <label style={{ marginRight: '15px', fontWeight: 'bold' }}>
+                        Atlas view mode:</label>
                     <label style={{ marginRight: '15px' }}>
                         <input 
                             type="radio" 
@@ -154,10 +155,10 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                     </label>
                     
                     <button
+                        id="fullscreen-button"
                         onClick={() => setIsFullscreen(true)}
                         style={{
                             marginLeft: '20px',
-                            padding: '8px 12px',
                             border: '1px solid #ccc',
                             borderRadius: '4px',
                             background: '#fff',
@@ -172,11 +173,6 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                         ⛶
                     </button>
                 </div>
-                
-                <div 
-                    ref={svgContainerRef}
-                    className="svg-container"
-                />
             </div>
 
             {isFullscreen && (

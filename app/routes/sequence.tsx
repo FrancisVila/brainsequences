@@ -78,7 +78,7 @@ export default function Sequence() {
                   onClick={() => setSelectedStepId(step.id)}
                   className={`step-item ${isSelected ? 'selected' : ''}`}
                 >
-                  <h3 className="step-title">#{index + 1} {step.title}</h3>
+                  <h2 className="step-title">#{index + 1} {step.title}</h2>
 
                   {isSelected && (
                     <>
