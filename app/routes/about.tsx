@@ -9,10 +9,10 @@ export default function About() {
             <h2>The Atlas</h2>
                   <AtlasImage 
         atlasSvg={toto}
-        highlightedIds={["Cerebellum", "pons", "Medulla"]}
+        highlightedIds={["Inferior_Temporal_Gyrus"]}
       />
           <ul>
-                      <li>In this example, the highlighted areas are <i>Pons</i> and <i>Cerebellum</i>.</li>
+                      <li>In this example, the highlighted area is the <i>Inferior Temporal Gyrus</i>.</li>
             <li>Brain Sequences provides an Atlas of brain regions, sensory organs, and the endocrine system. The user can select different <i>views</i> of the atlas, but the <i>layout</i> always remains the same. This is to provide an invariant reference map where users can locate areas they have learned about. It conforms with the UX principles of <i>consistency</i> and <i>stay on the page</i>. </li>
 
             <li>To avoid overwhelming the users with excess information, the default view is a sketch that focusses on the highlighted items. </li>
@@ -53,7 +53,6 @@ export default function About() {
           <ul>
             <li><a href="https://fontawesome.com/">Font Awesome</a> for the icons of the senses.</li>
             <li>Tim Taylor's <a href="https://www.innerbody.com/image/nerv02.html">map of the Human Brain on Innerbody</a> for the initial brain illustrations and vector graphic. </li>
-            <li>Sergei Gepshtein's sight</li>
 
           </ul>
         </section>
