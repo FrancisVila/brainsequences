@@ -64,11 +64,29 @@ export default function Sequence() {
               ))}
             </select></h1>
       </div>
-      <div className='steps'>
+      <div className='steps' id='step-container'>
+        {/* Step navigation sidebar */}
+        {sequence.steps && sequence.steps.length > 0 && (
+          <div className="step-navigation">
+            {sequence.steps.map((step: any, index: number) => {
+              const isSelected = step.id === selectedStepId;
+              return (
+                <div
+                  key={step.id}
+                  onClick={() => setSelectedStepId(step.id)}
+                  className={`step-nav-item ${isSelected ? 'selected' : ''}`}
+                  title={step.title}
+                >
+                  {step.title}
+                </div>
+              );
+            })}
+          </div>
+        )}
               {/* Steps list */}
-      <div>
+      <div className='steps-main'>
         {sequence.steps && sequence.steps.length > 0 ? (
-          <div className="steps-list">
+          <div className="steps-content">
             {sequence.steps.map((step: any, index: number) => {
               const isSelected = step.id === selectedStepId;
               return (
