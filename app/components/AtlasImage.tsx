@@ -113,14 +113,15 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 {cssContent}
             </style>
 
-            <div style={{ position: 'relative', maxWidth: '700px' }}>
+            <div id="atlas-image-container" style={{ position: 'relative', maxWidth: '700px' }}>
 
                 
                 <div 
+                    id="svg-container"
                     ref={svgContainerRef}
                     className="svg-container"
                 />
-                 <div >
+                 <div id="view-mode-controls">
                     <label style={{ marginRight: '15px', fontWeight: 'bold' }}>
                         Atlas view mode:</label>
                     <label style={{ marginRight: '15px' }}>
@@ -157,17 +158,6 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                     <button
                         id="fullscreen-button"
                         onClick={() => setIsFullscreen(true)}
-                        style={{
-                            marginLeft: '20px',
-                            border: '1px solid #ccc',
-                            borderRadius: '4px',
-                            background: '#fff',
-                            cursor: 'pointer',
-                            fontSize: '16px',
-                            float: 'right',
-                            position: 'relative',
-                            top: '-5px'
-                        }}
                         title="View fullscreen"
                     >
                         ⛶
@@ -178,34 +168,11 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
             {isFullscreen && (
                 <div
                     onClick={() => setIsFullscreen(false)}
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                        zIndex: 9999,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '20px'
-                    }}
+                    className="fullscreen-overlay"
                 >
                     <button
                         onClick={() => setIsFullscreen(false)}
-                        style={{
-                            position: 'absolute',
-                            top: '20px',
-                            right: '20px',
-                            padding: '10px 15px',
-                            border: 'none',
-                            borderRadius: '4px',
-                            background: '#fff',
-                            cursor: 'pointer',
-                            fontSize: '20px',
-                            zIndex: 10000
-                        }}
+                        className="fullscreen-close-button"
                         title="Close fullscreen"
                     >
                         ✕
@@ -213,26 +180,10 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                     
                     <div
                         onClick={(e) => e.stopPropagation()}
-                        style={{
-                            width: '95vw',
-                            height: '95vh',
-                            overflow: 'auto',
-                            background: '#fff',
-                            borderRadius: '8px',
-                            padding: '20px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}
+                        className="fullscreen-content"
                     >
                         <div 
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            className="fullscreen-svg-container"
                             dangerouslySetInnerHTML={{ 
                                 __html: svgContainerRef.current?.innerHTML || '' 
                             }}
