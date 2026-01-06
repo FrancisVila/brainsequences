@@ -114,7 +114,13 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
             </style>
 
             <div id="atlas-image-container" style={{ position: 'relative', maxWidth: '700px' }}>
-
+                    <button
+                        id="fullscreen-button"
+                        onClick={() => setIsFullscreen(true)}
+                        title="View fullscreen"
+                    >
+                        ⛶
+                    </button>
                 
                 <div 
                     id="svg-container"
@@ -155,13 +161,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                         All
                     </label>
                     
-                    <button
-                        id="fullscreen-button"
-                        onClick={() => setIsFullscreen(true)}
-                        title="View fullscreen"
-                    >
-                        ⛶
-                    </button>
+
                 </div>
             </div>
 

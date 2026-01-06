@@ -77,7 +77,7 @@ export default function Sequence() {
                   className={`step-nav-item ${isSelected ? 'selected' : ''}`}
                   title={step.title}
                 >
-                  {step.title}
+                 #{index+1} {step.title}
                 </div>
               );
             })}

@@ -33,6 +33,7 @@ export default function About() {
           </p>
         </section>
 
+
         <section>
           <h2>Technology</h2>
           <p>
@@ -52,7 +53,7 @@ export default function About() {
           <ul>
             <li><a href="https://fontawesome.com/">Font Awesome</a> for the icons of the senses.</li>
             <li>Tim Taylor's <a href="https://www.innerbody.com/image/nerv02.html">map of the Human Brain on Innerbody</a> for the initial brain illustrations and vector graphic. </li>
-            <li></li>
+            <li>Sergei Gepshtein's sight</li>
 
           </ul>
         </section>

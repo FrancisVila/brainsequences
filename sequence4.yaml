@@ -10,8 +10,9 @@ sequence:
         <h3>I see the chocolate on the plate in front of me</h3>
         <p>Light from the chocolate enters my <a data-part='sight'>eyes</a>.</p>
         <p> The light from the chocolate signal finds its way from the eyes to the  <a data-part='cuneus'>cuneus</a> at the back of the brain.</p>
-        <p>The diagram below illustrates how light gets transformed into nerve signals in the retina, enters the optic nerve, mixes signals from the left and right eyes in the optic chiasm, gets relayed by LGNs to the Cuneus.</p>
+        <p>The diagram below has been added because the atlas does not cover the top view of the brain. It illustrates how light gets transformed into nerve signals in the retina, enters the optic nerve, mixes signals from the left and right eyes in the optic chiasm, gets relayed by LGNs to the Cuneus.</p>
         <img src='/images/optic_chiasm.png' width='300px' alt='Optic Chiasm' />
+        <p class="caption-text">[<a href="https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/">partial source</a>]</p>
         <p> For more information about this process, check out this article: <a href='https://www.howitworksdaily.com/science-of-vision-how-do-our-eyes-enable-us-to-see/'>Science of vision: How do our eyes enable us to see?</a>.
       </div>
     step_brainparts: Cuneus, Sight, sight2cuneus
