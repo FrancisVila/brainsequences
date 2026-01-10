@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, type JSX } from 'react';
 import './atlasImage.css';
 import timTaylorCss from '../images/tim_taylor.css?raw';
 import timTaylorAllCss from '../images/tim_taylor_all.css?raw';
@@ -107,6 +107,65 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
         loadSvg();
     }, [atlasSvg, highlightedIds, view]);
 
+
+// function taking the coordinates of 2 points plus an extra offset parameter to adjust the curve
+const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, offset: number): string => {
+    const portion = 0.8;
+    // form factor required because the SVG viewBox of the lines is square but the displayed area is rectangular
+    // CHANGE THIS IF THE ASPECT RATIO CHANGES 
+    const formFactor = 1.88;
+    let offsetX = x2*portion + x1*(1-portion) + (y2-y1)*offset *formFactor;
+    console.log("x2*(1-portion) + x1*portion", x2*(1-portion) + x1*portion);
+    console.log( "(y2-y1)*offset",  (y2-y1)*offset);
+    let offsetY =  y2*portion + y1*(1-portion) + (x2-x1)*offset;
+    // x1=10; y1=20; x2=50; y2=60;  offsetX=50; offsetY=40;
+    return `M ${x1} ${y1} Q ${offsetX},${offsetY} ${x2},${y2}`;
+}
+
+const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.2): JSX.Element => {
+    return      <svg 
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            pointerEvents: 'none',
+                            border: '2px solid red',
+                            display:  'block'
+                        }}
+                    >
+                        <defs>
+                            <marker
+                                id="arrowhead"
+                                markerWidth="4"
+                                markerHeight="4"
+                                refX="4"
+                                refY="2"
+                                orient="auto"
+                            >
+                                <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
+                            </marker>
+                        </defs>
+                        <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth="0.5" fill="none" markerEnd="url(#arrowhead)" />
+                    </svg>
+}
+
+    const handleSvgClick = (event: React.MouseEvent<SVGSVGElement>) => {
+        const svg = event.currentTarget;
+        const point = svg.createSVGPoint();
+
+        point.x = event.clientX;
+        point.y = event.clientY;
+
+        // Transform to SVG coordinates
+        const svgPoint = point.matrixTransform(svg.getScreenCTM()?.inverse());
+
+        console.log(`SVG coordinates: x=${svgPoint.x}, y=${svgPoint.y}`);
+    };
+
     return (
         <>
             <style>
@@ -122,11 +181,21 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                         ⛶
                     </button>
                 
-                <div 
-                    id="svg-container"
-                    ref={svgContainerRef}
-                    className="svg-container"
-                />
+                <div style={{ position: 'relative', lineHeight: 0, display: 'inline-block' }}>
+                    <div 
+                        id="svg-container"
+                        ref={svgContainerRef}
+                        className="svg-container"
+                        style={{ lineHeight: 0, display: 'block' }}
+                    />
+                    {generateCurvePath(10, 20, 10, 60)}
+                    {generateCurvePath(20, 10, 60, 10)}
+                    {generateCurvePath(10, 10, 60, 60)}
+                    {generateCurvePath(60, 60, 10, 10)}
+                    {generateCurvePath(60, 20, 60, 50)}
+                    {generateCurvePath(50, 60, 20, 60)}
+
+                </div>
                  <div id="view-mode-controls">
                     <label style={{ marginRight: '15px', fontWeight: 'bold' }}>
                         Atlas view mode:</label>
