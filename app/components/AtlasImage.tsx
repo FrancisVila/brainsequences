@@ -114,15 +114,15 @@ const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, off
     // form factor required because the SVG viewBox of the lines is square but the displayed area is rectangular
     // CHANGE THIS IF THE ASPECT RATIO CHANGES 
     const formFactor = 1.88;
-    let offsetX = x2*portion + x1*(1-portion) + (y2-y1)*offset *formFactor;
-    console.log("x2*(1-portion) + x1*portion", x2*(1-portion) + x1*portion);
-    console.log( "(y2-y1)*offset",  (y2-y1)*offset);
-    let offsetY =  y2*portion + y1*(1-portion) + (x2-x1)*offset;
+    const intermediateX = x1 + (x2 - x1)*portion;
+    const intermediateY = y1 + (y2 - y1) * portion;
+    let offsetX = intermediateX + (y2-y1)*offset;
+    let offsetY = intermediateY + (x1-x2)*offset*formFactor ;
     // x1=10; y1=20; x2=50; y2=60;  offsetX=50; offsetY=40;
     return `M ${x1} ${y1} Q ${offsetX},${offsetY} ${x2},${y2}`;
 }
 
-const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.2): JSX.Element => {
+const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.25): JSX.Element => {
     return      <svg 
                         viewBox="0 0 100 100"
                         preserveAspectRatio="none"
@@ -190,8 +190,8 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                     />
                     {generateCurvePath(10, 20, 10, 60)}
                     {generateCurvePath(20, 10, 60, 10)}
-                    {generateCurvePath(10, 10, 60, 60)}
-                    {generateCurvePath(60, 60, 10, 10)}
+                    {generateCurvePath(20, 10, 60, 50)}
+                    {generateCurvePath(50, 60, 10, 20)}
                     {generateCurvePath(60, 20, 60, 50)}
                     {generateCurvePath(50, 60, 20, 60)}
 
