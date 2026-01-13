@@ -53,3 +53,13 @@ export const arrows = sqliteTable("arrows", {
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
+export const stepLinks = sqliteTable("step_link", {
+	stepId: integer("step_id").notNull().references(() => steps.id, { onDelete: "cascade" } ),
+	x1: numeric().notNull(),
+	y1: numeric().notNull(),
+	x2: numeric().notNull(),
+	y2: numeric().notNull(),
+	curvature: numeric(),
+	strokeWidth: numeric("strokeWidth"),
+});
+

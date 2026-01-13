@@ -105,6 +105,7 @@ export default function Sequence() {
                                             <AtlasImage 
         atlasSvg={toto}
         highlightedIds={step.brainpart_titles}
+        stepLinks={step.step_links || []}
       />
                       {step.description && (
                         <div 

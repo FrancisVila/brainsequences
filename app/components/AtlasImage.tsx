@@ -9,16 +9,27 @@ export interface Link {
     label: string;
 }
 
+export interface StepLink {
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    curvature?: number;
+    strokeWidth?: number;
+}
+
 export interface AtlasImageProps {
     atlasSvg: string;
     backgroundImage?: string;
     highlightedIds?: (string | number)[];
+    stepLinks?: StepLink[];
 }
 
 const AtlasImage: React.FC<AtlasImageProps> = ({ 
     atlasSvg, 
     backgroundImage, 
     highlightedIds = [],
+    stepLinks = [],
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
@@ -188,12 +199,15 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                         className="svg-container"
                         style={{ lineHeight: 0, display: 'block' }}
                     />
-                    {generateCurvePath(10, 20, 10, 60)}
-                    {generateCurvePath(20, 10, 60, 10)}
-                    {generateCurvePath(20, 10, 60, 50)}
-                    {generateCurvePath(50, 60, 10, 20)}
-                    {generateCurvePath(60, 20, 60, 50)}
-                    {generateCurvePath(50, 60, 20, 60)}
+                    {stepLinks.map((link, index) => 
+                        generateCurvePath(
+                            link.x1, 
+                            link.y1, 
+                            link.x2, 
+                            link.y2, 
+                            link.curvature ?? 0.25
+                        )
+                    )}
 
                 </div>
                  <div id="view-mode-controls">

@@ -1,6 +1,6 @@
 import { eq, and } from 'drizzle-orm';
 import { db } from './drizzle';
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows } from '../../drizzle/schema';
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks } from '../../drizzle/schema';
 
 
 // Sequences operations
@@ -41,9 +41,28 @@ export async function getSequence(id: number) {
     return acc;
   }, [] as any[]);
 
+  // Get step links for each step
+  const allStepLinks = await db.select().from(stepLinks).where(eq(stepLinks.stepId, id));
+  
+  // Add step links to each step
+  const stepsWithPartsAndLinks = stepsWithParts.map(step => {
+    const links = allStepLinks.filter(link => Number(link.stepId) === step.id);
+    return {
+      ...step,
+      step_links: links.map(link => ({
+        x1: Number(link.x1),
+        y1: Number(link.y1),
+        x2: Number(link.x2),
+        y2: Number(link.y2),
+        curvature: link.curvature ? Number(link.curvature) : 0.25,
+        strokeWidth: link.strokeWidth ? Number(link.strokeWidth) : 0.5,
+      })),
+    };
+  });
+
   return {
     ...sequence,
-    steps: stepsWithParts,
+    steps: stepsWithPartsAndLinks,
   };
 }
 
