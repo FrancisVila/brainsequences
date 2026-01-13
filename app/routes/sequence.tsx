@@ -51,7 +51,6 @@ export default function Sequence() {
 
   return (
     <div className="sequence-container">
-      <RichTextEditor keywords={[{id: 'toto', label: 'Toto'}, {id: 'tata', label: 'Tata'}, {id: 'titi', label: 'Titi'}] } />
       {/* Sequence title with dropdown */}
       <div className="title-container">
         <h1><select 
