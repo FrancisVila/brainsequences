@@ -72,6 +72,11 @@ export async function createSequence({ title, description }: { title: string; de
   return result[0];
 }
 
+export async function updateSequence(id: number, { title, description }: { title: string; description?: string | null }) {
+  await db.update(sequences).set({ title, description }).where(eq(sequences.id, id));
+  return { id };
+}
+
 export async function createBrainpart({ title, description, isPartOf }: { title: string; description?: string | null; isPartOf?: number | null }) {
   const result = await db.insert(brainparts).values({ title, description, isPartOf }).returning({ id: brainparts.id });
   return result[0];

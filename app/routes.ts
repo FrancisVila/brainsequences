@@ -9,6 +9,8 @@ export default [
 	route("/brainparts/create", "routes/brainparts/create.tsx"),
 	route("/brainparts/update", "routes/brainparts/update.tsx"),
 	// Sequences pages
+	route("/sequence_new", "routes/sequences/new.tsx"),
+	route("/sequences/:id/edit", "routes/sequences/edit.tsx"),
 	route("/sequences/:id", "routes/sequence.tsx"),
 	// Brainparts API
 	route("/api/brainparts", "routes/api/brainparts-drizzle.js"),
