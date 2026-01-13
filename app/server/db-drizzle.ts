@@ -42,11 +42,8 @@ export async function getSequence(id: number) {
   }, [] as any[]);
 
   // Get step links for each step
-  const allStepLinks = await db.select().from(stepLinks).where(eq(stepLinks.stepId, id));
-  
-  // Add step links to each step
-  const stepsWithPartsAndLinks = stepsWithParts.map(step => {
-    const links = allStepLinks.filter(link => Number(link.stepId) === step.id);
+  const stepsWithPartsAndLinks = await Promise.all(stepsWithParts.map(async step => {
+    const links = await db.select().from(stepLinks).where(eq(stepLinks.stepId, step.id));
     return {
       ...step,
       step_links: links.map(link => ({
@@ -58,7 +55,7 @@ export async function getSequence(id: number) {
         strokeWidth: link.strokeWidth ? Number(link.strokeWidth) : 0.5,
       })),
     };
-  });
+  }));
 
   return {
     ...sequence,

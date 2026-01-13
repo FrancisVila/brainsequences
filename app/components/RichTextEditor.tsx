@@ -150,7 +150,20 @@ export default function RichTextEditor({
         },
       }),
     ],
-    content: initialContent || (typeof window !== 'undefined' ? localStorage.getItem(storageKey) || '' : ''),
+    content: (() => {
+      if (initialContent) return initialContent;
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          try {
+            return JSON.parse(stored);
+          } catch {
+            return stored;
+          }
+        }
+      }
+      return '';
+    })(),
     editorProps: {
       attributes: {
         class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-xl focus:outline-none',

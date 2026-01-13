@@ -101,7 +101,9 @@ export default function Sequence() {
                   <h2 className="step-title">#{index + 1} {step.title}</h2>
 
                   {isSelected && (
+                    
                     <>
+                    {console.log('step data', step)}
                                             <AtlasImage 
         atlasSvg={toto}
         highlightedIds={step.brainpart_titles}
