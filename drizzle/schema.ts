@@ -22,7 +22,6 @@ export const brainparts = sqliteTable("brainparts", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	title: text().notNull(),
 	description: text(),
-	icon: text(),
 	image: text(),
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 	isPartOf: integer("is_part_of"),

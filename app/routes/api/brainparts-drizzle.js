@@ -4,22 +4,30 @@ import {
 
 // GET /api/brainparts - return list of brainparts
 export async function loader({ request }) {
-  const url = new URL(request.url);
-  const id = url.searchParams.get('id');
-  
-  if (id) {
-    const brainpart = await getBrainpart(Number(id));
-    return new Response(JSON.stringify(brainpart || null), {
+  try {
+    const url = new URL(request.url);
+    const id = url.searchParams.get('id');
+    
+    if (id) {
+      const brainpart = await getBrainpart(Number(id));
+      return new Response(JSON.stringify(brainpart || null), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const parts = await getAllBrainparts();
+    return new Response(JSON.stringify(parts), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
+  } catch (error) {
+    console.error('Error in brainparts loader:', error);
+    return new Response(JSON.stringify({ error: error.message, stack: error.stack }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
-
-  const parts = await getAllBrainparts();
-  return new Response(JSON.stringify(parts), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
 }
 
 // POST /api/brainparts - create

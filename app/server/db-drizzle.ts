@@ -77,6 +77,44 @@ export async function updateSequence(id: number, { title, description }: { title
   return { id };
 }
 
+// Steps operations
+export async function createStep({ sequenceId, title, description, brainpartIds }: { sequenceId: number; title: string; description?: string | null; brainpartIds?: number[] }) {
+  const result = await db.insert(steps).values({ sequenceId, title, description }).returning({ id: steps.id });
+  const stepId = result[0].id;
+  
+  // Add brainpart associations if provided
+  if (brainpartIds && brainpartIds.length > 0) {
+    await db.insert(stepBrainparts).values(
+      brainpartIds.map(brainpartId => ({ stepId, brainpartId }))
+    );
+  }
+  
+  return result[0];
+}
+
+export async function updateStep(id: number, { title, description, brainpartIds }: { title: string; description?: string | null; brainpartIds?: number[] }) {
+  await db.update(steps).set({ title, description }).where(eq(steps.id, id));
+  
+  // Update brainpart associations if provided
+  if (brainpartIds !== undefined) {
+    // Remove all existing associations
+    await db.delete(stepBrainparts).where(eq(stepBrainparts.stepId, id));
+    
+    // Add new associations
+    if (brainpartIds.length > 0) {
+      await db.insert(stepBrainparts).values(
+        brainpartIds.map(brainpartId => ({ stepId: id, brainpartId }))
+      );
+    }
+  }
+  
+  return { id };
+}
+
+export async function deleteStep(id: number) {
+  await db.delete(steps).where(eq(steps.id, id));
+}
+
 export async function createBrainpart({ title, description, isPartOf }: { title: string; description?: string | null; isPartOf?: number | null }) {
   const result = await db.insert(brainparts).values({ title, description, isPartOf }).returning({ id: brainparts.id });
   return result[0];
