@@ -160,8 +160,8 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
         await saveSteps(Number(sequenceId));
       }
       
-      // Navigate to the sequence view after saving
-      navigate(`/sequences/${sequenceId}`);
+      // Stay in edit mode after saving
+      navigate(`/sequences/${sequenceId}/edit`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save sequence');
     } finally {
@@ -380,17 +380,16 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                     onClick={() => setSelectedStepId(step.id)}
                     className={`step-item ${isSelected ? 'selected' : ''}`}
                   >
-                    <h2 className="step-title">#{index + 1} {step.title}</h2>
+                    {!isSelected && <h2 className="step-title">#{index + 1} {step.title}</h2>}
 
                     {isSelected && (
+                      
                       <>
-                        {editMode ? (
-                          // Edit mode content
-                          <div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                              <div className="form-field" style={{ flex: 1, marginBottom: 0 }}>
-                                <label className="form-label">Step Title</label>
-                                <input
+                      {editMode ? (
+                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                              <div className="form-field" style={{ display: 'flex', gap: '0.5rem', marginBottom: 0 , justifyContent: 'flex-start', alignItems: 'center' }}>
+                                <span>#{index + 1}</span>
+                                 <input
                                   type="text"
                                   value={step.title}
                                   onChange={(e) => updateStepTitle(index, e.target.value)}
@@ -406,6 +405,12 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                 🗑️ Delete Step
                               </button>
                             </div>
+) : 
+                        (<h2 className="step-title">#{index + 1} {step.title}</h2>  )}
+                        {editMode ? (
+                          // Edit mode content
+                          <div>
+
 
                             <div style={{ marginBottom: '1rem' }}>
                               <AtlasImage 
