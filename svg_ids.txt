@@ -1,2 +1,258 @@
+4th_Ventricle
+4th_Ventricle_text
+Amigdala
+Angular Gyrus
+Angular Gyrus_text
+Angular Gyrus_text
+Anterior_Commissure_of_Brain
+Anterior_Commissure_of_Brain_text
+Brain_stem
+Brain_stem_text
+Brain_text
+Calcarine_Sulcus
+Calcarine_Sulcus_text
+Central Sulcus of Rolando_text
+Central_Sulcus-of_Rolando
+Cerebellum
+Cerebellum
+Cerebellum_text
+Cerebral_Aqueduct
+Cerebral_Aqueduct_text
+Cerebrum
+Cerebrum
+Cerebrum_text
+Channel Transparency
+Channel Transparency
+Choroid_Plexus
+Choroid_Plexus_of_3rd_Ventricle
+Choroid_Plexus_of_3rd_Ventricle_text
+Choroid_Plexus_text
+Cingulate_Gyrus
+Cingulate_Gyrus_text
+Cingulate_Sulcus
+Cingulate_Sulcus_text
+Corpus_Callosum
+Corpus_Callosum_text
+Cuneus
+Cuneus_text
+Cutout Glow
+Edge Detect
+Fill Background
+Fornix
+Fornix_text
+Frontal Pole
+Hippocampus
+Hippocampus_text
+Hypothalamic_Sulcus
+Hypothalamic_Sulcus_text
+Hypothalamus
+Hypothalamus
+Hypothalamus
+Hypothalamus_text
+Hypothalamus_text
+ITG2hippocampus
+Inferior Frontal Gyrus
+Inferior Parietal Lobule
+Inferior Temporal Gyrus
+Inferior Temporal Gyrus_text
+Inferior_Colliculus
+Inferior_Colliculus_text
+Interthalamic_Adhesion
+Interthalamic_Adhesion_text
+Lamina_Terminalis
+Lamina_Terminalis_text
+Lightness-Contrast
+Marbled Ink
+Marbled Ink
+Marbled Ink
+Medulla Oblongata
+Middle Frontal Gyrus
+Middle Frontal Gyrus_text
+Middle Temporal Gyrus
+Middle Temporal Gyrus_text
+Optic_Chiasm
+Optic_Chiasm_text
+Optic_Recess
+Optic_Recess_text
+Paracentral_Lobule
+Paracentral_Lobule_text
+Paraterminal_Gyrus
+Paraterminal_Gyrus_text
+Parietooccipital_Sulcus
+Parietooccipital_Sulcus_text
+Pineal_Gland
+Pineal_Gland
+Pineal_Gland
+Pineal_Gland_text
+Pineal_Gland_text
+Pituitary_Gland
+Pituitary_Gland
+Pituitary_Gland
+Pituitary_Gland_text
+Pituitary_Gland_text
+Postcentral Gyrus
+Postcentral Gyrus_text
+Precentral Gyrus
+Precentral Sulcus
+Precuneus
+Precuneus_text
+Septum_Pellucidum
+Septum_Pellucidum_text
+Sulcus_of_Corpus_Callosum
+Sulcus_of_Corpus_Callosum_text
+Superior Parietal Lobule
+Superior Temporal Gyrus
+Superior Temporal Gyrus_text
+Superior_Colliculus
+Superior_Colliculus_text
+Supramarginal Gyrus
+Supramarginal Gyrus_text
+Temporal Pole
+Temporal Pole
+Thalamus
+Thalamus_text
+Tuber_Cinereum
+Tuber_Cinereum_text
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+VTA2dopamine
+accumbens_node
+accumbens_node_text
+adrenal
+adrenal
+adrenal_left
+adrenal_left
+adrenal_left_background
+adrenal_left_background
+adrenal_right
+adrenal_right
+adrenal_right_background
+adrenal_right_background
+adrenal_text
+always_on_top
+bitmap_backgrounds
+body
+body_text
+brain_center
+brain_center_background
+brain_center_sketch
+brain_center_sketch
+brain_center_svg
+brain_main
+brain_main_background
+brain_main_sketch
+brain_outer
+brain_outer_background
+brain_parts
+cortices
+cortices_background
+cortices_sketch
+cuneus2ITG
+dotted_line_1
+dotted_line_2
+endocrine_background
+endocrine_text
+front_back_text
+front_back_text
+frontal_pole_text
+hearing
+hearing_bitmap
+hide_unamed_part
 hippocampus2VTA
+inner_text
+kidneys_text
+link0
+link_circle1
+link_text0
+link_text111
+links
+misc
+motor_ankle
+motor_area
+motor_brow
+motor_elbow
+motor_eyelid
+motor_face
+motor_fingers
+motor_hip
+motor_knee
+motor_larynx
+motor_lips
+motor_neck
+motor_shoulder
+motor_thumb
+motor_toes
+motor_tongue
+motor_trunk
+motor_wrist
+muscle_text
+muscles
+muscles
+muscles_background
+muscles_background
+outer_sketch
+pancreas
+pancreas
+pancreas_background
+pancreas_text
+pons
+pons
+pons_text
+senses_background
+senses_text
+sensory_area
+sensory_elbow
+sensory_elbows_text
+sensory_eye
+sensory_eye_text
+sensory_face
+sensory_face_text
+sensory_fingers
+sensory_fingers_text
+sensory_foot
+sensory_foot_text
+sensory_genitalia
+sensory_genitals_text
+sensory_hand
+sensory_hand_text
+sensory_head
+sensory_head_text
+sensory_leg
+sensory_leg_text
+sensory_lips
+sensory_lips_text
+sensory_motor_text
+sensory_motor_text
+sensory_motor_text
+sensory_mouth
+sensory_mouth_text
+sensory_neck
+sensory_neck_text
+sensory_thumb
+sensory_thumb_text
+sensory_view
 sight
+sight2cuneus
+sight_bitmap
+sketch_background
+sketch_backgrounds
+slice_view
+smell
+smell_bitmap
+stem
+svg_backgrounds
+taste
+taste_bitmap
+thymus
+thymus_text
+thyroid
+thyroid_text
+touch
+touch_bitmap
+ventral_tegmental_area
+ventral_tegmental_area_text

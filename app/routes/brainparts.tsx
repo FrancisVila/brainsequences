@@ -36,11 +36,12 @@ export default function Brainparts() {
               <th>description</th>
               <th>is_part_of</th>
               <th>created_at</th>
+              
               <th colSpan={2}>actions</th>
             </tr>
           </thead>
           <tbody>
-            {parts.map((p: any) => (
+            {parts.sort((a, b) => a.title.localeCompare(b.title)).map((p: any) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
                 <td>{p.title}</td>

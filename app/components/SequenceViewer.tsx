@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import DOMPurify from 'dompurify';
-import '../routes/sequence.css';
+import '~/routes/sequence.css';
 import AtlasImage from './AtlasImage';
 import toto from '~/images/tim_taylor.svg';
 
@@ -73,7 +73,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
       }
     } catch (err) {
       console.error('Failed to load sequence', err);
-      setError('Failed to load sequence');
+      setError('Failed to load sequence')
     } finally {
       setLoading(false);
     }
@@ -274,7 +274,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   const selectedStep = displaySteps.find((s: any) => s.id === selectedStepId);
 
   return (
-    <div className="sequence-container">
+    <div className={`sequence-container ${editMode ? 'edit-mode' : 'view-mode'}`}>
       {/* Title Section */}
       <div className="title-container">
         {editMode ? (
@@ -380,7 +380,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                     onClick={() => setSelectedStepId(step.id)}
                     className={`step-item ${isSelected ? 'selected' : ''}`}
                   >
-                    {!isSelected && <h2 className="step-title">#{index + 1} {step.title}</h2>}
+                    {!isSelected && <h3 className="step-title">#{index + 1} {step.title}</h3>}
 
                     {isSelected && (
                       
@@ -394,7 +394,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                   value={step.title}
                                   onChange={(e) => updateStepTitle(index, e.target.value)}
                                   placeholder="Enter step title"
-                                  className="form-input"
+                                  className="form-input step-title-input"
                                 />
                               </div>
                               <button 
@@ -406,7 +406,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                               </button>
                             </div>
 ) : 
-                        (<h2 className="step-title">#{index + 1} {step.title}</h2>  )}
+                        (<h3 className="step-title">#{index + 1} {step.title}</h3>  )}
                         {editMode ? (
                           // Edit mode content
                           <div>
@@ -461,6 +461,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                   )}
                                   {allBrainparts
                                     .filter(bp => !step.brainpart_ids.includes(bp.id))
+                                    .sort((a, b) => a.title.localeCompare(b.title))
                                     .map(bp => (
                                       <option key={bp.id} value={bp.id}>{bp.title}</option>
                                     ))}
