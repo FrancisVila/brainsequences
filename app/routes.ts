@@ -12,6 +12,8 @@ export default [
 	route("/sequences/new", "routes/sequences/new.tsx"),
 	route("/sequences/:id/edit", "routes/sequences/edit.tsx"),
 	route("/sequences/:id", "routes/sequence.tsx"),
+	// Wikimedia images
+	route("/wikimedia", "routes/wikimedia.tsx"),
 	// Brainparts API
 	route("/api/brainparts", "routes/api/brainparts-drizzle.js"),
 	// Sequences API
