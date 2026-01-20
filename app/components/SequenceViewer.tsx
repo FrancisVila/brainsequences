@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import DOMPurify from 'dompurify';
 import '~/routes/sequence.css';
 import AtlasImage from './AtlasImage';
+import RichTextEditor from './RichTextEditor';
 import toto from '~/images/tim_taylor.svg';
 
 interface Step {
@@ -172,8 +173,10 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   }
 
   async function saveSteps(sequenceId: number) {
+    console.log('Saving steps:', steps);
     for (const step of steps) {
       try {
+        console.log('Saving step:', step.id, 'description length:', step.description?.length);
         if (step.id) {
           // Update existing step
           await fetch(`/api/steps?id=${step.id}`, {
@@ -181,6 +184,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               title: step.title,
+              description: step.description,
               brainpartIds: step.brainpart_ids,
             }),
           });
@@ -192,6 +196,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
             body: JSON.stringify({
               sequenceId,
               title: step.title,
+              description: step.description,
               brainpartIds: step.brainpart_ids,
             }),
           });
@@ -209,6 +214,13 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   function updateStepTitle(index: number, newTitle: string) {
     const updated = [...steps];
     updated[index].title = newTitle;
+    setSteps(updated);
+  }
+
+  function updateStepDescription(index: number, newDescription: string) {
+    console.log('Updating step description:', index, newDescription.substring(0, 100));
+    const updated = [...steps];
+    updated[index].description = newDescription;
     setSteps(updated);
   }
 
@@ -388,7 +400,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                       
                       <>
                       {editMode ? (
-                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                               <div className="form-field" style={{ display: 'flex', gap: '0.5rem', marginBottom: 0 , justifyContent: 'flex-start', alignItems: 'center' }}>
                                 <span>#{index + 1}</span>
                                  <input
@@ -423,6 +435,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                             </div>
 
                             <div className="form-field">
+                              
                               <label className="form-label">Brain Parts</label>
                               {step.brainpart_titles.length > 0 ? (
                                 <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -469,6 +482,17 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                     ))}
                                 </select>
                               </div>
+                            </div>
+
+                            <div className="form-field" style={{ marginTop: '1rem' }}>
+                              <label className="form-label">Description</label>
+                              <RichTextEditor
+                                initialContent={step.description || ''}
+                                keywords={allBrainparts.map(bp => ({ id: String(bp.id), label: bp.title }))}
+                                placeholder="Enter step description..."
+                                storageKey={`step-${step.id || index}-description`}
+                                onContentChange={(content, html) => updateStepDescription(index, html)}
+                              />
                             </div>
                           </div>
                         ) : (

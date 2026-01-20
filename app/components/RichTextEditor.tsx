@@ -71,7 +71,7 @@ interface RichTextEditorProps {
 }
 
 export default function RichTextEditor({
-  initialContent = '',
+  initialContent,
   keywords = [],
   placeholder = 'Start typing...',
   storageKey = 'editor-content',
@@ -96,7 +96,7 @@ export default function RichTextEditor({
               .filter((item) =>
                 item.label.toLowerCase().includes(query.toLowerCase())
               )
-              .slice(0, 10);
+              .slice(0, 100);
           },
           render: () => {
             let component: ReactRenderer;
@@ -151,7 +151,9 @@ export default function RichTextEditor({
       }),
     ],
     content: (() => {
-      if (initialContent) return initialContent;
+      // If initialContent was explicitly provided (even if empty), use it
+      if (initialContent !== undefined) return initialContent;
+      // Otherwise fall back to localStorage
       if (typeof window !== 'undefined') {
         const stored = localStorage.getItem(storageKey);
         if (stored) {
