@@ -23,14 +23,14 @@ for (const line of lines) {
 
 console.log(`Found ${entries.length} total entries`);
 
-// Parse entries to extract filenames
+// Parse entries to extract filenames from href (the wiki page URL)
 const parsedEntries = entries.map(line => {
-  // Extract filename from the line
-  const match = line.match(/File:([^"\n]+)/);
+  // Extract filename from the href attribute (the wiki page link)
+  const match = line.match(/href="https:\/\/commons\.wikimedia\.org\/wiki\/File:([^"\n]+)/);
   if (match) {
     const fullName = match[1].trim();
-    // Get just the base filename (without path)
-    const fileName = fullName.split('/').pop();
+    // Clean up the filename - remove newlines and extra whitespace
+    const fileName = fullName.replace(/\s+/g, ' ').trim();
     return {
       line,
       fileName,
