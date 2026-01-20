@@ -17,6 +17,7 @@ interface Step {
 interface Brainpart {
   id: number;
   title: string;
+  visible?: number;
 }
 
 interface Sequence {
@@ -105,7 +106,8 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
       try {
         const data = JSON.parse(text);
         console.log('Loaded brainparts:', data);
-        setAllBrainparts(data || []);
+        const visibleBrainparts = (data || []).filter((bp: Brainpart) => bp.visible === 1 || bp.visible === undefined);
+        setAllBrainparts(visibleBrainparts);
       } catch (parseError) {
         console.error('JSON parse error. Response was:', text);
         setError('Failed to parse brain parts data');

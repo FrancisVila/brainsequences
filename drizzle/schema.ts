@@ -25,6 +25,7 @@ export const brainparts = sqliteTable("brainparts", {
 	image: text(),
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 	isPartOf: integer("is_part_of"),
+	visible: integer().notNull().default(1),
 });
 
 export const brainpartLinks = sqliteTable("brainpart_links", {
