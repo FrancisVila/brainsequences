@@ -511,68 +511,61 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                       }}
                                     >
                                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                        <strong>Link #{linkIndex + 1}</strong>
-                                        <button
-                                          type="button"
-                                          onClick={() => removeStepLink(index, linkIndex)}
-                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
-                                        >
-                                          ✕
-                                        </button>
+                                        
+
                                       </div>
-                                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>X1</label>
+                                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                        <strong>Link #{linkIndex + 1}</strong>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>X1</label>
                                           <input
                                             type="number"
                                             min="0"
                                             max="100"
                                             value={link.x1}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '50px', padding: '0.25rem' }}
                                           />
                                         </div>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Y1</label>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Y1</label>
                                           <input
                                             type="number"
                                             min="0"
                                             max="100"
                                             value={link.y1}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '50px', padding: '0.25rem' }}
                                           />
                                         </div>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>X2</label>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>X2</label>
                                           <input
                                             type="number"
                                             min="0"
                                             max="100"
                                             value={link.x2}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '50px', padding: '0.25rem' }}
                                           />
                                         </div>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Y2</label>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Y2</label>
                                           <input
                                             type="number"
                                             min="0"
                                             max="100"
                                             value={link.y2}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '50px', padding: '0.25rem' }}
                                           />
                                         </div>
-                                      </div>
-                                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Stroke Width</label>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Stroke</label>
                                           <select
                                             value={link.strokeWidth}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '60px', padding: '0.25rem' }}
                                           >
                                             <option value="0.1">0.1</option>
                                             <option value="0.2">0.2</option>
@@ -586,12 +579,12 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                             <option value="1">1.0</option>
                                           </select>
                                         </div>
-                                        <div>
-                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Curvature</label>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Curve</label>
                                           <select
                                             value={link.curvature}
                                             onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
-                                            style={{ width: '100%', padding: '0.25rem' }}
+                                            style={{ width: '60px', padding: '0.25rem' }}
                                           >
                                             <option value="-0.5">-0.5</option>
                                             <option value="-0.4">-0.4</option>
@@ -606,6 +599,13 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                                             <option value="0.5">0.5</option>
                                           </select>
                                         </div>
+                                                                                <button
+                                          type="button"
+                                          onClick={() => removeStepLink(index, linkIndex)}
+                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                        >
+                                          ✕
+                                        </button>
                                       </div>
                                     </div>
                                   ))}
