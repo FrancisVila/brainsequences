@@ -1,4 +1,4 @@
-import { createStep, updateStep, deleteStep } from '../../server/db-drizzle.js';
+import { createStep, updateStep, deleteStep, updateStepLinks } from '../../server/db-drizzle.js';
 
 // POST /api/steps - create a new step
 // PUT /api/steps?id=X - update an existing step
@@ -42,7 +42,7 @@ export async function action({ request }) {
     }
     
     const body = await request.json();
-    const { title, description, brainpartIds } = body;
+    const { title, description, brainpartIds, stepLinks } = body;
     
     if (!title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Title is required' }), {
@@ -56,6 +56,11 @@ export async function action({ request }) {
       description,
       brainpartIds: brainpartIds || []
     });
+    
+    // Update step links if provided
+    if (stepLinks !== undefined) {
+      await updateStepLinks(Number(id), stepLinks);
+    }
     
     return new Response(JSON.stringify(result), {
       status: 200,

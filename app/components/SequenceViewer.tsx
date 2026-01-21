@@ -6,13 +6,23 @@ import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
 import toto from '~/images/tim_taylor.svg';
 
+interface StepLink {
+  id?: number;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  curvature: number;
+  strokeWidth: number;
+}
+
 interface Step {
   id?: number;
   title: string;
   description?: string;
   brainpart_ids: number[];
   brainpart_titles: string[];
-  step_links?: any[];
+  step_links?: StepLink[];
 }
 
 interface Brainpart {
@@ -186,6 +196,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               title: step.title,
               description: step.description,
               brainpartIds: step.brainpart_ids,
+              stepLinks: step.step_links || [],
             }),
           });
         } else {
@@ -248,6 +259,56 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
           ...step,
           brainpart_ids: step.brainpart_ids.filter((_, i) => i !== brainpartIndex),
           brainpart_titles: step.brainpart_titles.filter((_, i) => i !== brainpartIndex),
+        };
+      }
+      return step;
+    });
+    setSteps(updated);
+  }
+
+  function addStepLink(stepIndex: number) {
+    const updated = steps.map((step, idx) => {
+      if (idx === stepIndex) {
+        const newLink: StepLink = {
+          x1: 50,
+          y1: 50,
+          x2: 50,
+          y2: 50,
+          curvature: 0.3,
+          strokeWidth: 0.5,
+        };
+        return {
+          ...step,
+          step_links: [...(step.step_links || []), newLink],
+        };
+      }
+      return step;
+    });
+    setSteps(updated);
+  }
+
+  function updateStepLink(stepIndex: number, linkIndex: number, field: keyof StepLink, value: number) {
+    const updated = steps.map((step, idx) => {
+      if (idx === stepIndex && step.step_links) {
+        const updatedLinks = step.step_links.map((link, lIdx) => {
+          if (lIdx === linkIndex) {
+            return { ...link, [field]: value };
+          }
+          return link;
+        });
+        return { ...step, step_links: updatedLinks };
+      }
+      return step;
+    });
+    setSteps(updated);
+  }
+
+  function removeStepLink(stepIndex: number, linkIndex: number) {
+    const updated = steps.map((step, idx) => {
+      if (idx === stepIndex && step.step_links) {
+        return {
+          ...step,
+          step_links: step.step_links.filter((_, i) => i !== linkIndex),
         };
       }
       return step;
@@ -430,8 +491,136 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                               <AtlasImage 
                                 atlasSvg={toto}
                                 highlightedIds={step.brainpart_titles}
-                                stepLinks={[]}
+                                stepLinks={step.step_links || []}
                               />
+                            </div>
+
+                            {/* Step Links Editor */}
+                            <div className="form-field" style={{ marginTop: '1rem' }}>
+                              <label className="form-label">Step Links</label>
+                              {step.step_links && step.step_links.length > 0 ? (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                  {step.step_links.map((link, linkIndex) => (
+                                    <div 
+                                      key={linkIndex} 
+                                      style={{ 
+                                        border: '1px solid #ddd', 
+                                        padding: '1rem', 
+                                        borderRadius: '4px',
+                                        background: '#f9f9f9'
+                                      }}
+                                    >
+                                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                        <strong>Link #{linkIndex + 1}</strong>
+                                        <button
+                                          type="button"
+                                          onClick={() => removeStepLink(index, linkIndex)}
+                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                        >
+                                          ✕
+                                        </button>
+                                      </div>
+                                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>X1</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.x1}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Y1</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.y1}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>X2</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.x2}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Y2</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.y2}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                      </div>
+                                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Stroke Width</label>
+                                          <select
+                                            value={link.strokeWidth}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          >
+                                            <option value="0.1">0.1</option>
+                                            <option value="0.2">0.2</option>
+                                            <option value="0.3">0.3</option>
+                                            <option value="0.4">0.4</option>
+                                            <option value="0.5">0.5</option>
+                                            <option value="0.6">0.6</option>
+                                            <option value="0.7">0.7</option>
+                                            <option value="0.8">0.8</option>
+                                            <option value="0.9">0.9</option>
+                                            <option value="1">1.0</option>
+                                          </select>
+                                        </div>
+                                        <div>
+                                          <label style={{ fontSize: '0.85rem', display: 'block' }}>Curvature</label>
+                                          <select
+                                            value={link.curvature}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
+                                            style={{ width: '100%', padding: '0.25rem' }}
+                                          >
+                                            <option value="-0.5">-0.5</option>
+                                            <option value="-0.4">-0.4</option>
+                                            <option value="-0.3">-0.3</option>
+                                            <option value="-0.2">-0.2</option>
+                                            <option value="-0.1">-0.1</option>
+                                            <option value="0">0</option>
+                                            <option value="0.1">0.1</option>
+                                            <option value="0.2">0.2</option>
+                                            <option value="0.3">0.3</option>
+                                            <option value="0.4">0.4</option>
+                                            <option value="0.5">0.5</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              ) : (
+                                <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => addStepLink(index)}
+                                className="btn-primary"
+                                style={{ marginTop: '0.5rem' }}
+                              >
+                                + Add Step Link
+                              </button>
                             </div>
 
                             <div className="form-field">

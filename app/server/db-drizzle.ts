@@ -115,6 +115,27 @@ export async function deleteStep(id: number) {
   await db.delete(steps).where(eq(steps.id, id));
 }
 
+// Step Links operations
+export async function updateStepLinks(stepId: number, links: any[]) {
+  // Delete existing links for this step
+  await db.delete(stepLinks).where(eq(stepLinks.stepId, stepId));
+  
+  // Insert new links
+  if (links && links.length > 0) {
+    await db.insert(stepLinks).values(
+      links.map(link => ({
+        stepId,
+        x1: link.x1,
+        y1: link.y1,
+        x2: link.x2,
+        y2: link.y2,
+        curvature: link.curvature,
+        strokeWidth: link.strokeWidth,
+      }))
+    );
+  }
+}
+
 export async function createBrainpart({ title, description, isPartOf }: { title: string; description?: string | null; isPartOf?: number | null }) {
   const result = await db.insert(brainparts).values({ title, description, isPartOf }).returning({ id: brainparts.id });
   return result[0];

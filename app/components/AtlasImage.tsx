@@ -133,7 +133,7 @@ const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, off
     return `M ${x1} ${y1} Q ${offsetX},${offsetY} ${x2},${y2}`;
 }
 
-const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.25): JSX.Element => {
+const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.25, strokeWidth: number=0.5): JSX.Element => {
     return      <svg 
                         viewBox="0 0 100 100"
                         preserveAspectRatio="none"
@@ -153,14 +153,14 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                                 id="arrowhead"
                                 markerWidth="4"
                                 markerHeight="4"
-                                refX="4"
+                                refX="2"
                                 refY="2"
                                 orient="auto"
                             >
                                 <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
                             </marker>
                         </defs>
-                        <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth="0.5" fill="none" markerEnd="url(#arrowhead)" />
+                        <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth={strokeWidth} fill="none" markerEnd="url(#arrowhead)" />
                     </svg>
 }
 
@@ -205,7 +205,8 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                             link.y1, 
                             link.x2, 
                             link.y2, 
-                            link.curvature ?? 0.25
+                            link.curvature ?? 0.25,
+                            link.strokeWidth ?? 0.5
                         )
                     )}
 
