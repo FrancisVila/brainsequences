@@ -1,6 +1,7 @@
 import { 
   getAllBrainparts, getBrainpart, createBrainpart, updateBrainpart, deleteBrainpart 
 } from '../../server/db-drizzle.js';
+import { requireRole } from '../../server/auth.js';
 
 // GET /api/brainparts - return list of brainparts
 export async function loader({ request }) {
@@ -34,6 +35,9 @@ export async function loader({ request }) {
 // PUT /api/brainparts - update (requires id)
 // DELETE /api/brainparts - delete (requires id)
 export async function action({ request }) {
+  // Require admin role for all brainpart modifications
+  await requireRole(request, 'admin');
+  
   const method = request.method.toUpperCase();
   const body = await request.json().catch(() => ({}));
 

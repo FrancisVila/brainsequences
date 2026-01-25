@@ -5,7 +5,8 @@ import {
   getAllUsers, 
   updateUserRole,
   getUserSequences,
-  updateSequenceOwner
+  updateSequenceOwner,
+  deleteUser
 } from '~/server/db-drizzle';
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -56,6 +57,17 @@ export async function action({ request }: Route.ActionArgs) {
     
     await updateSequenceOwner(sequenceId, newOwnerId);
     return data({ success: 'Ownership transferred successfully' });
+  }
+  
+  if (action === 'deleteUser') {
+    const userId = Number(formData.get('userId'));
+    
+    if (userId === user.id) {
+      return data({ error: 'You cannot delete your own account' }, { status: 400 });
+    }
+    
+    await deleteUser(userId);
+    return data({ success: 'User deleted successfully' });
   }
   
   return data({ error: 'Invalid action' }, { status: 400 });
@@ -146,42 +158,67 @@ export default function AdminUsers({ loaderData, actionData }: Route.ComponentPr
                 <td style={{ padding: '12px' }}>{joinDate}</td>
                 <td style={{ textAlign: 'right', padding: '12px' }}>
                   {!isCurrentUser && (
-                    <form method="post" style={{ display: 'inline' }}>
-                      <input type="hidden" name="_action" value="updateRole" />
-                      <input type="hidden" name="userId" value={u.id} />
-                      <select 
-                        name="role"
-                        defaultValue={u.role}
-                        style={{ 
-                          padding: '4px 8px',
-                          marginRight: '8px',
-                          border: '1px solid #ccc',
-                          borderRadius: '4px'
-                        }}
-                      >
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                      </select>
-                      <button
-                        type="submit"
-                        style={{ 
-                          padding: '4px 12px',
-                          fontSize: '14px',
-                          backgroundColor: '#007bff',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '4px',
-                          cursor: 'pointer'
-                        }}
-                        onClick={(e) => {
-                          if (!confirm(`Change role for ${u.email}?`)) {
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        Update Role
-                      </button>
-                    </form>
+                    <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                      <form method="post" style={{ display: 'inline' }}>
+                        <input type="hidden" name="_action" value="updateRole" />
+                        <input type="hidden" name="userId" value={u.id} />
+                        <select 
+                          name="role"
+                          defaultValue={u.role}
+                          style={{ 
+                            padding: '4px 8px',
+                            marginRight: '8px',
+                            border: '1px solid #ccc',
+                            borderRadius: '4px'
+                          }}
+                        >
+                          <option value="user">User</option>
+                          <option value="admin">Admin</option>
+                        </select>
+                        <button
+                          type="submit"
+                          style={{ 
+                            padding: '4px 12px',
+                            fontSize: '14px',
+                            backgroundColor: '#007bff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
+                          onClick={(e) => {
+                            if (!confirm(`Change role for ${u.email}?`)) {
+                              e.preventDefault();
+                            }
+                          }}
+                        >
+                          Update Role
+                        </button>
+                      </form>
+                      <form method="post" style={{ display: 'inline' }}>
+                        <input type="hidden" name="_action" value="deleteUser" />
+                        <input type="hidden" name="userId" value={u.id} />
+                        <button
+                          type="submit"
+                          style={{ 
+                            padding: '4px 12px',
+                            fontSize: '14px',
+                            backgroundColor: '#dc3545',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
+                          onClick={(e) => {
+                            if (!confirm(`Are you sure you want to delete ${u.email}? This will delete all their sequences and cannot be undone.`)) {
+                              e.preventDefault();
+                            }
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </form>
+                    </div>
                   )}
                 </td>
               </tr>

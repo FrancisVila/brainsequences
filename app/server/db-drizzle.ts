@@ -212,6 +212,14 @@ export async function updateUserRole(userId: number, role: 'user' | 'admin') {
   return { id: userId };
 }
 
+export async function deleteUser(userId: number) {
+  // Foreign key constraints with CASCADE will automatically delete:
+  // - user's sessions
+  // - user's sequences (which cascade to steps, step_brainparts, arrows, collaborators, invitations)
+  // - user's password resets
+  await db.delete(users).where(eq(users.id, userId));
+}
+
 // ================================
 // Sequence Collaborators operations
 // ================================

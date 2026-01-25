@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import type { Route } from './+types/brainseparts';
+import { getCurrentUser } from '~/server/auth';
 
-export default function Brainparts() {
+export async function loader({ request }: Route.LoaderArgs) {
+  // Allow anyone to view brainparts, but check if admin for edit buttons
+  const user = await getCurrentUser(request);
+  return { user };
+}
+
+export default function Brainparts({ loaderData }: Route.ComponentProps) {
+  const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -24,9 +33,11 @@ export default function Brainparts() {
   return (
     <div>
       <h2>Brainparts</h2>
-      <div style={{ marginBottom: 12 }}>
-        <a href="/brainparts/create" className="big-plus">＋</a>
-      </div>
+      {user?.role === 'admin' && (
+        <div style={{ marginBottom: 12 }}>
+          <a href="/brainparts/create" className="big-plus">＋</a>
+        </div>
+      )}
       {loading ? <div>Loading...</div> : (
         <table className="brainparts-table">
           <thead>
@@ -36,7 +47,7 @@ export default function Brainparts() {
               <th>description</th>
               <th>is_part_of</th>
               <th>created_at</th>
-              <th colSpan={2}>actions</th>
+              {user?.role === 'admin' && <th colSpan={2}>actions</th>}
             </tr>
           </thead>
           <tbody>
@@ -47,8 +58,12 @@ export default function Brainparts() {
                 <td>{p.description}</td>
                 <td>{p.is_part_of}</td>
                 <td>{p.created_at}</td>
-                <td className="brainparts-actions"><a href={`/brainparts/update?id=${p.id}`}>✎</a></td>
-                <td className="brainparts-actions"><button onClick={() => handleDelete(p.id)}>🗑️</button></td>
+                {user?.role === 'admin' && (
+                  <>
+                    <td className="brainparts-actions"><a href={`/brainparts/update?id=${p.id}`}>✎</a></td>
+                    <td className="brainparts-actions"><button onClick={() => handleDelete(p.id)}>🗑️</button></td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>

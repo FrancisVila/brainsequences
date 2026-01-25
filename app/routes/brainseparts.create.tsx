@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import type { Route } from './+types/brainseparts.create';
+import { requireRole } from '~/server/auth';
+
+export async function loader({ request }: Route.LoaderArgs) {
+  // Require admin role to create brainparts
+  await requireRole(request, 'admin');
+  return {};
+}
 
 export default function CreateBrainpart() {
   const [title, setTitle] = useState('');
