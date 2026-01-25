@@ -57,6 +57,76 @@ BrainSequences Team
 }
 
 /**
+ * Send an email verification link
+ */
+export async function sendVerificationEmail(
+  recipientEmail: string,
+  verificationToken: string
+): Promise<void> {
+  const verifyUrl = `${APP_URL}/verify-email?token=${verificationToken}`;
+  
+  const subject = 'Verify your BrainSequences email address';
+  
+  const text = `
+Hello,
+
+Thank you for signing up for BrainSequences!
+
+Please verify your email address by clicking the link below:
+
+${verifyUrl}
+
+If you didn't sign up for BrainSequences, you can safely ignore this email.
+
+Best regards,
+BrainSequences Team
+`.trim();
+
+  await transporter.sendMail({
+    from: `"BrainSequences" <${SMTP_USER}>`,
+    to: recipientEmail,
+    subject,
+    text,
+  });
+}
+
+/**
+ * Send a password reset link
+ */
+export async function sendPasswordResetEmail(
+  recipientEmail: string,
+  resetToken: string
+): Promise<void> {
+  const resetUrl = `${APP_URL}/reset-password?token=${resetToken}`;
+  
+  const subject = 'Reset your BrainSequences password';
+  
+  const text = `
+Hello,
+
+You requested to reset your password for BrainSequences.
+
+Please click the link below to set a new password:
+
+${resetUrl}
+
+This link will expire in 1 hour.
+
+If you didn't request a password reset, you can safely ignore this email.
+
+Best regards,
+BrainSequences Team
+`.trim();
+
+  await transporter.sendMail({
+    from: `"BrainSequences" <${SMTP_USER}>`,
+    to: recipientEmail,
+    subject,
+    text,
+  });
+}
+
+/**
  * Verify email configuration is valid (for testing)
  */
 export async function verifyEmailConfig(): Promise<boolean> {

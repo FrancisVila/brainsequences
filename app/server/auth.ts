@@ -122,8 +122,10 @@ export function getSessionIdFromRequest(request: Request): string | undefined {
  * Create a session cookie header
  */
 export function createSessionCookie(sessionId: string): string {
+  const isProduction = process.env.NODE_ENV === 'production';
   // HttpOnly prevents JavaScript access, Secure for HTTPS, SameSite for CSRF protection
-  return `${SESSION_COOKIE}=${sessionId}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${SESSION_DURATION / 1000}`;
+  const secure = isProduction ? '; Secure' : '';
+  return `${SESSION_COOKIE}=${sessionId}; Path=/; HttpOnly; SameSite=Lax${secure}; Max-Age=${SESSION_DURATION / 1000}`;
 }
 
 /**
@@ -199,6 +201,26 @@ export async function findUserByEmail(email: string) {
   return db.query.users.findFirst({
     where: eq(users.email, email),
   });
+}
+
+/**
+ * Middleware to require verified email
+ */
+export async function requireVerifiedEmail(request: Request) {
+  const user = await requireAuth(request);
+  
+  if (!user.emailVerified) {
+    throw redirect('/verify-email?required=true');
+  }
+  
+  return user;
+}
+
+/**
+ * Invalidate all sessions for a user (e.g., after password change)
+ */
+export async function invalidateUserSessions(userId: number): Promise<void> {
+  await db.delete(sessions).where(eq(sessions.userId, userId));
 }
 
 /**

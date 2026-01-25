@@ -1,6 +1,6 @@
 import { eq, and } from 'drizzle-orm';
 import { db } from './drizzle';
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations } from '../../drizzle/schema';
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations, passwordResets } from '../../drizzle/schema';
 
 
 // Sequences operations
@@ -361,4 +361,52 @@ export async function getPublishedSequences() {
 export async function updateSequenceOwner(sequenceId: number, newOwnerId: number) {
   await db.update(sequences).set({ userId: newOwnerId }).where(eq(sequences.id, sequenceId));
   return { id: sequenceId };
+}
+
+// =======================
+// Email verification & Password reset operations
+// =======================
+
+export async function updateUserVerification(userId: number, emailVerified: boolean, verificationToken: string | null = null) {
+  await db.update(users)
+    .set({ emailVerified: emailVerified ? 1 : 0, verificationToken })
+    .where(eq(users.id, userId));
+}
+
+export async function getUserByVerificationToken(token: string) {
+  const [user] = await db.select().from(users).where(eq(users.verificationToken, token)).limit(1);
+  return user || null;
+}
+
+export async function createPasswordReset(userId: number, token: string, expiresAt: number) {
+  await db.insert(passwordResets).values({
+    userId,
+    token,
+    expiresAt,
+  });
+}
+
+export async function getPasswordResetByToken(token: string) {
+  const [reset] = await db
+    .select({
+      reset: passwordResets,
+      user: users,
+    })
+    .from(passwordResets)
+    .innerJoin(users, eq(passwordResets.userId, users.id))
+    .where(eq(passwordResets.token, token))
+    .limit(1);
+  return reset || null;
+}
+
+export async function markPasswordResetUsed(token: string) {
+  await db.update(passwordResets)
+    .set({ usedAt: Date.now() })
+    .where(eq(passwordResets.token, token));
+}
+
+export async function updateUserPassword(userId: number, passwordHash: string) {
+  await db.update(users)
+    .set({ passwordHash })
+    .where(eq(users.id, userId));
 }

@@ -8,6 +8,8 @@ export const users = sqliteTable("users", {
 	email: text().notNull().unique(),
 	passwordHash: text("password_hash").notNull(),
 	role: text().notNull().default("user"), // 'user' or 'admin'
+	emailVerified: integer("email_verified").notNull().default(0), // 0 = not verified, 1 = verified
+	verificationToken: text("verification_token"),
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
@@ -97,6 +99,15 @@ export const invitations = sqliteTable("invitations", {
 	invitedBy: integer("invited_by").notNull().references(() => users.id, { onDelete: "cascade" }),
 	expiresAt: numeric("expires_at").notNull(),
 	acceptedAt: numeric("accepted_at"),
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
+});
+
+export const passwordResets = sqliteTable("password_resets", {
+	id: integer().primaryKey({ autoIncrement: true }),
+	token: text().notNull().unique(),
+	userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+	expiresAt: numeric("expires_at").notNull(),
+	usedAt: numeric("used_at"),
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 

@@ -2,7 +2,7 @@
 // Drizzle ORM relation mappings for SQLite tables
 // Drizzle ORM relation mappings for SQLite tables
 import { relations } from "drizzle-orm/relations";
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, users, sessions, sequenceCollaborators, invitations } from "./schema";
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, users, sessions, sequenceCollaborators, invitations, passwordResets } from "./schema";
 
 
 // Each step belongs to a sequence, can have many brainparts and arrows
@@ -87,6 +87,7 @@ export const usersRelations = relations(users, ({many}) => ({
 	sessions: many(sessions),
 	invitationsSent: many(invitations),
 	collaborations: many(sequenceCollaborators),
+	passwordResets: many(passwordResets),
 }));
 
 // Each session belongs to a user
@@ -117,6 +118,14 @@ export const invitationsRelations = relations(invitations, ({one}) => ({
 	}),
 	invitedByUser: one(users, {
 		fields: [invitations.invitedBy],
+		references: [users.id]
+	}),
+}));
+
+// Each password reset belongs to a user
+export const passwordResetsRelations = relations(passwordResets, ({one}) => ({
+	user: one(users, {
+		fields: [passwordResets.userId],
 		references: [users.id]
 	}),
 }));
