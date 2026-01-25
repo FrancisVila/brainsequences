@@ -3,10 +3,28 @@ import { sql } from "drizzle-orm"
 
 
 
+export const users = sqliteTable("users", {
+	id: integer().primaryKey({ autoIncrement: true }),
+	email: text().notNull().unique(),
+	passwordHash: text("password_hash").notNull(),
+	role: text().notNull().default("user"), // 'user' or 'admin'
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
+});
+
+export const sessions = sqliteTable("sessions", {
+	id: text().primaryKey(),
+	userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+	expiresAt: numeric("expires_at").notNull(),
+	lastActivityAt: numeric("last_activity_at").notNull(),
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
+});
+
 export const sequences = sqliteTable("sequences", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	title: text().notNull(),
 	description: text(),
+	userId: integer("user_id").references(() => users.id, { onDelete: "set null" }),
+	isPublished: integer("is_published").notNull().default(0), // 0 = draft, 1 = published
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
@@ -61,5 +79,24 @@ export const stepLinks = sqliteTable("step_link", {
 	y2: numeric().notNull(),
 	curvature: numeric(),
 	strokeWidth: numeric("strokeWidth"),
+});
+
+export const sequenceCollaborators = sqliteTable("sequence_collaborators", {
+	id: integer().primaryKey({ autoIncrement: true }),
+	sequenceId: integer("sequence_id").notNull().references(() => sequences.id, { onDelete: "cascade" }),
+	userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+	permissionLevel: text("permission_level").notNull().default("editor"), // 'editor' only
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
+});
+
+export const invitations = sqliteTable("invitations", {
+	id: integer().primaryKey({ autoIncrement: true }),
+	token: text().notNull().unique(),
+	sequenceId: integer("sequence_id").notNull().references(() => sequences.id, { onDelete: "cascade" }),
+	email: text().notNull(),
+	invitedBy: integer("invited_by").notNull().references(() => users.id, { onDelete: "cascade" }),
+	expiresAt: numeric("expires_at").notNull(),
+	acceptedAt: numeric("accepted_at"),
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 

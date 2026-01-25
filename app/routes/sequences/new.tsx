@@ -1,5 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import type { Route } from './+types/new';
+import { requireAuth } from '~/server/auth';
+
+export async function loader({ request }: Route.LoaderArgs) {
+  // Require authentication to create sequences
+  const user = await requireAuth(request);
+  return { user };
+}
 
 export default function SequenceNew() {
   const navigate = useNavigate();

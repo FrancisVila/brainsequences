@@ -1,4 +1,17 @@
-import { createStep, updateStep, deleteStep, updateStepLinks } from '../../server/db-drizzle.js';
+import { createStep, updateStep, deleteStep, updateStepLinks, canEditSequence } from '../../server/db-drizzle.js';
+import { requireAuth } from '../../server/auth';
+import { db } from '../../server/drizzle';
+import { steps } from '../../../drizzle/schema';
+import { eq } from 'drizzle-orm';
+
+// Helper to get sequence ID from step ID
+async function getSequenceIdFromStep(stepId) {
+  const [step] = await db.select({ sequenceId: steps.sequenceId })
+    .from(steps)
+    .where(eq(steps.id, stepId))
+    .limit(1);
+  return step?.sequenceId || null;
+}
 
 // POST /api/steps - create a new step
 // PUT /api/steps?id=X - update an existing step
@@ -7,6 +20,9 @@ export async function action({ request }) {
   const method = request.method;
   const url = new URL(request.url);
   
+  // Require authentication for all step operations
+  const user = await requireAuth(request);
+  
   if (method === 'POST') {
     const body = await request.json();
     const { sequenceId, title, description, brainpartIds } = body;
@@ -14,6 +30,15 @@ export async function action({ request }) {
     if (!sequenceId || !title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Sequence ID and title are required' }), {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    // Check if user can edit the sequence
+    const canEdit = await canEditSequence(Number(sequenceId), user.id);
+    if (!canEdit && user.role !== 'admin') {
+      return new Response(JSON.stringify({ error: 'Forbidden - you do not have permission to edit this sequence' }), {
+        status: 403,
         headers: { 'Content-Type': 'application/json' },
       });
     }
@@ -37,6 +62,23 @@ export async function action({ request }) {
     if (!id) {
       return new Response(JSON.stringify({ error: 'ID is required' }), {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    // Get sequence ID from step and check permissions
+    const sequenceId = await getSequenceIdFromStep(Number(id));
+    if (!sequenceId) {
+      return new Response(JSON.stringify({ error: 'Step not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    const canEdit = await canEditSequence(sequenceId, user.id);
+    if (!canEdit && user.role !== 'admin') {
+      return new Response(JSON.stringify({ error: 'Forbidden - you do not have permission to edit this sequence' }), {
+        status: 403,
         headers: { 'Content-Type': 'application/json' },
       });
     }
@@ -74,6 +116,23 @@ export async function action({ request }) {
     if (!id) {
       return new Response(JSON.stringify({ error: 'ID is required' }), {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    // Get sequence ID from step and check permissions
+    const sequenceId = await getSequenceIdFromStep(Number(id));
+    if (!sequenceId) {
+      return new Response(JSON.stringify({ error: 'Step not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    const canEdit = await canEditSequence(sequenceId, user.id);
+    if (!canEdit && user.role !== 'admin') {
+      return new Response(JSON.stringify({ error: 'Forbidden - you do not have permission to edit this sequence' }), {
+        status: 403,
         headers: { 'Content-Type': 'application/json' },
       });
     }

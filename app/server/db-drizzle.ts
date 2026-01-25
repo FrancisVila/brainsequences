@@ -1,6 +1,6 @@
 import { eq, and } from 'drizzle-orm';
 import { db } from './drizzle';
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks } from '../../drizzle/schema';
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations } from '../../drizzle/schema';
 
 
 // Sequences operations
@@ -187,4 +187,178 @@ export async function getStepArrows(stepId: number) {
     .innerJoin(brainparts, eq(arrows.fromBrainpartId, brainparts.id))
     .innerJoin(brainparts, eq(arrows.toBrainpartId, brainparts.id))
     .where(eq(arrows.stepId, stepId));
+}
+
+// =======================
+// User & Auth operations
+// =======================
+
+export async function getUserById(id: number) {
+  const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return user || null;
+}
+
+export async function getAllUsers() {
+  return await db.select({
+    id: users.id,
+    email: users.email,
+    role: users.role,
+    createdAt: users.createdAt,
+  }).from(users).orderBy(users.createdAt);
+}
+
+export async function updateUserRole(userId: number, role: 'user' | 'admin') {
+  await db.update(users).set({ role }).where(eq(users.id, userId));
+  return { id: userId };
+}
+
+// ================================
+// Sequence Collaborators operations
+// ================================
+
+export async function addCollaborator({ sequenceId, userId, permissionLevel = 'editor' }: { sequenceId: number; userId: number; permissionLevel?: string }) {
+  const result = await db.insert(sequenceCollaborators).values({
+    sequenceId,
+    userId,
+    permissionLevel,
+  }).returning({ id: sequenceCollaborators.id });
+  return result[0];
+}
+
+export async function removeCollaborator(sequenceId: number, userId: number) {
+  await db.delete(sequenceCollaborators).where(
+    and(
+      eq(sequenceCollaborators.sequenceId, sequenceId),
+      eq(sequenceCollaborators.userId, userId)
+    )
+  );
+}
+
+export async function getSequenceCollaborators(sequenceId: number) {
+  return await db
+    .select({
+      id: sequenceCollaborators.id,
+      userId: users.id,
+      email: users.email,
+      permissionLevel: sequenceCollaborators.permissionLevel,
+      createdAt: sequenceCollaborators.createdAt,
+    })
+    .from(sequenceCollaborators)
+    .innerJoin(users, eq(sequenceCollaborators.userId, users.id))
+    .where(eq(sequenceCollaborators.sequenceId, sequenceId));
+}
+
+export async function isUserCollaborator(sequenceId: number, userId: number): Promise<boolean> {
+  const [result] = await db
+    .select({ id: sequenceCollaborators.id })
+    .from(sequenceCollaborators)
+    .where(
+      and(
+        eq(sequenceCollaborators.sequenceId, sequenceId),
+        eq(sequenceCollaborators.userId, userId)
+      )
+    )
+    .limit(1);
+  return !!result;
+}
+
+// =======================
+// Invitations operations
+// =======================
+
+export async function createInvitation({
+  token,
+  sequenceId,
+  email,
+  invitedBy,
+  expiresAt,
+}: {
+  token: string;
+  sequenceId: number;
+  email: string;
+  invitedBy: number;
+  expiresAt: number;
+}) {
+  const result = await db.insert(invitations).values({
+    token,
+    sequenceId,
+    email,
+    invitedBy,
+    expiresAt,
+  }).returning({ id: invitations.id });
+  return result[0];
+}
+
+export async function getInvitationByToken(token: string) {
+  const [invitation] = await db
+    .select({
+      invitation: invitations,
+      sequenceTitle: sequences.title,
+      inviterEmail: users.email,
+    })
+    .from(invitations)
+    .innerJoin(sequences, eq(invitations.sequenceId, sequences.id))
+    .innerJoin(users, eq(invitations.invitedBy, users.id))
+    .where(eq(invitations.token, token))
+    .limit(1);
+  return invitation || null;
+}
+
+export async function markInvitationAccepted(token: string) {
+  await db.update(invitations)
+    .set({ acceptedAt: Date.now() })
+    .where(eq(invitations.token, token));
+}
+
+export async function getSequenceInvitations(sequenceId: number) {
+  return await db
+    .select({
+      id: invitations.id,
+      email: invitations.email,
+      expiresAt: invitations.expiresAt,
+      acceptedAt: invitations.acceptedAt,
+      createdAt: invitations.createdAt,
+      inviterEmail: users.email,
+    })
+    .from(invitations)
+    .innerJoin(users, eq(invitations.invitedBy, users.id))
+    .where(eq(invitations.sequenceId, sequenceId));
+}
+
+export async function deleteInvitation(id: number) {
+  await db.delete(invitations).where(eq(invitations.id, id));
+}
+
+// ==================================
+// Ownership & Permission checks
+// ==================================
+
+export async function isSequenceOwner(sequenceId: number, userId: number): Promise<boolean> {
+  const [sequence] = await db
+    .select({ userId: sequences.userId })
+    .from(sequences)
+    .where(eq(sequences.id, sequenceId))
+    .limit(1);
+  return sequence?.userId === userId;
+}
+
+export async function canEditSequence(sequenceId: number, userId: number): Promise<boolean> {
+  // User can edit if they're the owner OR a collaborator
+  const isOwner = await isSequenceOwner(sequenceId, userId);
+  if (isOwner) return true;
+  
+  return await isUserCollaborator(sequenceId, userId);
+}
+
+export async function getUserSequences(userId: number) {
+  return await db.select().from(sequences).where(eq(sequences.userId, userId)).orderBy(sequences.id);
+}
+
+export async function getPublishedSequences() {
+  return await db.select().from(sequences).where(eq(sequences.isPublished, 1)).orderBy(sequences.id);
+}
+
+export async function updateSequenceOwner(sequenceId: number, newOwnerId: number) {
+  await db.update(sequences).set({ userId: newOwnerId }).where(eq(sequences.id, sequenceId));
+  return { id: sequenceId };
 }
