@@ -11,6 +11,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { getCurrentUser } from "./server/auth";
+import UserMenu from "./components/UserMenu";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/images/favicon.ico" },
@@ -28,7 +29,20 @@ export const links: Route.LinksFunction = () => [
 
 export async function loader({ request }: Route.LoaderArgs) {
   const user = await getCurrentUser(request);
-  return { user };
+  
+  // Extract sequence ID from URL if on a sequence page
+  const url = new URL(request.url);
+  const sequenceMatch = url.pathname.match(/\/sequences\/(\d+)/);
+  const sequenceId = sequenceMatch ? Number(sequenceMatch[1]) : null;
+  
+  // Check if user can edit this sequence (if on sequence page)
+  let canEdit = false;
+  if (user && sequenceId) {
+    const { canEditSequence } = await import('./server/db-drizzle');
+    canEdit = await canEditSequence(sequenceId, user.id) || user.role === 'admin';
+  }
+  
+  return { user, canEdit, sequenceId };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -50,7 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const { user } = useLoaderData<typeof loader>();
+  const { user, canEdit, sequenceId } = useLoaderData<typeof loader>();
   
   return (
     <>
@@ -74,52 +88,7 @@ export default function App() {
           </a>
         </div>
         
-        <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-          {user ? (
-            <>
-              <span style={{ color: '#adb5bd' }}>{user.email}</span>
-              {user.role === 'admin' && (
-                <a href="/admin/users" style={{ 
-                  color: '#ffc107', 
-                  textDecoration: 'none',
-                  fontWeight: 'bold'
-                }}>
-                  Admin
-                </a>
-              )}
-              <a href="/logout" style={{ 
-                color: 'white', 
-                textDecoration: 'none',
-                padding: '5px 15px',
-                backgroundColor: '#dc3545',
-                borderRadius: '4px'
-              }}>
-                Logout
-              </a>
-            </>
-          ) : (
-            <>
-              <a href="/login" style={{ 
-                color: 'white', 
-                textDecoration: 'none',
-                padding: '5px 15px',
-                backgroundColor: '#007bff',
-                borderRadius: '4px'
-              }}>
-                Login
-              </a>
-              <a href="/signup" style={{ 
-                color: 'white', 
-                textDecoration: 'none',
-                padding: '5px 15px',
-                backgroundColor: '#28a745',
-                borderRadius: '4px'
-              }}>
-                Sign Up
-              </a>
-            </>
-          )}
-        </div>
+        <UserMenu user={user} canEdit={canEdit} sequenceId={sequenceId || undefined} />
       </nav>
       
       <Outlet />
