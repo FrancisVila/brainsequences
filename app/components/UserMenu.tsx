@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
+import "../app.css"
 
 interface UserMenuProps {
   user: {
@@ -66,48 +67,24 @@ export default function UserMenu({ user, canEdit, sequenceId }: UserMenuProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '50px',
-            right: '0',
-            backgroundColor: 'white',
-            border: '1px solid #dee2e6',
-            borderRadius: '4px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            minWidth: '220px',
-            zIndex: 1000,
-          }}
-        >
+        <div className="usermenu-dropdown" >
           {user ? (
             <>
               {/* User Email */}
-              <div style={{
-                padding: '12px 16px',
-                borderBottom: '1px solid #dee2e6',
-                fontSize: '14px',
-                color: '#495057',
-                fontWeight: '500',
-                wordBreak: 'break-word'
-              }}>
+              <div 
+                className='usermenu-email'
+              >
                 {user.email}
               </div>
 
               {/* Add Sequence */}
               <a
                 href="/sequences/new"
-                style={{
-                  display: 'block',
-                  padding: '10px 16px',
-                  color: '#212529',
-                  textDecoration: 'none',
-                  fontSize: '14px',
-                  transition: 'background-color 0.2s'
-                }}
+                className='usermenu-item'
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
-                ➕ Add Sequence
+                <span className='menu-icon'>+</span> Add Sequence
               </a>
 
               {/* Edit Sequence & Share Rights (only when viewing a sequence the user can edit) */}
@@ -115,34 +92,19 @@ export default function UserMenu({ user, canEdit, sequenceId }: UserMenuProps) {
                 <>
                   <a
                     href={`/sequences/${currentSequenceId}/edit`}
-                    style={{
-                      display: 'block',
-                      padding: '10px 16px',
-                      color: '#212529',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'background-color 0.2s',
-                      borderTop: '1px solid #dee2e6'
-                    }}
+                    className='usermenu-item'
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
-                    ✏️ Edit Sequence
+                    <span className='menu-icon'>✎</span> Edit Sequence
                   </a>
                   <a
                     href={`/sequences/${currentSequenceId}/collaborators`}
-                    style={{
-                      display: 'block',
-                      padding: '10px 16px',
-                      color: '#212529',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'background-color 0.2s'
-                    }}
+                    className='usermenu-item'
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
-                    👥 Share Edit Rights
+                    <span className='menu-icon'>◉</span> Share Edit Rights
                   </a>
                 </>
               )}
@@ -151,40 +113,23 @@ export default function UserMenu({ user, canEdit, sequenceId }: UserMenuProps) {
               {user.role === 'admin' && (
                 <a
                   href="/admin/users"
-                  style={{
-                    display: 'block',
-                    padding: '10px 16px',
-                    color: '#ffc107',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    borderTop: '1px solid #dee2e6',
-                    transition: 'background-color 0.2s'
-                  }}
+                  className='usermenu-item'
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  ⚙️ Admin
+                  <span className='menu-icon'>⚙</span> Admin Panel
                 </a>
               )}
 
               {/* Logout */}
               <a
                 href="/logout"
-                style={{
-                  display: 'block',
-                  padding: '10px 16px',
-                  color: '#dc3545',
-                  textDecoration: 'none',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  borderTop: '1px solid #dee2e6',
-                  transition: 'background-color 0.2s'
-                }}
+                className='usermenu-item'
+
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
-                🚪 Logout
+                <span className='menu-icon'>⊗</span> Logout
               </a>
             </>
           ) : (
@@ -192,36 +137,22 @@ export default function UserMenu({ user, canEdit, sequenceId }: UserMenuProps) {
               {/* Sign Up */}
               <a
                 href="/signup"
-                style={{
-                  display: 'block',
-                  padding: '10px 16px',
-                  color: '#212529',
-                  textDecoration: 'none',
-                  fontSize: '14px',
-                  transition: 'background-color 0.2s'
-                }}
+                className='usermenu-item'
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
-                📝 Sign Up
+                <span className='menu-icon'>+</span> Sign Up
               </a>
 
               {/* Login */}
               <a
                 href="/login"
-                style={{
-                  display: 'block',
-                  padding: '10px 16px',
-                  color: '#212529',
-                  textDecoration: 'none',
-                  fontSize: '14px',
-                  borderTop: '1px solid #dee2e6',
-                  transition: 'background-color 0.2s'
-                }}
+                className='usermenu-item'
+
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
-                🔐 Login
+                <span className='menu-icon'>⊙</span> Login
               </a>
             </>
           )}

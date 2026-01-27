@@ -61,3 +61,38 @@ p {
   margin: auto;
   padding: 20px;
 }
+
+ /* user menu styles */
+.usermenu-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+}
+
+.usermenu-email {
+                padding: 12px 16px;
+                border-bottom: 1px solid #dee2e6;
+                font-size: 14px;
+                color: #495057;
+                font-weight: 500;
+                word-break: break-word;
+}
+
+.usermenu-item {
+                  display: block;
+                  padding: 10px 16px;
+                  color: #212529;
+                  text-decoration: none;
+                  font-size: 14px;
+                  transition: background-color 0.2s;
+}
+
+.menu-icon {
+  font-size: 18px;
+}
