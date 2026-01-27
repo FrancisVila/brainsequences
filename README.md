@@ -129,7 +129,7 @@ If you're adding authentication to an existing installation with sequences alrea
 
 3. **Run the migration script** to assign all existing sequences to your admin account:
    ```bash
-   node migrate-existing-sequences.js
+   node scripts/migrate-existing-sequences.js
    ```
 
 This script will:

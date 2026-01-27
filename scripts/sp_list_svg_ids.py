@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 # Parse the SVG file
-svg_file = 'app/images/tim_taylor.svg'
+svg_file = '../app/images/tim_taylor.svg'
 output_file = 'svg_ids.txt'
 
 # Parse the XML

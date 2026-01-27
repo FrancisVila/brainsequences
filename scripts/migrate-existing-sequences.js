@@ -6,7 +6,7 @@
  * admin user.
  * 
  * Usage:
- *   node migrate-existing-sequences.js
+ *   node scripts/migrate-existing-sequences.js
  */
 
 import Database from 'better-sqlite3';

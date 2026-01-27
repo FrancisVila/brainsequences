@@ -62,7 +62,7 @@ Create a simple test script to verify email works before deploying.
 
 ### 3. Migrate Existing Sequences
 If you have existing sequences in the database:
-- [ ] Run the migration script: `node migrate-existing-sequences.js`
+- [ ] Run the migration script: `node scripts/migrate-existing-sequences.js`
 - [ ] Verify all sequences are now owned by your admin account
 - [ ] Check that sequences are visible on the home page
 

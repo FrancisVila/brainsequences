@@ -1,0 +1,73 @@
+muscles_background-9	sketch_background	sketch background
+senses_background	senses_background	senses background
+adrenal_right	adrenal_right	adrenal right
+adrenal_left	adrenal_left	adrenal left
+adrenal_right_background	adrenal_right_background	adrenal right background
+adrenal_left_background	adrenal_left_background	adrenal left background
+muscles	muscles	muscles
+cortices_sketch	cortices_sketch	cortices sketch
+brain_center_sketch	brain_center_sketch	brain center sketch
+brain_center_sketch-5	brain_center_sketch	brain center sketch
+brain_main_sketch	brain_main_sketch	brain main sketch
+outer_sketch	outer_sketch	outer sketch
+endocrine_background	endocrine_background	endocrine background
+pancreas_background	pancreas_background	pancreas background
+path1	adrenal_right_background	adrenal right background
+path2	adrenal_left_background	adrenal left background
+muscles_background	muscles_background	muscles background
+path3	muscles_background	muscles background
+smell_bitmap	smell_bitmap	smell bitmap
+sight_bitmap	sight_bitmap	sight bitmap
+hearing_bitmap	hearing_bitmap	hearing bitmap
+taste_bitmap	taste_bitmap	taste bitmap
+touch_bitmap	touch_bitmap	touch bitmap
+touch	touch	touch
+sensory_face	sensory_face	sensory face
+motor_elbow	motor_elbow	motor elbow
+sensory_hand	sensory_hand	sensory hand
+motor_hip	motor_hip	motor hip
+sensory_mouth	sensory_mouth	sensory mouth
+motor_larynx	motor_larynx	motor larynx
+sensory_eye	sensory_eye	sensory eye
+motor_fingers	motor_fingers	motor fingers
+motor_face	motor_face	motor face
+motor_ankle	motor_ankle	motor ankle
+motor_thumb	motor_thumb	motor thumb
+motor_brow	motor_brow	motor brow
+sensory_elbow	sensory_elbow	sensory elbow
+motor_eyelid	motor_eyelid	motor eyelid
+sensory_fingers	sensory_fingers	sensory fingers
+sensory_foot	sensory_foot	sensory foot
+sensory_head	sensory_head	sensory head
+sensory_leg	sensory_leg	sensory leg
+sensory_genitalia	sensory_genitalia	sensory genitalia
+motor_neck	motor_neck	motor neck
+motor_knee	motor_knee	motor knee
+sensory_neck	sensory_neck	sensory neck
+motor_lips	motor_lips	motor lips
+sensory_lips	sensory_lips	sensory lips
+sensory_thumb	sensory_thumb	sensory thumb
+motor_trunk	motor_trunk	motor trunk
+motor_shoulder	motor_shoulder	motor shoulder
+motor_wrist	motor_wrist	motor wrist
+motor_tongue	motor_tongue	motor tongue
+motor_toes	motor_toes	motor toes
+sensory_area	sensory_area	sensory area
+Central_Sulcus-of_Rolando	Central_Sulcus-of_Rolando	central sulcus of rolando
+Temporal_Pole	Temporal Pole	temporal pole
+path5	Temporal Pole	temporal pole
+path10	adrenal_left	adrenal left
+path11	adrenal_right	adrenal right
+adrenal	adrenal	adrenal
+path12	muscles	muscles
+Choroid_Plexus_of_3rd_Ventricle	Choroid_Plexus_of_3rd_Ventricle	choroid plexus of 3rd ventricle
+Anterior_Commissure_of_Brain	Anterior_Commissure_of_Brain	anterior commissure of brain
+Tuber_Cinereum	Tuber_Cinereum	tuber cinereum
+path13	Amygdala_curve	amygdala curve
+accumbens_node	accumbens_node	accumbens node
+Brain_stem	Brain_stem	brain stem
+Parietooccipital_Sulcus	Parietooccipital_Sulcus	parietooccipital sulcus
+Calcarine_Sulcus	Calcarine_Sulcus	calcarine sulcus
+dotted_line_2	dotted_line_2	dotted line 2
+dotted_line_1	dotted_line_1	dotted line 1
+link_text0	link_text0	link text0

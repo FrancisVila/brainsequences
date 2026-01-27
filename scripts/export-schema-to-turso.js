@@ -86,7 +86,7 @@ async function exportAndApplySchema() {
   }
   
   console.log('✨ Schema export complete!\n');
-  console.log('You can now run: node migrate-to-turso.js');
+  console.log('You can now run: node scripts/migrate-to-turso.js');
   
   localDb.close();
 }

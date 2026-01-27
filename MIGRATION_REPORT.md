@@ -115,9 +115,9 @@ Successfully applied migration `0002_whole_grim_reaper.sql` to the SQLite databa
 - Verifies specific tables and columns
 - Displays schema details
 
-### 2. [apply_migration.js](apply_migration.js)
+### 2. [apply_migration.js](scripts/apply_migration.js)
 **Purpose**: Manually apply migration 0002_whole_grim_reaper.sql
-**Usage**: `node apply_migration.js`
+**Usage**: `node scripts/apply_migration.js`
 - Reads the migration SQL file
 - Executes SQL statements in a transaction
 - Records migration in __drizzle_migrations
@@ -177,7 +177,7 @@ If you encounter issues:
 
 1. **Check database location**: `./data/app.db`
 2. **Verify database permissions**: Ensure write access
-3. **Run status check**: `node check_migration_status.js`
+3. **Run status check**: `node scripts/check_migration_status.js`
 4. **Check error logs**: Review terminal output for specific errors
 
 For rolling back (if needed):

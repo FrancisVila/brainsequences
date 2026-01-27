@@ -7,7 +7,7 @@
  * 3. Insert it into Turso database
  * 
  * Usage:
- *   node migrate-to-turso.js
+ *   node scripts/migrate-to-turso.js
  */
 
 import Database from 'better-sqlite3';
