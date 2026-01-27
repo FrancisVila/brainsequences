@@ -1,8 +1,30 @@
 body {
   font-family: sans-serif;
   background-color: #DDD;
+  margin: 0;
+  padding: 0;
 }
 
+.navbar {
+  padding-left: 20px;
+  background-color: #535d66;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  margin-right: 18px;
+}
+
+.navbar-links a.selected {
+  background-color: #aad40088;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
 /* Basic styling for semantic HTML elements */
 h1 {
   font-size: 2rem;

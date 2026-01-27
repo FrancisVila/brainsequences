@@ -2,8 +2,9 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 // Register the app pages and API routes. 
 export default [
-	index("routes/home.tsx"),
+	index("routes/sequences.tsx"),
 	route("/about", "routes/about.tsx"),
+	route("/home", "routes/home.tsx"),
 	// Authentication
 	route("/login", "routes/login.tsx"),
 	route("/signup", "routes/signup.tsx"),

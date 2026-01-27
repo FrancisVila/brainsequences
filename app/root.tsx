@@ -6,12 +6,14 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import { getCurrentUser } from "./server/auth";
 import UserMenu from "./components/UserMenu";
+import brainIcon from "./images/brain_icons.svg";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/images/favicon.ico" },
@@ -65,27 +67,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const { user, canEdit, sequenceId } = useLoaderData<typeof loader>();
+  const location = useLocation();
+
   
   return (
     <>
-      <nav style={{
-        padding: '10px 20px',
-        backgroundColor: '#343a40',
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
+      <nav className="navbar">
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-          <a href="/" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold', fontSize: '18px' }}>
-            BrainSequences
+<img src={brainIcon} alt="Brain" style={{ width: '32px', height: '32px' }} />
+<div className="navbar-links">
+          <a href="/" className={(location.pathname === '/' || location.pathname.startsWith('/sequences'))? 'selected':''}>
+            Brain Sequences
           </a>
-          <a href="/brainparts" style={{ color: 'white', textDecoration: 'none' }}>
-            Brain Parts
+          <a href="/brainparts" className={(location.pathname.startsWith('/brainparts'))? 'selected':''}>
+            Brain parts
           </a>
-          <a href="/about" style={{ color: 'white', textDecoration: 'none' }}>
+          <a href="/about" className={(location.pathname.startsWith('/about'))? 'selected':''}>
             About
           </a>
+        </div>
         </div>
         
         <UserMenu user={user} canEdit={canEdit} sequenceId={sequenceId || undefined} />

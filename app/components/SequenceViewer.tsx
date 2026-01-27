@@ -270,12 +270,12 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
     const updated = steps.map((step, idx) => {
       if (idx === stepIndex) {
         const newLink: StepLink = {
-          x1: 50,
-          y1: 50,
+          x1: 5,
+          y1: 5,
           x2: 50,
-          y2: 50,
-          curvature: 0.3,
-          strokeWidth: 0.5,
+          y2: 5,
+          curvature: -0.2,
+          strokeWidth: 0.8,
         };
         return {
           ...step,

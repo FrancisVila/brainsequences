@@ -366,6 +366,37 @@ export async function getPublishedSequences() {
   return await db.select().from(sequences).where(eq(sequences.isPublished, 1)).orderBy(sequences.id);
 }
 
+export async function getMySequences(userId: number) {
+  // Get sequences where user is owner OR collaborator
+  const ownedSequences = await db.select().from(sequences).where(eq(sequences.userId, userId)).orderBy(sequences.id);
+  
+  const collaboratorSequences = await db
+    .select({
+      id: sequences.id,
+      title: sequences.title,
+      description: sequences.description,
+      userId: sequences.userId,
+      isPublished: sequences.isPublished,
+      createdAt: sequences.createdAt,
+    })
+    .from(sequenceCollaborators)
+    .innerJoin(sequences, eq(sequenceCollaborators.sequenceId, sequences.id))
+    .where(eq(sequenceCollaborators.userId, userId))
+    .orderBy(sequences.id);
+  
+  // Combine and deduplicate by id
+  const allSequences = [...ownedSequences];
+  const ownedIds = new Set(ownedSequences.map(s => s.id));
+  
+  for (const seq of collaboratorSequences) {
+    if (!ownedIds.has(seq.id)) {
+      allSequences.push(seq);
+    }
+  }
+  
+  return allSequences.sort((a, b) => a.id - b.id);
+}
+
 export async function updateSequenceOwner(sequenceId: number, newOwnerId: number) {
   await db.update(sequences).set({ userId: newOwnerId }).where(eq(sequences.id, sequenceId));
   return { id: sequenceId };

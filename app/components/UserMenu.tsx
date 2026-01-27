@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import "../app.css"
+import userProfileIcon from '../images/user-profile.svg';
 
 interface UserMenuProps {
   user: {
@@ -62,7 +63,7 @@ export default function UserMenu({ user, canEdit, sequenceId }: UserMenuProps) {
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#495057'}
         aria-label="User menu"
       >
-        👤
+        <img src={userProfileIcon} alt="User" style={{ width: '24px', height: '24px' }} />
       </button>
 
       {/* Dropdown Menu */}
