@@ -134,34 +134,8 @@ const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, off
 }
 
 const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.25, strokeWidth: number=0.5): JSX.Element => {
-    return      <svg 
-                        viewBox="0 0 100 100"
-                        preserveAspectRatio="none"
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            pointerEvents: 'none',
-                            border: '2px solid red',
-                            display:  'block'
-                        }}
-                    >
-                        <defs>
-                            <marker
-                                id="arrowhead"
-                                markerWidth="4"
-                                markerHeight="4"
-                                refX="2"
-                                refY="2"
-                                orient="auto"
-                            >
-                                <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
-                            </marker>
-                        </defs>
-                        <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth={strokeWidth} fill="none" markerEnd="url(#arrowhead)" />
-                    </svg>
+    return     <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth={strokeWidth} fill="none" markerEnd="url(#arrowhead)" />
+                    
 }
 
     const handleSvgClick = (event: React.MouseEvent<SVGSVGElement>) => {
@@ -199,7 +173,33 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                         className="svg-container"
                         style={{ lineHeight: 0, display: 'block' }}
                     />
-                    {stepLinks.map((link, index) => 
+                    <svg 
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            pointerEvents: 'none',
+                            display:  'block'
+                        }}
+                    >
+                        <defs>
+                            <marker
+                                id="arrowhead"
+                                markerWidth="4"
+                                markerHeight="4"
+                                refX="2"
+                                refY="2"
+                                orient="auto"
+                            >
+                                <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
+                            </marker>
+                        </defs>
+                    {!stepLinks? null : stepLinks.map((link, index) =>
+
                         generateCurvePath(
                             link.x1, 
                             link.y1, 
@@ -209,6 +209,7 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                             link.strokeWidth ?? 0.5
                         )
                     )}
+                    </svg>
 
                 </div>
                  <div id="view-mode-controls">

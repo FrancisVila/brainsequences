@@ -434,7 +434,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
                 type="button" 
                 onClick={addStep} 
                 className="btn-primary"
-                style={{ margin: '1rem', width: 'calc(100% - 2rem)' }}
+                
               >
                 + Add Step
               </button>
