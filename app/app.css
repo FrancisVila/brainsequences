@@ -25,6 +25,21 @@ body {
   padding: 4px 8px;
   border-radius: 6px;
 }
+
+.update-bar {
+  width: 100%;
+  background-color: #535d66;
+  position:fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  z-index: 100;
+  text-align: right;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Basic styling for semantic HTML elements */
 h1 {
   font-size: 2rem;
@@ -118,3 +133,40 @@ p {
 .menu-icon {
   font-size: 18px;
 }
+
+.sequence-card {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  transform: translateY(0px);
+  max-width: 250px;
+  max-height: 120px;
+}
+
+.draft-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+  background-color: #888;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  max-height: 14px;
+  transform: rotate(-30deg);
+}
+
+ .card-title {
+          color: #333;
+          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+          margin-top: 0;
+ }
+        

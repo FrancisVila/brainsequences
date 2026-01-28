@@ -223,6 +223,8 @@ h3.step-title {
 .form-buttons {
     display: flex;
     gap: 1rem;
+    justify-content: flex-end;
+    
 }
 
 .btn-primary {

@@ -20,8 +20,8 @@ export async function loader({ request }) {
 
     // Check if user can view this sequence
     // Published sequences can be viewed by anyone
-    // Unpublished sequences can only be viewed by owner or collaborators
-    if (!sequence.isPublished) {
+    // Draft sequences can only be viewed by owner or collaborators
+    if (sequence.draft) {
       if (!user) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), {
           status: 401,
@@ -82,7 +82,7 @@ export async function action({ request }) {
       title: title.trim(),
       description,
       userId: user.id,
-      isPublished: 0, // Default to draft
+      draft: 1, // Default to draft
     }).returning({ id: sequences.id });
     
     return new Response(JSON.stringify(result[0]), {

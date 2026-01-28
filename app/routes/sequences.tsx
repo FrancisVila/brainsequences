@@ -50,7 +50,7 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
             gap: "1.5rem" 
           }}>
             {mySequences.map(sequence => (
-              <SequenceCard key={sequence.id} sequence={sequence} isDraft={sequence.isPublished === 0} />
+              <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
           </div>
         </section>
@@ -67,7 +67,7 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
             gap: "1.5rem" 
           }}>
             {otherSequences.map(sequence => (
-              <SequenceCard key={sequence.id} sequence={sequence} isDraft={false} />
+              <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
           </div>
         </section>
@@ -88,17 +88,7 @@ function SequenceCard({ sequence, isDraft }: { sequence: any; isDraft: boolean }
       to={`/sequences/${sequence.id}`}
       style={{ textDecoration: "none" }}
     >
-      <div style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "1.5rem",
-        backgroundColor: "white",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-        transition: "transform 0.2s, box-shadow 0.2s",
-        cursor: "pointer",
-        height: "100%",
-        position: "relative",
-      }}
+      <div className="sequence-card"
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = "translateY(-4px)";
         e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
@@ -108,27 +98,8 @@ function SequenceCard({ sequence, isDraft }: { sequence: any; isDraft: boolean }
         e.currentTarget.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
       }}
       >
-        {isDraft && (
-          <span style={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            backgroundColor: "#ffa500",
-            color: "white",
-            padding: "0.25rem 0.5rem",
-            borderRadius: "4px",
-            fontSize: "0.75rem",
-            fontWeight: "bold",
-          }}>
-            DRAFT
-          </span>
-        )}
-        <h3 style={{ 
-          color: "#333", 
-          marginBottom: "0.5rem",
-          fontSize: "1.25rem",
-          marginTop: isDraft ? "1.5rem" : "0",
-        }}>
+
+        <h3 className="card-title">
           {sequence.title}
         </h3>
         {sequence.description && (
@@ -142,6 +113,11 @@ function SequenceCard({ sequence, isDraft }: { sequence: any; isDraft: boolean }
               ? sequence.description.substring(0, 100) + "..." 
               : sequence.description}
           </p>
+        )}
+                {isDraft && (
+          <span className="draft-badge">
+            DRAFT
+          </span>
         )}
       </div>
     </Link>

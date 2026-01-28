@@ -363,7 +363,7 @@ export async function getUserSequences(userId: number) {
 }
 
 export async function getPublishedSequences() {
-  return await db.select().from(sequences).where(eq(sequences.isPublished, 1)).orderBy(sequences.id);
+  return await db.select().from(sequences).where(eq(sequences.draft, 0)).orderBy(sequences.id);
 }
 
 export async function getMySequences(userId: number) {
@@ -376,7 +376,7 @@ export async function getMySequences(userId: number) {
       title: sequences.title,
       description: sequences.description,
       userId: sequences.userId,
-      isPublished: sequences.isPublished,
+      draft: sequences.draft,
       createdAt: sequences.createdAt,
     })
     .from(sequenceCollaborators)

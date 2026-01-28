@@ -26,7 +26,7 @@ export const sequences = sqliteTable("sequences", {
 	title: text().notNull(),
 	description: text(),
 	userId: integer("user_id").references(() => users.id, { onDelete: "set null" }),
-	isPublished: integer("is_published").notNull().default(0), // 0 = draft, 1 = published
+	draft: integer().notNull().default(1), // 0 = published, 1 = draft
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 

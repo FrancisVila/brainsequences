@@ -375,7 +375,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               </div>
             )}
 
-            <div className="form-buttons">
+            <div className="form-buttons update-bar">
               <button
                 type="submit"
                 disabled={loading || !title.trim()}
