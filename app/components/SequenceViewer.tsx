@@ -218,6 +218,39 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
     }
   }
 
+  async function handlePublish() {
+    if (!id) {
+      setError('Cannot publish: sequence not saved');
+      return;
+    }
+
+    if (!confirm('Are you ready to publish this sequence? This will make it visible to all users.')) {
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch(`/api/sequences/publish?id=${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to publish sequence');
+      }
+
+      // Navigate to the published sequence view
+      navigate(`/sequences/${id}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to publish sequence');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function addStep() {
     setSteps([...steps, { title: '', brainpart_ids: [], brainpart_titles: [] }]);
   }
@@ -383,6 +416,18 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               >
                 {loading ? 'Saving...' : (id ? 'Update' : 'Create')}
               </button>
+              
+              {id && (
+                <button
+                  type="button"
+                  onClick={handlePublish}
+                  disabled={loading}
+                  className="btn-primary"
+        
+                >
+                  Publish
+                </button>
+              )}
               
               <button
                 type="button"

@@ -27,6 +27,10 @@ export const sequences = sqliteTable("sequences", {
 	description: text(),
 	userId: integer("user_id").references(() => users.id, { onDelete: "set null" }),
 	draft: integer().notNull().default(1), // 0 = published, 1 = draft
+	publishedVersionId: integer("published_version_id").references((): any => sequences.id, { onDelete: "set null" }), // References the published version if this is a draft
+	isPublishedVersion: integer("is_published_version").notNull().default(0), // 1 if this is the live published version, 0 for drafts
+	currentlyEditedBy: integer("currently_edited_by").references(() => users.id, { onDelete: "set null" }), // For edit locking in Phase 2
+	lastEditedAt: numeric("last_edited_at").default(sql`(CURRENT_TIMESTAMP)`), // Track when last edited
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
@@ -35,6 +39,7 @@ export const steps = sqliteTable("steps", {
 	sequenceId: integer("sequence_id").notNull().references(() => sequences.id, { onDelete: "cascade" } ),
 	title: text().notNull(),
 	description: text(),
+	draft: integer().notNull().default(1), // 0 = published, 1 = draft (mirrors parent sequence)
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 

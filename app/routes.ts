@@ -28,6 +28,7 @@ export default [
 	route("/api/brainparts", "routes/api/brainparts-drizzle.js"),
 	// Sequences API
 	route("/api/sequences", "routes/api/sequences.js"),
+	route("/api/sequences/publish", "routes/api/sequences/publish.js"),
 	// Steps API
 	route("/api/steps", "routes/api/steps.js"),
 ] satisfies RouteConfig;
