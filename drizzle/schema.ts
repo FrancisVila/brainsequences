@@ -30,7 +30,7 @@ export const sequences = sqliteTable("sequences", {
 	publishedVersionId: integer("published_version_id").references((): any => sequences.id, { onDelete: "set null" }), // References the published version if this is a draft
 	isPublishedVersion: integer("is_published_version").notNull().default(0), // 1 if this is the live published version, 0 for drafts
 	currentlyEditedBy: integer("currently_edited_by").references(() => users.id, { onDelete: "set null" }), // For edit locking in Phase 2
-	lastEditedAt: numeric("last_edited_at").default(sql`(CURRENT_TIMESTAMP)`), // Track when last edited
+	lastEditedAt: numeric("last_edited_at"), // Track when last edited
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 

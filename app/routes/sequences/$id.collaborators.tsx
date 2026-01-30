@@ -2,7 +2,8 @@ import { redirect, data } from 'react-router';
 import type { Route } from './+types/$id.collaborators';
 import { 
   requireAuth, 
-  getCurrentUser 
+  getCurrentUser,
+  findUserByEmail
 } from '../../server/auth';
 import { 
   getSequence,
@@ -11,8 +12,7 @@ import {
   removeCollaborator,
   createInvitation,
   getSequenceInvitations,
-  deleteInvitation,
-  findUserByEmail
+  deleteInvitation
 } from '../../server/db-drizzle';
 import { sendInvitationEmail } from '../../server/email';
 import crypto from 'crypto';

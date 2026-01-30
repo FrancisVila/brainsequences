@@ -232,8 +232,8 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
     setError('');
 
     try {
-      const res = await fetch(`/api/sequences/publish?id=${id}`, {
-        method: 'POST',
+      const res = await fetch(`/api/sequences?id=${id}&action=publish`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
       });
 

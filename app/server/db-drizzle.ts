@@ -382,6 +382,10 @@ export async function getMySequences(userId: number) {
       description: sequences.description,
       userId: sequences.userId,
       draft: sequences.draft,
+      publishedVersionId: sequences.publishedVersionId,
+      isPublishedVersion: sequences.isPublishedVersion,
+      currentlyEditedBy: sequences.currentlyEditedBy,
+      lastEditedAt: sequences.lastEditedAt,
       createdAt: sequences.createdAt,
     })
     .from(sequenceCollaborators)

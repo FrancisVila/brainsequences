@@ -3,9 +3,8 @@ import SequenceViewer from '~/components/SequenceViewer';
 import { getCurrentUser } from '~/server/auth';
 import { canEditSequence, getSequence } from '~/server/db-drizzle';
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url);
-  const sequenceId = url.searchParams.get('id');
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const sequenceId = params.id;
   
   if (!sequenceId) {
     return { user: null, canEdit: false, sequence: null };
@@ -41,7 +40,7 @@ export default function Sequence({ loaderData }: Route.ComponentProps) {
           <span>You have edit access to this sequence</span>
           <div style={{ display: 'flex', gap: '10px' }}>
             <a 
-              href={`/sequences/edit?id=${sequence.id}`}
+              href={`/sequences/${sequence.id}/edit`}
               style={{
                 padding: '6px 12px',
                 backgroundColor: '#007bff',
