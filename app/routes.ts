@@ -1,10 +1,16 @@
-import { type RouteConfig, index } from "@react-router/dev/routes";
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
-// MINIMAL TEST CONFIGURATION FOR VERCEL DEPLOYMENT TROUBLESHOOTING
-// Original routes backed up in routes.ts.backup
-// If this deploys successfully, the issue is with specific routes
-// If this fails, the issue is with dependencies in package.json
+// PHASE 1 TEST: Adding back simple static and auth routes
+// Testing which routes cause the Vercel deployment issue
 
 export default [
 	index("routes/hello.tsx"),
+	// Static pages
+	route("/about", "routes/about.tsx"),
+	route("/home", "routes/home.tsx"),
+	route("/wikimedia", "routes/wikimedia.tsx"),
+	// Authentication pages (no complex imports)
+	route("/login", "routes/login.tsx"),
+	route("/signup", "routes/signup.tsx"),
+	route("/logout", "routes/logout.tsx"),
 ] satisfies RouteConfig;
