@@ -406,6 +406,105 @@ export async function getMySequences(userId: number) {
   return allSequences.sort((a, b) => a.id - b.id);
 }
 
+export async function createDraftFromPublished(publishedSequenceId: number, userId: number) {
+  // Check if a draft already exists for this published sequence
+  const [existingDraft] = await db
+    .select()
+    .from(sequences)
+    .where(
+      and(
+        eq(sequences.publishedVersionId, publishedSequenceId),
+        eq(sequences.draft, 1)
+      )
+    )
+    .limit(1);
+  
+  if (existingDraft) {
+    // Draft already exists, return its ID
+    return { id: existingDraft.id };
+  }
+  
+  // Get the published sequence with all its steps
+  const publishedSequence = await getSequence(publishedSequenceId);
+  if (!publishedSequence) {
+    throw new Error('Published sequence not found');
+  }
+  
+  // Create draft sequence
+  const [draftSequence] = await db.insert(sequences).values({
+    title: publishedSequence.title,
+    description: publishedSequence.description,
+    userId: publishedSequence.userId,
+    draft: 1,
+    publishedVersionId: publishedSequenceId,
+    isPublishedVersion: 0,
+    currentlyEditedBy: userId,
+    lastEditedAt: Date.now(),
+  }).returning({ id: sequences.id });
+  
+  const draftSequenceId = draftSequence.id;
+  
+  // Copy all steps
+  if (publishedSequence.steps && publishedSequence.steps.length > 0) {
+    const stepIdMap = new Map(); // Maps old step ID to new step ID
+    
+    for (const step of publishedSequence.steps) {
+      const [newStep] = await db.insert(steps).values({
+        sequenceId: draftSequenceId,
+        title: step.title,
+        description: step.description,
+        draft: 1, // Mark step as draft
+      }).returning({ id: steps.id });
+      
+      stepIdMap.set(step.id, newStep.id);
+      
+      // Copy step_brainparts associations
+      if (step.brainpart_ids && step.brainpart_ids.length > 0) {
+        await db.insert(stepBrainparts).values(
+          step.brainpart_ids.map((brainpartId: number) => ({
+            stepId: newStep.id,
+            brainpartId,
+          }))
+        );
+      }
+      
+      // Copy step_links
+      if (step.step_links && step.step_links.length > 0) {
+        await db.insert(stepLinks).values(
+          step.step_links.map((link: any) => ({
+            stepId: newStep.id,
+            x1: link.x1,
+            y1: link.y1,
+            x2: link.x2,
+            y2: link.y2,
+            curvature: link.curvature,
+            strokeWidth: link.strokeWidth,
+          }))
+        );
+      }
+    }
+    
+    // Copy arrows (need to remap step IDs)
+    const arrowsResult = await db
+      .select()
+      .from(arrows)
+      .where(eq(arrows.sequenceId, publishedSequenceId));
+    
+    if (arrowsResult.length > 0) {
+      await db.insert(arrows).values(
+        arrowsResult.map((arrow) => ({
+          sequenceId: draftSequenceId,
+          fromStepId: stepIdMap.get(arrow.fromStepId) || arrow.fromStepId,
+          toStepId: stepIdMap.get(arrow.toStepId) || arrow.toStepId,
+          label: arrow.label,
+        }))
+      );
+    }
+  }
+  
+  return { id: draftSequenceId };
+}
+
 export async function updateSequenceOwner(sequenceId: number, newOwnerId: number) {
   await db.update(sequences).set({ userId: newOwnerId }).where(eq(sequences.id, sequenceId));
   return { id: sequenceId };

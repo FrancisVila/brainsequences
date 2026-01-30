@@ -2,7 +2,10 @@ import { redirect } from 'react-router';
 import type { Route } from './+types/edit';
 import SequenceViewer from '~/components/SequenceViewer';
 import { requireAuth } from '~/server/auth';
-import { canEditSequence } from '~/server/db-drizzle';
+import { canEditSequence, getSequence, createDraftFromPublished } from '~/server/db-drizzle';
+import { db } from '~/server/drizzle';
+import { sequences } from '../../../drizzle/schema';
+import { eq } from 'drizzle-orm';
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   // Get sequence ID from URL params
@@ -19,6 +22,20 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   const canEdit = await canEditSequence(Number(sequenceId), user.id);
   if (!canEdit && user.role !== 'admin') {
     throw new Response('Forbidden - you do not have permission to edit this sequence', { status: 403 });
+  }
+  
+  // Check if this is a published sequence
+  const [sequence] = await db.select().from(sequences).where(eq(sequences.id, Number(sequenceId))).limit(1);
+  
+  if (!sequence) {
+    throw new Response('Sequence not found', { status: 404 });
+  }
+  
+  // If it's a published sequence, create or redirect to draft version
+  if (sequence.draft === 0 && sequence.isPublishedVersion === 1) {
+    const draftResult = await createDraftFromPublished(Number(sequenceId), user.id);
+    // Redirect to the draft version for editing
+    throw redirect(`/sequences/${draftResult.id}/edit`);
   }
   
   return { user };
