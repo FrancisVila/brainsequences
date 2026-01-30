@@ -1,4 +1,4 @@
-import { eq, and } from 'drizzle-orm';
+import { eq, and, inArray } from 'drizzle-orm';
 import { db } from './drizzle';
 import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations, passwordResets } from '../../drizzle/schema';
 
@@ -494,22 +494,26 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
       }
     }
     
-    // Copy arrows (need to remap step IDs)
-    const arrowsResult = await db
-      .select()
-      .from(arrows)
-      .where(eq(arrows.sequenceId, publishedSequenceId));
-    
-    if (arrowsResult.length > 0) {
-      await db.insert(arrows).values(
-        arrowsResult.map((arrow) => ({
-          sequenceId: draftSequenceId,
-          fromStepId: stepIdMap.get(arrow.fromStepId) || arrow.fromStepId,
-          toStepId: stepIdMap.get(arrow.toStepId) || arrow.toStepId,
-          label: arrow.label,
-        }))
-      );
-      console.log(`Copied ${arrowsResult.length} arrows`);
+    // Copy arrows for all the steps we copied
+    // Get all arrows that belong to any of the original steps
+    const originalStepIds = publishedSequence.steps.map(s => s.id);
+    if (originalStepIds.length > 0) {
+      const arrowsResult = await db
+        .select()
+        .from(arrows)
+        .where(inArray(arrows.stepId, originalStepIds));
+      
+      if (arrowsResult.length > 0) {
+        await db.insert(arrows).values(
+          arrowsResult.map((arrow) => ({
+            description: arrow.description,
+            fromBrainpartId: arrow.fromBrainpartId,
+            toBrainpartId: arrow.toBrainpartId,
+            stepId: stepIdMap.get(arrow.stepId) || arrow.stepId,
+          }))
+        );
+        console.log(`Copied ${arrowsResult.length} arrows`);
+      }
     }
   } else {
     console.log('No steps to copy');
