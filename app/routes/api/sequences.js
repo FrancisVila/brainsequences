@@ -160,46 +160,107 @@ export async function action({ request }) {
 
       try {
         // Get the draft sequence
-        const [sequence] = await db.select().from(sequences).where(eq(sequences.id, sequenceId)).limit(1);
+        const [draftSequence] = await db.select().from(sequences).where(eq(sequences.id, sequenceId)).limit(1);
         
-        if (!sequence) {
+        if (!draftSequence) {
           return new Response(JSON.stringify({ error: 'Sequence not found' }), {
             status: 404,
             headers: { 'Content-Type': 'application/json' },
           });
         }
 
-        if (sequence.draft === 0) {
+        if (draftSequence.draft === 0) {
           return new Response(JSON.stringify({ error: 'Sequence is already published' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
           });
         }
 
+        let publishedId = sequenceId;
+
         // If this is editing an existing published sequence (has publishedVersionId)
-        if (sequence.publishedVersionId) {
-          // Delete the old published version (cascade will delete its steps)
-          await db.delete(sequences).where(eq(sequences.id, sequence.publishedVersionId));
+        if (draftSequence.publishedVersionId) {
+          const publishedVersionId = draftSequence.publishedVersionId;
+          
+          // Get all draft steps with their relations
+          const draftSteps = await db.select().from(steps).where(eq(steps.sequenceId, sequenceId));
+          
+          // Delete old published steps and relations (cascade should handle relations)
+          await db.delete(steps).where(eq(steps.sequenceId, publishedVersionId));
+          
+          // Copy draft steps to published sequence
+          for (const draftStep of draftSteps) {
+            const [newStep] = await db.insert(steps).values({
+              sequenceId: publishedVersionId,
+              title: draftStep.title,
+              description: draftStep.description,
+              draft: 0, // Mark as published
+            }).returning({ id: steps.id });
+            
+            // Copy step_brainparts
+            const { stepBrainparts } = await import('../../../drizzle/schema.js');
+            const brainpartLinks = await db.select().from(stepBrainparts).where(eq(stepBrainparts.stepId, draftStep.id));
+            if (brainpartLinks.length > 0) {
+              await db.insert(stepBrainparts).values(
+                brainpartLinks.map(link => ({
+                  stepId: newStep.id,
+                  brainpartId: link.brainpartId,
+                }))
+              );
+            }
+            
+            // Copy step_links
+            const { stepLinks } = await import('../../../drizzle/schema.js');
+            const links = await db.select().from(stepLinks).where(eq(stepLinks.stepId, draftStep.id));
+            if (links.length > 0) {
+              await db.insert(stepLinks).values(
+                links.map(link => ({
+                  stepId: newStep.id,
+                  x1: link.x1,
+                  y1: link.y1,
+                  x2: link.x2,
+                  y2: link.y2,
+                  curvature: link.curvature,
+                  strokeWidth: link.strokeWidth,
+                }))
+              );
+            }
+          }
+          
+          // Update the published sequence metadata
+          await db.update(sequences)
+            .set({
+              title: draftSequence.title,
+              description: draftSequence.description,
+              currentlyEditedBy: null,
+              lastEditedAt: Date.now(),
+            })
+            .where(eq(sequences.id, publishedVersionId));
+          
+          // Delete the draft sequence (cascade will delete its steps and relations)
+          await db.delete(sequences).where(eq(sequences.id, sequenceId));
+          
+          publishedId = publishedVersionId;
+        } else {
+          // This is a new sequence being published for the first time
+          await db.update(sequences)
+            .set({
+              draft: 0,
+              isPublishedVersion: 1,
+              publishedVersionId: null,
+              currentlyEditedBy: null,
+            })
+            .where(eq(sequences.id, sequenceId));
+
+          // Update all steps to be published
+          await db.update(steps)
+            .set({ draft: 0 })
+            .where(eq(steps.sequenceId, sequenceId));
         }
-
-        // Update this sequence to be published
-        await db.update(sequences)
-          .set({
-            draft: 0,
-            isPublishedVersion: 1,
-            publishedVersionId: null,
-            currentlyEditedBy: null,
-          })
-          .where(eq(sequences.id, sequenceId));
-
-        // Update all steps to be published
-        await db.update(steps)
-          .set({ draft: 0 })
-          .where(eq(steps.sequenceId, sequenceId));
 
         return new Response(JSON.stringify({ 
           success: true,
-          id: sequenceId,
+          id: publishedId,
         }), {
           status: 200,
           headers: { 'Content-Type': 'application/json' },

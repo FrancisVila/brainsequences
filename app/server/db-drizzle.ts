@@ -407,6 +407,8 @@ export async function getMySequences(userId: number) {
 }
 
 export async function createDraftFromPublished(publishedSequenceId: number, userId: number) {
+  console.log(`Creating draft from published sequence ${publishedSequenceId} for user ${userId}`);
+  
   // Check if a draft already exists for this published sequence
   const [existingDraft] = await db
     .select()
@@ -420,6 +422,7 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
     .limit(1);
   
   if (existingDraft) {
+    console.log(`Draft already exists with ID ${existingDraft.id}`);
     // Draft already exists, return its ID
     return { id: existingDraft.id };
   }
@@ -429,6 +432,8 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
   if (!publishedSequence) {
     throw new Error('Published sequence not found');
   }
+  
+  console.log(`Published sequence has ${publishedSequence.steps?.length || 0} steps`);
   
   // Create draft sequence
   const [draftSequence] = await db.insert(sequences).values({
@@ -443,12 +448,14 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
   }).returning({ id: sequences.id });
   
   const draftSequenceId = draftSequence.id;
+  console.log(`Created draft sequence with ID ${draftSequenceId}`);
   
   // Copy all steps
   if (publishedSequence.steps && publishedSequence.steps.length > 0) {
     const stepIdMap = new Map(); // Maps old step ID to new step ID
     
     for (const step of publishedSequence.steps) {
+      console.log(`Copying step ${step.id}: ${step.title}`);
       const [newStep] = await db.insert(steps).values({
         sequenceId: draftSequenceId,
         title: step.title,
@@ -457,6 +464,7 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
       }).returning({ id: steps.id });
       
       stepIdMap.set(step.id, newStep.id);
+      console.log(`Created new step ${newStep.id} (from ${step.id})`);
       
       // Copy step_brainparts associations
       if (step.brainpart_ids && step.brainpart_ids.length > 0) {
@@ -466,6 +474,7 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
             brainpartId,
           }))
         );
+        console.log(`Copied ${step.brainpart_ids.length} brainpart associations`);
       }
       
       // Copy step_links
@@ -481,6 +490,7 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
             strokeWidth: link.strokeWidth,
           }))
         );
+        console.log(`Copied ${step.step_links.length} step links`);
       }
     }
     
@@ -499,9 +509,13 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
           label: arrow.label,
         }))
       );
+      console.log(`Copied ${arrowsResult.length} arrows`);
     }
+  } else {
+    console.log('No steps to copy');
   }
   
+  console.log(`Draft creation complete, returning ID ${draftSequenceId}`);
   return { id: draftSequenceId };
 }
 

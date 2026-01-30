@@ -242,8 +242,9 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
         throw new Error(data.error || 'Failed to publish sequence');
       }
 
-      // Navigate to the published sequence view
-      navigate(`/sequences/${id}`);
+      const data = await res.json();
+      // Navigate to the published sequence view (use the returned ID in case it changed)
+      navigate(`/sequences/${data.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to publish sequence');
     } finally {
