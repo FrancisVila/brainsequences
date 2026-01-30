@@ -3,14 +3,22 @@
 This file tracks the relationship between code versions and database migrations.
 
 ## Current State
-- **Code Version**: v1.0.0 (tag: to be created)
+- **Code Version**: v1.0.0
 - **Migration**: 0004_add_draft_publishing_columns.sql
-- **Date**: January 30, 2026
+- **Date**: janvier 30, 2026
 
 ## Version History
 
+
+### v1.0.0 - janvier 30, 2026
+- **Migration**: 0004_add_draft_publishing_columns.sql
+- **Changes**: 
+  site works on vercel after debug, db 0004_add_draft_publishing_columns.sql
+- **Rollback Instructions**: 
+  1. Checkout code: `git checkout v1.0.0`
+  2. Check database migration compatibility in MIGRATIONS.md
 ### v1.0.0 - January 30, 2026
-- **Migration**: `0004_add_draft_publishing_columns.sql`
+- **Migration**: 0004_add_draft_publishing_columns.sql
 - **Changes**: 
   - Added draft/publish workflow columns to sequences table
   - Added `published_version_id`, `is_published_version`, `currently_edited_by`, `last_edited_at`
@@ -21,7 +29,7 @@ This file tracks the relationship between code versions and database migrations.
   2. Database is at migration 0004 - no rollback needed if coming from v0.9.0
 
 ### v0.9.0 - Previous (Example)
-- **Migration**: `0003_add_email_verification_and_password_reset.sql`
+- **Migration**: 0004_add_draft_publishing_columns.sql
 - **Changes**: Email verification and password reset functionality
 
 ## Migration Commands
@@ -66,3 +74,4 @@ turso db list
 # Copy database file
 cp data/app.db data/app-backup-$(date +%Y%m%d).db
 ```
+
