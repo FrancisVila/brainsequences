@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import HCaptchaLib from '@hcaptcha/react-hcaptcha';
 
 interface HCaptchaProps {
   sitekey: string;
@@ -14,13 +13,19 @@ interface HCaptchaProps {
  * Client-side only - won't render during SSR
  */
 export default function HCaptcha({ sitekey, onVerify, onError, onExpire }: HCaptchaProps) {
-  const captchaRef = useRef<HCaptchaLib>(null);
+  const captchaRef = useRef<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [HCaptchaLib, setHCaptchaLib] = useState<any>(null);
 
-  // Only render on client-side
+  // Dynamically import HCaptcha only on client-side
   useEffect(() => {
     setIsMounted(true);
+    
+    // Dynamic import to avoid SSR issues
+    import('@hcaptcha/react-hcaptcha').then((module) => {
+      setHCaptchaLib(() => module.default);
+    });
   }, []);
 
   const handleVerify = (token: string) => {
@@ -45,8 +50,8 @@ export default function HCaptcha({ sitekey, onVerify, onError, onExpire }: HCapt
     captchaRef.current?.resetCaptcha();
   };
 
-  // Don't render during SSR
-  if (!isMounted) {
+  // Don't render during SSR or while loading
+  if (!isMounted || !HCaptchaLib) {
     return <div style={{ height: '78px' }} />; // Placeholder to prevent layout shift
   }
 
