@@ -276,6 +276,55 @@ export async function action({ request }) {
     }
   }
   
+  if (method === 'DELETE') {
+    // Require authentication to delete sequences
+    const user = await requireAuth(request);
+    
+    const url = new URL(request.url);
+    const id = url.searchParams.get('id');
+    const action = url.searchParams.get('action');
+    
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'ID is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    const sequenceId = Number(id);
+    
+    // Check permission
+    const canEdit = await canEditSequence(sequenceId, user.id);
+    if (!canEdit && user.role !== 'admin') {
+      return new Response(JSON.stringify({ error: 'Forbidden' }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    // If action is delete-draft, only delete drafts
+    if (action === 'delete-draft') {
+      const sequence = await getSequence(sequenceId);
+      if (sequence && sequence.draft === 1) {
+        await db.delete(sequences).where(eq(sequences.id, sequenceId));
+        return new Response(JSON.stringify({ success: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      } else {
+        return new Response(JSON.stringify({ error: 'Not a draft sequence' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+    
+    return new Response(JSON.stringify({ error: 'Invalid action' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  
   return new Response(JSON.stringify({ error: 'Method not allowed' }), {
     status: 405,
     headers: { 'Content-Type': 'application/json' },

@@ -135,6 +135,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
       const res = await fetch(`/api/sequences?id=${id}`);
       const data = await res.json();
       if (data) {
+        setSequence(data); // Set the full sequence data
         setTitle(data.title || '');
         setSteps(data.steps || []);
       }
@@ -432,7 +433,29 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               
               <button
                 type="button"
-                onClick={() => navigate(id ? `/sequences/${id}` : '/sequences')}
+                onClick={async () => {
+                  if (window.confirm('Are you sure? This will discard your draft.')) {
+                    // If this is a draft, delete it
+                    if (id && sequence?.draft === 1) {
+                      try {
+                        await fetch(`/api/sequences?id=${id}&action=delete-draft`, {
+                          method: 'DELETE'
+                        });
+                        // Navigate to published version or sequences list
+                        if (sequence.publishedVersionId) {
+                          navigate(`/sequences/${sequence.publishedVersionId}`);
+                        } else {
+                          navigate('/sequences');
+                        }
+                      } catch (err) {
+                        console.error('Failed to delete draft', err);
+                        navigate(id ? `/sequences/${id}` : '/sequences');
+                      }
+                    } else {
+                      navigate(id ? `/sequences/${id}` : '/sequences');
+                    }
+                  }
+                }}
                 className="btn-secondary"
               >
                 Cancel
@@ -475,7 +498,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               );
             })}
             {/* Add Step button - only in edit mode */}
-            {editMode && id && (
+            {editMode && (
               <button 
                 type="button" 
                 onClick={addStep} 
@@ -772,7 +795,19 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               })}
             </div>
           ) : (
-            <p>No steps in this sequence</p>
+            <div>
+              <p>No steps in this sequence</p>
+              {editMode && (
+                <button 
+                  type="button" 
+                  onClick={addStep} 
+                  className="btn-primary"
+                  style={{ marginTop: '1rem' }}
+                >
+                  + Add Step
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>

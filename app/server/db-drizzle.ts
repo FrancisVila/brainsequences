@@ -363,12 +363,33 @@ export async function getUserSequences(userId: number) {
 }
 
 export async function getPublishedSequences() {
-  return await db.select().from(sequences).where(
+  const allPublished = await db.select().from(sequences).where(
     and(
       eq(sequences.draft, 0),
       eq(sequences.isPublishedVersion, 1)
     )
   ).orderBy(sequences.id);
+  
+  // Get all draft sequences to find which published sequences have active drafts
+  const drafts = await db.select({
+    publishedVersionId: sequences.publishedVersionId
+  }).from(sequences).where(
+    and(
+      eq(sequences.draft, 1),
+      // Only consider drafts that reference a published version
+      // Use sql operator for IS NOT NULL check
+    )
+  );
+  
+  // Create a set of published IDs that have active drafts
+  const publishedIdsWithDrafts = new Set(
+    drafts
+      .filter(d => d.publishedVersionId !== null)
+      .map(d => d.publishedVersionId)
+  );
+  
+  // Filter out published sequences that have active drafts
+  return allPublished.filter(s => !publishedIdsWithDrafts.has(s.id));
 }
 
 export async function getMySequences(userId: number) {
@@ -403,7 +424,20 @@ export async function getMySequences(userId: number) {
     }
   }
   
-  return allSequences.sort((a, b) => a.id - b.id);
+  // Filter out published versions when a draft exists
+  // If a draft has publishedVersionId set, remove the published version from the list
+  const draftPublishedIds = new Set(
+    allSequences
+      .filter(s => s.draft === 1 && s.publishedVersionId !== null)
+      .map(s => s.publishedVersionId)
+  );
+  
+  const filteredSequences = allSequences.filter(s => {
+    // Keep the sequence if it's NOT a published version that has a corresponding draft
+    return !draftPublishedIds.has(s.id);
+  });
+  
+  return filteredSequences.sort((a, b) => a.id - b.id);
 }
 
 export async function createDraftFromPublished(publishedSequenceId: number, userId: number) {
