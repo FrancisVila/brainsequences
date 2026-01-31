@@ -1,11 +1,9 @@
-import { createStep, updateStep, deleteStep, updateStepLinks, canEditSequence } from '../../server/db-drizzle.server.js';
-import { requireAuth } from '../../server/auth.server.js';
-import { db } from '../../server/drizzle.server.js';
-import { steps } from '../../../drizzle/schema';
-import { eq } from 'drizzle-orm';
-
 // Helper to get sequence ID from step ID
 async function getSequenceIdFromStep(stepId) {
+  const { db } = await import('../../server/drizzle.server');
+  const { steps } = await import('../../../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  
   const [step] = await db.select({ sequenceId: steps.sequenceId })
     .from(steps)
     .where(eq(steps.id, stepId))
@@ -17,6 +15,10 @@ async function getSequenceIdFromStep(stepId) {
 // PUT /api/steps?id=X - update an existing step
 // DELETE /api/steps?id=X - delete a step
 export async function action({ request }) {
+  // Import server modules dynamically inside action
+  const { createStep, updateStep, deleteStep, updateStepLinks, canEditSequence } = await import('../../server/db-drizzle.server');
+  const { requireAuth } = await import('../../server/auth.server');
+  
   const method = request.method;
   const url = new URL(request.url);
   

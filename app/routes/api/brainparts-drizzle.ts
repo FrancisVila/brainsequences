@@ -1,10 +1,8 @@
-import { 
-  getAllBrainparts, getBrainpart, createBrainpart, updateBrainpart, deleteBrainpart 
-} from '../../server/db-drizzle.server.js';
-import { requireRole } from '../../server/auth.server.js';
-
 // GET /api/brainparts - return list of brainparts
 export async function loader({ request }) {
+  // Import server modules dynamically inside loader
+  const { getAllBrainparts, getBrainpart } = await import('../../server/db-drizzle.server');
+  
   try {
     const url = new URL(request.url);
     const id = url.searchParams.get('id');
@@ -35,6 +33,10 @@ export async function loader({ request }) {
 // PUT /api/brainparts - update (requires id)
 // DELETE /api/brainparts - delete (requires id)
 export async function action({ request }) {
+  // Import server modules dynamically inside action
+  const { createBrainpart, updateBrainpart, deleteBrainpart } = await import('../../server/db-drizzle.server');
+  const { requireRole } = await import('../../server/auth.server');
+  
   // Require admin role for all brainpart modifications
   await requireRole(request, 'admin');
   

@@ -1,17 +1,11 @@
 import { redirect, data } from 'react-router';
 import type { Route } from './+types/accept';
-import { 
-  getCurrentUser,
-  requireAuth
-} from '~/server/auth.server';
-import { 
-  getInvitationByToken, 
-  markInvitationAccepted, 
-  addCollaborator,
-  findUserByEmail
-} from '~/server/db-drizzle.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
+  // Dynamic imports to keep server code on server
+  const { getCurrentUser } = await import('~/server/auth.server');
+  const { getInvitationByToken } = await import('~/server/db-drizzle.server');
+  
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
   
@@ -52,6 +46,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export async function action({ request }: Route.ActionArgs) {
+  // Dynamic imports to keep server code on server
+  const { requireAuth } = await import('~/server/auth.server');
+  const { getInvitationByToken, markInvitationAccepted, addCollaborator } = await import('~/server/db-drizzle.server');
+  
   const formData = await request.formData();
   const token = formData.get('token') as string;
   

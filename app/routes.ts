@@ -25,9 +25,9 @@ export default [
 	// Wikimedia images
 	route("/wikimedia", "routes/wikimedia.tsx"),
 	// Brainparts API
-	route("/api/brainparts", "routes/api/brainparts-drizzle.js"),
+	route("/api/brainparts", "routes/api/brainparts-drizzle.ts"),
 	// Sequences API
-	route("/api/sequences", "routes/api/sequences.js"),
+	route("/api/sequences", "routes/api/sequences.ts"),
 	// Steps API
-	route("/api/steps", "routes/api/steps.js"),
+	route("/api/steps", "routes/api/steps.ts"),
 ] satisfies RouteConfig;

@@ -1,11 +1,9 @@
-import { getAllSequences, getSequence, createSequence, updateSequence, canEditSequence, getPublishedSequences } from '../../server/db-drizzle.server.js';
-import { getCurrentUser, requireAuth } from '../../server/auth.server.js';
-import { db } from '../../server/drizzle.server.js';
-import { sequences, steps } from '../../../drizzle/schema';
-import { eq } from 'drizzle-orm';
-
 // GET /api/sequences - return list of sequences or a specific sequence by id
 export async function loader({ request }) {
+  // Import server modules dynamically inside loader
+  const { getAllSequences, getSequence, canEditSequence, getPublishedSequences } = await import('../../server/db-drizzle.server');
+  const { getCurrentUser } = await import('../../server/auth.server');
+  
   const url = new URL(request.url);
   const id = url.searchParams.get('id');
   const user = await getCurrentUser(request);
@@ -62,6 +60,13 @@ export async function loader({ request }) {
 
 // POST /api/sequences - create a new sequence
 export async function action({ request }) {
+  // Import server modules dynamically inside action
+  const { createSequence, updateSequence, canEditSequence } = await import('../../server/db-drizzle.server');
+  const { requireAuth } = await import('../../server/auth.server');
+  const { db } = await import('../../server/drizzle.server');
+  const { sequences, steps } = await import('../../../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  
   const method = request.method;
   
   if (method === 'POST') {
