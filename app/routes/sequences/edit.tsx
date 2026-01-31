@@ -1,7 +1,7 @@
 import { redirect } from 'react-router';
 import type { Route } from './+types/edit';
 import SequenceViewer from '~/components/SequenceViewer';
-import { requireAuth } from '~/server/auth';
+import { requireAuth } from '~/server/auth.server';
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   // Get sequence ID from URL params
@@ -15,8 +15,8 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   const user = await requireAuth(request);
   
   // Import server-only modules inside the loader to avoid client bundling
-  const { canEditSequence, createDraftFromPublished } = await import('~/server/db-drizzle');
-  const { db } = await import('~/server/drizzle');
+  const { canEditSequence, createDraftFromPublished } = await import('~/server/db-drizzle.server');
+  const { db } = await import('~/server/drizzle.server');
   const { sequences } = await import('../../../drizzle/schema');
   const { eq } = await import('drizzle-orm');
   

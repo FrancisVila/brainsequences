@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import type { Route } from './+types/new';
-import { requireAuth } from '~/server/auth';
+import { requireAuth } from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Require authentication to create sequences
@@ -32,8 +32,8 @@ export default function SequenceNew() {
       }
 
       const data = await res.json();
-      // Navigate to the sequence view after saving
-      navigate(`/sequences/${data.id}`);
+      // Navigate to edit mode after creating
+      navigate(`/sequences/${data.id}/edit`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create sequence');
     } finally {

@@ -1,9 +1,11 @@
 import type { Route } from "./+types/sequences";
-import { getPublishedSequences, getMySequences } from "~/server/db-drizzle";
 import { Link } from "react-router";
-import { getCurrentUser } from "~/server/auth";
 
 export async function loader({ request }: Route.LoaderArgs) {
+  // Dynamic imports to ensure server code stays on server
+  const { getCurrentUser } = await import("~/server/auth.server");
+  const { getPublishedSequences, getMySequences } = await import("~/server/db-drizzle.server");
+  
   const user = await getCurrentUser(request);
   
   let mySequences: any[] = [];

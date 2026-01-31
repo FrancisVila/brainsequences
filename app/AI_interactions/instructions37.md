@@ -1,4 +1,7 @@
-Editing sequences works, but glitches remain:
-* When I edit a sequence, then click Cancel, the draft sequence remains. It should be deleted, after asking the user whether he or she is sure
-* I created a new sequence, and when I edit it I see "No steps in this sequence" (this is normal), but I don't see the Add Sequence button
-* In the list of sequences I see the same sequence twice, once with Draft and once without. When this is the case, remove the card without Draft.
+* (done) Whan I click Add step button,  (when editing a sequence), this should open the new step
+* When I click '+ Add sequence' link, I should open the new sequence in Edit mode
+* When I click 'Manage Collaborators and Send Invitation', I get a message "Failed to send invitation email. Please check email configuration." In the console, I see Uncaught Error: DATABASE_URL environment variable is required
+    <anonymous> https://brainsequences.vercel.app/assets/sequences-ChVW7ZqA.js:15
+sequences-ChVW7ZqA.js:15:33382
+    <anonymous> https://brainsequences.vercel.app/assets/sequences-ChVW7ZqA.js:15
+    But in Vercel, I can see the DATABASE_URL environment variable

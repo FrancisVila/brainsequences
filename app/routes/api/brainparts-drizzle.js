@@ -1,7 +1,7 @@
 import { 
   getAllBrainparts, getBrainpart, createBrainpart, updateBrainpart, deleteBrainpart 
-} from '../../server/db-drizzle.js';
-import { requireRole } from '../../server/auth.js';
+} from '../../server/db-drizzle.server.js';
+import { requireRole } from '../../server/auth.server.js';
 
 // GET /api/brainparts - return list of brainparts
 export async function loader({ request }) {

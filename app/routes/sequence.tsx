@@ -1,9 +1,11 @@
 import type { Route } from './+types/sequence';
 import SequenceViewer from '~/components/SequenceViewer';
-import { getCurrentUser } from '~/server/auth';
-import { canEditSequence, getSequence } from '~/server/db-drizzle';
 
 export async function loader({ request, params }: Route.LoaderArgs) {
+  // Dynamic imports to ensure server code stays on server
+  const { getCurrentUser } = await import('~/server/auth.server');
+  const { canEditSequence, getSequence } = await import('~/server/db-drizzle.server');
+  
   const sequenceId = params.id;
   
   if (!sequenceId) {

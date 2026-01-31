@@ -1,13 +1,13 @@
 import { redirect, data } from 'react-router';
 import type { Route } from './+types/users';
-import { requireRole } from '~/server/auth';
+import { requireRole } from '~/server/auth.server';
 import { 
   getAllUsers, 
   updateUserRole,
   getUserSequences,
   updateSequenceOwner,
   deleteUser
-} from '~/server/db-drizzle';
+} from '~/server/db-drizzle.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Require admin role

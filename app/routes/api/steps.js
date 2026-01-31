@@ -1,6 +1,6 @@
-import { createStep, updateStep, deleteStep, updateStepLinks, canEditSequence } from '../../server/db-drizzle.js';
-import { requireAuth } from '../../server/auth';
-import { db } from '../../server/drizzle';
+import { createStep, updateStep, deleteStep, updateStepLinks, canEditSequence } from '../../server/db-drizzle.server.js';
+import { requireAuth } from '../../server/auth.server.js';
+import { db } from '../../server/drizzle.server.js';
 import { steps } from '../../../drizzle/schema';
 import { eq } from 'drizzle-orm';
 

@@ -4,7 +4,7 @@ import {
   getSessionIdFromRequest, 
   deleteSession, 
   clearSessionCookie 
-} from '~/server/auth';
+} from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const sessionId = getSessionIdFromRequest(request);

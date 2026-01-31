@@ -1,6 +1,6 @@
-import { getAllSequences, getSequence, createSequence, updateSequence, canEditSequence, getPublishedSequences } from '../../server/db-drizzle.js';
-import { getCurrentUser, requireAuth } from '../../server/auth';
-import { db } from '../../server/drizzle';
+import { getAllSequences, getSequence, createSequence, updateSequence, canEditSequence, getPublishedSequences } from '../../server/db-drizzle.server.js';
+import { getCurrentUser, requireAuth } from '../../server/auth.server.js';
+import { db } from '../../server/drizzle.server.js';
 import { sequences, steps } from '../../../drizzle/schema';
 import { eq } from 'drizzle-orm';
 

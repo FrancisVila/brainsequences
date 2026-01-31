@@ -3,13 +3,13 @@ import type { Route } from './+types/accept';
 import { 
   getCurrentUser,
   requireAuth
-} from '~/server/auth';
+} from '~/server/auth.server';
 import { 
   getInvitationByToken, 
   markInvitationAccepted, 
   addCollaborator,
   findUserByEmail
-} from '~/server/db-drizzle';
+} from '~/server/db-drizzle.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);

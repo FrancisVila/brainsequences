@@ -1,6 +1,6 @@
 import { redirect } from 'react-router';
 import bcrypt from 'bcryptjs';
-import { db } from './drizzle';
+import { db } from './drizzle.server';
 import { users, sessions } from '../../drizzle/schema';
 import { eq, lt } from 'drizzle-orm';
 import crypto from 'crypto';

@@ -52,12 +52,14 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   
   // View mode state
   const [allSequences, setAllSequences] = useState<Sequence[]>([]);
-  const [selectedStepId, setSelectedStepId] = useState<number | null>(null);
   
   // Edit mode state
   const [title, setTitle] = useState('');
   const [steps, setSteps] = useState<Step[]>([]);
   const [allBrainparts, setAllBrainparts] = useState<Brainpart[]>([]);
+  
+  // Shared step selection (works for both view and edit mode)
+  const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (editMode) {
@@ -81,7 +83,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
       setSequence(data);
       // Auto-select the first step if available
       if (data && data.steps && data.steps.length > 0) {
-        setSelectedStepId(data.steps[0].id);
+        setSelectedStepIndex(0);
       }
     } catch (err) {
       console.error('Failed to load sequence', err);
@@ -254,7 +256,10 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   }
 
   function addStep() {
-    setSteps([...steps, { title: '', brainpart_ids: [], brainpart_titles: [] }]);
+    const newSteps = [...steps, { title: '', brainpart_ids: [], brainpart_titles: [] }];
+    setSteps(newSteps);
+    // Select the newly added step
+    setSelectedStepIndex(newSteps.length - 1);
   }
 
   function updateStepTitle(index: number, newTitle: string) {
@@ -381,7 +386,7 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
   // Determine which data to use
   const displaySteps = editMode ? steps : (sequence?.steps || []);
   const displayTitle = editMode ? title : sequence?.title;
-  const selectedStep = displaySteps.find((s: any) => s.id === selectedStepId);
+  const selectedStep = selectedStepIndex !== null ? displaySteps[selectedStepIndex] : null;
 
   return (
     <div className={`sequence-container ${editMode ? 'edit-mode' : 'view-mode'}`}>
@@ -485,11 +490,11 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
         {displaySteps.length > 0 && (
           <div className="step-navigation">
             {displaySteps.map((step: any, index: number) => {
-              const isSelected = step.id === selectedStepId;
+              const isSelected = selectedStepIndex === index;
               return (
                 <div
                   key={step.id || index}
-                  onClick={() => setSelectedStepId(step.id)}
+                  onClick={() => setSelectedStepIndex(index)}
                   className={`step-nav-item ${isSelected ? 'selected' : ''}`}
                   title={step.title}
                 >
@@ -516,12 +521,12 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
           {displaySteps.length > 0 ? (
             <div className="steps-content">
               {displaySteps.map((step: any, index: number) => {
-                const isSelected = step.id === selectedStepId;
+                const isSelected = selectedStepIndex === index;
                 return (
                   <div 
                     id={`step_${step.id || index}`}
                     key={step.id || index}
-                    onClick={() => setSelectedStepId(step.id)}
+                    onClick={() => setSelectedStepIndex(index)}
                     className={`step-item ${isSelected ? 'selected' : ''}`}
                   >
                     {!isSelected && <h3 className="step-title">#{index + 1} {step.title}</h3>}

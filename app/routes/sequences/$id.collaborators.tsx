@@ -1,23 +1,11 @@
 import { redirect, data } from 'react-router';
 import type { Route } from './+types/$id.collaborators';
-import { 
-  requireAuth, 
-  getCurrentUser,
-  findUserByEmail
-} from '../../server/auth';
-import { 
-  getSequence,
-  isSequenceOwner, 
-  getSequenceCollaborators, 
-  removeCollaborator,
-  createInvitation,
-  getSequenceInvitations,
-  deleteInvitation
-} from '../../server/db-drizzle';
-import { sendInvitationEmail } from '../../server/email';
-import crypto from 'crypto';
 
 export async function loader({ request, params }: Route.LoaderArgs) {
+  // Dynamic import to avoid bundling server code for client
+  const { requireAuth } = await import('../../server/auth.server');
+  const { getSequence, isSequenceOwner, getSequenceCollaborators, getSequenceInvitations } = await import('../../server/db-drizzle.server');
+  
   const user = await requireAuth(request);
   const sequenceId = Number(params.id);
   
@@ -44,6 +32,19 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 }
 
 export async function action({ request, params }: Route.ActionArgs) {
+  // Dynamic import to avoid bundling server code for client
+  const { requireAuth, findUserByEmail } = await import('../../server/auth.server');
+  const { 
+    getSequence,
+    isSequenceOwner,
+    getSequenceCollaborators,
+    removeCollaborator,
+    createInvitation,
+    getSequenceInvitations,
+    deleteInvitation
+  } = await import('../../server/db-drizzle.server');
+  const crypto = await import('crypto');
+  
   const user = await requireAuth(request);
   const sequenceId = Number(params.id);
   
@@ -85,7 +86,7 @@ export async function action({ request, params }: Route.ActionArgs) {
     }
     
     // Create invitation
-    const token = crypto.randomBytes(32).toString('hex');
+    const token = crypto.default.randomBytes(32).toString('hex');
     const expiresAt = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 days
     
     await createInvitation({
@@ -99,6 +100,8 @@ export async function action({ request, params }: Route.ActionArgs) {
     // Send invitation email
     const sequence = await getSequence(sequenceId);
     try {
+      // Import email module only on server side to avoid bundling issues
+      const { sendInvitationEmail } = await import('../../server/email.server');
       await sendInvitationEmail(email, user.email, sequence!.title, token);
       return data({ success: 'Invitation sent successfully' });
     } catch (error) {

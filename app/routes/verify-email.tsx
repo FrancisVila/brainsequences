@@ -4,12 +4,12 @@ import {
   getCurrentUser,
   createSessionCookie,
   createSession
-} from '~/server/auth';
+} from '~/server/auth.server';
 import { 
   getUserByVerificationToken,
   updateUserVerification
-} from '~/server/db-drizzle';
-import { sendVerificationEmail } from '~/server/email';
+} from '~/server/db-drizzle.server';
+import { sendVerificationEmail } from '~/server/email.server';
 import crypto from 'crypto';
 
 export async function loader({ request }: Route.LoaderArgs) {

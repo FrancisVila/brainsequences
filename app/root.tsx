@@ -11,7 +11,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { getCurrentUser } from "./server/auth";
+import { getCurrentUser } from "./server/auth.server";
 import UserMenu from "./components/UserMenu";
 import brainIcon from "./images/brain_icons.svg";
 
@@ -40,7 +40,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   // Check if user can edit this sequence (if on sequence page)
   let canEdit = false;
   if (user && sequenceId) {
-    const { canEditSequence } = await import('./server/db-drizzle');
+    const { canEditSequence } = await import('./server/db-drizzle.server');
     canEdit = await canEditSequence(sequenceId, user.id) || user.role === 'admin';
   }
   

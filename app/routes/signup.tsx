@@ -10,7 +10,7 @@ import {
   validatePassword,
   isFirstUser,
   getCurrentUser
-} from '~/server/auth';
+} from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // If already logged in, redirect to home

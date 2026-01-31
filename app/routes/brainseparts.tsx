@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { Route } from './+types/brainseparts';
-import { getCurrentUser } from '~/server/auth';
+import { getCurrentUser } from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Allow anyone to view brainparts, but check if admin for edit buttons

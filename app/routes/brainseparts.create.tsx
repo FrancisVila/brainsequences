@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Route } from './+types/brainseparts.create';
-import { requireRole } from '~/server/auth';
+import { requireRole } from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Require admin role to create brainparts

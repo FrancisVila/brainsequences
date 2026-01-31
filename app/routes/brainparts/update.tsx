@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { Route } from './+types/update';
-import { requireRole } from '~/server/auth';
+import { requireRole } from '~/server/auth.server';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Require admin role to update brainparts

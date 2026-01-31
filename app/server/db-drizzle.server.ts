@@ -1,5 +1,5 @@
 import { eq, and, inArray } from 'drizzle-orm';
-import { db } from './drizzle';
+import { db } from './drizzle.server';
 import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations, passwordResets } from '../../drizzle/schema';
 
 
