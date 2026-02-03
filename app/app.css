@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-.navbar {
+.navbar, .navbar-edit {
   padding-left: 20px;
   background-color: #535d66;
   color: white;
@@ -14,16 +14,48 @@ body {
   align-items: center;
 }
 
-.navbar-links a {
+.navbar-edit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+  padding: 8px;
+}
+
+/* .navbar-edit {
+  padding-left: 20px;
+  background-color: #535d66;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position:fixed;
+  bottom:0;
+  padding: 5px;;
+} */
+
+
+.navbar-links a, .navbar-edit a {
   color: white;
   text-decoration: none;
   margin-right: 18px;
+  
 }
 
-.navbar-links a.selected {
-  background-color: #aad40088;
+.navbar-links a {font-size: 16px;}
+
+.navbar-links a.selected, .navbar-edit a {
+  background-color: #687E26;;
   padding: 4px 8px;
   border-radius: 6px;
+  border: 1px solid #FFFFFF80;
+}
+
+.navbar-edit a {
+  font-size: 14px;
 }
 
 .update-bar {

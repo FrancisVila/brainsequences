@@ -31,40 +31,13 @@ export default function Sequence({ loaderData }: Route.ComponentProps) {
   return (
     <>
       {canEdit && sequence && (
-        <div style={{ 
-          padding: '10px 20px', 
-          backgroundColor: '#e7f3ff',
-          borderBottom: '1px solid #b3d9ff',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
+        <div className='navbar-edit'>
           <span>You have edit access to this sequence</span>
           <div style={{ display: 'flex', gap: '10px' }}>
-            <a 
-              href={`/sequences/${sequence.id}/edit`}
-              style={{
-                padding: '6px 12px',
-                backgroundColor: '#007bff',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                fontSize: '14px'
-              }}
-            >
+            <a      href={`/sequences/${sequence.id}/edit`}   >
               Edit Sequence
             </a>
-            <a 
-              href={`/sequences/${sequence.id}/collaborators`}
-              style={{
-                padding: '6px 12px',
-                backgroundColor: '#28a745',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                fontSize: '14px'
-              }}
-            >
+            <a  href={`/sequences/${sequence.id}/collaborators`}  >
               Manage Collaborators
             </a>
           </div>
