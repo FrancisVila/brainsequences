@@ -35,13 +35,31 @@ interface Sequence {
   id: number;
   title: string;
   steps: Step[];
+  draft?: number;
+  publishedVersionId?: number | null;
+  isPublishedVersion?: number;
+  userId?: number;
 }
 
 interface SequenceViewerProps {
   editMode: boolean;
+  canEdit?: boolean;
+  isCreator?: boolean;
+  isDraft?: boolean;
+  isPublished?: boolean;
+  hasDraft?: boolean;
+  publishedVersionId?: number | null;
 }
 
-export default function SequenceViewer({ editMode }: SequenceViewerProps) {
+export default function SequenceViewer({ 
+  editMode, 
+  canEdit = false,
+  isCreator = false,
+  isDraft = false,
+  isPublished = false,
+  hasDraft = false,
+  publishedVersionId = null
+}: SequenceViewerProps) {
   const { id } = useParams();
   const navigate = useNavigate();
   
@@ -415,56 +433,88 @@ export default function SequenceViewer({ editMode }: SequenceViewerProps) {
               </div>
             )}
 
-            <div className="form-buttons update-bar">
-              <button
-                type="submit"
-                disabled={loading || !title.trim()}
-                className="btn-primary"
-              >
-                {loading ? 'Saving...' : (id ? 'Update' : 'Create')}
-              </button>
+            <div id="action-bar" className="form-buttons update-bar">
+                  {/* 'Edit sequence': show if not in edit mode (viewing mode) */}
+                    {canEdit && !editMode && (
+                      <a href={`/sequences/${id}/edit`} style={{ padding: '0.5rem 1rem', background: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
+                        Edit Sequence
+                      </a>
+                    )}
+                    {/* 'Show published': show if viewing draft and a published version exists */}
+                    {canEdit && isDraft && publishedVersionId && (
+                      <a href={`/sequences/${publishedVersionId}`} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: '#28a745', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
+                        Show Published
+                      </a>
+                    )}
+                    {/* 'Show draft': show if viewing published and a draft exists */}
+                    {canEdit &&  isPublished && hasDraft && (
+                      <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: '#ffc107', color: 'black', textDecoration: 'none', borderRadius: '4px' }}>
+                        Show Draft
+                      </a>
+                    )}
+
+                                        {/* 'Manage Collaborators': show if user is the creator */}
+                    {canEdit &&  isCreator && (
+                      <a href={`/sequences/${id}/collaborators`} style={{ padding: '0.5rem 1rem', background: '#6c757d', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
+                        Manage Collaborators
+                      </a>
+                    )}
+
+
               
-              {id && (
-                <button
-                  type="button"
-                  onClick={handlePublish}
-                  disabled={loading}
-                  className="btn-primary"
-        
-                >
-                  Publish
-                </button>
-              )}
-              
-              <button
-                type="button"
-                onClick={async () => {
-                  if (window.confirm('Are you sure? This will discard your draft.')) {
-                    // If this is a draft, delete it
-                    if (id && sequence?.draft === 1) {
-                      try {
-                        await fetch(`/api/sequences?id=${id}&action=delete-draft`, {
-                          method: 'DELETE'
-                        });
-                        // Navigate to published version or sequences list
-                        if (sequence.publishedVersionId) {
-                          navigate(`/sequences/${sequence.publishedVersionId}`);
+              {editMode && (
+                <>
+                  <button
+                    type="submit"
+                    disabled={loading || !title.trim()}
+                    className="btn-primary"
+                  >
+                    {loading ? 'Saving...' : (id ? 'Update' : 'Create')}
+                  </button>
+                  
+                  {id && (
+                    <button
+                      type="button"
+                      onClick={handlePublish}
+                      disabled={loading}
+                      className="btn-primary"
+            
+                    >
+                      Publish
+                    </button>
+                  )}
+                  
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      if (window.confirm('Are you sure? This will discard your draft.')) {
+                        // If this is a draft, delete it
+                        if (id && sequence?.draft === 1) {
+                          try {
+                            await fetch(`/api/sequences?id=${id}&action=delete-draft`, {
+                              method: 'DELETE'
+                            });
+                            // Navigate to published version or sequences list
+                            if (sequence.publishedVersionId) {
+                              navigate(`/sequences/${sequence.publishedVersionId}`);
+                            } else {
+                              navigate('/sequences');
+                            }
+                          } catch (err) {
+                            console.error('Failed to delete draft', err);
+                            navigate(id ? `/sequences/${id}` : '/sequences');
+                          }
                         } else {
-                          navigate('/sequences');
+                          navigate(id ? `/sequences/${id}` : '/sequences');
                         }
-                      } catch (err) {
-                        console.error('Failed to delete draft', err);
-                        navigate(id ? `/sequences/${id}` : '/sequences');
                       }
-                    } else {
-                      navigate(id ? `/sequences/${id}` : '/sequences');
-                    }
-                  }
-                }}
-                className="btn-secondary"
-              >
-                Cancel
-              </button>
+                    }}
+                    className="btn-secondary"
+                  >
+                    Cancel
+                  </button>
+                </>
+              )}
             </div>
           </form>
         ) : (

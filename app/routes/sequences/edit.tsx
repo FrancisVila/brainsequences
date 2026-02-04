@@ -15,7 +15,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   const user = await requireAuth(request);
   
   // Import server-only modules inside the loader to avoid client bundling
-  const { canEditSequence, createDraftFromPublished } = await import('~/server/db-drizzle.server');
+  const { canEditSequence, createDraftFromPublished, getSequence } = await import('~/server/db-drizzle.server');
   const { db } = await import('~/server/drizzle.server');
   const { sequences } = await import('../../../drizzle/schema');
   const { eq } = await import('drizzle-orm');
@@ -40,9 +40,37 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     throw redirect(`/sequences/${draftResult.id}/edit`);
   }
   
-  return { user };
+  // Get full sequence data for navbar
+  const fullSequence = await getSequence(Number(sequenceId));
+  const isCreator = fullSequence?.userId === user.id;
+  
+  return { 
+    user,
+    sequence: fullSequence,
+    isCreator
+  };
 }
 
 export default function SequenceEdit({ loaderData }: Route.ComponentProps) {
-  return <SequenceViewer editMode={true} />;
+  const { user, sequence, isCreator } = loaderData;
+  
+  if (!sequence) {
+    return <div>Sequence not found</div>;
+  }
+  
+  // Determine if we're editing a draft
+  const isDraft = sequence.draft === 1;
+  const publishedVersionId = sequence.publishedVersionId;
+  
+  return (
+    <SequenceViewer 
+      editMode={true}
+      canEdit={true}
+      isCreator={isCreator}
+      isDraft={isDraft}
+      isPublished={false}
+      hasDraft={false}
+      publishedVersionId={publishedVersionId}
+    />
+  );
 }

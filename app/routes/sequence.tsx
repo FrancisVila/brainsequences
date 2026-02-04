@@ -5,45 +5,75 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   // Dynamic imports to ensure server code stays on server
   const { getCurrentUser } = await import('~/server/auth.server');
   const { canEditSequence, getSequence } = await import('~/server/db-drizzle.server');
+  const { db } = await import('~/server/drizzle.server');
+  const { sequences } = await import('../../drizzle/schema');
+  const { eq, and } = await import('drizzle-orm');
   
   const sequenceId = params.id;
   
   if (!sequenceId) {
-    return { user: null, canEdit: false, sequence: null };
+    return { user: null, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
   }
   
   const user = await getCurrentUser(request);
   const sequence = await getSequence(Number(sequenceId));
   
+  if (!sequence) {
+    return { user, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
+  }
+  
   // Check if user can edit (for showing edit button)
   let canEdit = false;
+  let isCreator = false;
   if (user && sequence) {
     // Published sequences can be viewed by anyone, but only owners/collaborators can edit
     canEdit = await canEditSequence(Number(sequenceId), user.id) || user.role === 'admin';
+    isCreator = sequence.userId === user.id;
   }
   
-  return { user, canEdit, sequence };
+  // Check if there's a draft version for this published sequence
+  let hasDraft = false;
+  if (sequence.isPublishedVersion === 1) {
+    const [draftVersion] = await db.select()
+      .from(sequences)
+      .where(and(
+        eq(sequences.publishedVersionId, Number(sequenceId)),
+        eq(sequences.draft, 1)
+      ))
+      .limit(1);
+    hasDraft = !!draftVersion;
+  }
+  
+  return { 
+    user, 
+    canEdit, 
+    isCreator,
+    sequence,
+    hasDraft,
+    publishedVersionId: sequence.publishedVersionId
+  };
 }
 
 export default function Sequence({ loaderData }: Route.ComponentProps) {
-  const { user, canEdit, sequence } = loaderData;
+  const { user, canEdit, isCreator, sequence, hasDraft, publishedVersionId } = loaderData;
+  
+  if (!sequence) {
+    return <div>Sequence not found</div>;
+  }
+  
+  // Determine if we're viewing a draft
+  const isDraft = sequence.draft === 1;
+  const isPublished = sequence.isPublishedVersion === 1;
   
   return (
-    <>
-      {canEdit && sequence && (
-        <div className='navbar-edit'>
-          <span>You have edit access to this sequence</span>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <a      href={`/sequences/${sequence.id}/edit`}   >
-              Edit Sequence
-            </a>
-            <a  href={`/sequences/${sequence.id}/collaborators`}  >
-              Manage Collaborators
-            </a>
-          </div>
-        </div>
-      )}
-      <SequenceViewer editMode={false} />
-    </>
+    <SequenceViewer 
+      editMode={false} 
+      canEdit={canEdit}
+      isCreator={isCreator}
+      isDraft={isDraft}
+      isPublished={isPublished}
+      hasDraft={hasDraft}
+      publishedVersionId={publishedVersionId}
+    />
   );
 }
