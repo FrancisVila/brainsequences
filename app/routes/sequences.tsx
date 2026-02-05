@@ -36,7 +36,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const newSequenceButtonJSX = <div style={{ marginBottom: "2rem", textAlign: "center" }}>
+const plusButtonJSX = <div style={{ marginBottom: "2rem", textAlign: "center" }}>
           <Link to="/sequences/new" className="btn-primary add-sequence">
              + 
           </Link>
@@ -51,10 +51,10 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
       
       
       {user && mySequences.length > 0 && (
-        <section style={{ marginBottom: "3rem" }}>
+        <section id="my-sequences" style={{ marginBottom: "3rem" }}>
           <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>My Sequences</h2>
           <div className="sequence-list">
-            { newSequenceButtonJSX }
+            { plusButtonJSX }
             {mySequences.map(sequence => (
               <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
@@ -66,11 +66,11 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
         <section>
           {user && mySequences.length > 0 && 
             <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>
-              Other Sequences
+              Published Sequences
             </h2>
           }
           <div className="sequence-list">
-            {user && mySequences.length === 0 && newSequenceButtonJSX }
+            {user && mySequences.length === 0 && plusButtonJSX }
             {otherSequences.map(sequence => (
               <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
@@ -90,6 +90,7 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
 function SequenceCard({ sequence, isDraft }: { sequence: any; isDraft: boolean }) {
   return (
     <Link 
+    id="sequence-card-link"
       to={`/sequences/${sequence.id}`}
       style={{ textDecoration: "none" }}
     >
