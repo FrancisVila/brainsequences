@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import DOMPurify from 'dompurify';
-import '~/routes/sequence.css';
 import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
 import toto from '~/images/tim_taylor.svg';
@@ -434,103 +433,99 @@ export default function SequenceViewer({
             )}
 
             <div id="action-bar" className="form-buttons update-bar">
-                  {/* 'Edit sequence': show if not in edit mode (viewing mode) */}
-                    {canEdit && !editMode && (
-                      <a href={`/sequences/${id}/edit`} style={{ padding: '0.5rem 1rem', background: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
-                        Edit Sequence
-                      </a>
-                    )}
-                    {/* 'Show published': show if viewing draft and a published version exists */}
-                    {canEdit && isDraft && publishedVersionId && (
-                      <a href={`/sequences/${publishedVersionId}`} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: '#28a745', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
-                        Show Published
-                      </a>
-                    )}
-                    {/* 'Show draft': show if viewing published and a draft exists */}
-                    {canEdit &&  isPublished && hasDraft && (
-                      <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: '#ffc107', color: 'black', textDecoration: 'none', borderRadius: '4px' }}>
-                        Show Draft
-                      </a>
-                    )}
-
-                                        {/* 'Manage Collaborators': show if user is the creator */}
-                    {canEdit &&  isCreator && (
-                      <a href={`/sequences/${id}/collaborators`} style={{ padding: '0.5rem 1rem', background: '#6c757d', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
-                        Manage Collaborators
-                      </a>
-                    )}
-
-
+              <button
+                type="submit"
+                disabled={loading || !title.trim()}
+                className="btn-primary"
+              >
+                {loading ? 'Saving...' : (id ? 'Save' : 'Create')}
+              </button>
               
-              {editMode && (
-                <>
-                  <button
-                    type="submit"
-                    disabled={loading || !title.trim()}
-                    className="btn-primary"
-                  >
-                    {loading ? 'Saving...' : (id ? 'Update' : 'Create')}
-                  </button>
-                  
-                  {id && (
-                    <button
-                      type="button"
-                      onClick={handlePublish}
-                      disabled={loading}
-                      className="btn-primary"
-            
-                    >
-                      Publish
-                    </button>
-                  )}
-                  
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      if (window.confirm('Are you sure? This will discard your draft.')) {
-                        // If this is a draft, delete it
-                        if (id && sequence?.draft === 1) {
-                          try {
-                            await fetch(`/api/sequences?id=${id}&action=delete-draft`, {
-                              method: 'DELETE'
-                            });
-                            // Navigate to published version or sequences list
-                            if (sequence.publishedVersionId) {
-                              navigate(`/sequences/${sequence.publishedVersionId}`);
-                            } else {
-                              navigate('/sequences');
-                            }
-                          } catch (err) {
-                            console.error('Failed to delete draft', err);
-                            navigate(id ? `/sequences/${id}` : '/sequences');
-                          }
-                        } else {
-                          navigate(id ? `/sequences/${id}` : '/sequences');
-                        }
-                      }
-                    }}
-                    className="btn-secondary"
-                  >
-                    Cancel
-                  </button>
-                </>
+              {id && (
+                <button
+                  type="button"
+                  onClick={handlePublish}
+                  disabled={loading}
+                  className="btn-primary"
+                >
+                  Publish
+                </button>
               )}
+              
+              <button
+                type="button"
+                onClick={async () => {
+                  if (window.confirm('Are you sure? This will discard your draft.')) {
+                    // If this is a draft, delete it
+                    if (id && sequence?.draft === 1) {
+                      try {
+                        await fetch(`/api/sequences?id=${id}&action=delete-draft`, {
+                          method: 'DELETE'
+                        });
+                        // Navigate to published version or sequences list
+                        if (sequence.publishedVersionId) {
+                          navigate(`/sequences/${sequence.publishedVersionId}`);
+                        } else {
+                          navigate('/sequences');
+                        }
+                      } catch (err) {
+                        console.error('Failed to delete draft', err);
+                        navigate(id ? `/sequences/${id}` : '/sequences');
+                      }
+                    } else {
+                      navigate(id ? `/sequences/${id}` : '/sequences');
+                    }
+                  }
+                }}
+                className="btn-secondary"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         ) : (
-          <h1>
-            <select 
-              value={id}
-              onChange={(e) => window.location.href = `/sequences/${e.target.value}`}
-              className='title'
-            >
-              {allSequences.map((seq: any) => (
-                <option key={seq.id} value={seq.id}>
-                  {seq.title}
-                </option>
-              ))}
-            </select>
-          </h1>
+          <>
+            <h1>
+              <select 
+                value={id}
+                onChange={(e) => window.location.href = `/sequences/${e.target.value}`}
+                className='title'
+              >
+                {allSequences.map((seq: any) => (
+                  <option key={seq.id} value={seq.id}>
+                    {seq.title}
+                  </option>
+                ))}
+              </select>
+            </h1>
+            
+            {/* Action bar for view mode - only show if user has edit permissions */}
+            {canEdit && (
+              <div id="action-bar" className="form-buttons update-bar">
+                <a href={`/sequences/${id}/edit`} className="btn-primary">
+                  Edit Sequence
+                </a>
+                
+                {isDraft && publishedVersionId && (
+                  <a href={`/sequences/${publishedVersionId}`} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                    Show Published
+                  </a>
+                )}
+                
+                {isPublished && hasDraft && (
+                  <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                    Show Draft
+                  </a>
+                )}
+                
+                {isCreator && (
+                  <a href={`/sequences/${id}/collaborators`} className="btn-primary">
+                    Manage Collaborators
+                  </a>
+                )}
+              </div>
+            )}
+          </>
         )}
       </div>
 

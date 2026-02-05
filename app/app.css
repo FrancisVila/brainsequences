@@ -25,6 +25,39 @@ body {
   padding: 8px;
 }
 
+.btn-primary {
+    padding: 0.3rem 0.6rem;
+    font-size: 14px;
+    background-color: #aad400c2;
+    color: #333;
+    border: 1px solid #888;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+
+
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  transform: translateY(0px);
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    padding: 0.3rem 0.6rem;
+    font-size: 14px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 /* .navbar-edit {
   padding-left: 20px;
   background-color: #535d66;
@@ -117,6 +150,45 @@ p {
   font-size: 14px;
 }
 
+/* Sequence edit form styles */
+.sequence-edit-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-error {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    
+}
+
+
+        
+
+
 .floatAtlas {
   float: right;
   width: 600px;
@@ -171,14 +243,43 @@ p {
   border-radius: 10px;
   padding: 1.5rem;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   height: 100%;
   position: relative;
-  transform: translateY(0px);
   max-width: 250px;
   max-height: 120px;
+}
+
+.sequence-card:hover, .add-sequence:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.sequence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.sequence-list * {
+  align-self: stretch;
+}
+
+.add-sequence {
+  position: relative;
+  top: 50px;
+  border-radius: 30px;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 30px;
+  padding: 0;
 }
 
 .draft-badge {
@@ -201,4 +302,197 @@ p {
           font-size: 1.25rem;
           margin-top: 0;
  }
+
+
+.list_of_sequences {
+    position: absolute;
+    opacity: 1;
+    z-index: 10;
+}
+
+.steps {
+    display: flex;
+    column-gap: 20px;
+}
+
+.sequence-container {
+    padding: 20px;
+}
+
+.title-container {
+    margin-bottom: 20px;
+}
+
+.steps-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 1000px;
+}
+
+.step-item {
+
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #AAA;
+    padding: 8px;
+    border-radius: 8px;
+
+}
+
+.step-item.selected {
+    cursor: auto;
+    border: 1px solid #aaa;
+    background-color: #FFF;
+    border: 2px solid #007bff;
+    padding: 15px;
+}
+
+h3.step-title {
+    margin: 0 0 0 0;
+    font-size: 13px;
+}
+
+.step-title-input {
+    font-size: 13px;
+    font-weight: bold  ;
+}
+
+.step-description {
+    margin: 10px 0;
+    color: #333;
+}
+
+.brainparts-container {
+    margin-top: 15px;
+}
+
+.brainparts-title {
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.brainparts-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.graphic-placeholder {
+    padding: 30px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.graphic-placeholder-text {
+    color: #666;
+    font-style: italic;
+}
+
+.brainpart-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.brainpart-image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.brainpart-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.brainpart-image-title {
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+}
+
+.brainpart-no-image {
+    padding: 20px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.no-image-text {
+    font-size: 0.8em;
+    color: #999;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.step-nav-item {
+    cursor: pointer !important ;
+    background-color: transparent;
+    border: none;
+    cursor: default;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+
+.step-nav-item.selected {
+    cursor: default !important ;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    transition: all 0.2s;
+    background-color: #FFF;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
+@media (max-width: 600px) {
+/* Step navigation sidebar */
+.step-navigation {
+    display: none;
+}
+}
+
+@media (min-width: 1100px) {
+    .step-navigation {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-right: 20px;
+        min-width: 80px;
         
+    }
+
+    .caption-text {
+        margin: 0;
+    }
+
+
+
+    .step-nav-item:hover {
+        background-color: #f0f0f0;
+    }
+
+
+}
+
+.steps-main {
+    flex: 1;
+}
+

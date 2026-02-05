@@ -370,26 +370,7 @@ export async function getPublishedSequences() {
     )
   ).orderBy(sequences.id);
   
-  // Get all draft sequences to find which published sequences have active drafts
-  const drafts = await db.select({
-    publishedVersionId: sequences.publishedVersionId
-  }).from(sequences).where(
-    and(
-      eq(sequences.draft, 1),
-      // Only consider drafts that reference a published version
-      // Use sql operator for IS NOT NULL check
-    )
-  );
-  
-  // Create a set of published IDs that have active drafts
-  const publishedIdsWithDrafts = new Set(
-    drafts
-      .filter(d => d.publishedVersionId !== null)
-      .map(d => d.publishedVersionId)
-  );
-  
-  // Filter out published sequences that have active drafts
-  return allPublished.filter(s => !publishedIdsWithDrafts.has(s.id));
+  return allPublished;
 }
 
 export async function getMySequences(userId: number) {

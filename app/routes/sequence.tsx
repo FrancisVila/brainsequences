@@ -22,6 +22,19 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     return { user, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
   }
   
+  // Check if this is a draft and block non-logged-in users
+  if (sequence.draft === 1 && !user) {
+    return { user: null, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
+  }
+  
+  // If draft, check if user has permission to view it
+  if (sequence.draft === 1 && user) {
+    const canView = await canEditSequence(Number(sequenceId), user.id) || user.role === 'admin';
+    if (!canView) {
+      return { user, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
+    }
+  }
+  
   // Check if user can edit (for showing edit button)
   let canEdit = false;
   let isCreator = false;

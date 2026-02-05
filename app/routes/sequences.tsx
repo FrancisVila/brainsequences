@@ -36,21 +36,25 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+const newSequenceButtonJSX = <div style={{ marginBottom: "2rem", textAlign: "center" }}>
+          <Link to="/sequences/new" className="btn-primary add-sequence">
+             + 
+          </Link>
+        </div>
+
 export default function Sequences({ loaderData }: Route.ComponentProps) {
   const { user, mySequences, otherSequences } = loaderData;
   
   return (
     <div className="sequences-page" style={{ padding: "2rem", maxWidth: "1200px", margin: "0 auto" }}>
-      <h1 style={{ marginBottom: "2rem" }}>Brain Sequences</h1>
+      <h1 style={{ marginBottom: "2rem" }}>Brain Sequences </h1>
+      
       
       {user && mySequences.length > 0 && (
         <section style={{ marginBottom: "3rem" }}>
           <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>My Sequences</h2>
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", 
-            gap: "1.5rem" 
-          }}>
+          <div className="sequence-list">
+            { newSequenceButtonJSX }
             {mySequences.map(sequence => (
               <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
@@ -60,14 +64,13 @@ export default function Sequences({ loaderData }: Route.ComponentProps) {
       
       {otherSequences.length > 0 && (
         <section>
-          <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>
-            {user && mySequences.length > 0 ? "Other Sequences" : "Published Sequences"}
-          </h2>
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", 
-            gap: "1.5rem" 
-          }}>
+          {user && mySequences.length > 0 && 
+            <h2 style={{ marginBottom: "1rem", fontSize: "1.5rem" }}>
+              Other Sequences
+            </h2>
+          }
+          <div className="sequence-list">
+            {user && mySequences.length === 0 && newSequenceButtonJSX }
             {otherSequences.map(sequence => (
               <SequenceCard key={sequence.id} sequence={sequence} isDraft={!!sequence.draft} />
             ))}
@@ -90,16 +93,7 @@ function SequenceCard({ sequence, isDraft }: { sequence: any; isDraft: boolean }
       to={`/sequences/${sequence.id}`}
       style={{ textDecoration: "none" }}
     >
-      <div className="sequence-card"
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-4px)";
-        e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
-      }}
-      >
+      <div className="sequence-card">
 
         <h3 className="card-title">
           {sequence.title}
