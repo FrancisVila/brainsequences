@@ -618,8 +618,7 @@ export default function SequenceViewer({
                             <div className="form-field" style={{ marginTop: '1rem' }}>
                               <label className="form-label">Step Links</label>
                               {step.step_links && step.step_links.length > 0 ? (
-                                <div className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' ,                                         border: '1px solid #ddd', 
-                                        }}>
+                                <div id='editLinks' className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                   {step.step_links.map((link, linkIndex) => (
                                       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
                                         <strong>Link #{linkIndex + 1}</strong>
@@ -720,18 +719,18 @@ export default function SequenceViewer({
                                       </div>
   
                                   ))}
+                                  <button
+                                    type="button"
+                                    onClick={() => addStepLink(index)}
+                                    className="btn-primary"
+                                    style={{ marginTop: '0.5rem' }}
+                                  >
+                                    + Add Step Link
+                                  </button>
                                 </div>
                               ) : (
                                 <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
                               )}
-                              <button
-                                type="button"
-                                onClick={() => addStepLink(index)}
-                                className="btn-primary"
-                                style={{ marginTop: '0.5rem' }}
-                              >
-                                + Add Step Link
-                              </button>
                             </div>
 
                             <div className="form-field">
