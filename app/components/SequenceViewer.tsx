@@ -50,8 +50,8 @@ interface SequenceViewerProps {
   publishedVersionId?: number | null;
 }
 
-export default function SequenceViewer({ 
-  editMode, 
+export default function SequenceViewer({
+  editMode,
   canEdit = false,
   isCreator = false,
   isDraft = false,
@@ -61,20 +61,20 @@ export default function SequenceViewer({
 }: SequenceViewerProps) {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   // Shared state
   const [sequence, setSequence] = useState<Sequence | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  
+
   // View mode state
   const [allSequences, setAllSequences] = useState<Sequence[]>([]);
-  
+
   // Edit mode state
   const [title, setTitle] = useState('');
   const [steps, setSteps] = useState<Step[]>([]);
   const [allBrainparts, setAllBrainparts] = useState<Brainpart[]>([]);
-  
+
   // Shared step selection (works for both view and edit mode)
   const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
 
@@ -125,14 +125,14 @@ export default function SequenceViewer({
     try {
       const res = await fetch('/api/brainparts');
       console.log('Response status:', res.status);
-      
+
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
-      
+
       const text = await res.text();
       console.log('Raw response:', text.substring(0, 200));
-      
+
       try {
         const data = JSON.parse(text);
         console.log('Loaded brainparts:', data);
@@ -174,7 +174,7 @@ export default function SequenceViewer({
     try {
       const method = id ? 'PUT' : 'POST';
       const url = id ? `/api/sequences?id=${id}` : '/api/sequences';
-      
+
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
@@ -187,12 +187,12 @@ export default function SequenceViewer({
 
       const data = await res.json();
       const sequenceId = data.id || id;
-      
+
       // Save steps if editing existing sequence
       if (id && steps.length > 0) {
         await saveSteps(Number(sequenceId));
       }
-      
+
       // Stay in edit mode after saving
       navigate(`/sequences/${sequenceId}/edit`);
     } catch (err) {
@@ -295,7 +295,7 @@ export default function SequenceViewer({
   function addBrainpartToStep(stepIndex: number, brainpartId: number) {
     const brainpart = allBrainparts.find(bp => bp.id === brainpartId);
     if (!brainpart) return;
-    
+
     const updated = steps.map((step, idx) => {
       if (idx === stepIndex && !step.brainpart_ids.includes(brainpartId)) {
         return {
@@ -375,7 +375,7 @@ export default function SequenceViewer({
 
   function removeStep(stepIndex: number) {
     const step = steps[stepIndex];
-    
+
     // If step has an ID, delete it from the database
     if (step.id) {
       fetch(`/api/steps?id=${step.id}`, { method: 'DELETE' })
@@ -440,7 +440,7 @@ export default function SequenceViewer({
               >
                 {loading ? 'Saving...' : (id ? 'Save' : 'Create')}
               </button>
-              
+
               {id && (
                 <button
                   type="button"
@@ -451,7 +451,7 @@ export default function SequenceViewer({
                   Publish
                 </button>
               )}
-              
+
               <button
                 type="button"
                 onClick={async () => {
@@ -486,7 +486,7 @@ export default function SequenceViewer({
         ) : (
           <>
             <h1>
-              <select 
+              <select
                 value={id}
                 onChange={(e) => window.location.href = `/sequences/${e.target.value}`}
                 className='title'
@@ -498,26 +498,26 @@ export default function SequenceViewer({
                 ))}
               </select>
             </h1>
-            
+
             {/* Action bar for view mode - only show if user has edit permissions */}
             {canEdit && (
               <div id="action-bar" className="form-buttons update-bar">
                 <a href={`/sequences/${id}/edit`} className="btn-primary">
                   Edit Sequence
                 </a>
-                
+
                 {isDraft && publishedVersionId && (
                   <a href={`/sequences/${publishedVersionId}`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Show Published
                   </a>
                 )}
-                
+
                 {isPublished && hasDraft && (
                   <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Show Draft
                   </a>
                 )}
-                
+
                 {isCreator && (
                   <a href={`/sequences/${id}/collaborators`} className="btn-primary">
                     Manage Collaborators
@@ -549,11 +549,11 @@ export default function SequenceViewer({
             })}
             {/* Add Step button - only in edit mode */}
             {editMode && (
-              <button 
-                type="button" 
-                onClick={addStep} 
+              <button
+                type="button"
+                onClick={addStep}
                 className="btn-primary"
-                
+
               >
                 + Add Step
               </button>
@@ -568,7 +568,7 @@ export default function SequenceViewer({
               {displaySteps.map((step: any, index: number) => {
                 const isSelected = selectedStepIndex === index;
                 return (
-                  <div 
+                  <div
                     id={`step_${step.id || index}`}
                     key={step.id || index}
                     onClick={() => setSelectedStepIndex(index)}
@@ -577,37 +577,37 @@ export default function SequenceViewer({
                     {!isSelected && <h3 className="step-title">#{index + 1} {step.title}</h3>}
 
                     {isSelected && (
-                      
+
                       <>
-                      {editMode ? (
-                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                              <div className="form-field" style={{ display: 'flex', gap: '0.5rem', marginBottom: 0 , justifyContent: 'flex-start', alignItems: 'center' }}>
-                                <span>#{index + 1}</span>
-                                 <input
-                                  type="text"
-                                  value={step.title}
-                                  onChange={(e) => updateStepTitle(index, e.target.value)}
-                                  placeholder="Enter step title"
-                                  className="form-input step-title-input"
-                                />
-                              </div>
-                              <button 
-                                type="button" 
-                                onClick={() => removeStep(index)}
-                                style={{ marginLeft: '1rem', padding: '0.5rem', color: 'red', cursor: 'pointer', border: '1px solid red', borderRadius: '4px', background: 'white' }}
-                              >
-                                🗑️ Delete Step
-                              </button>
+                        {editMode ? (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <div className="form-field" style={{ display: 'flex', gap: '0.5rem', marginBottom: 0, justifyContent: 'flex-start', alignItems: 'center' }}>
+                              <span>#{index + 1}</span>
+                              <input
+                                type="text"
+                                value={step.title}
+                                onChange={(e) => updateStepTitle(index, e.target.value)}
+                                placeholder="Enter step title"
+                                className="form-input step-title-input"
+                              />
                             </div>
-) : 
-                        (<h3 className="step-title">#{index + 1} {step.title}</h3>  )}
+                            <button
+                              type="button"
+                              onClick={() => removeStep(index)}
+                              style={{ marginLeft: '1rem', padding: '0.5rem', color: 'red', cursor: 'pointer', border: '1px solid red', borderRadius: '4px', background: 'white' }}
+                            >
+                              🗑️ Delete Step
+                            </button>
+                          </div>
+                        ) :
+                          (<h3 className="step-title">#{index + 1} {step.title}</h3>)}
                         {editMode ? (
                           // Edit mode content
                           <div>
 
 
                             <div style={{ marginBottom: '1rem' }}>
-                              <AtlasImage 
+                              <AtlasImage
                                 atlasSvg={toto}
                                 highlightedIds={step.brainpart_titles}
                                 stepLinks={step.step_links || []}
@@ -620,104 +620,104 @@ export default function SequenceViewer({
                               {step.step_links && step.step_links.length > 0 ? (
                                 <div id='editLinks' className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                   {step.step_links.map((link, linkIndex) => (
-                                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                                        <strong>Link #{linkIndex + 1}</strong>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>X1</label>
-                                          <input
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value={link.x1}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
-                                            style={{ width: '50px', padding: '0.25rem' }}
-                                          />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>Y1</label>
-                                          <input
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value={link.y1}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
-                                            style={{ width: '50px', padding: '0.25rem' }}
-                                          />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>X2</label>
-                                          <input
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value={link.x2}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
-                                            style={{ width: '50px', padding: '0.25rem' }}
-                                          />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>Y2</label>
-                                          <input
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value={link.y2}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
-                                            style={{ width: '50px', padding: '0.25rem' }}
-                                          />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>Stroke</label>
-                                          <select
-                                            value={link.strokeWidth}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
-                                            style={{ width: '60px', padding: '0.25rem' }}
-                                          >
-                                            <option value="0.1">0.1</option>
-                                            <option value="0.2">0.2</option>
-                                            <option value="0.3">0.3</option>
-                                            <option value="0.4">0.4</option>
-                                            <option value="0.5">0.5</option>
-                                            <option value="0.6">0.6</option>
-                                            <option value="0.7">0.7</option>
-                                            <option value="0.8">0.8</option>
-                                            <option value="0.9">0.9</option>
-                                            <option value="1">1.0</option>
-                                            <option value="1.5">1.5</option>
-                                            <option value="2">2.0</option>
-                                            <option value="3">3.0</option>
-
-                                          </select>
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                          <label style={{ fontSize: '0.85rem' }}>Curve</label>
-                                          <select
-                                            value={link.curvature}
-                                            onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
-                                            style={{ width: '60px', padding: '0.25rem' }}
-                                          >
-                                            <option value="-0.5">-0.5</option>
-                                            <option value="-0.4">-0.4</option>
-                                            <option value="-0.3">-0.3</option>
-                                            <option value="-0.2">-0.2</option>
-                                            <option value="-0.1">-0.1</option>
-                                            <option value="0">0</option>
-                                            <option value="0.1">0.1</option>
-                                            <option value="0.2">0.2</option>
-                                            <option value="0.3">0.3</option>
-                                            <option value="0.4">0.4</option>
-                                            <option value="0.5">0.5</option>
-                                          </select>
-                                        </div>
-                                                                                <button
-                                          type="button"
-                                          onClick={() => removeStepLink(index, linkIndex)}
-                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
-                                        >
-                                          ✕
-                                        </button>
+                                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                      <strong>Link #{linkIndex + 1}</strong>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>X1</label>
+                                        <input
+                                          type="number"
+                                          min="0"
+                                          max="100"
+                                          value={link.x1}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
+                                          style={{ width: '50px', padding: '0.25rem' }}
+                                        />
                                       </div>
-  
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>Y1</label>
+                                        <input
+                                          type="number"
+                                          min="0"
+                                          max="100"
+                                          value={link.y1}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
+                                          style={{ width: '50px', padding: '0.25rem' }}
+                                        />
+                                      </div>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>X2</label>
+                                        <input
+                                          type="number"
+                                          min="0"
+                                          max="100"
+                                          value={link.x2}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
+                                          style={{ width: '50px', padding: '0.25rem' }}
+                                        />
+                                      </div>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>Y2</label>
+                                        <input
+                                          type="number"
+                                          min="0"
+                                          max="100"
+                                          value={link.y2}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
+                                          style={{ width: '50px', padding: '0.25rem' }}
+                                        />
+                                      </div>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>Stroke</label>
+                                        <select
+                                          value={link.strokeWidth}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
+                                          style={{ width: '60px', padding: '0.25rem' }}
+                                        >
+                                          <option value="0.1">0.1</option>
+                                          <option value="0.2">0.2</option>
+                                          <option value="0.3">0.3</option>
+                                          <option value="0.4">0.4</option>
+                                          <option value="0.5">0.5</option>
+                                          <option value="0.6">0.6</option>
+                                          <option value="0.7">0.7</option>
+                                          <option value="0.8">0.8</option>
+                                          <option value="0.9">0.9</option>
+                                          <option value="1">1.0</option>
+                                          <option value="1.5">1.5</option>
+                                          <option value="2">2.0</option>
+                                          <option value="3">3.0</option>
+
+                                        </select>
+                                      </div>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                        <label style={{ fontSize: '0.85rem' }}>Curve</label>
+                                        <select
+                                          value={link.curvature}
+                                          onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
+                                          style={{ width: '60px', padding: '0.25rem' }}
+                                        >
+                                          <option value="-0.5">-0.5</option>
+                                          <option value="-0.4">-0.4</option>
+                                          <option value="-0.3">-0.3</option>
+                                          <option value="-0.2">-0.2</option>
+                                          <option value="-0.1">-0.1</option>
+                                          <option value="0">0</option>
+                                          <option value="0.1">0.1</option>
+                                          <option value="0.2">0.2</option>
+                                          <option value="0.3">0.3</option>
+                                          <option value="0.4">0.4</option>
+                                          <option value="0.5">0.5</option>
+                                        </select>
+                                      </div>
+                                      <button
+                                        type="button"
+                                        onClick={() => removeStepLink(index, linkIndex)}
+                                        style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                      >
+                                        ✕
+                                      </button>
+                                    </div>
+
                                   ))}
                                   <button
                                     type="button"
@@ -734,30 +734,31 @@ export default function SequenceViewer({
                             </div>
 
                             <div className="form-field">
-                              
-                              <label className="form-label">Brain Parts</label>
-                              {step.brainpart_titles.length > 0 ? (
-                                <ul className="edit-section" style={{ listStyle: 'none', padding: 0 }}>
-                                  {step.brainpart_titles.map((title: string, bpIndex: number) => (
-                                    <li key={bpIndex} className="edit-section-brainpart" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem' }}>
-                                      <span>{title}</span>
-                                      <button
-                                        type="button"
-                                        onClick={() => removeBrainpartFromStep(index, bpIndex)}
-                                        style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
-                                      >
-                                        ✕
-                                      </button>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : (
-                                <p style={{ color: '#999', fontStyle: 'italic' }}>No brain parts selected</p>
-                              )}
 
-                              <div style={{ marginTop: '0.5rem' }}>
-                                <label className="form-label">Add Brain Part</label>
-                                <select 
+                              <label className="form-label">Brain Parts</label>
+                              <div id="editBrainParts" className="edit-section">
+                                {step.brainpart_titles.length > 0 ? (
+                                  <ul  style={{ listStyle: 'none', padding: 0, display: 'flex',
+  gap: '10px', }}>
+                                    {step.brainpart_titles.map((title: string, bpIndex: number) => (
+                                      <li key={bpIndex} className="edit-section-brainpart" 
+                                      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <span>{title}</span>
+                                        <button
+                                          type="button"
+                                          onClick={() => removeBrainpartFromStep(index, bpIndex)}
+                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                        >
+                                          ✕
+                                        </button>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <p style={{ color: '#999', fontStyle: 'italic' }}>No brain parts selected</p>
+                                )}
+                                <select
+                                  id="addBrainpartSelect"
                                   value=""
                                   onChange={(e) => {
                                     const value = e.target.value;
@@ -766,10 +767,10 @@ export default function SequenceViewer({
                                       addBrainpartToStep(index, parseInt(value));
                                     }
                                   }}
-                                  className="form-input"
-                                  style={{ cursor: 'pointer' }}
+                                  className="form-input btn-primary"
+                                  style={{ cursor: 'pointer', width: '150px' }}
                                 >
-                                  <option value="">-- Select a brain part --</option>
+                                  <option value="">+ Add brain part</option>
                                   {allBrainparts.length === 0 && (
                                     <option disabled>Loading...</option>
                                   )}
@@ -781,6 +782,11 @@ export default function SequenceViewer({
                                     ))}
                                 </select>
                               </div>
+
+
+
+
+
                             </div>
 
                             <div className="form-field" style={{ marginTop: '1rem' }}>
@@ -798,15 +804,15 @@ export default function SequenceViewer({
                           // View mode content
                           <>
                             {console.log('step data', step)}
-                            <AtlasImage 
+                            <AtlasImage
                               atlasSvg={toto}
                               highlightedIds={step.brainpart_titles}
                               stepLinks={step.step_links || []}
                             />
                             {step.description && (
-                              <div 
+                              <div
                                 className="step-description"
-                                dangerouslySetInnerHTML={{ 
+                                dangerouslySetInnerHTML={{
                                   __html: DOMPurify.sanitize(step.description, {
                                     ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'img'],
                                     ALLOWED_ATTR: ['href', 'target', 'data-part', 'src', 'alt'],
@@ -839,9 +845,9 @@ export default function SequenceViewer({
             <div>
               <p>No steps in this sequence</p>
               {editMode && (
-                <button 
-                  type="button" 
-                  onClick={addStep} 
+                <button
+                  type="button"
+                  onClick={addStep}
                   className="btn-primary"
                   style={{ marginTop: '1rem' }}
                 >
