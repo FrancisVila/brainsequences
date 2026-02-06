@@ -185,8 +185,22 @@ p {
     
 }
 
+.form-field {
+    max-width: 800px;
+    margin-top: 20px;
+}
 
-        
+.edit-section {
+  padding: 1rem;
+  border-radius: 4px;
+  background: #f9f9f9;
+  max-width: 800px;
+  border: 1px solid #ddd;;
+}
+
+.edit-section-brainpart {
+  width: 250px;
+}
 
 
 .floatAtlas {

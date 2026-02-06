@@ -618,21 +618,9 @@ export default function SequenceViewer({
                             <div className="form-field" style={{ marginTop: '1rem' }}>
                               <label className="form-label">Step Links</label>
                               {step.step_links && step.step_links.length > 0 ? (
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' ,                                         border: '1px solid #ddd', 
+                                        }}>
                                   {step.step_links.map((link, linkIndex) => (
-                                    <div 
-                                      key={linkIndex} 
-                                      style={{ 
-                                        border: '1px solid #ddd', 
-                                        padding: '1rem', 
-                                        borderRadius: '4px',
-                                        background: '#f9f9f9'
-                                      }}
-                                    >
-                                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                        
-
-                                      </div>
                                       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
                                         <strong>Link #{linkIndex + 1}</strong>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -696,6 +684,10 @@ export default function SequenceViewer({
                                             <option value="0.8">0.8</option>
                                             <option value="0.9">0.9</option>
                                             <option value="1">1.0</option>
+                                            <option value="1.5">1.5</option>
+                                            <option value="2">2.0</option>
+                                            <option value="3">3.0</option>
+
                                           </select>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -726,7 +718,7 @@ export default function SequenceViewer({
                                           ✕
                                         </button>
                                       </div>
-                                    </div>
+  
                                   ))}
                                 </div>
                               ) : (
@@ -746,9 +738,9 @@ export default function SequenceViewer({
                               
                               <label className="form-label">Brain Parts</label>
                               {step.brainpart_titles.length > 0 ? (
-                                <ul style={{ listStyle: 'none', padding: 0 }}>
+                                <ul className="edit-section" style={{ listStyle: 'none', padding: 0 }}>
                                   {step.brainpart_titles.map((title: string, bpIndex: number) => (
-                                    <li key={bpIndex} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', border: '1px solid #eee', marginBottom: '0.5rem', borderRadius: '4px' }}>
+                                    <li key={bpIndex} className="edit-section-brainpart" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem' }}>
                                       <span>{title}</span>
                                       <button
                                         type="button"
