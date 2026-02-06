@@ -62,7 +62,7 @@ The application uses Gmail SMTP to send collaboration invitation emails. Follow 
 2. Edit `.env` and add your Gmail credentials:
    ```bash
    SMTP_USER=noreply.brainsequences@gmail.com
-   SMTP_PASS=abcd-efgh-ijkl-mnop  # Your 16-character app password (with or without spaces)
+   SMTP_PASS=****************  # Your 16-character app password (with or without spaces)
    SMTP_HOST=smtp.gmail.com
    SMTP_PORT=587
    APP_URL=http://localhost:5173

@@ -192,22 +192,32 @@ p {
 
 .edit-section {
   padding: 1rem;
-  border-radius: 4px;
-  background: #f9f9f9;
+  border-radius: 10px;
+  background: #eee;
   max-width: 800px;
-  border: 1px solid #ddd;;
+  border: 1px solid #333;
 }
 
 .edit-section-brainpart {
   border: 1px solid #333;;
-  width: 250px;
+  width: 220px;
   border-radius: 3px;
   padding: 0;
   padding-left: 5px;
   background-color: #FFF;
 }
 
+#editBrainParts {
+  padding-top: 0;
+}
 
+.delete-button {
+  color: red; cursor: pointer; border: medium; background: none; font-size: 1.2rem;"
+}
+
+.edit-section-brainpart:hover {
+  border: 1px solid #333;
+}
 
 .floatAtlas {
   float: right;
@@ -511,4 +521,11 @@ h3.step-title {
 .steps-main {
     flex: 1;
 }
-
+.rich-text-editor {
+    border: 1px solid #333 !important;
+    border-radius: 10px !important;
+    margin-top: 0 !important;
+}
+.rich-text-editor .toolbar{
+    background-color: #eee;;
+}

@@ -667,7 +667,7 @@ export default function SequenceViewer({
                                         />
                                       </div>
                                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>Stroke</label>
+                                        <label style={{ fontSize: '0.85rem' }}>Width</label>
                                         <select
                                           value={link.strokeWidth}
                                           onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
@@ -738,8 +738,7 @@ export default function SequenceViewer({
                               <label className="form-label">Brain Parts</label>
                               <div id="editBrainParts" className="edit-section">
                                 {step.brainpart_titles.length > 0 ? (
-                                  <ul  style={{ listStyle: 'none', padding: 0, display: 'flex',
-  gap: '10px', }}>
+                                  <ul  style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', columnGap: '30px' }}>
                                     {step.brainpart_titles.map((title: string, bpIndex: number) => (
                                       <li key={bpIndex} className="edit-section-brainpart" 
                                       style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -747,7 +746,7 @@ export default function SequenceViewer({
                                         <button
                                           type="button"
                                           onClick={() => removeBrainpartFromStep(index, bpIndex)}
-                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                          className='delete-button'
                                         >
                                           ✕
                                         </button>
