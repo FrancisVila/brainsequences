@@ -689,12 +689,12 @@ export default function SequenceViewer({
                             {/* Step Links Editor */}
                             <div className="form-field" style={{ marginTop: '1rem' }}>
                               <label className="form-label">Step Links</label>
-                              <div id='editLinks' className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                              <div id='editLinks' className="edit-section" >
 
                                 {step.step_links && step.step_links.length > 0 ? (
-                                  <>
+                                  <div>
                                     {step.step_links.map((link, linkIndex) => (
-                                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                      <div className='edit-single-link' >
                                         <strong>Link #{linkIndex + 1}</strong>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                                           <label style={{ fontSize: '0.85rem' }}>X1</label>
@@ -793,7 +793,7 @@ export default function SequenceViewer({
                                       </div>
 
                                     ))}
-                                  </>
+                                  </div>
                                   
                               
                               ) : (
@@ -803,7 +803,6 @@ export default function SequenceViewer({
                                 type="button"
                                 onClick={() => addStepLink(index)}
                                 className="btn-primary"
-                                style={{ marginTop: '0.5rem' }}
                               >
                                 + Add Step Link
                               </button>
