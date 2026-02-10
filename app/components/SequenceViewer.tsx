@@ -484,8 +484,8 @@ export default function SequenceViewer({
                 {loading ? 'Saving...' : (id ? 'Save' : 'Create')}
               </button>
 
-              {/* Publish button - condition: id exists */}
-              {id && (
+              {/* Publish button - condition: id exists AND sequence is loaded */}
+              {id && sequence && (
                 <button
                   type="button"
                   onClick={handlePublish}
@@ -504,7 +504,7 @@ export default function SequenceViewer({
                   disabled={loading}
                   className="btn-secondary"
                 >
-                  Unpublish
+                  Unpublish sequence
                 </button>
               )}
 
@@ -523,20 +523,21 @@ export default function SequenceViewer({
                         if (sequence.publishedVersionId) {
                           navigate(`/sequences/${sequence.publishedVersionId}`);
                         } else {
-                          navigate('/sequences');
+                          navigate('/');
                         }
                       } catch (err) {
                         console.error('Failed to delete draft', err);
-                        navigate(id ? `/sequences/${id}` : '/sequences');
+                        navigate('/');
                       }
                     } else {
-                      navigate(id ? `/sequences/${id}` : '/sequences');
+                      // If sequence exists, go to its view page, otherwise go home
+                      navigate(id ? `/sequences/${id}` : '/');
                     }
                   }
                 }}
                 className="btn-secondary"
               >
-                Cancel
+                Cancel changes
               </button>
             </div>
           </form>
