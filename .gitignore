@@ -1,5 +1,6 @@
 .DS_Store
 /node_modules/
+/app/images/wikimedia_draft
 
 # React Router
 /.react-router/

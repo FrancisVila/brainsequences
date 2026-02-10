@@ -61,7 +61,7 @@ export async function loader({ request }) {
 // POST /api/sequences - create a new sequence
 export async function action({ request }) {
   // Import server modules dynamically inside action
-  const { createSequence, updateSequence, canEditSequence } = await import('../../server/db-drizzle.server');
+  const { createSequence, updateSequence, canEditSequence, getSequence } = await import('../../server/db-drizzle.server');
   const { requireAuth } = await import('../../server/auth.server');
   const { db } = await import('../../server/drizzle.server');
   const { sequences, steps } = await import('../../../drizzle/schema');
@@ -274,6 +274,103 @@ export async function action({ request }) {
       } catch (error) {
         console.error('Failed to publish sequence:', error);
         return new Response(JSON.stringify({ error: 'Failed to publish sequence' }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    if (action === 'unpublish') {
+      const sequenceId = Number(id);
+
+      // Check if user can edit this sequence
+      const canEdit = await canEditSequence(sequenceId, user.id);
+      if (!canEdit && user.role !== 'admin') {
+        return new Response(JSON.stringify({ error: 'Forbidden - you do not have permission to unpublish this sequence' }), {
+          status: 403,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      try {
+        // Get the sequence
+        const [sequence] = await db.select().from(sequences).where(eq(sequences.id, sequenceId)).limit(1);
+        
+        if (!sequence) {
+          return new Response(JSON.stringify({ error: 'Sequence not found' }), {
+            status: 404,
+            headers: { 'Content-Type': 'application/json' },
+          });
+        }
+
+        let draftId = sequenceId;
+        let publishedId = sequence.publishedVersionId;
+
+        // Check if this is a draft with a published version
+        if (sequence.draft === 1 && sequence.publishedVersionId) {
+          // Already have the draft ID
+          publishedId = sequence.publishedVersionId;
+        } 
+        // Check if this is a published sequence
+        else if (sequence.draft === 0 && sequence.isPublishedVersion === 1) {
+          // Find the draft that references this published version
+          const [draft] = await db.select().from(sequences).where(eq(sequences.publishedVersionId, sequenceId)).limit(1);
+          
+          if (draft) {
+            draftId = draft.id;
+            publishedId = sequenceId;
+          } else {
+            // No draft exists, so just convert the published sequence to a draft
+            await db.update(sequences)
+              .set({
+                draft: 1,
+                isPublishedVersion: 0,
+                currentlyEditedBy: null,
+              })
+              .where(eq(sequences.id, sequenceId));
+            
+            // Update all steps to be drafts
+            await db.update(steps)
+              .set({ draft: 1 })
+              .where(eq(steps.sequenceId, sequenceId));
+            
+            return new Response(JSON.stringify({ 
+              success: true,
+              id: sequenceId,
+            }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
+        } else {
+          return new Response(JSON.stringify({ error: 'Cannot unpublish: not a published sequence' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Delete the published version (cascade will handle steps and relations)
+        await db.delete(sequences).where(eq(sequences.id, publishedId));
+        
+        // Update the draft to remove the published version reference
+        await db.update(sequences)
+          .set({
+            publishedVersionId: null,
+            currentlyEditedBy: null,
+          })
+          .where(eq(sequences.id, draftId));
+        
+        return new Response(JSON.stringify({ 
+          success: true,
+          id: draftId,
+        }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+
+      } catch (error) {
+        console.error('Failed to unpublish sequence:', error);
+        return new Response(JSON.stringify({ error: 'Failed to unpublish sequence' }), {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
         });

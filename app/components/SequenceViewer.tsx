@@ -272,6 +272,44 @@ export default function SequenceViewer({
     }
   }
 
+  async function handleUnpublish() {
+    if (!id) {
+      setError('Cannot unpublish: sequence not saved');
+      return;
+    }
+
+    if (!confirm('Are you sure you want to unpublish this sequence? This will remove it from public view and you will continue editing as a draft.')) {
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch(`/api/sequences?id=${id}&action=unpublish`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to unpublish sequence');
+      }
+
+      const data = await res.json();
+      // Navigate to the draft version for editing
+      if (editMode) {
+        window.location.reload();
+      } else {
+        navigate(`/sequences/${data.id}/edit`);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to unpublish sequence');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function addStep() {
     const newSteps = [...steps, { title: '', brainpart_ids: [], brainpart_titles: [] }];
     setSteps(newSteps);
@@ -448,7 +486,18 @@ export default function SequenceViewer({
                   disabled={loading}
                   className="btn-primary"
                 >
-                  Publish
+                  {publishedVersionId ? 'Publish Changes' : 'Publish'}
+                </button>
+              )}
+
+              {id && publishedVersionId && canEdit && (
+                <button
+                  type="button"
+                  onClick={handleUnpublish}
+                  disabled={loading}
+                  className="btn-secondary"
+                >
+                  Unpublish
                 </button>
               )}
 
@@ -516,6 +565,17 @@ export default function SequenceViewer({
                   <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Show Draft
                   </a>
+                )}
+
+                {isPublished && (
+                  <button
+                    type="button"
+                    onClick={handleUnpublish}
+                    disabled={loading}
+                    className="btn-secondary"
+                  >
+                    Unpublish
+                  </button>
                 )}
 
                 {isCreator && (
