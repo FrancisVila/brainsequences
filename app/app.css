@@ -535,3 +535,14 @@ h3.step-title {
 .rich-text-editor .toolbar{
     background-color: #eee;;
 }
+
+.help-icon {
+  border: 1px solid #333 ;
+  border-radius: 50%;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: #eee;
+  line-height: 20px;
+}

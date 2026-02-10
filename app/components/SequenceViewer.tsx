@@ -77,6 +77,10 @@ export default function SequenceViewer({
 
   // Shared step selection (works for both view and edit mode)
   const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
+  
+  // Help section visibility
+  const [showStepLinksHelp, setShowStepLinksHelp] = useState(false);
+  const [showBrainPartsHelp, setShowBrainPartsHelp] = useState(false);
 
   useEffect(() => {
     if (editMode) {
@@ -688,7 +692,28 @@ export default function SequenceViewer({
 
                             {/* Step Links Editor */}
                             <div className="form-field" style={{ marginTop: '1rem' }}>
-                              <label className="form-label">Step Links</label>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                <label className="form-label" style={{ marginBottom: 0 }}>Step Links</label>
+                                <button
+                                  type="button"
+                                  onClick={() => setShowStepLinksHelp(!showStepLinksHelp)}
+                                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '0.25rem' }}
+                                  title="Show help"
+                                >
+                                  <span className='help-icon'> ? </span>
+                                </button>
+                              </div>
+                              {showStepLinksHelp && (
+                                <div >
+                                  <p style={{ margin: '0.5rem 0 0 0' }}>Step links are visual arrows connecting different brain regions. Configure each link's position and appearance:</p>
+                                  <ul style={{ margin: '0.5rem 0 0 1rem', paddingLeft: '1rem' }}>
+                                    <li><strong>X1, Y1:</strong> Starting position (0-100% of image)</li>
+                                    <li><strong>X2, Y2:</strong> Ending position (0-100% of image)</li>
+                                    <li><strong>Width:</strong> Thickness of the arrow line</li>
+                                    <li><strong>Curve:</strong> Arrow curvature (-0.5 to 0.5, negative curves left, positive curves right)</li>
+                                  </ul>
+                                </div>
+                              )}
                               <div id='editLinks' className="edit-section" >
 
                                 {step.step_links && step.step_links.length > 0 ? (
@@ -811,8 +836,28 @@ export default function SequenceViewer({
 
 
                             <div className="form-field">
-
-                              <label className="form-label">Brain Parts</label>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                <label className="form-label" style={{ marginBottom: 0 }}>Brain Parts</label>
+                                <button
+                                  type="button"
+                                  onClick={() => setShowBrainPartsHelp(!showBrainPartsHelp)}
+                                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '0.25rem' }}
+                                  title="Show help"
+                                >
+                                  <span className='help-icon'> ? </span>
+                                </button>
+                              </div>
+                              {showBrainPartsHelp && (
+                                <div >
+                                  <p style={{ margin: '0.5rem 0 0 0' }}>Select brain regions that are relevant to this step. These regions will be highlighted in the brain atlas image above.</p>
+                                  <ul style={{ margin: '0.5rem 0 0 1rem', paddingLeft: '1rem' }}>
+                                    <li>Click the <strong>"+ Add brain part"</strong> dropdown to select regions</li>
+                                    <li>Added regions will be highlighted in the brain image</li>
+                                    <li>Click the <strong>✕</strong> button next to any region to remove it</li>
+                                    <li>You can reference brain parts in the description below by typing their names</li>
+                                  </ul>
+                                </div>
+                              )}
                               <div id="editBrainParts" className="edit-section">
                                 {step.brainpart_titles.length > 0 ? (
                                   <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', columnGap: '30px' }}>
