@@ -537,7 +537,7 @@ export default function SequenceViewer({
                 }}
                 className="btn-secondary"
               >
-                Cancel changes
+                Cancel draft
               </button>
             </div>
           </form>
