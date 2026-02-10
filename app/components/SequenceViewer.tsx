@@ -791,7 +791,12 @@ export default function SequenceViewer({
                                     </div>
 
                                   ))}
-                                  <button
+
+                                </div>
+                              ) : (
+                                <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
+                              )}
+                                 <button
                                     type="button"
                                     onClick={() => addStepLink(index)}
                                     className="btn-primary"
@@ -799,10 +804,6 @@ export default function SequenceViewer({
                                   >
                                     + Add Step Link
                                   </button>
-                                </div>
-                              ) : (
-                                <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
-                              )}
                             </div>
 
                             <div className="form-field">
