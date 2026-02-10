@@ -574,13 +574,13 @@ export default function SequenceViewer({
                   </a>
                 )}
 
-                                {/* Manage Collaborators button - condition: isCreator */}
+                {/* Manage Collaborators button - condition: isCreator */}
                 {isCreator && (
                   <a href={`/sequences/${id}/collaborators`} className="btn-primary">
                     Manage Collaborators
                   </a>
                 )}
-              
+
 
                 {/* Unpublish button - condition: isPublished */}
                 {isPublished && (
@@ -593,7 +593,7 @@ export default function SequenceViewer({
                     Unpublish
                   </button>
                 )}
-                </div>
+              </div>
 
 
             )}
@@ -689,132 +689,137 @@ export default function SequenceViewer({
                             {/* Step Links Editor */}
                             <div className="form-field" style={{ marginTop: '1rem' }}>
                               <label className="form-label">Step Links</label>
-                              {step.step_links && step.step_links.length > 0 ? (
-                                <div id='editLinks' className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                  {step.step_links.map((link, linkIndex) => (
-                                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                                      <strong>Link #{linkIndex + 1}</strong>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>X1</label>
-                                        <input
-                                          type="number"
-                                          min="0"
-                                          max="100"
-                                          value={link.x1}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
-                                          style={{ width: '50px', padding: '0.25rem' }}
-                                        />
-                                      </div>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>Y1</label>
-                                        <input
-                                          type="number"
-                                          min="0"
-                                          max="100"
-                                          value={link.y1}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
-                                          style={{ width: '50px', padding: '0.25rem' }}
-                                        />
-                                      </div>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>X2</label>
-                                        <input
-                                          type="number"
-                                          min="0"
-                                          max="100"
-                                          value={link.x2}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
-                                          style={{ width: '50px', padding: '0.25rem' }}
-                                        />
-                                      </div>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>Y2</label>
-                                        <input
-                                          type="number"
-                                          min="0"
-                                          max="100"
-                                          value={link.y2}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
-                                          style={{ width: '50px', padding: '0.25rem' }}
-                                        />
-                                      </div>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>Width</label>
-                                        <select
-                                          value={link.strokeWidth}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
-                                          style={{ width: '60px', padding: '0.25rem' }}
+                              <div id='editLinks' className="edit-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+                                {step.step_links && step.step_links.length > 0 ? (
+                                  <>
+                                    {step.step_links.map((link, linkIndex) => (
+                                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                        <strong>Link #{linkIndex + 1}</strong>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>X1</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.x1}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'x1', Number(e.target.value))}
+                                            style={{ width: '50px', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Y1</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.y1}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'y1', Number(e.target.value))}
+                                            style={{ width: '50px', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>X2</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.x2}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'x2', Number(e.target.value))}
+                                            style={{ width: '50px', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Y2</label>
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="100"
+                                            value={link.y2}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'y2', Number(e.target.value))}
+                                            style={{ width: '50px', padding: '0.25rem' }}
+                                          />
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Width</label>
+                                          <select
+                                            value={link.strokeWidth}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'strokeWidth', Number(e.target.value))}
+                                            style={{ width: '60px', padding: '0.25rem' }}
+                                          >
+                                            <option value="0.1">0.1</option>
+                                            <option value="0.2">0.2</option>
+                                            <option value="0.3">0.3</option>
+                                            <option value="0.4">0.4</option>
+                                            <option value="0.5">0.5</option>
+                                            <option value="0.6">0.6</option>
+                                            <option value="0.7">0.7</option>
+                                            <option value="0.8">0.8</option>
+                                            <option value="0.9">0.9</option>
+                                            <option value="1">1.0</option>
+                                            <option value="1.5">1.5</option>
+                                            <option value="2">2.0</option>
+                                            <option value="3">3.0</option>
+
+                                          </select>
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                          <label style={{ fontSize: '0.85rem' }}>Curve</label>
+                                          <select
+                                            value={link.curvature}
+                                            onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
+                                            style={{ width: '60px', padding: '0.25rem' }}
+                                          >
+                                            <option value="-0.5">-0.5</option>
+                                            <option value="-0.4">-0.4</option>
+                                            <option value="-0.3">-0.3</option>
+                                            <option value="-0.2">-0.2</option>
+                                            <option value="-0.1">-0.1</option>
+                                            <option value="0">0</option>
+                                            <option value="0.1">0.1</option>
+                                            <option value="0.2">0.2</option>
+                                            <option value="0.3">0.3</option>
+                                            <option value="0.4">0.4</option>
+                                            <option value="0.5">0.5</option>
+                                          </select>
+                                        </div>
+                                        <button
+                                          type="button"
+                                          onClick={() => removeStepLink(index, linkIndex)}
+                                          style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
                                         >
-                                          <option value="0.1">0.1</option>
-                                          <option value="0.2">0.2</option>
-                                          <option value="0.3">0.3</option>
-                                          <option value="0.4">0.4</option>
-                                          <option value="0.5">0.5</option>
-                                          <option value="0.6">0.6</option>
-                                          <option value="0.7">0.7</option>
-                                          <option value="0.8">0.8</option>
-                                          <option value="0.9">0.9</option>
-                                          <option value="1">1.0</option>
-                                          <option value="1.5">1.5</option>
-                                          <option value="2">2.0</option>
-                                          <option value="3">3.0</option>
-
-                                        </select>
+                                          ✕
+                                        </button>
                                       </div>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <label style={{ fontSize: '0.85rem' }}>Curve</label>
-                                        <select
-                                          value={link.curvature}
-                                          onChange={(e) => updateStepLink(index, linkIndex, 'curvature', Number(e.target.value))}
-                                          style={{ width: '60px', padding: '0.25rem' }}
-                                        >
-                                          <option value="-0.5">-0.5</option>
-                                          <option value="-0.4">-0.4</option>
-                                          <option value="-0.3">-0.3</option>
-                                          <option value="-0.2">-0.2</option>
-                                          <option value="-0.1">-0.1</option>
-                                          <option value="0">0</option>
-                                          <option value="0.1">0.1</option>
-                                          <option value="0.2">0.2</option>
-                                          <option value="0.3">0.3</option>
-                                          <option value="0.4">0.4</option>
-                                          <option value="0.5">0.5</option>
-                                        </select>
-                                      </div>
-                                      <button
-                                        type="button"
-                                        onClick={() => removeStepLink(index, linkIndex)}
-                                        style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
-                                      >
-                                        ✕
-                                      </button>
-                                    </div>
 
-                                  ))}
-
-                                </div>
+                                    ))}
+                                  </>
+                                  
+                              
                               ) : (
-                                <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
+                              <p style={{ color: '#999', fontStyle: 'italic' }}>No step links</p>
                               )}
-                                 <button
-                                    type="button"
-                                    onClick={() => addStepLink(index)}
-                                    className="btn-primary"
-                                    style={{ marginTop: '0.5rem' }}
-                                  >
-                                    + Add Step Link
-                                  </button>
+                              <button
+                                type="button"
+                                onClick={() => addStepLink(index)}
+                                className="btn-primary"
+                                style={{ marginTop: '0.5rem' }}
+                              >
+                                + Add Step Link
+                              </button>
                             </div>
+                            </div>
+
 
                             <div className="form-field">
 
                               <label className="form-label">Brain Parts</label>
                               <div id="editBrainParts" className="edit-section">
                                 {step.brainpart_titles.length > 0 ? (
-                                  <ul  style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', columnGap: '30px' }}>
+                                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', columnGap: '30px' }}>
                                     {step.brainpart_titles.map((title: string, bpIndex: number) => (
-                                      <li key={bpIndex} className="edit-section-brainpart" 
-                                      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                      <li key={bpIndex} className="edit-section-brainpart"
+                                        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <span>{title}</span>
                                         <button
                                           type="button"
