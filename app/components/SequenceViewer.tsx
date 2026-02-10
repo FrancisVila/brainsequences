@@ -443,17 +443,6 @@ export default function SequenceViewer({
   const displayTitle = editMode ? title : sequence?.title;
   const selectedStep = selectedStepIndex !== null ? displaySteps[selectedStepIndex] : null;
 
-  // Button visibility conditions - Edit Mode
-  const showPublishButton = !!id;
-  const showUnpublishButtonInEdit = !!id && !!publishedVersionId && canEdit;
-
-  // Button visibility conditions - View Mode
-  const showEditSequenceButton = canEdit;
-  const showPublishedVersionLink = isDraft && !!publishedVersionId;
-  const showDraftVersionLink = isPublished && hasDraft;
-  const showUnpublishButtonInView = isPublished;
-  const showManageCollaboratorsButton = isCreator;
-
   return (
     <div className={`sequence-container ${editMode ? 'edit-mode' : 'view-mode'}`}>
       {/* Title Section */}
@@ -482,6 +471,7 @@ export default function SequenceViewer({
             )}
 
             <div id="action-bar" className="form-buttons update-bar">
+              {/* Save button - always visible in edit mode */}
               <button
                 type="submit"
                 disabled={loading || !title.trim()}
@@ -490,7 +480,8 @@ export default function SequenceViewer({
                 {loading ? 'Saving...' : (id ? 'Save' : 'Create')}
               </button>
 
-              {showPublishButton && (
+              {/* Publish button - condition: id exists */}
+              {id && (
                 <button
                   type="button"
                   onClick={handlePublish}
@@ -501,7 +492,8 @@ export default function SequenceViewer({
                 </button>
               )}
 
-              {showUnpublishButtonInEdit && (
+              {/* Unpublish button - conditions: id exists AND publishedVersionId exists AND canEdit */}
+              {id && publishedVersionId && canEdit && (
                 <button
                   type="button"
                   onClick={handleUnpublish}
@@ -512,6 +504,7 @@ export default function SequenceViewer({
                 </button>
               )}
 
+              {/* Cancel button - always visible in edit mode */}
               <button
                 type="button"
                 onClick={async () => {
@@ -560,25 +553,37 @@ export default function SequenceViewer({
             </h1>
 
             {/* Action bar for view mode - only show if user has edit permissions */}
-            {showEditSequenceButton && (
+            {canEdit && (
               <div id="action-bar" className="form-buttons update-bar">
+                {/* Edit Sequence button - condition: canEdit */}
                 <a href={`/sequences/${id}/edit`} className="btn-primary">
                   Edit Sequence
                 </a>
 
-                {showPublishedVersionLink && (
+                {/* Show Published link - conditions: isDraft AND publishedVersionId exists */}
+                {isDraft && publishedVersionId && (
                   <a href={`/sequences/${publishedVersionId}`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Show Published
                   </a>
                 )}
 
-                {showDraftVersionLink && (
+                {/* Show Draft link - conditions: isPublished AND hasDraft */}
+                {isPublished && hasDraft && (
                   <a href={`/sequences/${id}/edit`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                     Show Draft
                   </a>
                 )}
 
-                {showUnpublishButtonInView && (
+                                {/* Manage Collaborators button - condition: isCreator */}
+                {isCreator && (
+                  <a href={`/sequences/${id}/collaborators`} className="btn-primary">
+                    Manage Collaborators
+                  </a>
+                )}
+              
+
+                {/* Unpublish button - condition: isPublished */}
+                {isPublished && (
                   <button
                     type="button"
                     onClick={handleUnpublish}
@@ -588,13 +593,9 @@ export default function SequenceViewer({
                     Unpublish
                   </button>
                 )}
+                </div>
 
-                {showManageCollaboratorsButton && (
-                  <a href={`/sequences/${id}/collaborators`} className="btn-primary">
-                    Manage Collaborators
-                  </a>
-                )}
-              </div>
+
             )}
           </>
         )}
