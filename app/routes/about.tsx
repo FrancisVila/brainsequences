@@ -26,7 +26,7 @@ export default function About() {
             Brain Sequences is an educational application designed to help students, or the general public, to understand how different areas of the brain interact and function together, in different situations of life.
           </p>
           <p>
-            Brain Sequences will also provide an interface to allow teachers and researchers to contribute new sequences.
+            Brain Sequences also provides an interface to allow teachers and researchers to contribute new sequences. To sign in, click on the user icon in the top right corner. Once you have an account, you can create your own sequences and share them with others.
           </p>
           <p>
             The basic learning tool of the application is the Atlas, shown and described on the right.
