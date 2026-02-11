@@ -1,7 +1,7 @@
 // GET /api/sequences - return list of sequences or a specific sequence by id
 export async function loader({ request }) {
   // Import server modules dynamically inside loader
-  const { getAllSequences, getSequence, canEditSequence, getPublishedSequences } = await import('../../server/db-drizzle.server');
+  const { getAllSequences, getSequence, canEditSequence, getPublishedSequences, getMySequences } = await import('../../server/db-drizzle.server');
   const { getCurrentUser } = await import('../../server/auth.server');
   
   const url = new URL(request.url);
@@ -43,11 +43,18 @@ export async function loader({ request }) {
     });
   }
 
-  // Return all published sequences for unauthenticated users
-  // Return all sequences for authenticated users (they can see their own drafts)
+  // Return sequences based on user access:
+  // - Authenticated: their own sequences (owned/collaborated) + published sequences
+  // - Unauthenticated: only published sequences
   let allSequences;
   if (user) {
-    allSequences = await getAllSequences();
+    const mySequences = await getMySequences(user.id);
+    const publishedSequences = await getPublishedSequences();
+    
+    // Combine and deduplicate by id
+    const mySequenceIds = new Set(mySequences.map((s: any) => s.id));
+    const otherPublished = publishedSequences.filter((s: any) => !mySequenceIds.has(s.id));
+    allSequences = [...mySequences, ...otherPublished];
   } else {
     allSequences = await getPublishedSequences();
   }

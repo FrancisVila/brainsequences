@@ -492,7 +492,7 @@ export default function SequenceViewer({
                   disabled={loading}
                   className="btn-primary"
                 >
-                  {publishedVersionId ? 'Publish Changes' : 'Publish'}
+                  {publishedVersionId ? 'Publish Changes' : 'Publish!'}
                 </button>
               )}
 
@@ -549,11 +549,40 @@ export default function SequenceViewer({
                 onChange={(e) => window.location.href = `/sequences/${e.target.value}`}
                 className='title'
               >
-                {allSequences.map((seq: any) => (
-                  <option key={seq.id} value={seq.id}>
-                    {seq.title}
-                  </option>
-                ))}
+                {(() => {
+                  // Create a set of published version IDs that have drafts
+                  const publishedIdsWithDrafts = new Set(
+                    allSequences
+                      .filter((s: any) => s.draft === 1 && s.publishedVersionId)
+                      .map((s: any) => s.publishedVersionId)
+                  );
+                  
+                  // Filter sequences to show only once
+                  const filteredSequences = allSequences.filter((seq: any) => {
+                    const currentId = parseInt(id || '0');
+                    
+                    // If it's a draft
+                    if (seq.draft === 1) {
+                      // Show if it's the current page OR if it's a draft-only sequence (no published version)
+                      return seq.id === currentId || !seq.publishedVersionId;
+                    }
+                    
+                    // If it's a published version with a draft
+                    if (publishedIdsWithDrafts.has(seq.id)) {
+                      // Only show it if it's the current page (shouldn't happen, but just in case)
+                      return seq.id === currentId;
+                    }
+                    
+                    // Otherwise, show all published versions without drafts
+                    return true;
+                  });
+                  
+                  return filteredSequences.map((seq: any) => (
+                    <option key={seq.id} value={seq.id}>
+                      {seq.title}
+                    </option>
+                  ));
+                })()}
               </select>
             </h1>
 
