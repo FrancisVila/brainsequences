@@ -17,7 +17,8 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     setLoading(true);
     const res = await fetch('/api/brainparts');
     const data = await res.json();
-    setParts(data || []);
+    const visibleParts = (data || []).filter((p: any) => Number(p?.visible) === 1);
+    setParts(visibleParts);
     setLoading(false);
   }
 
