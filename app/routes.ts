@@ -4,6 +4,7 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
 	index("routes/sequences.tsx"),
 	route("/about", "routes/about.tsx"),
+	route("/help", "routes/help.tsx"),
 	route("/home", "routes/home.tsx"),
 	// Authentication
 	route("/login", "routes/login.tsx"),

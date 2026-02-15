@@ -85,6 +85,9 @@ export default function App() {
           <a href="/about" className={(location.pathname.startsWith('/about'))? 'selected':''}>
             About
           </a>
+          <a href="/help" className={(location.pathname.startsWith('/help'))? 'selected':''}>
+            Help
+          </a>
         </div>
         </div>
         
