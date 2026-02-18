@@ -91,7 +91,14 @@ export default function App() {
         </div>
         </div>
         
-        <UserMenu user={user} canEdit={canEdit} sequenceId={sequenceId || undefined} />
+        {user ? (
+          <UserMenu user={user} canEdit={canEdit} sequenceId={sequenceId || undefined} />
+        ) : (
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginRight: '16px' }}>
+            <a href="/signup" className="navbar-auth-btn">Sign Up</a>
+            <a href="/login" className="navbar-auth-btn">Login</a>
+          </div>
+        )}
       </nav>
       
       <Outlet />

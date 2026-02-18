@@ -101,7 +101,7 @@ body {
 } */
 
 
-.navbar-links a, .navbar-edit a {
+.navbar-links a, .navbar-edit a, .navbar-auth-btn {
   color: white;
   text-decoration: none;
   margin-right: 18px;
@@ -110,7 +110,8 @@ body {
 
 .navbar-links a {font-size: 16px;}
 
-.navbar-links a.selected, .navbar-edit a {
+.navbar-links a.selected, .navbar-edit a, 
+.navbar-auth-btn {
   background-color: #687E26;;
   padding: 4px 8px;
   border-radius: 6px;
@@ -119,6 +120,21 @@ body {
 
 .navbar-edit a {
   font-size: 14px;
+}
+
+.navbar-auth-btnxxx {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #FFFFFF80;
+  background-color: #687E26;
+  transition: background-color 0.2s;
+}
+
+.navbar-auth-btn:hover {
+  background-color: #7a9430;
 }
 
 .update-bar {
