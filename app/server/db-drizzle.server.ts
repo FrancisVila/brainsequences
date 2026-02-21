@@ -1,7 +1,6 @@
 import { eq, and, inArray } from 'drizzle-orm';
 import { db } from './drizzle.server';
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations, passwordResets } from '../../drizzle/schema';
-
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, stepLinks, users, sequenceCollaborators, invitations, passwordResets, citations } from '../../drizzle/schema';
 
 // Sequences operations
 export async function getSequence(id: number) {
@@ -44,6 +43,7 @@ export async function getSequence(id: number) {
   // Get step links for each step
   const stepsWithPartsAndLinks = await Promise.all(stepsWithParts.map(async step => {
     const links = await db.select().from(stepLinks).where(eq(stepLinks.stepId, step.id));
+    const stepCitations = await db.select().from(citations).where(eq(citations.stepId, step.id)).orderBy(citations.orderIndex);
     return {
       ...step,
       step_links: links.map(link => ({
@@ -53,6 +53,13 @@ export async function getSequence(id: number) {
         y2: Number(link.y2),
         curvature: link.curvature ? Number(link.curvature) : 0.25,
         strokeWidth: link.strokeWidth ? Number(link.strokeWidth) : 0.5,
+      })),
+      citations: stepCitations.map(citation => ({
+        id: citation.id,
+        stepId: citation.stepId,
+        title: citation.title,
+        url: citation.url,
+        orderIndex: citation.orderIndex,
       })),
     };
   }));
@@ -507,6 +514,19 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
         );
         console.log(`Copied ${step.step_links.length} step links`);
       }
+      
+      // Copy citations
+      if (step.citations && step.citations.length > 0) {
+        await db.insert(citations).values(
+          step.citations.map((citation: any) => ({
+            stepId: newStep.id,
+            title: citation.title,
+            url: citation.url,
+            orderIndex: citation.orderIndex,
+          }))
+        );
+        console.log(`Copied ${step.citations.length} citations`);
+      }
     }
     
     // Copy arrows for all the steps we copied
@@ -589,4 +609,41 @@ export async function updateUserPassword(userId: number, passwordHash: string) {
   await db.update(users)
     .set({ passwordHash })
     .where(eq(users.id, userId));
+}
+// =======================
+// Citations operations
+// =======================
+
+export async function createCitation({ stepId, title, url, orderIndex }: { stepId: number; title: string; url: string; orderIndex: number }) {
+  const result = await db.insert(citations).values({ stepId, title, url, orderIndex }).returning({ id: citations.id });
+  return result[0];
+}
+
+export async function getStepCitations(stepId: number) {
+  return await db.select().from(citations).where(eq(citations.stepId, stepId)).orderBy(citations.orderIndex);
+}
+
+export async function updateCitation(id: number, { title, url, orderIndex }: { title?: string; url?: string; orderIndex?: number }) {
+  const updates: any = {};
+  if (title !== undefined) updates.title = title;
+  if (url !== undefined) updates.url = url;
+  if (orderIndex !== undefined) updates.orderIndex = orderIndex;
+  
+  await db.update(citations).set(updates).where(eq(citations.id, id));
+  return { id };
+}
+
+export async function deleteCitation(id: number) {
+  await db.delete(citations).where(eq(citations.id, id));
+}
+
+export async function updateUserCitationPreference(userId: number, showCitations: boolean) {
+  await db.update(users)
+    .set({ showCitations: showCitations ? 1 : 0 })
+    .where(eq(users.id, userId));
+}
+
+export async function getUserCitationPreference(userId: number): Promise<boolean> {
+  const [user] = await db.select({ showCitations: users.showCitations }).from(users).where(eq(users.id, userId)).limit(1);
+  return user?.showCitations === 1;
 }

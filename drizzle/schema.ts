@@ -10,6 +10,7 @@ export const users = sqliteTable("users", {
 	role: text().notNull().default("user"), // 'user' or 'admin'
 	emailVerified: integer("email_verified").notNull().default(0), // 0 = not verified, 1 = verified
 	verificationToken: text("verification_token"),
+	showCitations: integer("show_citations").notNull().default(0), // 0 = hide (default), 1 = show
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
@@ -116,3 +117,11 @@ export const passwordResets = sqliteTable("password_resets", {
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
+export const citations = sqliteTable("citations", {
+	id: integer().primaryKey({ autoIncrement: true }),
+	stepId: integer("step_id").notNull().references(() => steps.id, { onDelete: "cascade" }),
+	title: text().notNull(),
+	url: text().notNull(),
+	orderIndex: integer("order_index").notNull(), // Order in which citations appear
+	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
+});

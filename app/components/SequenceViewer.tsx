@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import DOMPurify from 'dompurify';
 import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
+import CitationModal from './CitationModal';
 import toto from '~/images/tim_taylor.svg';
 
 interface StepLink {
@@ -15,6 +16,14 @@ interface StepLink {
   strokeWidth: number;
 }
 
+interface Citation {
+  id?: number;
+  stepId?: number;
+  title: string;
+  url: string;
+  orderIndex: number;
+}
+
 interface Step {
   id?: number;
   title: string;
@@ -22,6 +31,7 @@ interface Step {
   brainpart_ids: number[];
   brainpart_titles: string[];
   step_links?: StepLink[];
+  citations?: Citation[];
 }
 
 interface Brainpart {
@@ -81,6 +91,11 @@ export default function SequenceViewer({
   // Help section visibility
   const [showStepLinksHelp, setShowStepLinksHelp] = useState(false);
   const [showBrainPartsHelp, setShowBrainPartsHelp] = useState(false);
+  
+  // Citation state
+  const [showCitations, setShowCitations] = useState(false);
+  const [citationModalOpen, setCitationModalOpen] = useState(false);
+  const [editingCitationStepIndex, setEditingCitationStepIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (editMode) {
@@ -211,6 +226,8 @@ export default function SequenceViewer({
     for (const step of steps) {
       try {
         console.log('Saving step:', step.id, 'description length:', step.description?.length);
+        let currentStepId = step.id;
+        
         if (step.id) {
           // Update existing step
           await fetch(`/api/steps?id=${step.id}`, {
@@ -225,7 +242,7 @@ export default function SequenceViewer({
           });
         } else {
           // Create new step
-          await fetch('/api/steps', {
+          const response = await fetch('/api/steps', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -235,6 +252,38 @@ export default function SequenceViewer({
               brainpartIds: step.brainpart_ids,
             }),
           });
+          const result = await response.json();
+          currentStepId = result.id;
+        }
+        
+        // Save citations for this step
+        if (currentStepId && step.citations) {
+          for (const citation of step.citations) {
+            if (citation.id) {
+              // Update existing citation
+              await fetch(`/api/citations?id=${citation.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  title: citation.title,
+                  url: citation.url,
+                  orderIndex: citation.orderIndex,
+                }),
+              });
+            } else {
+              // Create new citation
+              await fetch('/api/citations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  stepId: currentStepId,
+                  title: citation.title,
+                  url: citation.url,
+                  orderIndex: citation.orderIndex,
+                }),
+              });
+            }
+          }
         }
       } catch (err) {
         console.error('Failed to save step:', err);
@@ -432,6 +481,81 @@ export default function SequenceViewer({
       setSteps(updated);
     }
   }
+
+  // Citation functions
+  function openCitationModal(stepIndex: number) {
+    setEditingCitationStepIndex(stepIndex);
+    setCitationModalOpen(true);
+  }
+
+  function handleAddCitation(title: string, url: string) {
+    if (editingCitationStepIndex === null) return;
+    
+    const step = steps[editingCitationStepIndex];
+    const citations = step.citations || [];
+    const newCitation: Citation = {
+      title,
+      url,
+      orderIndex: citations.length,
+    };
+    
+    const updated = steps.map((s, idx) => {
+      if (idx === editingCitationStepIndex) {
+        return { ...s, citations: [...citations, newCitation] };
+      }
+      return s;
+    });
+    
+    setSteps(updated);
+  }
+
+  function removeCitation(stepIndex: number, citationIndex: number) {
+    const updated = steps.map((step, idx) => {
+      if (idx === stepIndex && step.citations) {
+        const newCitations = step.citations.filter((_, i) => i !== citationIndex);
+        // Update order indices
+        return {
+          ...step,
+          citations: newCitations.map((c, i) => ({ ...c, orderIndex: i })),
+        };
+      }
+      return step;
+    });
+    setSteps(updated);
+  }
+
+  async function loadCitationPreference() {
+    try {
+      const response = await fetch('/api/user/citation-preference');
+      if (response.ok) {
+        const data = await response.json();
+        setShowCitations(data.showCitations);
+      }
+    } catch (err) {
+      console.error('Failed to load citation preference:', err);
+    }
+  }
+
+  async function toggleCitationVisibility() {
+    const newValue = !showCitations;
+    setShowCitations(newValue);
+    
+    // Save preference if user is logged in
+    try {
+      await fetch('/api/user/citation-preference', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ showCitations: newValue }),
+      });
+    } catch (err) {
+      console.error('Failed to save citation preference:', err);
+    }
+  }
+
+  // Load citation preference on mount
+  useEffect(() => {
+    loadCitationPreference();
+  }, []);
 
   // Common loading/error states
   if (loading) {
@@ -748,8 +872,8 @@ export default function SequenceViewer({
 
                                 {step.step_links && step.step_links.length > 0 ? (
                                   <div>
-                                    {step.step_links.map((link, linkIndex) => (
-                                      <div className='edit-single-link' >
+                                    {step.step_links.map((link: StepLink, linkIndex: number) => (
+                                      <div className='edit-single-link' key={linkIndex} >
                                         <strong>Link #{linkIndex + 1}</strong>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                                           <label style={{ fontSize: '0.85rem' }}>X1</label>
@@ -950,16 +1074,73 @@ export default function SequenceViewer({
                                 onContentChange={(content, html) => updateStepDescription(index, html)}
                               />
                             </div>
+
+                            {/* Citations Section in Edit Mode */}
+                            <div className="form-field" style={{ marginTop: '1rem' }}>
+                              <label className="form-label">Citations</label>
+                              {step.citations && step.citations.length > 0 ? (
+                                <ul style={{ listStyle: 'none', padding: 0, margin: '0.5rem 0' }}>
+                                  {step.citations.map((citation: Citation, citIndex: number) => (
+                                    <li key={citIndex} style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+                                      <span style={{ flex: 1 }}>
+                                        [{citIndex + 1}] <strong>{citation.title}</strong> - <a href={citation.url} target="_blank" rel="noopener noreferrer">{citation.url}</a>
+                                      </span>
+                                      <button
+                                        type="button"
+                                        onClick={() => removeCitation(index, citIndex)}
+                                        style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                      >
+                                        ✕
+                                      </button>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p style={{ color: '#999', fontStyle: 'italic', margin: '0.5rem 0' }}>No citations</p>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => openCitationModal(index)}
+                                className="btn-primary"
+                                style={{ marginTop: '0.5rem' }}
+                              >
+                                + Add Citation
+                              </button>
+                            </div>
                           </div>
                         ) : (
                           // View mode content
                           <>
-                            {console.log('step data', step)}
                             <AtlasImage
                               atlasSvg={toto}
                               highlightedIds={step.brainpart_titles}
                               stepLinks={step.step_links || []}
                             />
+                            
+                            {/* Citation Toggle Button */}
+                            {step.citations && step.citations.length > 0 && (
+                              <div style={{ marginBottom: '0.5rem' }}>
+                                <button
+                                  onClick={toggleCitationVisibility}
+                                  style={{ 
+                                    background: 'none', 
+                                    border: '1px solid #ccc', 
+                                    borderRadius: '4px',
+                                    padding: '0.25rem 0.5rem',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.25rem',
+                                    fontSize: '0.9rem'
+                                  }}
+                                  title={showCitations ? 'Hide citations' : 'Show citations'}
+                                >
+                                  <span>{showCitations ? '👁️' : '👁️‍🗨️'}</span>
+                                  <span>{showCitations ? 'Hide citations' : 'Show citations'}</span>
+                                </button>
+                              </div>
+                            )}
+                            
                             {step.description && (
                               <div
                                 className="step-description"
@@ -970,6 +1151,27 @@ export default function SequenceViewer({
                                   })
                                 }}
                               />
+                            )}
+
+                            {/* Citations List */}
+                            {showCitations && step.citations && step.citations.length > 0 && (
+                              <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f9f9f9', borderRadius: '4px' }}>
+                                <h4 style={{ marginTop: 0, marginBottom: '0.5rem' }}>Citations</h4>
+                                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                                  {step.citations.map((citation: Citation, citIndex: number) => (
+                                    <li key={citIndex} style={{ marginBottom: '0.5rem' }}>
+                                      <a 
+                                        href={citation.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        style={{ textDecoration: 'none', color: '#0066cc' }}
+                                      >
+                                        [{citIndex + 1}] {citation.title}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             )}
 
                             {step.brainpart_titles && step.brainpart_titles.length > 0 && (
@@ -1009,6 +1211,13 @@ export default function SequenceViewer({
           )}
         </div>
       </div>
+      
+      {/* Citation Modal */}
+      <CitationModal
+        isOpen={citationModalOpen}
+        onClose={() => setCitationModalOpen(false)}
+        onSave={handleAddCitation}
+      />
     </div>
   );
 }

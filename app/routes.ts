@@ -31,4 +31,10 @@ export default [
 	route("/api/sequences", "routes/api/sequences.ts"),
 	// Steps API
 	route("/api/steps", "routes/api/steps.ts"),
+	// Citations API
+	route("/api/citations", "routes/api/citations.ts"),
+	// User preferences API
+	route("/api/user/citation-preference", "routes/api/user/citation-preference.ts"),
+	// Catch-all for unmatched routes (e.g., Chrome DevTools requests)
+	route("*", "routes/$.tsx"),
 ] satisfies RouteConfig;

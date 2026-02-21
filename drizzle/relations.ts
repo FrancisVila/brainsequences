@@ -2,10 +2,10 @@
 // Drizzle ORM relation mappings for SQLite tables
 // Drizzle ORM relation mappings for SQLite tables
 import { relations } from "drizzle-orm/relations";
-import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, users, sessions, sequenceCollaborators, invitations, passwordResets } from "./schema";
+import { sequences, steps, brainparts, brainpartLinks, stepBrainparts, arrows, users, sessions, sequenceCollaborators, invitations, passwordResets, citations } from "./schema";
 
 
-// Each step belongs to a sequence, can have many brainparts and arrows
+// Each step belongs to a sequence, can have many brainparts, arrows, and citations
 export const stepsRelations = relations(steps, ({one, many}) => ({
 	sequence: one(sequences, {
 		fields: [steps.sequenceId],
@@ -13,6 +13,7 @@ export const stepsRelations = relations(steps, ({one, many}) => ({
 	}),
 	stepBrainparts: many(stepBrainparts),
 	arrows: many(arrows),
+	citations: many(citations),
 }));
 
 
@@ -127,5 +128,13 @@ export const passwordResetsRelations = relations(passwordResets, ({one}) => ({
 	user: one(users, {
 		fields: [passwordResets.userId],
 		references: [users.id]
+	}),
+}));
+
+// Each citation belongs to a step
+export const citationsRelations = relations(citations, ({one}) => ({
+	step: one(steps, {
+		fields: [citations.stepId],
+		references: [steps.id]
 	}),
 }));

@@ -237,6 +237,20 @@ export async function action({ request }) {
                 }))
               );
             }
+            
+            // Copy citations
+            const { citations } = await import('../../../drizzle/schema.js');
+            const stepCitations = await db.select().from(citations).where(eq(citations.stepId, draftStep.id));
+            if (stepCitations.length > 0) {
+              await db.insert(citations).values(
+                stepCitations.map(citation => ({
+                  stepId: newStep.id,
+                  title: citation.title,
+                  url: citation.url,
+                  orderIndex: citation.orderIndex,
+                }))
+              );
+            }
           }
           
           // Update the published sequence metadata
