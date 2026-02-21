@@ -1117,29 +1117,7 @@ export default function SequenceViewer({
                               stepLinks={step.step_links || []}
                             />
                             
-                            {/* Citation Toggle Button */}
-                            {step.citations && step.citations.length > 0 && (
-                              <div style={{ marginBottom: '0.5rem' }}>
-                                <button
-                                  onClick={toggleCitationVisibility}
-                                  style={{ 
-                                    background: 'none', 
-                                    border: '1px solid #ccc', 
-                                    borderRadius: '4px',
-                                    padding: '0.25rem 0.5rem',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.25rem',
-                                    fontSize: '0.9rem'
-                                  }}
-                                  title={showCitations ? 'Hide citations' : 'Show citations'}
-                                >
-                                  <span>{showCitations ? '👁️' : '👁️‍🗨️'}</span>
-                                  <span>{showCitations ? 'Hide citations' : 'Show citations'}</span>
-                                </button>
-                              </div>
-                            )}
+   
                             
                             {step.description && (
                               <div
@@ -1153,10 +1131,24 @@ export default function SequenceViewer({
                               />
                             )}
 
-                            {/* Citations List */}
-                            {showCitations && step.citations && step.citations.length > 0 && (
-                              <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f9f9f9', borderRadius: '4px' }}>
-                                <h4 style={{ marginTop: 0, marginBottom: '0.5rem' }}>Citations</h4>
+
+<div className='double-columns'>
+                            {step.brainpart_titles && step.brainpart_titles.length > 0 && (
+                              <div className="brainparts-container">
+                                <h4 className="brainparts-title">
+                                  Associated Brainparts:
+                                </h4>
+                                <ul className="brainparts-list">
+                                  {step.brainpart_titles.map((title: string, idx: number) => (
+                                    <li key={idx}>{title}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                                                        {/* Citations List */}
+                            {step.citations && step.citations.length > 0 && (
+                              <div className="brainparts-container">
+                                <h4 className="brainparts-title">Citations</h4>
                                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                                   {step.citations.map((citation: Citation, citIndex: number) => (
                                     <li key={citIndex} style={{ marginBottom: '0.5rem' }}>
@@ -1173,19 +1165,7 @@ export default function SequenceViewer({
                                 </ul>
                               </div>
                             )}
-
-                            {step.brainpart_titles && step.brainpart_titles.length > 0 && (
-                              <div className="brainparts-container">
-                                <h4 className="brainparts-title">
-                                  Associated Brainparts:
-                                </h4>
-                                <ul className="brainparts-list">
-                                  {step.brainpart_titles.map((title: string, idx: number) => (
-                                    <li key={idx}>{title}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
+                            </div>
                           </>
                         )}
                       </>

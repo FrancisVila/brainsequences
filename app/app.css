@@ -201,6 +201,7 @@ p {
     padding: 2rem;
     max-width: 600px;
     margin: 0 auto;
+    flex: 1;
 }
 
 
@@ -542,6 +543,7 @@ h3.step-title {
 
 .steps-main {
     flex: 1;
+    margin-bottom: 50px;
 }
 .rich-text-editor {
     border: 1px solid #333 !important;
@@ -567,4 +569,12 @@ h3.step-title {
   background-color: #fff;
   border: 1px solid #777;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+}
+
+.double-columns {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
 }
