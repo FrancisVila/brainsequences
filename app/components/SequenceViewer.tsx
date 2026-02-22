@@ -85,6 +85,11 @@ export default function SequenceViewer({
   const [title, setTitle] = useState('');
   const [steps, setSteps] = useState<Step[]>([]);
   const [allBrainparts, setAllBrainparts] = useState<Brainpart[]>([]);
+  
+  // Track original state for unsaved changes detection
+  const [originalTitle, setOriginalTitle] = useState('');
+  const [originalSteps, setOriginalSteps] = useState<Step[]>([]);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Shared step selection (works for both view and edit mode)
   const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
@@ -110,6 +115,22 @@ export default function SequenceViewer({
       loadAllSequences();
     }
   }, [id, editMode]);
+  
+  // Detect unsaved changes
+  useEffect(() => {
+    if (!editMode || !id) {
+      setHasUnsavedChanges(false);
+      return;
+    }
+    
+    // Check if title changed
+    const titleChanged = title !== originalTitle;
+    
+    // Check if steps changed (deep comparison)
+    const stepsChanged = JSON.stringify(steps) !== JSON.stringify(originalSteps);
+    
+    setHasUnsavedChanges(titleChanged || stepsChanged);
+  }, [title, steps, originalTitle, originalSteps, editMode, id]);
 
   // Load functions for view mode
   async function loadSequence() {
@@ -176,8 +197,14 @@ export default function SequenceViewer({
       const data = await res.json();
       if (data) {
         setSequence(data); // Set the full sequence data
-        setTitle(data.title || '');
-        setSteps(data.steps || []);
+        const loadedTitle = data.title || '';
+        const loadedSteps = data.steps || [];
+        setTitle(loadedTitle);
+        setSteps(loadedSteps);
+        // Store original values for comparison
+        setOriginalTitle(loadedTitle);
+        setOriginalSteps(JSON.parse(JSON.stringify(loadedSteps))); // Deep copy
+        setHasUnsavedChanges(false);
       }
     } catch (err) {
       console.error('Failed to load sequence', err);
@@ -213,6 +240,11 @@ export default function SequenceViewer({
       if (id && steps.length > 0) {
         await saveSteps(Number(sequenceId));
       }
+      
+      // Update original state to reflect saved state
+      setOriginalTitle(title);
+      setOriginalSteps(JSON.parse(JSON.stringify(steps))); // Deep copy
+      setHasUnsavedChanges(false);
 
       // Stay in edit mode after saving
       navigate(`/sequences/${sequenceId}/edit`);
@@ -613,7 +645,7 @@ export default function SequenceViewer({
               <button
                 type="submit"
                 disabled={loading || !title.trim()}
-                className="btn-primary"
+                className={`btn-primary ${hasUnsavedChanges ? 'highlighted' : ''}`}
               >
                 {loading ? 'Saving...' : (id ? 'Save' : 'Create')}
               </button>
@@ -671,7 +703,7 @@ export default function SequenceViewer({
                 }}
                 className="btn-secondary"
               >
-                Cancel draft
+                Delete draft
               </button>
             </div>
           </form>

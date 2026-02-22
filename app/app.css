@@ -77,6 +77,10 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
 }
+.btn-primary.highlighted {
+    background-color: #d40000c2;
+    color:#FFF;
+}
 
 .btn-secondary {
     padding: 0.3rem 0.6rem;
