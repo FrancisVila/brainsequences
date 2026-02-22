@@ -123,5 +123,6 @@ export const citations = sqliteTable("citations", {
 	title: text().notNull(),
 	url: text().notNull(),
 	orderIndex: integer("order_index").notNull(), // Order in which citations appear
+	hover: text(), // Optional hover text for the citation
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });

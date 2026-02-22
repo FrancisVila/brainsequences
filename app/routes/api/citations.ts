@@ -30,7 +30,7 @@ export async function action({ request }) {
   
   if (method === 'POST') {
     const body = await request.json();
-    const { stepId, title, url: citationUrl, orderIndex } = body;
+    const { stepId, title, url: citationUrl, orderIndex, hover } = body;
     
     if (!stepId || !title || !title.trim() || !citationUrl || !citationUrl.trim()) {
       return new Response(JSON.stringify({ error: 'Step ID, title, and URL are required' }), {
@@ -60,7 +60,8 @@ export async function action({ request }) {
       stepId: Number(stepId), 
       title: title.trim(), 
       url: citationUrl.trim(),
-      orderIndex: orderIndex || 0
+      orderIndex: orderIndex || 0,
+      hover: hover?.trim() || null
     });
     
     return new Response(JSON.stringify(result), {
@@ -106,12 +107,13 @@ export async function action({ request }) {
     }
     
     const body = await request.json();
-    const { title, url: citationUrl, orderIndex } = body;
+    const { title, url: citationUrl, orderIndex, hover } = body;
     
     const result = await updateCitation(Number(id), { 
       title: title?.trim(), 
       url: citationUrl?.trim(),
-      orderIndex
+      orderIndex,
+      hover: hover?.trim() || null
     });
     
     return new Response(JSON.stringify(result), {

@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../app.css';
 
 interface CitationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (title: string, url: string) => void;
+  onSave: (title: string, url: string, hover: string) => void;
+  initialTitle?: string;
+  initialUrl?: string;
+  initialHover?: string;
+  isEditing?: boolean;
 }
 
-export default function CitationModal({ isOpen, onClose, onSave }: CitationModalProps) {
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
+export default function CitationModal({ isOpen, onClose, onSave, initialTitle = '', initialUrl = '', initialHover = '', isEditing = false }: CitationModalProps) {
+  const [title, setTitle] = useState(initialTitle);
+  const [url, setUrl] = useState(initialUrl);
+  const [hover, setHover] = useState(initialHover);
   const [error, setError] = useState('');
+
+  // Update state when props change (for editing mode)
+  useEffect(() => {
+    setTitle(initialTitle);
+    setUrl(initialUrl);
+    setHover(initialHover);
+  }, [initialTitle, initialUrl, initialHover, isOpen]);
 
   if (!isOpen) return null;
 
@@ -35,9 +47,10 @@ export default function CitationModal({ isOpen, onClose, onSave }: CitationModal
       return;
     }
     
-    onSave(title.trim(), url.trim());
+    onSave(title.trim(), url.trim(), hover.trim());
     setTitle('');
     setUrl('');
+    setHover('');
     setError('');
     onClose();
   };
@@ -45,6 +58,7 @@ export default function CitationModal({ isOpen, onClose, onSave }: CitationModal
   const handleClose = () => {
     setTitle('');
     setUrl('');
+    setHover('');
     setError('');
     onClose();
   };
@@ -76,7 +90,9 @@ export default function CitationModal({ isOpen, onClose, onSave }: CitationModal
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 style={{ marginTop: 0, marginBottom: '1.5rem' }}>Add Citation</h2>
+        <h2 style={{ marginTop: 0, marginBottom: '1.5rem' }}>
+          {isEditing ? 'Edit Citation' : 'Add Citation'}
+        </h2>
         
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '1rem' }}>
@@ -126,6 +142,29 @@ export default function CitationModal({ isOpen, onClose, onSave }: CitationModal
             />
           </div>
           
+          <div style={{ marginBottom: '1rem' }}>
+            <label 
+              htmlFor="citation-hover" 
+              style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}
+            >
+              Hover Text (optional)
+            </label>
+            <input
+              id="citation-hover"
+              type="text"
+              value={hover}
+              onChange={(e) => setHover(e.target.value)}
+              placeholder="Optional hover text..."
+              style={{
+                width: '100%',
+                padding: '0.5rem',
+                borderRadius: '4px',
+                border: '1px solid #ccc',
+                fontSize: '1rem',
+              }}
+            />
+          </div>
+          
           {error && (
             <div 
               style={{
@@ -164,7 +203,7 @@ export default function CitationModal({ isOpen, onClose, onSave }: CitationModal
                 cursor: 'pointer',
               }}
             >
-              Add Citation
+              {isEditing ? 'Update Citation' : 'Add Citation'}
             </button>
           </div>
         </form>

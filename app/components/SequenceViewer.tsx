@@ -22,6 +22,7 @@ interface Citation {
   title: string;
   url: string;
   orderIndex: number;
+  hover?: string;
 }
 
 interface Step {
@@ -95,6 +96,8 @@ export default function SequenceViewer({
   // Citation state
   const [citationModalOpen, setCitationModalOpen] = useState(false);
   const [editingCitationStepIndex, setEditingCitationStepIndex] = useState<number | null>(null);
+  const [editingCitation, setEditingCitation] = useState<Citation | null>(null);
+  const [editingCitationIndex, setEditingCitationIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (editMode) {
@@ -267,6 +270,7 @@ export default function SequenceViewer({
                   title: citation.title,
                   url: citation.url,
                   orderIndex: citation.orderIndex,
+                  hover: citation.hover,
                 }),
               });
             } else {
@@ -279,6 +283,7 @@ export default function SequenceViewer({
                   title: citation.title,
                   url: citation.url,
                   orderIndex: citation.orderIndex,
+                  hover: citation.hover,
                 }),
               });
             }
@@ -484,28 +489,64 @@ export default function SequenceViewer({
   // Citation functions
   function openCitationModal(stepIndex: number) {
     setEditingCitationStepIndex(stepIndex);
+    setEditingCitation(null);
+    setEditingCitationIndex(null);
     setCitationModalOpen(true);
   }
 
-  function handleAddCitation(title: string, url: string) {
+  function openEditCitationModal(stepIndex: number, citationIndex: number) {
+    const step = steps[stepIndex];
+    if (step.citations && step.citations[citationIndex]) {
+      setEditingCitationStepIndex(stepIndex);
+      setEditingCitation(step.citations[citationIndex]);
+      setEditingCitationIndex(citationIndex);
+      setCitationModalOpen(true);
+    }
+  }
+
+  function handleAddCitation(title: string, url: string, hover: string) {
     if (editingCitationStepIndex === null) return;
     
     const step = steps[editingCitationStepIndex];
     const citations = step.citations || [];
-    const newCitation: Citation = {
-      title,
-      url,
-      orderIndex: citations.length,
-    };
     
-    const updated = steps.map((s, idx) => {
-      if (idx === editingCitationStepIndex) {
-        return { ...s, citations: [...citations, newCitation] };
-      }
-      return s;
-    });
-    
-    setSteps(updated);
+    // If editing existing citation
+    if (editingCitation && editingCitationIndex !== null) {
+      const updatedCitations = citations.map((c, idx) => {
+        if (idx === editingCitationIndex) {
+          return { ...c, title, url, hover: hover || undefined };
+        }
+        return c;
+      });
+      
+      const updated = steps.map((s, idx) => {
+        if (idx === editingCitationStepIndex) {
+          return { ...s, citations: updatedCitations };
+        }
+        return s;
+      });
+      
+      setSteps(updated);
+      setEditingCitation(null);
+      setEditingCitationIndex(null);
+    } else {
+      // Adding new citation
+      const newCitation: Citation = {
+        title,
+        url,
+        orderIndex: citations.length,
+        hover: hover || undefined,
+      };
+      
+      const updated = steps.map((s, idx) => {
+        if (idx === editingCitationStepIndex) {
+          return { ...s, citations: [...citations, newCitation] };
+        }
+        return s;
+      });
+      
+      setSteps(updated);
+    }
   }
 
   function removeCitation(stepIndex: number, citationIndex: number) {
@@ -1051,13 +1092,24 @@ export default function SequenceViewer({
                                 <ul style={{ listStyle: 'none', padding: 0, margin: '0.5rem 0' }}>
                                   {step.citations.map((citation: Citation, citIndex: number) => (
                                     <li key={citIndex} style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
-                                      <span style={{ flex: 1 }}>
-                                        [{citIndex + 1}] <strong>{citation.title}</strong> - <a href={citation.url} target="_blank" rel="noopener noreferrer">{citation.url}</a>
+                                      <span style={{ flex: 1 }} title={citation.hover || ''}>
+                                        [{citIndex + 1}] <strong>{citation.title}</strong> <br/>
+                                        <a href={citation.url} target="_blank" rel="noopener noreferrer">{citation.url}</a><br/>
+                                        {citation.hover && <span style={{ color: '#999', fontStyle: 'italic' }}>{citation.hover}</span>}
                                       </span>
+                                      <button
+                                        type="button"
+                                        onClick={() => openEditCitationModal(index, citIndex)}
+                                        style={{ color: '#0066cc', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                        title="Edit citation"
+                                      >
+                                        ✎
+                                      </button>
                                       <button
                                         type="button"
                                         onClick={() => removeCitation(index, citIndex)}
                                         style={{ color: 'red', cursor: 'pointer', border: 'none', background: 'none', fontSize: '1.2rem' }}
+                                        title="Delete citation"
                                       >
                                         ✕
                                       </button>
@@ -1120,7 +1172,7 @@ export default function SequenceViewer({
                                 <h4 className="brainparts-title">Citations</h4>
                                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                                   {step.citations.map((citation: Citation, citIndex: number) => (
-                                    <li key={citIndex} style={{ marginBottom: '0.5rem' }}>
+                                    <li key={citIndex} style={{ marginBottom: '0.5rem' }} title={citation.hover || ''}>
                                       <a 
                                         href={citation.url} 
                                         target="_blank" 
@@ -1166,6 +1218,10 @@ export default function SequenceViewer({
         isOpen={citationModalOpen}
         onClose={() => setCitationModalOpen(false)}
         onSave={handleAddCitation}
+        initialTitle={editingCitation?.title || ''}
+        initialUrl={editingCitation?.url || ''}
+        initialHover={editingCitation?.hover || ''}
+        isEditing={editingCitation !== null}
       />
     </div>
   );

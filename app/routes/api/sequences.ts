@@ -248,6 +248,7 @@ export async function action({ request }) {
                   title: citation.title,
                   url: citation.url,
                   orderIndex: citation.orderIndex,
+                  hover: citation.hover,
                 }))
               );
             }

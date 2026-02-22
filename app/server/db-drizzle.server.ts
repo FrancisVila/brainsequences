@@ -60,6 +60,7 @@ export async function getSequence(id: number) {
         title: citation.title,
         url: citation.url,
         orderIndex: citation.orderIndex,
+        hover: citation.hover,
       })),
     };
   }));
@@ -523,6 +524,7 @@ export async function createDraftFromPublished(publishedSequenceId: number, user
             title: citation.title,
             url: citation.url,
             orderIndex: citation.orderIndex,
+            hover: citation.hover,
           }))
         );
         console.log(`Copied ${step.citations.length} citations`);
@@ -614,8 +616,8 @@ export async function updateUserPassword(userId: number, passwordHash: string) {
 // Citations operations
 // =======================
 
-export async function createCitation({ stepId, title, url, orderIndex }: { stepId: number; title: string; url: string; orderIndex: number }) {
-  const result = await db.insert(citations).values({ stepId, title, url, orderIndex }).returning({ id: citations.id });
+export async function createCitation({ stepId, title, url, orderIndex, hover }: { stepId: number; title: string; url: string; orderIndex: number; hover?: string | null }) {
+  const result = await db.insert(citations).values({ stepId, title, url, orderIndex, hover }).returning({ id: citations.id });
   return result[0];
 }
 
@@ -623,11 +625,12 @@ export async function getStepCitations(stepId: number) {
   return await db.select().from(citations).where(eq(citations.stepId, stepId)).orderBy(citations.orderIndex);
 }
 
-export async function updateCitation(id: number, { title, url, orderIndex }: { title?: string; url?: string; orderIndex?: number }) {
+export async function updateCitation(id: number, { title, url, orderIndex, hover }: { title?: string; url?: string; orderIndex?: number; hover?: string | null }) {
   const updates: any = {};
   if (title !== undefined) updates.title = title;
   if (url !== undefined) updates.url = url;
   if (orderIndex !== undefined) updates.orderIndex = orderIndex;
+  if (hover !== undefined) updates.hover = hover;
   
   await db.update(citations).set(updates).where(eq(citations.id, id));
   return { id };
