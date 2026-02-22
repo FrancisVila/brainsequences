@@ -93,7 +93,6 @@ export default function SequenceViewer({
   const [showBrainPartsHelp, setShowBrainPartsHelp] = useState(false);
   
   // Citation state
-  const [showCitations, setShowCitations] = useState(false);
   const [citationModalOpen, setCitationModalOpen] = useState(false);
   const [editingCitationStepIndex, setEditingCitationStepIndex] = useState<number | null>(null);
 
@@ -524,38 +523,8 @@ export default function SequenceViewer({
     setSteps(updated);
   }
 
-  async function loadCitationPreference() {
-    try {
-      const response = await fetch('/api/user/citation-preference');
-      if (response.ok) {
-        const data = await response.json();
-        setShowCitations(data.showCitations);
-      }
-    } catch (err) {
-      console.error('Failed to load citation preference:', err);
-    }
-  }
 
-  async function toggleCitationVisibility() {
-    const newValue = !showCitations;
-    setShowCitations(newValue);
-    
-    // Save preference if user is logged in
-    try {
-      await fetch('/api/user/citation-preference', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ showCitations: newValue }),
-      });
-    } catch (err) {
-      console.error('Failed to save citation preference:', err);
-    }
-  }
 
-  // Load citation preference on mount
-  useEffect(() => {
-    loadCitationPreference();
-  }, []);
 
   // Common loading/error states
   if (loading) {
