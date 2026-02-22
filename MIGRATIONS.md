@@ -60,18 +60,27 @@ npx drizzle-kit generate
 
 ## Backup Strategy
 
-### Production (Turso)
-```bash
-# Create backup
-turso db shell your-database-name ".backup backup-$(date +%Y%m%d).db"
+### Turso Production Database
 
-# List backups
-turso db list
+**Automatic Backups (Built-in)**
+- Turso automatically creates backups every 24 hours
+- Point-in-time recovery available for the last 24 hours
+- No manual intervention required
+- Access backups via Turso dashboard: https://turso.tech
+
+**Manual Backup (Before Major Migrations)**
+```bash
+# Create manual backup before applying migrations
+turso db shell brainsequences ".backup backup-$(date +%Y%m%d).db"
+
+# Download backup locally
+# The backup file will be created in your current directory
 ```
 
-### Local Development
-```bash
-# Copy database file
-cp data/app.db data/app-backup-$(date +%Y%m%d).db
-```
+**Recovery Options**
+- Point-in-time recovery via Turso dashboard (last 24 hours)
+- Restore from manual backup if needed
+- Contact Turso support for recovery assistance
+
+**Note**: All development and production use the same Turso database. No local SQLite database is maintained.
 

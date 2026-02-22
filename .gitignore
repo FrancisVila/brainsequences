@@ -9,3 +9,14 @@
 .env*.local
 .env.example
 .env
+
+# Database files (Turso only - no local databases)
+/data/*.db
+/data/*.db-*
+*.db
+*.db-shm
+*.db-wal
+
+# Archive folder
+/archive/
+backup-*.db

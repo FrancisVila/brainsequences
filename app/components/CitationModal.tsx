@@ -149,12 +149,11 @@ export default function CitationModal({ isOpen, onClose, onSave, initialTitle = 
             >
               Hover Text (optional)
             </label>
-            <input
+            <textarea
               id="citation-hover"
-              type="text"
               value={hover}
               onChange={(e) => setHover(e.target.value)}
-              placeholder="Optional hover text..."
+              placeholder="Hover text, usually the list of authors (if not covered by title above), title of article, and journal "
               style={{
                 width: '100%',
                 padding: '0.5rem',

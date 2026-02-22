@@ -135,70 +135,30 @@ if ($LASTEXITCODE -eq 0) {
 }
 
 # Database rollback
-Write-Host "`nRestore database backup? (y/n)" -ForegroundColor Cyan
+Write-Host "`nRestore Turso database backup? (y/n)" -ForegroundColor Cyan
+Write-Host "Note: Turso provides automatic point-in-time recovery for the last 24 hours" -ForegroundColor Gray
 $restoreChoice = Read-Host
 
 if ($restoreChoice -eq 'y') {
-    Write-Host "`nSelect database type:" -ForegroundColor Cyan
-    Write-Host "  1. Local database (data/app.db)"
-    Write-Host "  2. Turso database"
-    Write-Host "  3. Skip"
-    $dbChoice = Read-Host "Select option (1-3)"
-    
-    switch ($dbChoice) {
-        "1" {
-            # List available backups
-            if (Test-Path "data") {
-                $backups = Get-ChildItem -Path "data" -Filter "backup-*.db" | Sort-Object LastWriteTime -Descending
-                
-                if ($backups) {
-                    Write-Host "`nAvailable backups:" -ForegroundColor Cyan
-                    $backupIndex = 1
-                    foreach ($backup in $backups) {
-                        Write-Host "  $backupIndex. $($backup.Name) - $($backup.LastWriteTime.ToString('yyyy-MM-dd HH:mm'))"
-                        $backupIndex++
-                    }
-                    
-                    $backupChoice = Read-Host "`nSelect backup number (1-$($backups.Count))"
-                    $selectedBackupIndex = [int]$backupChoice - 1
-                    
-                    if ($selectedBackupIndex -ge 0 -and $selectedBackupIndex -lt $backups.Count) {
-                        $selectedBackup = $backups[$selectedBackupIndex]
-                        
-                        # Backup current database first
-                        if (Test-Path "data/app.db") {
-                            $currentBackup = "data/app-before-rollback-$(Get-Date -Format 'yyyyMMdd-HHmmss').db"
-                            Copy-Item "data/app.db" $currentBackup
-                            Write-Host "Saved current database to: $currentBackup" -ForegroundColor Yellow
-                        }
-                        
-                        # Restore selected backup
-                        Copy-Item $selectedBackup.FullName "data/app.db" -Force
-                        Write-Host "OK - Restored database from: $($selectedBackup.Name)" -ForegroundColor Green
-                    } else {
-                        Write-Host "Invalid selection. Skipping database restore." -ForegroundColor Yellow
-                    }
-                } else {
-                    Write-Host "No backups found in data/ folder" -ForegroundColor Yellow
-                }
-            } else {
-                Write-Host "data/ folder not found" -ForegroundColor Yellow
-            }
-        }
-        "2" {
-            Write-Host "`nTurso database restore:" -ForegroundColor Cyan
-            Write-Host "Note: Turso doesn't support direct restore from CLI backups" -ForegroundColor Yellow
-            Write-Host "You'll need to:"
-            Write-Host "  1. Go to Turso dashboard: https://turso.tech"
-            Write-Host "  2. Select your database"
-            Write-Host "  3. Use the restore feature with your backup"
-            Write-Host ""
-            Write-Host "Or create a new database from backup and update your .env file" -ForegroundColor Gray
-        }
-        "3" {
-            Write-Host "Skipped database restore" -ForegroundColor Yellow
-        }
-    }
+    Write-Host "`nTurso Database Restore Options:" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Option 1: Point-in-Time Recovery (via Turso Dashboard)" -ForegroundColor Yellow
+    Write-Host "  1. Go to https://turso.tech" 
+    Write-Host "  2. Select your database"
+    Write-Host "  3. Use the point-in-time recovery feature"
+    Write-Host "  4. Select a timestamp within the last 24 hours"
+    Write-Host ""
+    Write-Host "Option 2: Restore from Manual Backup" -ForegroundColor Yellow
+    Write-Host "  1. List your manual backup files: ls backup-*.db"
+    Write-Host "  2. Create a new database from backup:"
+    Write-Host "     turso db create brainsequences-restored --from-file backup-YYYYMMDD.db"
+    Write-Host "  3. Update your .env file with the new database URL"
+    Write-Host ""
+    Write-Host "Press Enter to continue..." -ForegroundColor Gray
+    Read-Host
+} else {
+    Write-Host "Skipped database restore" -ForegroundColor Yellow
+    Write-Host "Warning: Verify database compatibility with this code version" -ForegroundColor Red
 }
 
 # Summary

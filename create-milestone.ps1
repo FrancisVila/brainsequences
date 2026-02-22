@@ -225,40 +225,28 @@ switch ($pushChoice) {
 }
 
 # Database backup (optional)
-Write-Host "`nCreate database backup? (y/n)" -ForegroundColor Cyan
+Write-Host "`nCreate Turso database backup? (y/n)" -ForegroundColor Cyan
+Write-Host "Note: Turso automatically backs up every 24 hours" -ForegroundColor Gray
 $backupChoice = Read-Host
+
 if ($backupChoice -eq 'y') {
-    Write-Host "`nSelect backup type:" -ForegroundColor Cyan
-    Write-Host "  1. Local database (data/app.db)"
-    Write-Host "  2. Turso database"
-    Write-Host "  3. Skip"
-    $dbChoice = Read-Host "Select option (1-3)"
+    $dbName = Read-Host "Enter Turso database name [brainsequences]"
+    if (-not $dbName) {
+        $dbName = "brainsequences"
+    }
     
     $backupName = "backup-$newVersion-$(Get-Date -Format 'yyyyMMdd')"
+    $backupCmd = ".backup $backupName.db"
     
-    switch ($dbChoice) {
-        "1" {
-            if (Test-Path "data/app.db") {
-                Copy-Item "data/app.db" "data/$backupName.db"
-                Write-Host "OK - Created backup: data/$backupName.db" -ForegroundColor Green
-            } else {
-                Write-Host "Warning: data/app.db not found" -ForegroundColor Yellow
-            }
-        }
-        "2" {
-            $dbName = Read-Host "Enter Turso database name"
-            $backupCmd = ".backup $backupName.db"
-            Write-Host "Running backup command..." -ForegroundColor Gray
-            turso db shell $dbName $backupCmd
-            if ($LASTEXITCODE -eq 0) {
-                Write-Host "OK - Created Turso backup" -ForegroundColor Green
-            } else {
-                Write-Host "Warning: Turso backup may have failed" -ForegroundColor Yellow
-            }
-        }
-        "3" {
-            Write-Host "Skipped database backup" -ForegroundColor Yellow
-        }
+    Write-Host "Running Turso backup command..." -ForegroundColor Gray
+    turso db shell $dbName $backupCmd
+    
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "OK - Created Turso backup: $backupName.db" -ForegroundColor Green
+        Write-Host "Reminder: Turso also maintains automatic 24-hour backups" -ForegroundColor Gray
+    } else {
+        Write-Host "Warning: Turso backup may have failed" -ForegroundColor Yellow
+        Write-Host "Note: Turso automatic backups are still active" -ForegroundColor Gray
     }
 }
 
