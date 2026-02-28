@@ -53,7 +53,7 @@ export default function About() {
           <ul>
             <li><a href="https://fontawesome.com/">Font Awesome</a> for the icons of the senses.</li>
             <li>Tim Taylor's <a href="https://www.innerbody.com/image/nerv02.html">map of the Human Brain on Innerbody</a> for the initial brain illustrations and vector graphic. </li>
-            <li>. </li>
+            <li><a href="https://ebrains.eu/">EBRAIN</a>'s  <a href="https://siibra-python.readthedocs.io/">Siibra API</a> for visualizing the brain in 3D. </li>
           </ul>
         </section>
       </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { Route } from './+types/brainparts';
+import { BrainpartTree } from '~/components/BrainpartTree';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Allow anyone to view brainparts, but check if admin for edit buttons
@@ -34,6 +35,9 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   return (
     <div>
       <h2>Brainparts</h2>
+      
+      {!loading && <BrainpartTree brainparts={parts} />}
+      
       {user?.role === 'admin' && (
         <div style={{ marginBottom: 12 }}>
           <a href="/brainparts/create" className="big-plus">＋</a>

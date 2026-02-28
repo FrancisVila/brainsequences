@@ -582,3 +582,25 @@ h3.step-title {
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.brainpart-section {
+  cursor: pointer;
+    padding: 4px 8px;
+  margin-bottom: 2px;
+  border-left: none;
+  
+}
+
+.brainpart-section.parent {
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  background-color: #e8f4f8;
+  font-weight: bold;
+  
+}
+
+.brainpart-section.leaf {
+  background-color: #ffffff;
+  font-weight: normal;
+  user-select: none;
+}
