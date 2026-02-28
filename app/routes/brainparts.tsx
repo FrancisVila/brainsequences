@@ -39,8 +39,8 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
       {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
       
       {user?.role === 'admin' && (
-        <div style={{ marginBottom: 12 }}>
-          <a className="brainpart-icon big-plus" href="/brainparts/create">＋</a>
+        <div className='big-plus'>
+          <a className="btn-primary add-sequence " href="/brainparts/create">＋</a>
         </div>
       )}
 
