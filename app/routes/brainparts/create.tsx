@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function CreateBrainpart() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [parent, setParent] = useState('');
+  const [allBrainparts, setAllBrainparts] = useState<any[]>([]);
+
+  // Fetch all brainparts for the dropdown
+  useEffect(() => {
+    fetch('/api/brainparts').then(r => r.json()).then(data => {
+      setAllBrainparts(data || []);
+    });
+  }, []);
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -28,8 +36,22 @@ export default function CreateBrainpart() {
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div>
-          <label>Parent id (is_part_of)</label><br />
-          <input value={parent} onChange={(e) => setParent(e.target.value)} />
+          <label>Parent (is_part_of)</label><br />
+          <select 
+            value={parent} 
+            onChange={(e) => setParent(e.target.value)}
+            style={{ minWidth: '250px', padding: '4px' }}
+          >
+            <option value="">-- None --</option>
+            {allBrainparts
+              .sort((a, b) => a.title.localeCompare(b.title))
+              .map(bp => (
+                <option key={bp.id} value={bp.id}>
+                  {bp.title}
+                </option>
+              ))
+            }
+          </select>
         </div>
         <div style={{ marginTop: 8 }}>
           <button type="submit">Create</button>

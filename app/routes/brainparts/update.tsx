@@ -15,12 +15,20 @@ export default function UpdateBrainpart() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [parent, setParent] = useState('');
+  const [allBrainparts, setAllBrainparts] = useState<any[]>([]);
 
   // Resolve `id` from the URL on the client only
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     setId(params.get('id'));
+  }, []);
+
+  // Fetch all brainparts for the dropdown
+  useEffect(() => {
+    fetch('/api/brainparts').then(r => r.json()).then(data => {
+      setAllBrainparts(data || []);
+    });
   }, []);
 
   // Fetch brainpart once we have the id (null means explicitly none)
@@ -30,7 +38,7 @@ export default function UpdateBrainpart() {
       if (data) {
         setTitle(data.title || '');
         setDescription(data.description || '');
-        setParent(data.is_part_of ? String(data.is_part_of) : '');
+        setParent(data.isPartOf ? String(data.isPartOf) : '');
       }
     });
   }, [id]);
@@ -71,8 +79,23 @@ export default function UpdateBrainpart() {
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div>
-          <label>Parent id (is_part_of)</label><br />
-          <input value={parent} onChange={(e) => setParent(e.target.value)} />
+          <label>Parent (is_part_of)</label><br />
+          <select 
+            value={parent} 
+            onChange={(e) => setParent(e.target.value)}
+            style={{ minWidth: '250px', padding: '4px' }}
+          >
+            <option value="">-- None --</option>
+            {allBrainparts
+              .filter(bp => bp.id !== Number(id)) // Don't allow selecting itself as parent
+              .sort((a, b) => a.title.localeCompare(b.title))
+              .map(bp => (
+                <option key={bp.id} value={bp.id}>
+                  {bp.title}
+                </option>
+              ))
+            }
+          </select>
         </div>
         <div style={{ marginTop: 8 }}>
           <button type="submit">Save</button>
