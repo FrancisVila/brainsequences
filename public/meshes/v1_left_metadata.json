@@ -1,0 +1,24 @@
+{
+  "region_name": "V1 (Placeholder)",
+  "description": "Placeholder brain mesh for testing 3D viewer",
+  "vertex_count": 3204,
+  "face_count": 6400,
+  "bounds": {
+    "min": [
+      -60.137263423237954,
+      -53.86078453897049,
+      -50.11438618603163
+    ],
+    "max": [
+      60.137263423237954,
+      45.102947567428465,
+      50.11438618603163
+    ]
+  },
+  "centroid": [
+    -3.579437559972105e-15,
+    -6.127568304172102,
+    -3.89051955820451
+  ],
+  "file_size_bytes": 129076
+}

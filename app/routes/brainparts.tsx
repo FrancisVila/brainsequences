@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Route } from './+types/brainparts';
 import { BrainpartTree } from '~/components/BrainpartTree';
+import { Brain3DViewer } from '~/components/Brain3DViewer';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Allow anyone to view brainparts, but check if admin for edit buttons
@@ -13,6 +14,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedBrainpartId, setSelectedBrainpartId] = useState<number | null>(null);
 
   async function load() {
     setLoading(true);
@@ -36,7 +38,22 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     <div>
       <h2>Brainparts</h2>
       
-      {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
+      <div style={{ 
+        display: 'flex', 
+        gap: '20px',
+        alignItems: 'flex-start',
+        marginTop: '20px'
+      }}>
+        {/* Left side - Tree */}
+        <div style={{ flex: '0 0 400px', minWidth: '300px' }}>
+          {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
+        </div>
+        
+        {/* Right side - 3D Viewer */}
+        <div style={{ flex: '1', minWidth: '400px' }}>
+          <Brain3DViewer meshUrl="/meshes/v1_left.glb" />
+        </div>
+      </div>
       
       {user?.role === 'admin' && (
         <div className='big-plus'>

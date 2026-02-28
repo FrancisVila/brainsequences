@@ -1,0 +1,6 @@
+siibra>=1.0.1a11
+nibabel>=5.0.0
+nilearn>=0.10.0
+trimesh>=4.0.0
+scikit-image>=0.21.0
+numpy>=1.24.0
