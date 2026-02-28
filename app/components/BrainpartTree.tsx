@@ -12,9 +12,11 @@ interface Brainpart {
 
 interface BrainpartTreeProps {
   brainparts: Brainpart[];
+  user?: any;
+  onDelete?: (brainpart: Brainpart) => void;
 }
 
-export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
+export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps) {
   // Track which items are expanded (default: all closed)
   const OTHERS_ID = -999; // Special ID for "Others" section
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
@@ -85,6 +87,18 @@ export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
               ({brainpart.description})
             </span>
           )}
+          {user?.role === 'admin' && (
+            <div className="brainpart-icons">
+              <a href={`/brainparts/update?id=${brainpart.id}`} onClick={(e) => e.stopPropagation()}>✎</a>
+              {' '}
+              <button 
+                onClick={(e) => { e.stopPropagation(); onDelete?.(brainpart); }} 
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              >
+                🗑️
+              </button>
+            </div>
+          )}
         </div>
         {hasChildren && isExpanded && (
           <div>
@@ -101,7 +115,6 @@ export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
       padding: 16, 
       border: '1px solid #ddd',
       borderRadius: 4,
-      backgroundColor: '#fafafa'
     }}>
       
       <div style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
@@ -113,7 +126,6 @@ export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
               style={{ 
                 padding: '4px 8px',
                 marginBottom: '2px',
-                backgroundColor: '#e8f4f8',
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 userSelect: 'none'
@@ -133,8 +145,7 @@ export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
                 marginLeft: 20,
                 padding: '4px 8px',
                 marginBottom: '2px',
-                borderLeft: '2px solid #3b82f6',
-                backgroundColor: '#f0f9ff'
+  
               }}>
                 <span style={{ marginRight: 4 }}>📄</span>
                 {bp.title}
@@ -142,6 +153,18 @@ export function BrainpartTree({ brainparts }: BrainpartTreeProps) {
                   <span style={{ fontSize: '0.85em', color: '#666', marginLeft: 8 }}>
                     ({bp.description})
                   </span>
+                )}
+                {user?.role === 'admin' && (
+                  <div className="brainpart-icons">
+                    <a href={`/brainparts/update?id=${bp.id}`}>✎</a>
+                    {' '}
+                    <button 
+                      onClick={() => onDelete?.(bp)} 
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                    >
+                      🗑️
+                    </button>
+                  </div>
                 )}
               </div>
             ))}

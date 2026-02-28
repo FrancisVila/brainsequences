@@ -36,44 +36,14 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     <div>
       <h2>Brainparts</h2>
       
-      {!loading && <BrainpartTree brainparts={parts} />}
+      {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
       
       {user?.role === 'admin' && (
         <div style={{ marginBottom: 12 }}>
-          <a href="/brainparts/create" className="big-plus">＋</a>
+          <a className="brainpart-icon big-plus" href="/brainparts/create">＋</a>
         </div>
       )}
-      {loading ? <div>Loading...</div> : (
-        <table className="brainparts-table">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>title</th>
-              <th>description</th>
-              <th>is_part_of</th>
-              <th>created_at</th>
-              {user?.role === 'admin' && <th colSpan={2}>actions</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {parts.sort((a, b) => a.title.localeCompare(b.title)).map((p: any) => (
-              <tr key={p.id}>
-                <td>{p.id}</td>
-                <td>{p.title}</td>
-                <td>{p.description}</td>
-                <td>{p.is_part_of}</td>
-                <td>{p.created_at}</td>
-                {user?.role === 'admin' && (
-                  <>
-                    <td className="brainparts-actions"><a href={`/brainparts/update?id=${p.id}`}>✎</a></td>
-                    <td className="brainparts-actions"><button onClick={() => handleDelete(p)}>🗑️</button></td>
-                  </>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+
     </div>
   );
 }
