@@ -45,12 +45,12 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
         marginTop: '20px'
       }}>
         {/* Left side - Tree */}
-        <div style={{ flex: '0 0 400px', minWidth: '300px' }}>
+        <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
           {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
         </div>
         
-        {/* Right side - 3D Viewer */}
-        <div style={{ flex: '1', minWidth: '400px' }}>
+        {/* Right side - Multi-view 3D Viewer */}
+        <div style={{ flex: '1', minWidth: '800px' }}>
           <Brain3DViewer meshUrl="/meshes/v1_left.glb" />
         </div>
       </div>
