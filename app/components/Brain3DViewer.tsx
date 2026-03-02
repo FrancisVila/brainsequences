@@ -350,7 +350,6 @@ export function Brain3DViewer({
   const [sliceX, setSliceX] = useState(0);
   const [sliceY, setSliceY] = useState(0);
   const [sliceZ, setSliceZ] = useState(0);
-  const [showHelpers, setShowHelpers] = useState(true);
 
   return (
     <div style={{ 
@@ -388,14 +387,6 @@ export function Brain3DViewer({
             >
               Reset Slices
             </button>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', fontSize: '0.85em' }}>
-              <input 
-                type="checkbox" 
-                checked={showHelpers}
-                onChange={(e) => setShowHelpers(e.target.checked)}
-              />
-              <span>Show Planes (3D view)</span>
-            </label>
           </div>
         </div>
         
@@ -459,7 +450,8 @@ export function Brain3DViewer({
         />
       </div>
 
-      {/* Bottom Row: 3D Rotatable View */}
+      {/* Bottom Row: 3D Rotatable View - Temporarily disabled */}
+      {/* 
       <div style={{ borderTop: '1px solid #444' }}>
         <div style={{
           padding: '8px',
@@ -504,6 +496,7 @@ export function Brain3DViewer({
           </Canvas>
         </div>
       </div>
+      */}
     </div>
   );
 }
