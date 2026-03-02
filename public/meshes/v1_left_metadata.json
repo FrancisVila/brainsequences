@@ -1,24 +1,30 @@
 {
-  "region_name": "V1 (Placeholder)",
-  "description": "Placeholder brain mesh for testing 3D viewer",
-  "vertex_count": 3204,
-  "face_count": 6400,
-  "bounds": {
-    "min": [
-      -60.137263423237954,
-      -53.86078453897049,
-      -50.11438618603163
+  "region_name": "Area hOc1 (V1, 17, CalcS)",
+  "region_id": "JULICH_BRAIN_CYTOARCHITECTONIC_ATLAS_V2_9_AREA_HOC1_V1_17_CALCS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "Julich-Brain Cytoarchitectonic Atlas (v2.9)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 13180,
+  "faces": 26384,
+  "voxels": 22506,
+  "bounds": [
+    [
+      -26.38327152583448,
+      -109.97244982373564,
+      -16.13337732454285
     ],
-    "max": [
-      60.137263423237954,
-      45.102947567428465,
-      50.11438618603163
+    [
+      31.078432181749186,
+      -54.25683050673444,
+      16.454176913310715
     ]
-  },
-  "centroid": [
-    -3.579437559972105e-15,
-    -6.127568304172102,
-    -3.89051955820451
   ],
-  "file_size_bytes": 129076
+  "centroid": [
+    3.541188888286203,
+    -82.62228718796041,
+    1.7105883053285384
+  ],
+  "file": "v1_left.glb",
+  "file_size_bytes": 633928
 }

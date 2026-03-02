@@ -48,7 +48,6 @@ function OrthogonalSliceView({
   slicePosition: number;
   onSliceChange: (pos: number) => void;
 }) {
-  const { scene } = useGLTF(url);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   
@@ -205,7 +204,7 @@ interface Brain3DViewerProps {
   meshUrl?: string;
 }
 
-export function Brain3DViewer({ meshUrl = '/meshes/v1_left.glb' }: Brain3DViewerProps) {
+export function Brain3DViewer({ meshUrl = '/meshes/cuneus.glb' }: Brain3DViewerProps) {
   const [sliceX, setSliceX] = useState(0);
   const [sliceY, setSliceY] = useState(0);
   const [sliceZ, setSliceZ] = useState(0);
@@ -347,5 +346,5 @@ export function Brain3DViewer({ meshUrl = '/meshes/v1_left.glb' }: Brain3DViewer
   );
 }
 
-// Preload the mesh
-useGLTF.preload('/meshes/v1_left.glb');
+// Note: Preload removed to avoid SSR errors with relative URLs
+// The mesh will load on-demand when the component renders on the client
