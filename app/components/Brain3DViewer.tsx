@@ -98,14 +98,17 @@ function BrainMesh({ url, sliceX, sliceY, sliceZ }: BrainMeshProps) {
   return <primitive object={clonedScene} scale={1.0} />;
 }
 
-// Helper component to set camera target
-function CameraController({ target }: { target: [number, number, number] }) {
+// Helper component to set camera target and up vector
+function CameraController({ target, up }: { target: [number, number, number]; up?: [number, number, number] }) {
   const { camera } = useThree();
   
   useEffect(() => {
+    if (up) {
+      camera.up.set(up[0], up[1], up[2]);
+    }
     camera.lookAt(target[0], target[1], target[2]);
     camera.updateProjectionMatrix();
-  }, [camera, target]);
+  }, [camera, target, up]);
   
   return null;
 }
@@ -143,10 +146,14 @@ function OrthogonalSliceView({
     axis === 'y' ? [brainCenter[0], brainCenter[1] + 300, brainCenter[2]] : 
     [brainCenter[0], brainCenter[1], brainCenter[2] + 300];
   
-  const cameraRotation =
-    axis === 'x' ? [0, -Math.PI / 2, 0] :
-    axis === 'y' ? [-Math.PI / 2, 0, 0] :
-    [0, 0, 0];
+  // Set up vector for each axis view
+  // X axis: Z up (top of brain at top), Y horizontal (front at left)
+  // Y axis: Z up (top of brain at top), X horizontal
+  // Z axis: default Y up
+  const cameraUp: [number, number, number] = 
+    axis === 'x' ? [0, 0, 1] :
+    axis === 'y' ? [0, 0, 1] :
+    [0, 1, 0];
 
   function SlicedMesh() {
     const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
@@ -257,13 +264,12 @@ function OrthogonalSliceView({
         ref={canvasRef}
         camera={{ 
           position: cameraPosition as [number, number, number],
-          fov: 50,
-          rotation: cameraRotation as [number, number, number]
+          fov: 50
         }}
         style={{ background: '#1a1a1a', width: '100%', height: '250px' }}
         gl={{ localClippingEnabled: true }}
       >
-        <CameraController target={brainCenter} />
+        <CameraController target={brainCenter} up={cameraUp} />
         <ambientLight intensity={0.6} />
         <directionalLight position={cameraPosition as [number, number, number]} intensity={1} />
         
