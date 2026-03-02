@@ -142,7 +142,7 @@ function OrthogonalSliceView({
   
   // Set up camera based on axis - position relative to brain center
   const cameraPosition = 
-    axis === 'x' ? [brainCenter[0] + 300, brainCenter[1], brainCenter[2]] : 
+    axis === 'x' ? [brainCenter[0] - 300, brainCenter[1], brainCenter[2]] : 
     axis === 'y' ? [brainCenter[0], brainCenter[1] + 300, brainCenter[2]] : 
     [brainCenter[0], brainCenter[1], brainCenter[2] + 300];
   
@@ -238,18 +238,24 @@ function OrthogonalSliceView({
     const deltaX = x - dragStartRef.current.x;
     const deltaY = y - dragStartRef.current.y;
     
-    // Convert pixel delta to slice position delta (-100 to 100 range over canvas size)
-    const horizontalDelta = (deltaX / rect.width) * 200;
-    const verticalDelta = (deltaY / rect.height) * 200;
+    // Scale drag so full canvas sweep = full brain range for each axis
+    // X view: horizontal=Y(336), vertical=Z(230)
+    // Y view: horizontal=X(267), vertical=Z(230)
+    // Z view: horizontal=X(267), vertical=Y(336)
+    const hRange = axis === 'x' ? 336 : axis === 'y' ? 267 : 267;
+    const vRange = axis === 'x' ? 230 : axis === 'y' ? 230 : 336;
+    const horizontalDelta = (deltaX / rect.width) * hRange;
+    const verticalDelta = (deltaY / rect.height) * vRange;
     
     // Apply delta to initial slice positions
     const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
     const newVerticalSlice = dragStartRef.current.verticalSlice + verticalDelta;
     
-    // Update the appropriate slice positions based on axis
-    // Left/right controls horizontal, up/down controls vertical
-    onSliceChangeHorizontal(Math.max(-100, Math.min(100, newHorizontalSlice)));
-    onSliceChangeVertical(Math.max(-100, Math.min(100, newVerticalSlice)));
+    // Clamp to actual brain bounds
+    const hBounds = axis === 'x' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.x;
+    const vBounds = axis === 'z' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.z;
+    onSliceChangeHorizontal(Math.max(hBounds.min, Math.min(hBounds.max, newHorizontalSlice)));
+    onSliceChangeVertical(Math.max(vBounds.min, Math.min(vBounds.max, newVerticalSlice)));
   };
 
   return (
@@ -349,13 +355,21 @@ interface Brain3DViewerProps {
   regionUrl?: string;
 }
 
+// Brain bounding box from metadata (in mm)
+const BRAIN_BOUNDS = {
+  x: { min: -50, max: 220 },
+  y: { min: -90, max: 255 },
+  z: { min: -10, max: 230 },
+};
+
 export function Brain3DViewer({ 
   wholeBrainUrl = '/meshes/whole_brain.glb',
   regionUrl = '/meshes/cuneus.glb' 
 }: Brain3DViewerProps) {
-  const [sliceX, setSliceX] = useState(0);
-  const [sliceY, setSliceY] = useState(0);
-  const [sliceZ, setSliceZ] = useState(0);
+  // Start at max bounds so full brain is visible
+  const [sliceX, setSliceX] = useState(220);
+  const [sliceY, setSliceY] = useState(255);
+  const [sliceZ, setSliceZ] = useState(230);
 
   return (
     <div style={{ 
@@ -380,7 +394,7 @@ export function Brain3DViewer({
           </div>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <button 
-              onClick={() => { setSliceX(0); setSliceY(0); setSliceZ(0); }}
+              onClick={() => { setSliceX(220); setSliceY(255); setSliceZ(230); }}
               style={{ 
                 padding: '6px 12px', 
                 fontSize: '0.85em', 
