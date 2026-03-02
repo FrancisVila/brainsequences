@@ -1,0 +1,28 @@
+{
+  "name": "Whole Brain Surface",
+  "source": "DiFuMo 64 parcellation",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 24890,
+  "faces": 50000,
+  "voxels": 159323,
+  "bounds": [
+    [
+      -48.461621723660805,
+      -84.72957865791018,
+      -3.8222566340723545
+    ],
+    [
+      219.35699083212992,
+      250.6684903671629,
+      226.44938015922446
+    ]
+  ],
+  "centroid": [
+    83.97630920031727,
+    80.7889253368961,
+    110.07641900665199
+  ],
+  "file": "whole_brain.glb",
+  "file_size_bytes": 899488
+}

@@ -51,7 +51,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
         
         {/* Right side - Multi-view 3D Viewer */}
         <div style={{ flex: '1', minWidth: '800px' }}>
-          <Brain3DViewer meshUrl="/meshes/cuneus.glb" />
+          <Brain3DViewer />
         </div>
       </div>
       

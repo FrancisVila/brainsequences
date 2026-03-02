@@ -10,6 +10,68 @@ interface BrainMeshProps {
   sliceZ: number;
 }
 
+interface DualBrainMeshProps {
+  wholeBrainUrl: string;
+  regionUrl: string;
+  sliceX: number;
+  sliceY: number;
+  sliceZ: number;
+}
+
+function DualBrainMesh({ wholeBrainUrl, regionUrl, sliceX, sliceY, sliceZ }: DualBrainMeshProps) {
+  const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
+  const { scene: regionScene } = useGLTF(regionUrl);
+  
+  const clonedWholeBrain = wholeBrainScene.clone();
+  const clonedRegion = regionScene.clone();
+  
+  useEffect(() => {
+    const planes = [
+      new THREE.Plane(new THREE.Vector3(-1, 0, 0), sliceX),
+      new THREE.Plane(new THREE.Vector3(0, -1, 0), sliceY),
+      new THREE.Plane(new THREE.Vector3(0, 0, -1), sliceZ),
+    ];
+    
+    // Style whole brain - semi-transparent gray
+    clonedWholeBrain.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        if (child.material) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0x999999,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide,
+            clippingPlanes: planes,
+            clipShadows: true,
+          });
+        }
+      }
+    });
+    
+    // Style region - bright color (orange/red)
+    clonedRegion.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        if (child.material) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0xff6b35,
+            transparent: false,
+            side: THREE.DoubleSide,
+            clippingPlanes: planes,
+            clipShadows: true,
+          });
+        }
+      }
+    });
+  }, [clonedWholeBrain, clonedRegion, sliceX, sliceY, sliceZ]);
+  
+  return (
+    <>
+      <primitive object={clonedWholeBrain} scale={1.0} />
+      <primitive object={clonedRegion} scale={1.0} />
+    </>
+  );
+}
+
 function BrainMesh({ url, sliceX, sliceY, sliceZ }: BrainMeshProps) {
   const { scene } = useGLTF(url);
   const clonedScene = scene.clone();
@@ -36,35 +98,61 @@ function BrainMesh({ url, sliceX, sliceY, sliceZ }: BrainMeshProps) {
   return <primitive object={clonedScene} scale={1.0} />;
 }
 
+// Helper component to set camera target
+function CameraController({ target }: { target: [number, number, number] }) {
+  const { camera } = useThree();
+  
+  useEffect(() => {
+    camera.lookAt(target[0], target[1], target[2]);
+    camera.updateProjectionMatrix();
+  }, [camera, target]);
+  
+  return null;
+}
+
 // Orthogonal slice view - single plane with clipping
 function OrthogonalSliceView({ 
-  url, 
+  wholeBrainUrl,
+  regionUrl,
   axis, 
-  slicePosition, 
-  onSliceChange 
+  slicePosition,
+  currentHorizontalSlice,
+  currentVerticalSlice,
+  onSliceChangeHorizontal,
+  onSliceChangeVertical
 }: { 
-  url: string; 
+  wholeBrainUrl: string;
+  regionUrl: string;
   axis: 'x' | 'y' | 'z'; 
   slicePosition: number;
-  onSliceChange: (pos: number) => void;
+  currentHorizontalSlice: number;
+  currentVerticalSlice: number;
+  onSliceChangeHorizontal: (pos: number) => void;
+  onSliceChangeVertical: (pos: number) => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const dragStartRef = useRef<{ x: number; y: number; horizontalSlice: number; verticalSlice: number } | null>(null);
   
-  // Set up camera based on axis
+  // Brain center from metadata
+  const brainCenter: [number, number, number] = [84, 81, 110];
+  
+  // Set up camera based on axis - position relative to brain center
   const cameraPosition = 
-    axis === 'x' ? [150, 0, 0] : 
-    axis === 'y' ? [0, 150, 0] : 
-    [0, 0, 150];
+    axis === 'x' ? [brainCenter[0] + 300, brainCenter[1], brainCenter[2]] : 
+    axis === 'y' ? [brainCenter[0], brainCenter[1] + 300, brainCenter[2]] : 
+    [brainCenter[0], brainCenter[1], brainCenter[2] + 300];
   
   const cameraRotation =
-    axis === 'x' ? [0, Math.PI / 2, 0] :
+    axis === 'x' ? [0, -Math.PI / 2, 0] :
     axis === 'y' ? [-Math.PI / 2, 0, 0] :
     [0, 0, 0];
 
   function SlicedMesh() {
-    const { scene: loadedScene } = useGLTF(url);
-    const clonedScene = loadedScene.clone();
+    const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
+    const { scene: regionScene } = useGLTF(regionUrl);
+    const clonedWholeBrain = wholeBrainScene.clone();
+    const clonedRegion = regionScene.clone();
     
     useEffect(() => {
       // Create single clipping plane for this axis
@@ -73,39 +161,88 @@ function OrthogonalSliceView({
         axis === 'y' ? new THREE.Plane(new THREE.Vector3(0, -1, 0), slicePosition) :
         new THREE.Plane(new THREE.Vector3(0, 0, -1), slicePosition);
       
-      clonedScene.traverse((child) => {
+      // Style whole brain
+      clonedWholeBrain.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material) {
-          child.material = child.material.clone();
-          child.material.clippingPlanes = [plane];
-          child.material.clipShadows = true;
-          child.material.side = THREE.DoubleSide;
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0x999999,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide,
+            clippingPlanes: [plane],
+            clipShadows: true,
+          });
         }
       });
-    }, [clonedScene, slicePosition]);
+      
+      // Style region
+      clonedRegion.traverse((child) => {
+        if (child instanceof THREE.Mesh && child.material) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0xff6b35,
+            transparent: false,
+            side: THREE.DoubleSide,
+            clippingPlanes: [plane],
+            clipShadows: true,
+          });
+        }
+      });
+    }, [clonedWholeBrain, clonedRegion, slicePosition]);
     
-    return <primitive object={clonedScene} scale={1.0} />;
+    return (
+      <>
+        <primitive object={clonedWholeBrain} scale={1.0} />
+        <primitive object={clonedRegion} scale={1.0} />
+      </>
+    );
   }
 
-  const handleMouseDown = () => setIsDragging(true);
-  const handleMouseUp = () => setIsDragging(false);
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !canvasRef.current) return;
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canvasRef.current) return;
     
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    // Map mouse position to slice position (-100 to 100)
-    let newSlice;
-    if (axis === 'x') {
-      newSlice = ((y / rect.height) * 200) - 100;
-    } else if (axis === 'y') {
-      newSlice = ((y / rect.height) * 200) - 100;
-    } else {
-      newSlice = ((x / rect.width) * 200) - 100;
-    }
+    // Store initial mouse position and slice values
+    dragStartRef.current = {
+      x,
+      y,
+      horizontalSlice: currentHorizontalSlice,
+      verticalSlice: currentVerticalSlice
+    };
     
-    onSliceChange(Math.max(-100, Math.min(100, newSlice)));
+    setIsDragging(true);
+  };
+  
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    dragStartRef.current = null;
+  };
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !canvasRef.current || !dragStartRef.current) return;
+    
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Calculate delta from initial position
+    const deltaX = x - dragStartRef.current.x;
+    const deltaY = y - dragStartRef.current.y;
+    
+    // Convert pixel delta to slice position delta (-100 to 100 range over canvas size)
+    const horizontalDelta = (deltaX / rect.width) * 200;
+    const verticalDelta = (deltaY / rect.height) * 200;
+    
+    // Apply delta to initial slice positions
+    const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
+    const newVerticalSlice = dragStartRef.current.verticalSlice + verticalDelta;
+    
+    // Update the appropriate slice positions based on axis
+    // Left/right controls horizontal, up/down controls vertical
+    onSliceChangeHorizontal(Math.max(-100, Math.min(100, newHorizontalSlice)));
+    onSliceChangeVertical(Math.max(-100, Math.min(100, newVerticalSlice)));
   };
 
   return (
@@ -126,6 +263,7 @@ function OrthogonalSliceView({
         style={{ background: '#1a1a1a', width: '100%', height: '250px' }}
         gl={{ localClippingEnabled: true }}
       >
+        <CameraController target={brainCenter} />
         <ambientLight intensity={0.6} />
         <directionalLight position={cameraPosition as [number, number, number]} intensity={1} />
         
@@ -201,10 +339,14 @@ function SlicePlaneHelpers({ sliceX, sliceY, sliceZ }: { sliceX: number; sliceY:
 }
 
 interface Brain3DViewerProps {
-  meshUrl?: string;
+  wholeBrainUrl?: string;
+  regionUrl?: string;
 }
 
-export function Brain3DViewer({ meshUrl = '/meshes/cuneus.glb' }: Brain3DViewerProps) {
+export function Brain3DViewer({ 
+  wholeBrainUrl = '/meshes/whole_brain.glb',
+  regionUrl = '/meshes/cuneus.glb' 
+}: Brain3DViewerProps) {
   const [sliceX, setSliceX] = useState(0);
   const [sliceY, setSliceY] = useState(0);
   const [sliceZ, setSliceZ] = useState(0);
@@ -286,22 +428,34 @@ export function Brain3DViewer({ meshUrl = '/meshes/cuneus.glb' }: Brain3DViewerP
         backgroundColor: '#444'
       }}>
         <OrthogonalSliceView 
-          url={meshUrl} 
+          wholeBrainUrl={wholeBrainUrl}
+          regionUrl={regionUrl}
           axis="x" 
           slicePosition={sliceX}
-          onSliceChange={setSliceX}
+          currentHorizontalSlice={sliceY}
+          currentVerticalSlice={sliceZ}
+          onSliceChangeHorizontal={setSliceY}
+          onSliceChangeVertical={setSliceZ}
         />
         <OrthogonalSliceView 
-          url={meshUrl} 
+          wholeBrainUrl={wholeBrainUrl}
+          regionUrl={regionUrl}
           axis="y" 
           slicePosition={sliceY}
-          onSliceChange={setSliceY}
+          currentHorizontalSlice={sliceX}
+          currentVerticalSlice={sliceZ}
+          onSliceChangeHorizontal={setSliceX}
+          onSliceChangeVertical={setSliceZ}
         />
         <OrthogonalSliceView 
-          url={meshUrl} 
+          wholeBrainUrl={wholeBrainUrl}
+          regionUrl={regionUrl}
           axis="z" 
           slicePosition={sliceZ}
-          onSliceChange={setSliceZ}
+          currentHorizontalSlice={sliceX}
+          currentVerticalSlice={sliceY}
+          onSliceChangeHorizontal={setSliceX}
+          onSliceChangeVertical={setSliceY}
         />
       </div>
 
@@ -317,16 +471,23 @@ export function Brain3DViewer({ meshUrl = '/meshes/cuneus.glb' }: Brain3DViewerP
         </div>
         <div style={{ height: '400px' }}>
           <Canvas 
-            camera={{ position: [150, 100, 150], fov: 50 }}
+            camera={{ position: [234, 181, 260], fov: 50 }}
             style={{ background: '#1a1a1a' }}
             gl={{ localClippingEnabled: true }}
           >
+            <CameraController target={[84, 81, 110]} />
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <directionalLight position={[-10, -10, -5]} intensity={0.5} />
             
             <Suspense fallback={null}>
-              <BrainMesh url={meshUrl} sliceX={sliceX} sliceY={sliceY} sliceZ={sliceZ} />
+              <DualBrainMesh 
+                wholeBrainUrl={wholeBrainUrl} 
+                regionUrl={regionUrl}
+                sliceX={sliceX} 
+                sliceY={sliceY} 
+                sliceZ={sliceZ} 
+              />
             </Suspense>
             
             {showHelpers && <SlicePlaneHelpers sliceX={sliceX} sliceY={sliceY} sliceZ={sliceZ} />}
@@ -338,6 +499,7 @@ export function Brain3DViewer({ meshUrl = '/meshes/cuneus.glb' }: Brain3DViewerP
               dampingFactor={0.05}
               minDistance={50}
               maxDistance={500}
+              target={[84, 81, 110]}
             />
           </Canvas>
         </div>
