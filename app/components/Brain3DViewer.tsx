@@ -140,11 +140,12 @@ function OrthogonalSliceView({
   // Brain center from metadata
   const brainCenter: [number, number, number] = [84, 81, 110];
   
+  // changed [brainCenter[0] - 300 to [brainCenter[0] - 350 to better fit the view in the x-axis slice view
   // Set up camera based on axis - position relative to brain center
   const cameraPosition = 
-    axis === 'x' ? [brainCenter[0] - 300, brainCenter[1], brainCenter[2]] : 
-    axis === 'y' ? [brainCenter[0], brainCenter[1] + 300, brainCenter[2]] : 
-    [brainCenter[0], brainCenter[1], brainCenter[2] + 300];
+    axis === 'x' ? [brainCenter[0] - 350, brainCenter[1], brainCenter[2]] : 
+    axis === 'y' ? [brainCenter[0], brainCenter[1] + 330, brainCenter[2]] : 
+    [brainCenter[0], brainCenter[1], brainCenter[2] + 400];
   
   // Set up vector for each axis view
   // X axis: Z up (top of brain at top), Y horizontal (front at left)
@@ -266,6 +267,7 @@ function OrthogonalSliceView({
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
+    // Camera fov sets size of all 3 axes
       <Canvas 
         ref={canvasRef}
         camera={{ 
