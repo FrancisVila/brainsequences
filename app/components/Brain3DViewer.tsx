@@ -259,6 +259,24 @@ function OrthogonalSliceView({
     onSliceChangeVertical(Math.max(vBounds.min, Math.min(vBounds.max, newVerticalSlice)));
   };
 
+  // Calculate crosshair positions as percentages
+  // currentHorizontalSlice maps to vertical line position (left percentage)
+  // currentVerticalSlice maps to horizontal line position (top percentage)
+  const hBounds = axis === 'x' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.x;
+  const vBounds = axis === 'z' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.z;
+  const hRange = hBounds.max - hBounds.min;
+  const vRange = vBounds.max - vBounds.min;
+  
+  const verticalLineLeft = ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
+  const horizontalLineTop = ((currentVerticalSlice - vBounds.min) / vRange) * 100;
+  
+  // Determine colors based on which axes are being shown
+  // X view: horizontal=Y(green), vertical=Z(blue)
+  // Y view: horizontal=X(red), vertical=Z(blue)
+  // Z view: horizontal=X(red), vertical=Y(green)
+  const verticalLineColor = axis === 'x' ? '#66ff66' : '#ff6666'; // Y=green, X=red
+  const horizontalLineColor = axis === 'z' ? '#66ff66' : '#6666ff'; // Y=green, Z=blue
+
   return (
     <div 
       style={{ position: 'relative', cursor: isDragging ? 'grabbing' : 'grab' }}
@@ -312,6 +330,31 @@ function OrthogonalSliceView({
           backgroundColor: 'rgba(255, 255, 0, 0.5)'
         }} />
       </div>
+      
+      {/* Slice position crosshairs */}
+      {/* Vertical line showing horizontal slice position */}
+      <div style={{
+        position: 'absolute',
+        left: `${verticalLineLeft}%`,
+        top: 0,
+        bottom: 0,
+        width: '2px',
+        backgroundColor: verticalLineColor,
+        opacity: 0.7,
+        pointerEvents: 'none'
+      }} />
+      
+      {/* Horizontal line showing vertical slice position */}
+      <div style={{
+        position: 'absolute',
+        top: `${horizontalLineTop}%`,
+        left: 0,
+        right: 0,
+        height: '2px',
+        backgroundColor: horizontalLineColor,
+        opacity: 0.7,
+        pointerEvents: 'none'
+      }} />
       
       {/* Axis label */}
       <div style={{
