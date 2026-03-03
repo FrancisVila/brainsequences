@@ -145,7 +145,7 @@ function OrthogonalSliceView({
   const cameraPosition = 
     axis === 'x' ? [brainCenter[0] - 350, brainCenter[1], brainCenter[2]] : 
     axis === 'y' ? [brainCenter[0], brainCenter[1] + 330, brainCenter[2]] : 
-    [brainCenter[0], brainCenter[1], brainCenter[2] + 400];
+    [brainCenter[0], brainCenter[1], brainCenter[2] + 450];
   
   // Set up vector for each axis view
   // X axis: Z up (top of brain at top), Y horizontal (front at left)
