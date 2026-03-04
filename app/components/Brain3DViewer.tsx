@@ -209,6 +209,9 @@ function OrthogonalSliceView({
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
+      <div>
+
+</div>
     // Camera fov sets size of all 3 axes
       <Canvas 
         ref={canvasRef}
@@ -229,7 +232,7 @@ function OrthogonalSliceView({
         
         <Environment preset="studio" />
       </Canvas>
-      
+      <div><ul><li>cameraPosition: {cameraPosition.join(', ')}</li></ul></div>
       {/* Crosshair indicator */}
       <div style={{
         position: 'absolute',
