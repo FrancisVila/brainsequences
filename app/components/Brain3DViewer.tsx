@@ -18,85 +18,9 @@ interface DualBrainMeshProps {
   sliceZ: number;
 }
 
-function DualBrainMesh({ wholeBrainUrl, regionUrl, sliceX, sliceY, sliceZ }: DualBrainMeshProps) {
-  const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
-  const { scene: regionScene } = useGLTF(regionUrl);
-  
-  const clonedWholeBrain = wholeBrainScene.clone();
-  const clonedRegion = regionScene.clone();
-  
-  useEffect(() => {
-    const planes = [
-      new THREE.Plane(new THREE.Vector3(-1, 0, 0), sliceX),
-      new THREE.Plane(new THREE.Vector3(0, -1, 0), sliceY),
-      new THREE.Plane(new THREE.Vector3(0, 0, -1), sliceZ),
-    ];
-    
-    // Style whole brain - semi-transparent gray
-    clonedWholeBrain.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        if (child.material) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0x999999,
-            transparent: true,
-            opacity: 0.6,
-            side: THREE.DoubleSide,
-            clippingPlanes: planes,
-            clipShadows: true,
-          });
-        }
-      }
-    });
-    
-    // Style region - bright color (orange/red)
-    clonedRegion.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        if (child.material) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0xff6b35,
-            transparent: false,
-            side: THREE.DoubleSide,
-            clippingPlanes: planes,
-            clipShadows: true,
-          });
-        }
-      }
-    });
-  }, [clonedWholeBrain, clonedRegion, sliceX, sliceY, sliceZ]);
-  
-  return (
-    <>
-      <primitive object={clonedWholeBrain} scale={1.0} />
-      <primitive object={clonedRegion} scale={1.0} />
-    </>
-  );
-}
 
-function BrainMesh({ url, sliceX, sliceY, sliceZ }: BrainMeshProps) {
-  const { scene } = useGLTF(url);
-  const clonedScene = scene.clone();
-  
-  useEffect(() => {
-    const planes = [
-      new THREE.Plane(new THREE.Vector3(-1, 0, 0), sliceX),
-      new THREE.Plane(new THREE.Vector3(0, -1, 0), sliceY),
-      new THREE.Plane(new THREE.Vector3(0, 0, -1), sliceZ),
-    ];
-    
-    clonedScene.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        if (child.material) {
-          child.material = child.material.clone();
-          child.material.clippingPlanes = planes;
-          child.material.clipShadows = true;
-          child.material.side = THREE.DoubleSide;
-        }
-      }
-    });
-  }, [clonedScene, sliceX, sliceY, sliceZ]);
-  
-  return <primitive object={clonedScene} scale={1.0} />;
-}
+
+
 
 // Helper component to set camera target and up vector
 function CameraController({ target, up }: { target: [number, number, number]; up?: [number, number, number] }) {
@@ -374,26 +298,7 @@ function OrthogonalSliceView({
   );
 }
 
-function SlicePlaneHelpers({ sliceX, sliceY, sliceZ }: { sliceX: number; sliceY: number; sliceZ: number }) {
-  return (
-    <>
-      <mesh position={[-sliceX, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
-        <planeGeometry args={[150, 150]} />
-        <meshBasicMaterial color="#ff0000" transparent opacity={0.15} side={THREE.DoubleSide} />
-      </mesh>
-      
-      <mesh position={[0, -sliceY, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[150, 150]} />
-        <meshBasicMaterial color="#00ff00" transparent opacity={0.15} side={THREE.DoubleSide} />
-      </mesh>
-      
-      <mesh position={[0, 0, -sliceZ]}>
-        <planeGeometry args={[150, 150]} />
-        <meshBasicMaterial color="#0000ff" transparent opacity={0.15} side={THREE.DoubleSide} />
-      </mesh>
-    </>
-  );
-}
+
 
 interface Brain3DViewerProps {
   wholeBrainUrl?: string;
@@ -515,53 +420,7 @@ export function Brain3DViewer({
         />
       </div>
 
-      {/* Bottom Row: 3D Rotatable View - Temporarily disabled */}
-      {/* 
-      <div style={{ borderTop: '1px solid #444' }}>
-        <div style={{
-          padding: '8px',
-          backgroundColor: '#2a2a2a',
-          color: '#fff',
-          fontSize: '0.85em'
-        }}>
-          <strong>3D View</strong> - Drag to rotate, right-click to pan, scroll to zoom
-        </div>
-        <div style={{ height: '400px' }}>
-          <Canvas 
-            camera={{ position: [234, 181, 260], fov: 50 }}
-            style={{ background: '#1a1a1a' }}
-            gl={{ localClippingEnabled: true }}
-          >
-            <CameraController target={[84, 81, 110]} />
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-            
-            <Suspense fallback={null}>
-              <DualBrainMesh 
-                wholeBrainUrl={wholeBrainUrl} 
-                regionUrl={regionUrl}
-                sliceX={sliceX} 
-                sliceY={sliceY} 
-                sliceZ={sliceZ} 
-              />
-            </Suspense>
-            
-            {showHelpers && <SlicePlaneHelpers sliceX={sliceX} sliceY={sliceY} sliceZ={sliceZ} />}
-            
-            <Environment preset="studio" />
-            
-            <OrbitControls 
-              enableDamping
-              dampingFactor={0.05}
-              minDistance={50}
-              maxDistance={500}
-              target={[84, 81, 110]}
-            />
-          </Canvas>
-        </div>
-      </div>
-      */}
+     
     </div>
   );
 }
