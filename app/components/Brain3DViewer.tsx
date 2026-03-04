@@ -232,7 +232,7 @@ function OrthogonalSliceView({
         
         <Environment preset="studio" />
       </Canvas>
-      <div><ul><li>cameraPosition: {cameraPosition.join(', ')}</li></ul></div>
+      <div><ul><li>cameraPosition</li></ul></div>
       {/* Crosshair indicator */}
       <div style={{
         position: 'absolute',
@@ -395,7 +395,7 @@ export function Brain3DViewer({
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
           axis="x" 
-          slicePosition={sliceX}
+          slicePosition={-70+sliceX*1.5}
           currentHorizontalSlice={sliceY}
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceY}
@@ -405,7 +405,7 @@ export function Brain3DViewer({
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
           axis="y" 
-          slicePosition={sliceY}
+          slicePosition={180-(sliceY*1.25)}
           currentHorizontalSlice={sliceX}
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceX}
@@ -415,7 +415,7 @@ export function Brain3DViewer({
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
           axis="z" 
-          slicePosition={sliceZ}
+          slicePosition={(sliceZ-30)*1.6}
           currentHorizontalSlice={sliceX}
           currentVerticalSlice={sliceY}
           onSliceChangeHorizontal={setSliceX}
