@@ -634,3 +634,10 @@ h3.step-title {
   height: 30px;
   font-size: 20px;
 }
+
+.brainviewer-header {
+    padding: 12px;
+  background-color: #2a2a2a;
+  border-bottom: 1px solid #444;
+  color: #fff;
+}

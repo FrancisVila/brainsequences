@@ -371,19 +371,9 @@ export function Brain3DViewer({
   const [sliceZ, setSliceZ] = useState(defaultSliceZ);
 
   return (
-    <div style={{ 
-      width: '100%', 
-      border: '1px solid #ddd',
-      borderRadius: '4px',
-      backgroundColor: '#1a1a1a'
-    }}>
+    <div >
       {/* Control Panel */}
-      <div style={{
-        padding: '12px',
-        backgroundColor: '#2a2a2a',
-        borderBottom: '1px solid #444',
-        color: '#fff'
-      }}>
+      <div className="brainviewer-header" >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <strong>Multi-View Brain Viewer</strong>
