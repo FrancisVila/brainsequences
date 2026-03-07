@@ -97,9 +97,9 @@ function OrthogonalSliceView({
       clonedWholeBrain.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material) {
           child.material = new THREE.MeshStandardMaterial({
-            color: 0x999999,
+            color: 0xffffff,
             transparent: true,
-            opacity: 0.6,
+            opacity: 0.4,
             side: THREE.DoubleSide,
             clippingPlanes: [plane],
             clipShadows: true,
@@ -252,14 +252,13 @@ function OrthogonalSliceView({
       <div>
 
 </div>
-    // Camera fov sets size of all 3 axes
       <Canvas 
         ref={canvasRef}
         camera={{ 
           position: cameraPosition as [number, number, number],
           fov: 50
         }}
-        style={{ background: '#1a1a1a', width: '100%', height: '250px' }}
+        style={{ background: '#FFF', width: '350px', height: '250px' }}
         gl={{ localClippingEnabled: true }}
       >
         <CameraController target={brainCenter} up={cameraUp} />
@@ -272,7 +271,6 @@ function OrthogonalSliceView({
         
         <Environment preset="studio" />
       </Canvas>
-      <div><ul><li>cameraPosition</li></ul></div>
       {/* Crosshair indicator */}
       <div style={{
         position: 'absolute',
@@ -376,23 +374,15 @@ export function Brain3DViewer({
       <div className="brainviewer-header" >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <strong>Multi-View Brain Viewer</strong>
+            <strong>Cuneus</strong>
             <div style={{ fontSize: '0.85em', color: '#aaa', marginTop: '4px' }}>
               Drag in any slice view to change position
             </div>
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div >
             <button 
               onClick={() => { setSliceX(defaultSliceX); setSliceY(defaultSliceY); setSliceZ(defaultSliceZ); }}
-              style={{ 
-                padding: '6px 12px', 
-                fontSize: '0.85em', 
-                cursor: 'pointer',
-                backgroundColor: '#444',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px'
-              }}
+              className='brainviewer-reset'
             >
               Reset Slices
             </button>
@@ -400,14 +390,7 @@ export function Brain3DViewer({
         </div>
         
         {/* Slice position indicators */}
-        <div style={{ 
-          marginTop: '12px', 
-          display: 'flex', 
-          gap: '20px',
-          fontSize: '0.85em',
-          paddingTop: '8px',
-          borderTop: '1px solid #444'
-        }}>
+        <div className='brainviewer-XYZ' >
           <div>
             <span style={{ color: '#ff6666' }}>X:</span> {sliceX.toFixed(1)}
           </div>
@@ -421,17 +404,12 @@ export function Brain3DViewer({
       </div>
 
       {/* Top Row: Three Orthogonal Slice Views */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gap: '1px',
-        backgroundColor: '#444'
-      }}>
+      <div className='brainviewer-sliceviews'>
         <OrthogonalSliceView 
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
           axis="x" 
-          slicePosition={-70+sliceX*1.5}
+          slicePosition={-75+sliceX*1.8}
           currentHorizontalSlice={sliceY}
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceY}
