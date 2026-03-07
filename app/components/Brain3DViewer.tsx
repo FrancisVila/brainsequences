@@ -167,8 +167,34 @@ function OrthogonalSliceView({
     // X view: horizontal=Y(336), vertical=Z(230)
     // Y view: horizontal=X(267), vertical=Z(230)
     // Z view: horizontal=X(267), vertical=Y(336)
-    const hRange = axis === 'x' ? 336 : axis === 'y' ? 267 : 267;
-    const vRange = axis === 'x' ? 230 : axis === 'y' ? 230 : 336;
+    let hRange, vRange, hBounds, vBounds;
+    switch (axis) {
+      case 'x':
+        // X view: horizontal=Y, vertical=Z
+        hRange = 336;
+        vRange = 230;
+        hBounds = BRAIN_BOUNDS.y;
+        vBounds = BRAIN_BOUNDS.z;
+        break;
+      case 'y':
+        // Y view: horizontal=X, vertical=Z
+        hRange = 267;
+        vRange = 230;
+        hBounds = BRAIN_BOUNDS.x;
+        vBounds = BRAIN_BOUNDS.z;
+        break;
+      case 'z':
+        // Z view: horizontal=X, vertical=Y
+
+        hRange = 267;
+        vRange = 336;
+        hBounds = BRAIN_BOUNDS.x;
+        vBounds = BRAIN_BOUNDS.y;
+        break;
+    }
+
+    // const hRange = axis === 'x' ? 336 : axis === 'y' ? 267 : 267;
+    // const vRange = axis === 'x' ? 230 : axis === 'y' ? 230 : 336;
     const horizontalDelta = (deltaX / rect.width) * hRange;
     const verticalDelta = (deltaY / rect.height) * vRange;
     
@@ -177,8 +203,6 @@ function OrthogonalSliceView({
     const newVerticalSlice = dragStartRef.current.verticalSlice + verticalDelta;
     
     // Clamp to actual brain bounds
-    const hBounds = axis === 'x' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.x;
-    const vBounds = axis === 'z' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.z;
     onSliceChangeHorizontal(Math.max(hBounds.min, Math.min(hBounds.max, newHorizontalSlice)));
     onSliceChangeVertical(Math.max(vBounds.min, Math.min(vBounds.max, newVerticalSlice)));
   };
@@ -186,8 +210,24 @@ function OrthogonalSliceView({
   // Calculate crosshair positions as percentages
   // currentHorizontalSlice maps to vertical line position (left percentage)
   // currentVerticalSlice maps to horizontal line position (top percentage)
-  const hBounds = axis === 'x' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.x;
-  const vBounds = axis === 'z' ? BRAIN_BOUNDS.y : BRAIN_BOUNDS.z;
+  let hBounds, vBounds;
+  switch (axis) {
+    case 'x':
+      // X view: horizontal=Y, vertical=Z
+      hBounds = BRAIN_BOUNDS.y;
+      vBounds = BRAIN_BOUNDS.z;
+      break;
+    case 'y':
+      // Y view: horizontal=X, vertical=Z
+      hBounds = BRAIN_BOUNDS.x;
+      vBounds = BRAIN_BOUNDS.z;
+      break;
+    case 'z':
+      // Z view: horizontal=X, vertical=Y
+      hBounds = BRAIN_BOUNDS.x;
+      vBounds = BRAIN_BOUNDS.y;
+      break;
+  }
   const hRange = hBounds.max - hBounds.min;
   const vRange = vBounds.max - vBounds.min;
   
