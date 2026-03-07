@@ -359,10 +359,16 @@ export function Brain3DViewer({
   wholeBrainUrl = '/meshes/whole_brain.glb',
   regionUrl = '/meshes/cuneus.glb' 
 }: Brain3DViewerProps) {
+  
+  // TODO: change default slice positions to be at the center of the highlighted region (ex: cuneus) instead of the whole brain center
+  const defaultSliceX = (BRAIN_BOUNDS.x.max - BRAIN_BOUNDS.x.min) / 2 + BRAIN_BOUNDS.x.min;
+  const defaultSliceY = (BRAIN_BOUNDS.y.max - BRAIN_BOUNDS.y.min) / 2 + BRAIN_BOUNDS.y.min;
+  const defaultSliceZ = (BRAIN_BOUNDS.z.max - BRAIN_BOUNDS.z.min) / 2 + BRAIN_BOUNDS.z.min;
+  
   // Start at max bounds so full brain is visible
-  const [sliceX, setSliceX] = useState(220);
-  const [sliceY, setSliceY] = useState(255);
-  const [sliceZ, setSliceZ] = useState(230);
+  const [sliceX, setSliceX] = useState(defaultSliceX);
+  const [sliceY, setSliceY] = useState(defaultSliceY);
+  const [sliceZ, setSliceZ] = useState(defaultSliceZ);
 
   return (
     <div style={{ 
@@ -387,7 +393,7 @@ export function Brain3DViewer({
           </div>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <button 
-              onClick={() => { setSliceX(220); setSliceY(255); setSliceZ(230); }}
+              onClick={() => { setSliceX(defaultSliceX); setSliceY(defaultSliceY); setSliceZ(defaultSliceZ); }}
               style={{ 
                 padding: '6px 12px', 
                 fontSize: '0.85em', 
