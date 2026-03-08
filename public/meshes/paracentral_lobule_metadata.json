@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 60: Paracentral lobule",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_60_PARACENTRAL_LOBULE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1265,
+  "faces": 2550,
+  "voxels": 1448,
+  "bounds": [
+    [
+      52.11538004387222,
+      25.624050144473824,
+      168.82150523322466
+    ],
+    [
+      113.88858035598011,
+      92.42741969200826,
+      210.58355175280565
+    ]
+  ],
+  "centroid": [
+    84.39260538231756,
+    58.452964551317955,
+    190.09156737071618
+  ],
+  "file": "paracentral_lobule.glb",
+  "file_size_bytes": 61944
+}

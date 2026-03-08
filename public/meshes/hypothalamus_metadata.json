@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 1016: Hypothalamus",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_1016_HYPOTHALAMUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 510,
+  "faces": 1012,
+  "voxels": 347,
+  "bounds": [
+    [
+      57.90478219526887,
+      78.17835724389325,
+      49.77147303423043
+    ],
+    [
+      121.34824326450475,
+      116.79218867783457,
+      71.26775316958589
+    ]
+  ],
+  "centroid": [
+    89.04906556085788,
+    97.22512863141328,
+    61.02832552404885
+  ],
+  "file": "hypothalamus.glb",
+  "file_size_bytes": 25448
+}

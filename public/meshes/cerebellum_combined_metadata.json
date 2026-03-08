@@ -1,0 +1,36 @@
+{
+  "name": "Cerebellum",
+  "type": "combined_mesh",
+  "source_meshes": [
+    "ninterp_cerebellum_interposed_nucleus_right.glb",
+    "ninterp_cerebellum_interposed_nucleus_left.glb",
+    "ndentv_cerebellum_ventral_dentate_nucleus_right.glb",
+    "ndentv_cerebellum_ventral_dentate_nucleus_left.glb",
+    "ndentd_cerebellum_dorsal_dentate_nucleus_right.glb",
+    "ndentd_cerebellum_dorsal_dentate_nucleus_left.glb",
+    "nfast_cerebellum_fastigial_nucleus_right.glb",
+    "nfast_cerebellum_fastigial_nucleus_left.glb"
+  ],
+  "num_source_meshes": 8,
+  "vertices": 8700,
+  "faces": 17360,
+  "bounds": [
+    [
+      -23.80179214477539,
+      -70.53077697753906,
+      -44.097259521484375
+    ],
+    [
+      20.714515686035156,
+      -48.307273864746094,
+      -26.807140350341797
+    ]
+  ],
+  "centroid": [
+    -1.575410365203917,
+    -59.46179327177096,
+    -34.85228399387555
+  ],
+  "file": "cerebellum_combined.glb",
+  "file_size_bytes": 313512
+}

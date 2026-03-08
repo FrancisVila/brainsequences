@@ -167,5 +167,5 @@ def generate_region_mesh(region_name: str, output_dir: Path = None, parcellation
 
 if __name__ == "__main__":
     # Default region when running as script
-    region_name = "Cuneus"
+    region_name = "Fornix"
     generate_region_mesh(region_name)

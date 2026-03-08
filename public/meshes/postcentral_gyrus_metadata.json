@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 23: Postcentral gyrus left",
+  "region_id": "DIFUMO_ATLAS_256_DIMENSIONS_COMPONENT_23_POSTCENTRAL_GYRUS_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (256 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 860,
+  "faces": 1716,
+  "voxels": 747,
+  "bounds": [
+    [
+      -26.995224691493153,
+      53.81930807569981,
+      150.30309947236717
+    ],
+    [
+      35.318697408141354,
+      92.30892898139653,
+      208.66999127699356
+    ]
+  ],
+  "centroid": [
+    7.264797641106899,
+    70.91531750074051,
+    176.840150600096
+  ],
+  "file": "postcentral_gyrus.glb",
+  "file_size_bytes": 42300
+}

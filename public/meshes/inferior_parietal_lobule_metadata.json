@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 1011: Superior parietal lobule inferior left",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_1011_SUPERIOR_PARIETAL_LOBULE_INFERIOR_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 358,
+  "faces": 712,
+  "voxels": 256,
+  "bounds": [
+    [
+      -1.5496283489502563,
+      5.019421792399867,
+      184.60324818273338
+    ],
+    [
+      36.14026917303272,
+      40.03428962255506,
+      209.7390704248787
+    ]
+  ],
+  "centroid": [
+    18.47102887652385,
+    25.4047502093273,
+    198.16440234643744
+  ],
+  "file": "inferior_parietal_lobule.glb",
+  "file_size_bytes": 18200
+}
