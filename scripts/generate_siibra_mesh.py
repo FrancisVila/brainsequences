@@ -10,7 +10,7 @@ import json
 import re
 
 
-def generate_region_mesh(region_name: str, output_dir: Path = None):
+def generate_region_mesh(region_name: str, output_dir: Path = None, parcellation_name: str = 'difumo 64'):
     """
     Generate a 3D mesh for a specific brain region using siibra.
     
@@ -18,11 +18,13 @@ def generate_region_mesh(region_name: str, output_dir: Path = None):
         region_name: Name of the brain region to generate mesh for
         output_dir: Directory to save the mesh and metadata files. 
                    Defaults to public/meshes relative to script location.
+        parcellation_name: Name of the parcellation to use (default: 'difumo 64')
     
     Returns:
         dict: Metadata about the generated mesh, or None if generation failed
     """
     print(f"🧠 Generating brain region mesh for '{region_name}' from siibra...")
+    print(f"   Using parcellation: {parcellation_name}")
     
     # Configure output
     if output_dir is None:
@@ -32,7 +34,7 @@ def generate_region_mesh(region_name: str, output_dir: Path = None):
     
     # Load atlas and parcellation
     atlas = siibra.atlases.MULTILEVEL_HUMAN_ATLAS
-    parcellation = atlas.get_parcellation('difumo 64')
+    parcellation = atlas.get_parcellation(parcellation_name)
     print(f"✓ Atlas: {atlas.name}")
     print(f"✓ Parcellation: {parcellation.name}")
     

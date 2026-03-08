@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 61: Middle temporal gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_61_MIDDLE_TEMPORAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 3518,
+  "faces": 7040,
+  "voxels": 3678,
+  "bounds": [
+    [
+      -49.41642420400348,
+      -5.727555836131494,
+      27.443619166576383
+    ],
+    [
+      191.85249734958177,
+      208.78403769265535,
+      136.01372364924464
+    ]
+  ],
+  "centroid": [
+    -9.959590041671177,
+    101.30715746563546,
+    66.75320596244191
+  ],
+  "file": "middle_temporal_gyrus.glb",
+  "file_size_bytes": 169960
+}

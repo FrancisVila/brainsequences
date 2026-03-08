@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 63: Central sulcus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_63_CENTRAL_SULCUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2566,
+  "faces": 5152,
+  "voxels": 2271,
+  "bounds": [
+    [
+      -45.769689492089036,
+      71.66110065718004,
+      92.32102590756914
+    ],
+    [
+      215.57139173577448,
+      138.5768587652527,
+      182.54401360387524
+    ]
+  ],
+  "centroid": [
+    82.19707814009756,
+    99.9756647691012,
+    146.46181384156765
+  ],
+  "file": "central_sulcus.glb",
+  "file_size_bytes": 124392
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 52: Inferior frontal gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_52_INFERIOR_FRONTAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2970,
+  "faces": 5972,
+  "voxels": 3412,
+  "bounds": [
+    [
+      -34.01203430365238,
+      11.850877071065405,
+      42.0290960373748
+    ],
+    [
+      66.91873325441004,
+      247.97088307044675,
+      196.01771380988865
+    ]
+  ],
+  "centroid": [
+    -0.11426099690968923,
+    185.4486336262756,
+    104.0554325285396
+  ],
+  "file": "inferior_frontal_gyrus.glb",
+  "file_size_bytes": 143960
+}
