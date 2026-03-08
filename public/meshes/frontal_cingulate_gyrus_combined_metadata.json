@@ -1,0 +1,34 @@
+{
+  "name": "frontal cingulate gyrus",
+  "type": "combined_mesh",
+  "source_meshes": [
+    "area_s32_sacc_right.glb",
+    "area_s32_sacc_left.glb",
+    "area_33_acc_right.glb",
+    "area_33_acc_left.glb",
+    "area_p32_pacc_right.glb",
+    "area_p32_pacc_left.glb"
+  ],
+  "num_source_meshes": 6,
+  "vertices": 30298,
+  "faces": 60964,
+  "bounds": [
+    [
+      -16.336910247802734,
+      2.9792847633361816,
+      -24.84615707397461
+    ],
+    [
+      16.586605072021484,
+      64.24655151367188,
+      32.7741813659668
+    ]
+  ],
+  "centroid": [
+    -0.1438014974225588,
+    41.91768941772164,
+    6.0138816770342425
+  ],
+  "file": "frontal_cingulate_gyrus_combined.glb",
+  "file_size_bytes": 1095936
+}

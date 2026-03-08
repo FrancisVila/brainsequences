@@ -70,7 +70,7 @@ def combine_meshes(mesh_paths, output_name, output_dir):
         safe_filename = re.sub(r'[-\s]+', '_', safe_filename)
         
         # Save combined mesh
-        output_file = output_dir / f'{safe_filename}_combined.glb'
+        output_file = output_dir / f'{safe_filename}.glb'
         combined.export(str(output_file))
         file_size = output_file.stat().st_size
         
@@ -88,11 +88,11 @@ def combine_meshes(mesh_paths, output_name, output_dir):
             'faces': len(combined.faces),
             'bounds': combined.bounds.tolist(),
             'centroid': combined.centroid.tolist(),
-            'file': f'{safe_filename}_combined.glb',
+            'file': f'{safe_filename}.glb',
             'file_size_bytes': file_size
         }
         
-        metadata_file = output_dir / f'{safe_filename}_combined_metadata.json'
+        metadata_file = output_dir / f'{safe_filename}_metadata.json'
         with open(metadata_file, 'w') as f:
             json.dump(metadata, f, indent=2)
         print(f"   Metadata: {metadata_file}")

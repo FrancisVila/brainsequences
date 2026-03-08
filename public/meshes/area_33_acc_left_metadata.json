@@ -1,0 +1,30 @@
+{
+  "region_name": "Area 33 (ACC) left",
+  "region_id": "JULICH_BRAIN_CYTOARCHITECTONIC_ATLAS_V3_1_AREA_33_ACC_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "Julich-Brain Cytoarchitectonic Atlas (v3.1)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2823,
+  "faces": 5722,
+  "voxels": 2433,
+  "bounds": [
+    [
+      -7.589673703734043,
+      2.979284672967898,
+      -6.183509761309795
+    ],
+    [
+      8.700910378288645,
+      38.33291303334752,
+      32.774182384138946
+    ]
+  ],
+  "centroid": [
+    2.2377381043622395,
+    21.90064835884651,
+    19.619841712062676
+  ],
+  "file": "area_33_acc_left.glb",
+  "file_size_bytes": 137492
+}
