@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 170: Temporal pole",
+  "region_id": "DIFUMO_ATLAS_256_DIMENSIONS_COMPONENT_170_TEMPORAL_POLE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (256 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2198,
+  "faces": 4388,
+  "voxels": 2846,
+  "bounds": [
+    [
+      -29.911224014727793,
+      96.50356118163563,
+      -20.092282536466758
+    ],
+    [
+      195.1444177910315,
+      166.33178972009998,
+      25.666658375778542
+    ]
+  ],
+  "centroid": [
+    80.24182907200998,
+    128.0984921038564,
+    1.748304928118133
+  ],
+  "file": "temporal_pole.glb",
+  "file_size_bytes": 106484
+}

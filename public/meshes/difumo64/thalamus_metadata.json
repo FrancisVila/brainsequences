@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 47: Thalamus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_47_THALAMUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2649,
+  "faces": 5286,
+  "voxels": 2937,
+  "bounds": [
+    [
+      16.43991936003763,
+      51.24414192635208,
+      55.39275238401381
+    ],
+    [
+      152.40228093715052,
+      119.9248345461038,
+      100.80290921849061
+    ]
+  ],
+  "centroid": [
+    85.01344693161587,
+    81.63905956420635,
+    79.854495795613
+  ],
+  "file": "thalamus.glb",
+  "file_size_bytes": 127988
+}

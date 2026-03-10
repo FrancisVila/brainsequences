@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 65: Inferior temporal gyrus posterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_65_INFERIOR_TEMPORAL_GYRUS_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1524,
+  "faces": 3040,
+  "voxels": 1750,
+  "bounds": [
+    [
+      -27.85839792668678,
+      -39.411778654946616,
+      37.08366469525118
+    ],
+    [
+      196.56667555855745,
+      38.229402782631425,
+      79.79684681583915
+    ]
+  ],
+  "centroid": [
+    56.38884972506004,
+    1.280993378917636,
+    55.78060689333823
+  ],
+  "file": "inferior_temporal_gyrus.glb",
+  "file_size_bytes": 74124
+}

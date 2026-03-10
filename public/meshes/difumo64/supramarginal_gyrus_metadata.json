@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 37: Supramarginal gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_37_SUPRAMARGINAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2470,
+  "faces": 4932,
+  "voxels": 2972,
+  "bounds": [
+    [
+      -49.33997532460351,
+      24.863847564761347,
+      78.23041996519434
+    ],
+    [
+      218.68258498528996,
+      144.98079814011118,
+      160.3394074674927
+    ]
+  ],
+  "centroid": [
+    92.80994283251925,
+    66.91697220745426,
+    122.52771126569417
+  ],
+  "file": "supramarginal_gyrus.glb",
+  "file_size_bytes": 119524
+}

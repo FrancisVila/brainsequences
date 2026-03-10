@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 86: Cerebrospinal fluid (between parietal lobe and skull)",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_86_CEREBROSPINAL_FLUID_BETWEEN_PARIETAL_LOBE_AND_SKULL",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2014,
+  "faces": 4068,
+  "voxels": 1181,
+  "bounds": [
+    [
+      -15.44335293607585,
+      -28.298690180145563,
+      179.554201383712
+    ],
+    [
+      180.41744618849557,
+      33.901595920066725,
+      223.95407993207488
+    ]
+  ],
+  "centroid": [
+    87.9227545610102,
+    -0.6690038429915833,
+    198.56638276601262
+  ],
+  "file": "parietal_lobe.glb",
+  "file_size_bytes": 98228
+}

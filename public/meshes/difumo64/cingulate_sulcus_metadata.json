@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 105: Cingulate sulcus posterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_105_CINGULATE_SULCUS_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1899,
+  "faces": 3794,
+  "voxels": 1805,
+  "bounds": [
+    [
+      47.30652018617333,
+      33.01027639451546,
+      113.91653806363732
+    ],
+    [
+      125.68748188485974,
+      155.93432352870516,
+      162.12676606851434
+    ]
+  ],
+  "centroid": [
+    85.82278148651898,
+    91.15968170931622,
+    142.70269044062766
+  ],
+  "file": "cingulate_sulcus.glb",
+  "file_size_bytes": 92088
+}

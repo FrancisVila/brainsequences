@@ -343,7 +343,7 @@ function OrthogonalSliceView({
 
 interface Brain3DViewerProps {
   wholeBrainUrl?: string;
-  regionUrl?: string;
+  region?: string;
 }
 
 // Brain bounding box from metadata (in mm)
@@ -355,9 +355,9 @@ const BRAIN_BOUNDS = {
 
 export function Brain3DViewer({ 
   wholeBrainUrl = '/meshes/whole_brain.glb',
-  regionUrl = '/meshes/central_sulcus.glb' 
+  region = 'cuneus' 
 }: Brain3DViewerProps) {
-  
+  const regionUrl = `/meshes/${region}.glb`;
   // TODO: change default slice positions to be at the center of the highlighted region (ex: cuneus) instead of the whole brain center
   const defaultSliceX = (BRAIN_BOUNDS.x.max - BRAIN_BOUNDS.x.min) / 2 + BRAIN_BOUNDS.x.min;
   const defaultSliceY = (BRAIN_BOUNDS.y.max - BRAIN_BOUNDS.y.min) / 2 + BRAIN_BOUNDS.y.min;
@@ -374,7 +374,7 @@ export function Brain3DViewer({
       <div className="brainviewer-header" >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <strong>Cuneus</strong>
+            <strong>{region}</strong>
             <div style={{ fontSize: '0.85em', color: '#aaa', marginTop: '4px' }}>
               Drag in any slice view to change position
             </div>

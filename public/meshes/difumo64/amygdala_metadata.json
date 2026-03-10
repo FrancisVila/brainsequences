@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 21: Amygdala",
+  "region_id": "DIFUMO_ATLAS_256_DIMENSIONS_COMPONENT_21_AMYGDALA",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (256 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1571,
+  "faces": 3142,
+  "voxels": 1404,
+  "bounds": [
+    [
+      -8.816829624304692,
+      76.89704382330724,
+      6.754341871224878
+    ],
+    [
+      168.6097276293367,
+      156.64701941385903,
+      40.71882139310887
+    ]
+  ],
+  "centroid": [
+    89.20157921951322,
+    107.92222274133564,
+    26.268022017403123
+  ],
+  "file": "amygdala.glb",
+  "file_size_bytes": 76392
+}

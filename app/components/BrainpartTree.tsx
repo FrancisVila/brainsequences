@@ -82,11 +82,7 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
               ({children.length})
             </span>
           )}
-          {brainpart.description && (
-            <span style={{ fontSize: '0.85em', color: '#666', marginLeft: 8 }}>
-              ({brainpart.description})
-            </span>
-          )}
+
           {user?.role === 'admin' && (
             <div className="brainpart-icons">
               <a href={`/brainparts/update?id=${brainpart.id}`} onClick={(e) => e.stopPropagation()}>✎</a>
