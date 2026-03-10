@@ -355,7 +355,7 @@ const BRAIN_BOUNDS = {
 
 export function Brain3DViewer({ 
   wholeBrainUrl = '/meshes/whole_brain.glb',
-  regionUrl = '/meshes/ndentd_cerebellum_dorsal_dentate_nucleus_left.glb' 
+  regionUrl = '/meshes/central_sulcus.glb' 
 }: Brain3DViewerProps) {
   
   // TODO: change default slice positions to be at the center of the highlighted region (ex: cuneus) instead of the whole brain center

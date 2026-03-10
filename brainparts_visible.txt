@@ -1,0 +1,91 @@
+4th_ventricle
+Adrenal_gland
+Amygdala
+Angular_gyrus
+Brain stem
+Central Sulcus
+Cerebellum
+Cerebral_aqueduct
+Cerebrum
+Choroid_plexus
+Cingulate_gyrus
+Cingulate_sulcus
+Corpus_callosum
+Cuneus
+Endocrine system
+Fornix
+Frontal lobe
+Frontal_pole
+Hearing
+Hippocampus
+Hypothalamic_sulcus
+Hypothalamus
+Inferior_Colliculus
+Inferior_frontal_gyrus
+Inferior_parietal_lobule
+Inferior_temporal_gyrus
+Interthalamic_adhesion
+Lamina_terminalis
+Limbic system
+Medulla_Oblongata
+Middle_frontal_gyrus
+Middle_temporal_gyrus
+Motor Ankle
+Motor Brow
+Motor Face
+Motor Fingers
+Motor Hip
+Motor Knee
+Motor Larynx
+Motor Lips
+Motor Neck
+Motor Shoulder
+Motor Thumb
+Motor Toes
+Motor Tongue
+Motor Trunk
+Motor Wrist
+Motor_area
+Occipital lobe
+Optic_chiasm
+Optic_recess
+Pancreas
+Paracentral_lobule
+Paraterminal_gyrus
+Parietal lobe
+Pineal_gland
+Pituitary_gland
+Pons
+Postcentral_gyrus
+Precentral_gyrus
+Precentral_sulcus
+Precuneus
+Senses
+Sensory Area
+Sensory Eye
+Sensory Fingers
+Sensory Foot
+Sensory Genitalia
+Sensory Head
+Sensory Leg
+Sensory Lips
+Sensory Mouth
+Sensory Neck
+Sensory Thumb
+Septum_pellucidum
+Sight
+Smell
+Stem
+Sulcus_of_corpus_callosum
+Superior_Colliculus
+Superior_parietal_lobule
+Superior_temporal_gyrus
+Supramarginal_gyrus
+Taste
+Temporal Pole
+Temporal lobe
+Thalamus
+Thymus
+Thyroid
+Touch
+Ventral_tegmental_area
