@@ -344,6 +344,7 @@ function OrthogonalSliceView({
 interface Brain3DViewerProps {
   wholeBrainUrl?: string;
   region?: string;
+  description?: string;
 }
 
 // Brain bounding box from metadata (in mm)
@@ -355,9 +356,12 @@ const BRAIN_BOUNDS = {
 
 export function Brain3DViewer({ 
   wholeBrainUrl = '/meshes/whole_brain.glb',
-  region = 'cuneus' 
+  region = 'cuneus',
+  description
 }: Brain3DViewerProps) {
-  const regionUrl = `/meshes/${region}.glb`;
+  // Sanitize region name: lowercase, replace non-alphanumeric chars and spaces with underscores
+  const sanitizedRegion = region.toLowerCase().replace(/[^\w\s-]/g, '_').replace(/[-\s]+/g, '_');
+  const regionUrl = `/meshes/${sanitizedRegion}.glb`;
   // TODO: change default slice positions to be at the center of the highlighted region (ex: cuneus) instead of the whole brain center
   const defaultSliceX = (BRAIN_BOUNDS.x.max - BRAIN_BOUNDS.x.min) / 2 + BRAIN_BOUNDS.x.min;
   const defaultSliceY = (BRAIN_BOUNDS.y.max - BRAIN_BOUNDS.y.min) / 2 + BRAIN_BOUNDS.y.min;
@@ -367,6 +371,63 @@ export function Brain3DViewer({
   const [sliceX, setSliceX] = useState(defaultSliceX);
   const [sliceY, setSliceY] = useState(defaultSliceY);
   const [sliceZ, setSliceZ] = useState(defaultSliceZ);
+  
+  // Track if mesh file exists
+  const [meshExists, setMeshExists] = useState<boolean | null>(null);
+  
+  // Check if region mesh exists (case insensitive)
+  useEffect(() => {
+    const checkMeshExists = async () => {
+      try {
+        const response = await fetch(regionUrl, { method: 'HEAD' });
+        setMeshExists(response.ok);
+      } catch (error) {
+        setMeshExists(false);
+      }
+    };
+    checkMeshExists();
+  }, [regionUrl]);
+
+  // Show loading state while checking
+  if (meshExists === null) {
+    return (
+      <div style={{ 
+        padding: '40px', 
+        textAlign: 'center', 
+        border: '1px solid #ddd', 
+        borderRadius: '8px',
+        backgroundColor: '#f9f9f9'
+      }}>
+        <div style={{ fontSize: '1.2em', color: '#666' }}>
+          Loading {region}...
+        </div>
+      </div>
+    );
+  }
+  
+  // Show error message if mesh file doesn't exist
+  if (meshExists === false) {
+    return (
+      <div style={{ 
+        padding: '40px', 
+        textAlign: 'center', 
+        border: '2px solid #ff6b35', 
+        borderRadius: '8px',
+        backgroundColor: '#fff5f0'
+      }}>
+        <div style={{ fontSize: '1.5em', marginBottom: '10px' }}>⚠️</div>
+        <div style={{ fontSize: '1.2em', fontWeight: 'bold', color: '#ff6b35', marginBottom: '10px' }}>
+          Mesh Not Found
+        </div>
+        <div style={{ color: '#666', marginBottom: '10px' }}>
+          The 3D mesh for <strong>{region}</strong> could not be found.
+        </div>
+        <div style={{ fontSize: '0.9em', color: '#999' }}>
+          Expected file: <code>{sanitizedRegion}.glb</code>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div >
@@ -375,6 +436,11 @@ export function Brain3DViewer({
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <strong>{region}</strong>
+            {description && (
+              <div style={{ fontSize: '0.9em', color: '#666', marginTop: '4px', fontStyle: 'italic' }}>
+                {description}
+              </div>
+            )}
             <div style={{ fontSize: '0.85em', color: '#aaa', marginTop: '4px' }}>
               Drag in any slice view to change position
             </div>

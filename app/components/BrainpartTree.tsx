@@ -14,12 +14,16 @@ interface BrainpartTreeProps {
   brainparts: Brainpart[];
   user?: any;
   onDelete?: (brainpart: Brainpart) => void;
+  onRegionChange?: (region: string) => void;
 }
 
-export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps) {
+export function BrainpartTree({ brainparts, user, onDelete, onRegionChange }: BrainpartTreeProps) {
   // Track which items are expanded (default: all closed)
   const OTHERS_ID = -999; // Special ID for "Others" section
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
+  
+  // Track selected brainpart (default: "cuneus")
+  const [selectedTitle, setSelectedTitle] = useState<string>('cuneus');
   
   // Helper to normalize isPartOf values to numbers
   const normalizeValue = (val: any): number | null => {
@@ -39,6 +43,12 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
       }
       return next;
     });
+  };
+  
+  // Handle brainpart selection
+  const handleSelect = (title: string) => {
+    setSelectedTitle(title);
+    onRegionChange?.(title);
   };
   
   // Get top-level brainparts (isPartOf = -1)
@@ -62,15 +72,22 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
     const children = getChildren(brainpart.id);
     const hasChildren = children.length > 0;
     const isExpanded = expandedIds.has(brainpart.id);
+    const isSelected = brainpart.title.toLowerCase() === selectedTitle.toLowerCase();
     
     return (
       <div key={brainpart.id} style={{ marginLeft: level * 20 }}>
         <div 
-        className = {hasChildren ? 'brainpart-section parent' : 'brainpart-section leaf'}
-          onClick={() => hasChildren && toggleExpanded(brainpart.id)}
+        className = {`${hasChildren ? 'brainpart-section parent' : 'brainpart-section leaf'}${isSelected ? ' selected' : ''}`}
+          onClick={() => handleSelect(brainpart.title)}
         >
           {hasChildren ? (
-            <span style={{ marginRight: 4 }}>
+            <span 
+              style={{ marginRight: 4, cursor: 'pointer' }}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleExpanded(brainpart.id);
+              }}
+            >
               {isExpanded ? '▼' : '▶'}
             </span>
           ) : (
@@ -126,9 +143,14 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
                 cursor: 'pointer',
                 userSelect: 'none'
               }}
-              onClick={() => toggleExpanded(OTHERS_ID)}
             >
-              <span style={{ marginRight: 4 }}>
+              <span 
+                style={{ marginRight: 4, cursor: 'pointer' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleExpanded(OTHERS_ID);
+                }}
+              >
                 {expandedIds.has(OTHERS_ID) ? '▼' : '▶'}
               </span>
               Others
@@ -136,13 +158,18 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
                 ({others.length})
               </span>
             </div>
-            {expandedIds.has(OTHERS_ID) && others.sort((a, b) => a.title.localeCompare(b.title)).map(bp => (
+            {expandedIds.has(OTHERS_ID) && others.sort((a, b) => a.title.localeCompare(b.title)).map(bp => {
+              const isSelected = bp.title.toLowerCase() === selectedTitle.toLowerCase();
+              return (
               <div key={bp.id} style={{ 
                 marginLeft: 20,
                 padding: '4px 8px',
                 marginBottom: '2px',
-  
-              }}>
+                cursor: 'pointer'
+              }}
+                className={isSelected ? 'selected' : ''}
+                onClick={() => handleSelect(bp.title)}
+              >
                 <span style={{ marginRight: 4 }}>📄</span>
                 {bp.title}
                 {bp.description && (
@@ -163,7 +190,8 @@ export function BrainpartTree({ brainparts, user, onDelete }: BrainpartTreeProps
                   </div>
                 )}
               </div>
-            ))}
+            );
+            })}
           </div>
         )}
       </div>

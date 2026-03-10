@@ -588,21 +588,24 @@ h3.step-title {
     padding: 4px 8px;
   margin-bottom: 2px;
   border-left: none;
-  
+  background-color: #ffffff;
 }
 
 .brainpart-section.parent {
   padding: 4px 8px;
   margin-bottom: 2px;
-  background-color: #e8f4f8;
   font-weight: bold;
   
 }
 
 .brainpart-section.leaf {
-  background-color: #ffffff;
   font-weight: normal;
   user-select: none;
+}
+
+.brainpart-section.selected {
+  background-color: #aad400c2;
+  border-left: 4px solid #aad400;
 }
 
 .brainpart-icons {

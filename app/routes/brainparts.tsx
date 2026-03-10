@@ -14,7 +14,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedBrainpartId, setSelectedBrainpartId] = useState<number | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<string>('cuneus');
 
   async function load() {
     setLoading(true);
@@ -33,6 +33,20 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     await fetch('/api/brainparts', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: p.id }) });
     load();
   }
+  
+  const handleRegionChange = (region: string) => {
+    setSelectedRegion(region);
+  };
+  
+  // Find the selected brainpart to get its description (case-insensitive, trimmed)
+  const selectedBrainpart = parts.find(p => 
+    p.title.toLowerCase().trim() === selectedRegion.toLowerCase().trim()
+  );
+  
+  // Debug logging
+  console.log('Selected region:', selectedRegion);
+  console.log('Selected brainpart:', selectedBrainpart);
+  console.log('Description:', selectedBrainpart?.description);
 
   return (
     <div>
@@ -46,12 +60,12 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
       }}>
         {/* Left side - Tree */}
         <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
-          {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} />}
+          {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} onRegionChange={handleRegionChange} />}
         </div>
         
         {/* Right side - Multi-view 3D Viewer */}
         <div style={{ flex: '1', minWidth: '800px' }}>
-          <Brain3DViewer />
+          <Brain3DViewer region={selectedRegion} description={selectedBrainpart?.description} />
         </div>
       </div>
       
