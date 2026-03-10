@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 16: Precuneus superior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_16_PRECUNEUS_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1106,
+  "faces": 2224,
+  "voxels": 945,
+  "bounds": [
+    [
+      60.20936501998348,
+      -24.940643372563176,
+      169.7044812170227
+    ],
+    [
+      109.49455319454243,
+      45.01309131564533,
+      218.39352370164602
+    ]
+  ],
+  "centroid": [
+    85.02113109778108,
+    8.072816811542447,
+    195.58609996677788
+  ],
+  "file": "precuneus_superior.glb",
+  "file_size_bytes": 54308
+}

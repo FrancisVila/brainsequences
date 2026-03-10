@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 12: Paracentral gyrus right",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_12_PARACENTRAL_GYRUS_RIGHT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1857,
+  "faces": 3722,
+  "voxels": 2357,
+  "bounds": [
+    [
+      129.7908255707041,
+      42.48561103470808,
+      130.67609282943633
+    ],
+    [
+      203.07397132449913,
+      105.3531583750941,
+      207.07082967172678
+    ]
+  ],
+  "centroid": [
+    162.54117115260203,
+    71.52604074816463,
+    171.75012365677244
+  ],
+  "file": "paracentral_gyrus_right.glb",
+  "file_size_bytes": 90292
+}

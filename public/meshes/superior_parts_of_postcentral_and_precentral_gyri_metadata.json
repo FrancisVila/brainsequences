@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 10: Superior parts of Postcentral and Precentral gyri",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_10_SUPERIOR_PARTS_OF_POSTCENTRAL_AND_PRECENTRAL_GYRI",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 5034,
+  "faces": 10404,
+  "voxels": 2439,
+  "bounds": [
+    [
+      -45.659555085343946,
+      1.493244214006444,
+      122.28944484694745
+    ],
+    [
+      214.5337804827115,
+      143.81108079827516,
+      229.00636426216695
+    ]
+  ],
+  "centroid": [
+    87.60719048196114,
+    71.03985656091719,
+    194.60019501956816
+  ],
+  "file": "superior_parts_of_postcentral_and_precentral_gyri.glb",
+  "file_size_bytes": 246656
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 19: Planum polare",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_19_PLANUM_POLARE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2401,
+  "faces": 4798,
+  "voxels": 2872,
+  "bounds": [
+    [
+      -40.2419595658095,
+      71.59172237323459,
+      41.89078304334191
+    ],
+    [
+      209.98698702143426,
+      148.50189467413438,
+      90.27670327916024
+    ]
+  ],
+  "centroid": [
+    88.15629408881665,
+    112.54945485049335,
+    71.49633795885583
+  ],
+  "file": "planum_polare.glb",
+  "file_size_bytes": 116260
+}

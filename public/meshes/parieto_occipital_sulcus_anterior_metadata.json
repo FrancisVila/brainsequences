@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 61: Parieto-occipital sulcus anterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_61_PARIETO_OCCIPITAL_SULCUS_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1503,
+  "faces": 3014,
+  "voxels": 1290,
+  "bounds": [
+    [
+      38.632232562087964,
+      -10.463148737648696,
+      71.17140712064253
+    ],
+    [
+      136.04204469614862,
+      41.25899158528567,
+      119.44976723870907
+    ]
+  ],
+  "centroid": [
+    85.69201260319939,
+    13.517908785495319,
+    96.31306588048317
+  ],
+  "file": "parieto_occipital_sulcus_anterior.glb",
+  "file_size_bytes": 73312
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 11: Transverse sinus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_11_TRANSVERSE_SINUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2777,
+  "faces": 5578,
+  "voxels": 2148,
+  "bounds": [
+    [
+      -12.764583610835498,
+      -67.47346416552934,
+      9.122312720162723
+    ],
+    [
+      185.04891160299408,
+      26.492785147229764,
+      103.53143194413045
+    ]
+  ],
+  "centroid": [
+    87.280971889218,
+    -25.6552439870147,
+    25.826174532755655
+  ],
+  "file": "transverse_sinus.glb",
+  "file_size_bytes": 134572
+}

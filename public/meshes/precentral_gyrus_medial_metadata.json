@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 34: Precentral gyrus medial",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_34_PRECENTRAL_GYRUS_MEDIAL",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1772,
+  "faces": 3540,
+  "voxels": 2025,
+  "bounds": [
+    [
+      45.66828721015801,
+      72.78585242269266,
+      137.99976844248835
+    ],
+    [
+      128.07638300657825,
+      137.63833298954114,
+      207.93402695910837
+    ]
+  ],
+  "centroid": [
+    86.55527377902222,
+    105.11726728003136,
+    171.44584605495385
+  ],
+  "file": "precentral_gyrus_medial.glb",
+  "file_size_bytes": 86084
+}

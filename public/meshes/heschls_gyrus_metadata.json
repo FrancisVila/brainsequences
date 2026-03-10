@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 45: Heschl\u2019s gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_45_HESCHL_S_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2808,
+  "faces": 5640,
+  "voxels": 2673,
+  "bounds": [
+    [
+      -43.640302453950866,
+      35.810789085929336,
+      74.41636788245478
+    ],
+    [
+      217.2832787022996,
+      133.48055159977426,
+      120.69546928338143
+    ]
+  ],
+  "centroid": [
+    81.3001117520636,
+    83.6850571015929,
+    99.81338017278316
+  ],
+  "file": "heschls_gyrus.glb",
+  "file_size_bytes": 136148
+}

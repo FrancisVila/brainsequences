@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 35: Lingual gyrus anterior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_35_LINGUAL_GYRUS_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2643,
+  "faces": 5334,
+  "voxels": 2307,
+  "bounds": [
+    [
+      23.950749732424462,
+      -26.818418461023047,
+      31.23887951753771
+    ],
+    [
+      145.35352215583447,
+      73.29660469615095,
+      95.71936958067889
+    ]
+  ],
+  "centroid": [
+    86.778327050343,
+    19.383100182878643,
+    66.81353594450903
+  ],
+  "file": "lingual_gyrus_anterior.glb",
+  "file_size_bytes": 128508
+}

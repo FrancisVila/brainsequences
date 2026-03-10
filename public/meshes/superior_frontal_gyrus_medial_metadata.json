@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 17: Superior frontal gyrus medial",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_17_SUPERIOR_FRONTAL_GYRUS_MEDIAL",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2222,
+  "faces": 4472,
+  "voxels": 2060,
+  "bounds": [
+    [
+      -23.221039516608503,
+      108.38294045104753,
+      136.31526870391048
+    ],
+    [
+      194.3050807874127,
+      174.3594017100641,
+      210.108224179623
+    ]
+  ],
+  "centroid": [
+    81.54346833003763,
+    136.72041922453596,
+    175.73312575465766
+  ],
+  "file": "superior_frontal_gyrus_medial.glb",
+  "file_size_bytes": 107980
+}

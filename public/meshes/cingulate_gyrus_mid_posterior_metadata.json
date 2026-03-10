@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 14: Cingulate gyrus mid-posterior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_14_CINGULATE_GYRUS_MID_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1471,
+  "faces": 2942,
+  "voxels": 1732,
+  "bounds": [
+    [
+      50.633895018522125,
+      -23.771119522196102,
+      123.53629325230962
+    ],
+    [
+      120.10092111171738,
+      80.44841736635979,
+      161.17525621466888
+    ]
+  ],
+  "centroid": [
+    84.86089025897458,
+    23.9685776777289,
+    141.7171321922375
+  ],
+  "file": "cingulate_gyrus_mid_posterior.glb",
+  "file_size_bytes": 71680
+}

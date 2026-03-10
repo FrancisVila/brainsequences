@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 8: Planum temporale",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_8_PLANUM_TEMPORALE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2469,
+  "faces": 4978,
+  "voxels": 2368,
+  "bounds": [
+    [
+      -48.47695867211755,
+      34.03094912291831,
+      44.1479852280738
+    ],
+    [
+      219.17077336358523,
+      126.59365213771822,
+      110.04097727721218
+    ]
+  ],
+  "centroid": [
+    76.88436982241905,
+    75.78587810630317,
+    85.11352981865677
+  ],
+  "file": "planum_temporale.glb",
+  "file_size_bytes": 120068
+}

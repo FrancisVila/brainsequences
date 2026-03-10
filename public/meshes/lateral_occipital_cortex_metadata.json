@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 42: Lateral occipital cortex",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_42_LATERAL_OCCIPITAL_CORTEX",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2414,
+  "faces": 4836,
+  "voxels": 3405,
+  "bounds": [
+    [
+      -34.63799769496536,
+      -46.021522474523046,
+      52.715529126157655
+    ],
+    [
+      206.94425004035787,
+      24.474233569712098,
+      118.30183866192486
+    ]
+  ],
+  "centroid": [
+    92.581285247359,
+    -11.466366179767862,
+    85.5579449444711
+  ],
+  "file": "lateral_occipital_cortex.glb",
+  "file_size_bytes": 117048
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 30: Superior rostral gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_30_SUPERIOR_ROSTRAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1510,
+  "faces": 3016,
+  "voxels": 2709,
+  "bounds": [
+    [
+      53.885081979055926,
+      178.20827807234406,
+      33.96003347962954
+    ],
+    [
+      114.10919507054139,
+      246.56625922002914,
+      89.38932337932155
+    ]
+  ],
+  "centroid": [
+    83.7905373770955,
+    210.67864453741396,
+    65.02131447914199
+  ],
+  "file": "superior_rostral_gyrus.glb",
+  "file_size_bytes": 73504
+}

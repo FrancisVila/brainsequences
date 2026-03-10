@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 20: Parieto-occipital sulcus middle",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_20_PARIETO_OCCIPITAL_SULCUS_MIDDLE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1847,
+  "faces": 3710,
+  "voxels": 1823,
+  "bounds": [
+    [
+      40.25428084093108,
+      -48.55229241649057,
+      90.68293659311875
+    ],
+    [
+      136.12592564882198,
+      5.77112607660918,
+      157.1993351176599
+    ]
+  ],
+  "centroid": [
+    89.69271198169396,
+    -25.988603884359573,
+    122.48159335537777
+  ],
+  "file": "parieto_occipital_sulcus_middle.glb",
+  "file_size_bytes": 89920
+}

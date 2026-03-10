@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 94: Caudate",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_94_CAUDATE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1434,
+  "faces": 2864,
+  "voxels": 1565,
+  "bounds": [
+    [
+      44.03335647568264,
+      108.34494222645237,
+      66.58040006939504
+    ],
+    [
+      125.60334597544325,
+      163.2078316841088,
+      111.21553426177681
+    ]
+  ],
+  "centroid": [
+    84.60072099971494,
+    133.00215302125355,
+    89.75282008587907
+  ],
+  "file": "caudate.glb",
+  "file_size_bytes": 69860
+}

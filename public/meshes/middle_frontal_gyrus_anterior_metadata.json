@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 2: Middle frontal gyrus anterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_2_MIDDLE_FRONTAL_GYRUS_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1810,
+  "faces": 3612,
+  "voxels": 2015,
+  "bounds": [
+    [
+      -1.6087476929958924,
+      130.13087721105754,
+      92.3776876184292
+    ],
+    [
+      168.65829641478257,
+      224.0703496515618,
+      147.3227170184478
+    ]
+  ],
+  "centroid": [
+    90.23871483157174,
+    192.43334016864267,
+    119.04969541980853
+  ],
+  "file": "middle_frontal_gyrus_anterior.glb",
+  "file_size_bytes": 87768
+}

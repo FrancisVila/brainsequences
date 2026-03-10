@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 3: Superior occipital gyrus",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_3_SUPERIOR_OCCIPITAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1240,
+  "faces": 2472,
+  "voxels": 1254,
+  "bounds": [
+    [
+      16.03802011448774,
+      -64.88767376399038,
+      88.77930161769571
+    ],
+    [
+      151.77929993924505,
+      -15.902474916443223,
+      146.8386771943548
+    ]
+  ],
+  "centroid": [
+    86.0555076073969,
+    -43.551013361355785,
+    111.0684241302861
+  ],
+  "file": "superior_occipital_gyrus.glb",
+  "file_size_bytes": 60492
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 92: Precuneus anterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_92_PRECUNEUS_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1057,
+  "faces": 2114,
+  "voxels": 1232,
+  "bounds": [
+    [
+      52.11584793786818,
+      -6.867695170325453,
+      150.97281885552175
+    ],
+    [
+      119.82878030246279,
+      48.5345503293251,
+      185.2020044733443
+    ]
+  ],
+  "centroid": [
+    85.30157520454253,
+    21.081434114954487,
+    166.61652500935256
+  ],
+  "file": "precuneus_anterior.glb",
+  "file_size_bytes": 51812
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 84: Precentral gyrus superior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_84_PRECENTRAL_GYRUS_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1747,
+  "faces": 3486,
+  "voxels": 1454,
+  "bounds": [
+    [
+      -30.94479726893442,
+      58.98935839606228,
+      103.27951279747408
+    ],
+    [
+      205.48684471522859,
+      131.64495466134866,
+      183.66828823122012
+    ]
+  ],
+  "centroid": [
+    96.05228298379048,
+    97.89820979822001,
+    156.0055209167841
+  ],
+  "file": "precentral_gyrus_superior.glb",
+  "file_size_bytes": 84748
+}

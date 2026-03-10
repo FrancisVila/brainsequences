@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 5: Parieto-occipital sulcus superior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_5_PARIETO_OCCIPITAL_SULCUS_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1943,
+  "faces": 3886,
+  "voxels": 1866,
+  "bounds": [
+    [
+      45.552048716998776,
+      -38.25722688075455,
+      93.16903880664808
+    ],
+    [
+      129.53078294441102,
+      99.42051151546544,
+      162.42366808603205
+    ]
+  ],
+  "centroid": [
+    88.10619699394302,
+    15.837138219838861,
+    132.66773241766896
+  ],
+  "file": "parieto_occipital_sulcus_superior.glb",
+  "file_size_bytes": 94340
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 127: Lateral ventricles superior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_127_LATERAL_VENTRICLES_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2052,
+  "faces": 4120,
+  "voxels": 1858,
+  "bounds": [
+    [
+      30.716986937264924,
+      42.98393478876742,
+      78.28501912662972
+    ],
+    [
+      139.1387082559632,
+      134.08515146249067,
+      118.2044097643887
+    ]
+  ],
+  "centroid": [
+    84.90559313609157,
+    83.55992035314206,
+    102.22300446214743
+  ],
+  "file": "ventricles.glb",
+  "file_size_bytes": 99672
+}

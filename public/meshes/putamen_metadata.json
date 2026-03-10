@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 25: Putamen",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_25_PUTAMEN",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2325,
+  "faces": 4646,
+  "voxels": 2925,
+  "bounds": [
+    [
+      11.532577981333622,
+      66.07613660525323,
+      37.880491882417225
+    ],
+    [
+      157.5124326647489,
+      149.3274440745607,
+      99.63006675084118
+    ]
+  ],
+  "centroid": [
+    84.53036626221396,
+    110.66631496833027,
+    71.58062050875908
+  ],
+  "file": "putamen.glb",
+  "file_size_bytes": 112624
+}

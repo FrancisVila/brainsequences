@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 26: Cingulate gyrus mid-anterior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_26_CINGULATE_GYRUS_MID_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2921,
+  "faces": 5854,
+  "voxels": 2270,
+  "bounds": [
+    [
+      -34.779894908431864,
+      77.44797995291758,
+      32.42240069962338
+    ],
+    [
+      206.4738355027694,
+      173.68185792317308,
+      159.6544378393271
+    ]
+  ],
+  "centroid": [
+    86.23747034753062,
+    132.12163495719943,
+    96.91330790739653
+  ],
+  "file": "cingulate_gyrus_mid_anterior.glb",
+  "file_size_bytes": 141428
+}

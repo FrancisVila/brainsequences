@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 24: Descending occipital gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_24_DESCENDING_OCCIPITAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2143,
+  "faces": 4278,
+  "voxels": 2417,
+  "bounds": [
+    [
+      -5.622473378239009,
+      -76.934443496082,
+      48.888069964812445
+    ],
+    [
+      178.4116714213547,
+      -18.839865868457885,
+      127.90270938834341
+    ]
+  ],
+  "centroid": [
+    91.82469336145364,
+    -47.010554418828114,
+    95.33034971170788
+  ],
+  "file": "descending_occipital_gyrus.glb",
+  "file_size_bytes": 103844
+}

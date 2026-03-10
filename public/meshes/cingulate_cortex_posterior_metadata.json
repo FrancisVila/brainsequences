@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 4: Cingulate cortex posterior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_4_CINGULATE_CORTEX_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1122,
+  "faces": 2236,
+  "voxels": 1395,
+  "bounds": [
+    [
+      52.642288619600706,
+      -21.04568052747993,
+      48.79288654606331
+    ],
+    [
+      113.16810574843512,
+      240.69669147229155,
+      139.09326663449073
+    ]
+  ],
+  "centroid": [
+    82.7736182385223,
+    14.061489029200391,
+    118.32031401614766
+  ],
+  "file": "cingulate_cortex_posterior.glb",
+  "file_size_bytes": 54804
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 16: Fusiform gyrus posterior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_16_FUSIFORM_GYRUS_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 3040,
+  "faces": 6080,
+  "voxels": 3463,
+  "bounds": [
+    [
+      -31.02983779418374,
+      -45.447901351616274,
+      16.84875924628892
+    ],
+    [
+      203.28854172208253,
+      51.23818405838982,
+      74.14024417789169
+    ]
+  ],
+  "centroid": [
+    81.22490352930137,
+    0.431402547488334,
+    42.78777445650763
+  ],
+  "file": "fusiform_gyrus_posterior.glb",
+  "file_size_bytes": 146996
+}

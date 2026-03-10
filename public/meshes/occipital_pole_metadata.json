@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 46: Occipital pole",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_46_OCCIPITAL_POLE",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2408,
+  "faces": 4832,
+  "voxels": 2595,
+  "bounds": [
+    [
+      -7.988974051908978,
+      -85.74312564275611,
+      40.407372803369086
+    ],
+    [
+      176.97806414035736,
+      -39.66486038134812,
+      99.75875793050443
+    ]
+  ],
+  "centroid": [
+    82.64112600142963,
+    -64.61272085211255,
+    67.27833829896956
+  ],
+  "file": "occipital_pole.glb",
+  "file_size_bytes": 116856
+}

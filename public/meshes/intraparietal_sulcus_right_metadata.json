@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 48: Intraparietal sulcus right",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_48_INTRAPARIETAL_SULCUS_RIGHT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1585,
+  "faces": 3162,
+  "voxels": 1990,
+  "bounds": [
+    [
+      -33.39018065624176,
+      1.426660780796484,
+      45.135043965654425
+    ],
+    [
+      210.57213653170515,
+      70.72495939121036,
+      185.06410113137406
+    ]
+  ],
+  "centroid": [
+    175.989508957963,
+    33.92239369997265,
+    149.49217757189805
+  ],
+  "file": "intraparietal_sulcus_right.glb",
+  "file_size_bytes": 76968
+}

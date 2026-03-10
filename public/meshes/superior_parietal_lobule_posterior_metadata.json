@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 50: Superior parietal lobule posterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_50_SUPERIOR_PARIETAL_LOBULE_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1204,
+  "faces": 2400,
+  "voxels": 1222,
+  "bounds": [
+    [
+      40.66906527637462,
+      -35.94198504523483,
+      143.51477184108862
+    ],
+    [
+      139.82099982332448,
+      3.2219158758880075,
+      191.12572486692952
+    ]
+  ],
+  "centroid": [
+    90.95197902823645,
+    -16.592164627372934,
+    167.91731794340396
+  ],
+  "file": "superior_parietal_lobule_posterior.glb",
+  "file_size_bytes": 58768
+}

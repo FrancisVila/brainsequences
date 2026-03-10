@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 43: Postcentral gyrus superior left",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_43_POSTCENTRAL_GYRUS_SUPERIOR_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1440,
+  "faces": 2896,
+  "voxels": 1327,
+  "bounds": [
+    [
+      -26.484340661471183,
+      32.354543863096325,
+      149.11415548209018
+    ],
+    [
+      69.96136989511695,
+      102.29849129497339,
+      210.72572416336723
+    ]
+  ],
+  "centroid": [
+    13.748380034651184,
+    74.8320588818661,
+    181.22393566876656
+  ],
+  "file": "postcentral_gyrus_left.glb",
+  "file_size_bytes": 70296
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 60: Cuneus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_60_CUNEUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1161,
+  "faces": 2322,
+  "voxels": 1382,
+  "bounds": [
+    [
+      51.97046284519491,
+      -63.23063779211056,
+      77.36510252187796
+    ],
+    [
+      126.88136143459877,
+      -7.585310665132123,
+      124.76649796910081
+    ]
+  ],
+  "centroid": [
+    88.24480931484372,
+    -35.605340807523895,
+    98.3207447732893
+  ],
+  "file": "cuneus.glb",
+  "file_size_bytes": 56804
+}

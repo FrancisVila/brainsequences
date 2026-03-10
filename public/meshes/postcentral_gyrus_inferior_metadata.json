@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 41: Postcentral gyrus inferior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_41_POSTCENTRAL_GYRUS_INFERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1811,
+  "faces": 3610,
+  "voxels": 1861,
+  "bounds": [
+    [
+      -45.93518606661023,
+      77.05692756860614,
+      78.29320843188711
+    ],
+    [
+      218.27381997198103,
+      129.23122854723516,
+      145.16649342305607
+    ]
+  ],
+  "centroid": [
+    92.6881729373052,
+    104.97605373289802,
+    118.57936755806105
+  ],
+  "file": "postcentral_gyrus_inferior.glb",
+  "file_size_bytes": 87860
+}

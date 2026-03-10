@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 22: Superior fornix and isthmus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_22_SUPERIOR_FORNIX_AND_ISTHMUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2795,
+  "faces": 5570,
+  "voxels": 2461,
+  "bounds": [
+    [
+      34.389978661527415,
+      -12.669198465507959,
+      37.46898560703241
+    ],
+    [
+      140.5216384808826,
+      154.18197982008405,
+      123.36268505152249
+    ]
+  ],
+  "centroid": [
+    86.50457672380864,
+    61.9176378054435,
+    75.99167760328636
+  ],
+  "file": "superior_fornix_and_isthmus.glb",
+  "file_size_bytes": 134996
+}

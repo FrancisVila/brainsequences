@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 49: Inferior frontal sulcus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_49_INFERIOR_FRONTAL_SULCUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2162,
+  "faces": 4320,
+  "voxels": 2618,
+  "bounds": [
+    [
+      -18.70725026443643,
+      114.1035086446452,
+      69.8714009521974
+    ],
+    [
+      203.65094710843198,
+      203.06299447808044,
+      153.73914103853687
+    ]
+  ],
+  "centroid": [
+    148.98743783506816,
+    154.51186538927996,
+    113.53001384608439
+  ],
+  "file": "inferior_frontal_sulcus.glb",
+  "file_size_bytes": 104800
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 21: Cerebellum I-V",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_21_CEREBELLUM_I_V",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2536,
+  "faces": 5072,
+  "voxels": 3361,
+  "bounds": [
+    [
+      26.310554525094037,
+      -17.59679487472477,
+      4.69602523659688
+    ],
+    [
+      144.44462977931877,
+      80.44633807756648,
+      57.48137989763169
+    ]
+  ],
+  "centroid": [
+    84.9247788702876,
+    24.65437728242238,
+    22.341836608867595
+  ],
+  "file": "cerebellum_i_v.glb",
+  "file_size_bytes": 122788
+}

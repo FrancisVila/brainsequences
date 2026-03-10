@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 108: Inferior occipital gyrus",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_108_INFERIOR_OCCIPITAL_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1684,
+  "faces": 3392,
+  "voxels": 1201,
+  "bounds": [
+    [
+      -22.51162172994508,
+      -63.262618905023494,
+      27.189317400290207
+    ],
+    [
+      197.42789451910807,
+      2.101747126851558,
+      78.09785976004427
+    ]
+  ],
+  "centroid": [
+    95.77113194213902,
+    -31.496040182608425,
+    46.22207259037465
+  ],
+  "file": "inferior_occipital_gyrus.glb",
+  "file_size_bytes": 82196
+}

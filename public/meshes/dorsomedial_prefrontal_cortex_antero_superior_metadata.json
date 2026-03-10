@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 35: Dorsomedial prefrontal cortex antero-superior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_35_DORSOMEDIAL_PREFRONTAL_CORTEX_ANTERO_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1120,
+  "faces": 2236,
+  "voxels": 1520,
+  "bounds": [
+    [
+      54.1741983702701,
+      196.9438082869516,
+      76.07938468813437
+    ],
+    [
+      117.46423640789111,
+      248.5125691863487,
+      124.63481897390545
+    ]
+  ],
+  "centroid": [
+    84.09848520443003,
+    221.46615139352014,
+    96.49323490651929
+  ],
+  "file": "dorsomedial_prefrontal_cortex_antero_superior.glb",
+  "file_size_bytes": 54784
+}

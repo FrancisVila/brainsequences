@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 7: Superior temporal sulcus with angular gyrus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_7_SUPERIOR_TEMPORAL_SULCUS_WITH_ANGULAR_GYRUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2797,
+  "faces": 5602,
+  "voxels": 3411,
+  "bounds": [
+    [
+      -41.80013961359881,
+      -2.6222726336971736,
+      31.300428649096308
+    ],
+    [
+      221.5319596433362,
+      169.66252130595512,
+      129.0490560464521
+    ]
+  ],
+  "centroid": [
+    156.34610565727613,
+    46.69279861830982,
+    81.2894196358826
+  ],
+  "file": "superior_temporal_sulcus_with_angular_gyrus.glb",
+  "file_size_bytes": 135428
+}

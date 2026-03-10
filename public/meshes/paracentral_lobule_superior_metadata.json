@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 44: Paracentral lobule superior",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_44_PARACENTRAL_LOBULE_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2906,
+  "faces": 5848,
+  "voxels": 2824,
+  "bounds": [
+    [
+      29.96181035392142,
+      14.574846479714997,
+      200.50986602456484
+    ],
+    [
+      145.19762158328132,
+      144.0114220138323,
+      227.7264710724029
+    ]
+  ],
+  "centroid": [
+    86.0917856341224,
+    75.4555732114229,
+    213.71366596993647
+  ],
+  "file": "paracentral_lobule_superior.glb",
+  "file_size_bytes": 140984
+}

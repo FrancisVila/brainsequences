@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 72: Calcarine cortex posterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_72_CALCARINE_CORTEX_POSTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 913,
+  "faces": 1826,
+  "voxels": 1044,
+  "bounds": [
+    [
+      51.07311262832543,
+      -75.10701859913452,
+      55.2739643694883
+    ],
+    [
+      125.05712426448041,
+      -36.25557616803419,
+      90.60972452614052
+    ]
+  ],
+  "centroid": [
+    87.73064809820049,
+    -54.48507094745445,
+    74.54775079029491
+  ],
+  "file": "calcarine_cortex_posterior.glb",
+  "file_size_bytes": 44896
+}

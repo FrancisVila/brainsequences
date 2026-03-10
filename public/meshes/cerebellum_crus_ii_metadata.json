@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 96: Cerebellum Crus II",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_96_CEREBELLUM_CRUS_II",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2718,
+  "faces": 5432,
+  "voxels": 2908,
+  "bounds": [
+    [
+      -12.665733734393305,
+      -57.38761664780668,
+      -22.649093695742614
+    ],
+    [
+      185.04683499875534,
+      30.56893058153175,
+      14.724705580193032
+    ]
+  ],
+  "centroid": [
+    89.1826245923236,
+    -28.41455002158728,
+    -4.363912357531469
+  ],
+  "file": "cerebellum_crus_ii.glb",
+  "file_size_bytes": 131496
+}

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 45: Calcarine sulcus anterior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_45_CALCARINE_SULCUS_ANTERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1304,
+  "faces": 2600,
+  "voxels": 1282,
+  "bounds": [
+    [
+      27.69708024205499,
+      -30.851896671550676,
+      60.09008807188218
+    ],
+    [
+      146.98995068302418,
+      38.46744362183861,
+      91.12653323181824
+    ]
+  ],
+  "centroid": [
+    87.15871581584608,
+    5.668879791293089,
+    75.9390360055994
+  ],
+  "file": "calcarine_sulcus_anterior.glb",
+  "file_size_bytes": 63568
+}

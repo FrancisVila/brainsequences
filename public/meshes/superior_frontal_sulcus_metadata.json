@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 1: Superior frontal sulcus",
+  "region_id": "DIFUMO_ATLAS_64_DIMENSIONS_COMPONENT_1_SUPERIOR_FRONTAL_SULCUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (64 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 2758,
+  "faces": 5520,
+  "voxels": 3317,
+  "bounds": [
+    [
+      8.134061031298264,
+      58.77799507327166,
+      127.73312774733604
+    ],
+    [
+      156.26470623910728,
+      216.23635140727987,
+      191.86531202481564
+    ]
+  ],
+  "centroid": [
+    80.40020568578068,
+    173.9967479413908,
+    156.60270909594186
+  ],
+  "file": "superior_frontal_sulcus.glb",
+  "file_size_bytes": 133504
+}

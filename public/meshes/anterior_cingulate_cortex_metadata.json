@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 69: Anterior cingulate cortex",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_69_ANTERIOR_CINGULATE_CORTEX",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1304,
+  "faces": 2612,
+  "voxels": 1789,
+  "bounds": [
+    [
+      54.044149744890355,
+      143.3857470610769,
+      73.29950032581921
+    ],
+    [
+      117.20072755445238,
+      206.0553295909119,
+      127.11183373994692
+    ]
+  ],
+  "centroid": [
+    86.31456884965645,
+    183.50699726563008,
+    101.76629421363313
+  ],
+  "file": "anterior_cingulate_cortex.glb",
+  "file_size_bytes": 63712
+}

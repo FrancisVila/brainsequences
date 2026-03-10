@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 67: Insula antero-superior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_67_INSULA_ANTERO_SUPERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1600,
+  "faces": 3192,
+  "voxels": 1553,
+  "bounds": [
+    [
+      -26.529950948378907,
+      119.92493259344415,
+      67.24931916603663
+    ],
+    [
+      208.78502277216936,
+      185.1055121525451,
+      107.48503582562121
+    ]
+  ],
+  "centroid": [
+    131.03722172266075,
+    150.39251842389814,
+    84.8340248671382
+  ],
+  "file": "insula_antero_superior.glb",
+  "file_size_bytes": 77688
+}

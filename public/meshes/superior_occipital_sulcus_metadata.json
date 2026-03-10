@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 73: Superior occipital sulcus",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_73_SUPERIOR_OCCIPITAL_SULCUS",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1342,
+  "faces": 2676,
+  "voxels": 1335,
+  "bounds": [
+    [
+      12.389531518715971,
+      -50.106018116379175,
+      106.49108621758636
+    ],
+    [
+      162.2676610471746,
+      6.184829141038951,
+      164.45894477615664
+    ]
+  ],
+  "centroid": [
+    75.07975516735237,
+    -21.285395167439447,
+    134.00702068702842
+  ],
+  "file": "superior_occipital_sulcus.glb",
+  "file_size_bytes": 65392
+}

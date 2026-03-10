@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 59: Callosomarginal sulcus inferior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_59_CALLOSOMARGINAL_SULCUS_INFERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1260,
+  "faces": 2524,
+  "voxels": 1268,
+  "bounds": [
+    [
+      47.359071007101264,
+      28.613679749702147,
+      151.32350115554232
+    ],
+    [
+      122.14456850278766,
+      92.06818359682941,
+      185.90123131489327
+    ]
+  ],
+  "centroid": [
+    84.60346300969974,
+    57.55559100915826,
+    165.62233497801583
+  ],
+  "file": "callosomarginal_sulcus.glb",
+  "file_size_bytes": 61584
+}
