@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 685: Cerebrospinal fluid (between postcentral gyrus and skull)",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_685_CEREBROSPINAL_FLUID_BETWEEN_POSTCENTRAL_GYRUS_AND_SKULL",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 496,
+  "faces": 984,
+  "voxels": 262,
+  "bounds": [
+    [
+      31.97341763813814,
+      24.071832640043702,
+      224.18708651871543
+    ],
+    [
+      134.47418551279057,
+      69.45836805957552,
+      239.67259554295438
+    ]
+  ],
+  "centroid": [
+    77.32465795845106,
+    42.8412669632124,
+    232.47841647385187
+  ],
+  "file": "component_685_cerebrospinal_fluid_between_postcentral_gyrus_and_skull.glb",
+  "file_size_bytes": 24776
+}

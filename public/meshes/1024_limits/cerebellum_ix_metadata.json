@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 1021: Cerebellum IX",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_1021_CEREBELLUM_IX",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1045,
+  "faces": 2102,
+  "voxels": 709,
+  "bounds": [
+    [
+      38.46026313642558,
+      -2.5867849056291337,
+      -56.30207924281974
+    ],
+    [
+      128.38315741260723,
+      70.36960084765805,
+      -28.95116870270838
+    ]
+  ],
+  "centroid": [
+    84.82954148507802,
+    35.02400077973879,
+    -41.80318477870642
+  ],
+  "file": "component_1021_cerebellum_ix.glb",
+  "file_size_bytes": 51364
+}

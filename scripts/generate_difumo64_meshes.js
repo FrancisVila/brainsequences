@@ -1,6 +1,6 @@
 /**
- * Generate 3D meshes for DiFuMo 64 regions
- * Processes region names, removes "Component X: " prefix, sanitizes names,
+ * Generate 3D meshes for difumo 1024 regions
+ * Processes region names, sanitizes names,
  * and calls the Python script to generate meshes
  */
 
@@ -12,84 +12,21 @@ import { existsSync } from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// DiFuMo 64 regions list
+// difumo 1024 regions list
 const difumo64Regions = [
-  "Component 10: Superior parts of Postcentral and Precentral gyri",
-  "Component 11: Transverse sinus",
-  "Component 12: Paracentral gyrus right",
-  "Component 13: Superior occipital gyrus",
-  "Component 14: Cingulate gyrus mid-posterior",
-  "Component 15: ventricles",
-  "Component 16: Fusiform gyrus posterior",
-  "Component 17: Superior frontal gyrus medial",
-  "Component 18: Precuneus superior",
-  "Component 19: Planum polare",
-  "Component 1: Superior frontal sulcus",
-  "Component 20: Parieto-occipital sulcus middle",
-  "Component 21: Cerebellum I-V",
-  "Component 22: Superior fornix and isthmus",
-  "Component 23: Anterior Cingulate Cortex",
-  "Component 24: Descending occipital gyrus",
-  "Component 25: Putamen",
-  "Component 26: Cingulate gyrus mid-anterior",
-  "Component 27: Superior parietal lobule posterior",
-  "Component 28: Paracentral lobule",
-  "Component 29: Inferior occipital gyrus",
-  "Component 2: Fusiform gyrus",
-  "Component 30: Superior rostral gyrus",
-  "Component 31: Calcarine sulcus anterior",
-  "Component 32: Intraparietal sulcus",
-  "Component 33: Superior parietal lobule anterior",
-  "Component 34: Precentral gyrus medial",
-  "Component 35: Lingual gyrus anterior",
-  "Component 36: Angular gyrus superior",
-  "Component 37: Supramarginal gyrus",
-  "Component 38: Intraparietal sulcus left",
-  "Component 39: Dorsomedial prefrontal cortex antero-superior",
-  "Component 3: Calcarine cortex posterior",
-  "Component 40: Precentral gyrus superior",
-  "Component 41: Postcentral gyrus inferior",
-  "Component 42: Lateral occipital cortex",
-  "Component 43: Callosomarginal sulcus",
-  "Component 44: Paracentral lobule superior",
-  "Component 45: Heschl's gyrus",
-  "Component 46: Occipital pole",
-  "Component 47: Thalamus",
-  "Component 48: Intraparietal sulcus right",
-  "Component 49: Inferior frontal sulcus",
-  "Component 4: Cingulate cortex posterior",
-  "Component 50: Postcentral gyrus left",
-  "Component 51: Middle frontal gyrus",
-  "Component 52: Inferior frontal gyrus",
-  "Component 53: Parieto-occipital sulcus anterior",
-  "Component 54: Precuneus anterior",
-  "Component 55: Lingual gyrus",
-  "Component 56: Superior occipital sulcus",
-  "Component 57: Superior parietal lobule",
-  "Component 58: Middle frontal gyrus anterior",
-  "Component 59: Angular gyrus inferior",
-  "Component 5: Parieto-occipital sulcus superior",
-  "Component 60: Cuneus",
-  "Component 61: Middle temporal gyrus",
-  "Component 62: Superior frontal gyrus",
-  "Component 63: Central sulcus",
-  "Component 64: Caudate",
-  "Component 6: Insula antero-superior",
-  "Component 7: Superior temporal sulcus with angular gyrus",
-  "Component 8: Planum temporale",
-  "Component 9: Cerebellum Crus II"
+    "Component 202: Subcentral gyrus left",
+    "Component 685: Cerebrospinal fluid (between postcentral gyrus and skull)",
+    "Component 1021: Cerebellum IX",
 ];
 
 /**
- * Process region name: remove "Component X: " prefix and sanitize
- * @param {string} fullName - Full region name with component prefix
+ * Process region name: sanitize for use as filename
+ * @param {string} fullName - Full region name
  * @returns {string} - Sanitized name for file
  */
 function sanitizeRegionName(fullName) {
-  // Remove "Component \d+: " prefix
-  const nameWithoutPrefix = fullName.replace(/^Component\s+\d+:\s+/, '');
   // Replace non-alphanumeric characters (except spaces) with underscores, then replace spaces with underscores
-  const sanitized = nameWithoutPrefix
+  const sanitized = fullName
     .replace(/[^\w\s-]/g, '_')
     .replace(/[-\s]+/g, '_')
     .toLowerCase();
@@ -97,12 +34,12 @@ function sanitizeRegionName(fullName) {
 }
 
 /**
- * Get the clean region name without prefix (for display and mesh generation)
- * @param {string} fullName - Full region name with component prefix
- * @returns {string} - Clean name without prefix
+ * Get the clean region name (for display and mesh generation)
+ * @param {string} fullName - Full region name
+ * @returns {string} - Clean name
  */
 function getCleanRegionName(fullName) {
-  return fullName.replace(/^Component\s+\d+:\s+/, '');
+  return fullName;
 }
 
 /**
@@ -118,14 +55,14 @@ function meshExists(sanitizedName) {
 /**
  * Execute Python script to generate mesh for a specific brain region
  * @param {string} regionName - Name of the brain region (without Component prefix)
- * @param {string} parcellation - Parcellation to use (default: 'difumo 64')
+ * @param {string} parcellation - Parcellation to use (default: 'difumo 1024')
  * @returns {Promise<boolean>} - True if successful, false otherwise
  */
-function generateMesh(regionName, parcellation = 'difumo 64') {
+function generateMesh(regionName, parcellation = 'difumo 1024') {
   return new Promise((resolve, reject) => {
     console.log(`\n${'='.repeat(60)}`);
     console.log(`🧠 Starting mesh generation for: ${regionName}`);
-    if (parcellation !== 'difumo 64') {
+    if (parcellation !== 'difumo 1024') {
       console.log(`   🔄 Retry with parcellation: ${parcellation}`);
     }
     console.log('='.repeat(60));
@@ -168,7 +105,7 @@ function generateMesh(regionName, parcellation = 'difumo 64') {
 }
 
 async function main() {
-  console.log('🔍 Processing DiFuMo 64 regions...');
+  console.log('🔍 Processing difumo 1024 regions...');
   console.log(`Total regions: ${difumo64Regions.length}\n`);
 
   // Process regions and check which ones already have meshes
@@ -217,7 +154,7 @@ async function main() {
     console.log(`\n[${i + 1}/${regionsToProcess.length}] Processing: ${cleanName}`);
     console.log(`   📝 Filename will be: ${sanitizedName}.glb`);
     
-    const success = await generateMesh(cleanName, 'difumo 64');
+    const success = await generateMesh(cleanName, 'difumo 1024');
     
     if (success) {
       results.successful++;
@@ -270,7 +207,7 @@ async function main() {
   console.log('\n' + '='.repeat(60));
   console.log('📊 FINAL SUMMARY');
   console.log('='.repeat(60));
-  console.log(`Total DiFuMo 64 regions: ${difumo64Regions.length}`);
+  console.log(`Total difumo 1024 regions: ${difumo64Regions.length}`);
   console.log(`⏭️  Already existed: ${alreadyExist.length}`);
   console.log(`🔨 Attempted to generate: ${results.total}`);
   console.log(`✅ Successfully generated: ${results.successful}`);

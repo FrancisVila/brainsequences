@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 538: Cerebrospinal fluid (between paracentral lobule and skull)",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_538_CEREBROSPINAL_FLUID_BETWEEN_PARACENTRAL_LOBULE_AND_SKULL",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 370,
+  "faces": 736,
+  "voxels": 246,
+  "bounds": [
+    [
+      71.64877984296507,
+      42.26192359506421,
+      215.42567796350127
+    ],
+    [
+      103.2691362792003,
+      90.50005323220569,
+      229.8808548226715
+    ]
+  ],
+  "centroid": [
+    85.10294923102474,
+    68.29394630469295,
+    222.3672073952489
+  ],
+  "file": "cerebrospinal_fluid_between_paracentral_lobule_and_skull.glb",
+  "file_size_bytes": 18756
+}

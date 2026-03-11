@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 839: Retrocalcarine cortex left",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_839_RETROCALCARINE_CORTEX_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 316,
+  "faces": 628,
+  "voxels": 260,
+  "bounds": [
+    [
+      45.86883639417325,
+      -87.82021979733875,
+      63.652125881663686
+    ],
+    [
+      77.22714560517275,
+      -60.45567351790242,
+      91.04159255847999
+    ]
+  ],
+  "centroid": [
+    62.553125627705725,
+    -76.11799081433733,
+    75.78701909650262
+  ],
+  "file": "retrocalcarine_cortex_left_.glb",
+  "file_size_bytes": 16184
+}

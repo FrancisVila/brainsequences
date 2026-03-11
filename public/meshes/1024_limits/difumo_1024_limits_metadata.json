@@ -1,0 +1,34 @@
+{
+  "name": "DiFuMo_1024_limits",
+  "type": "combined_mesh",
+  "source_meshes": [
+    "cerebellum_ix.glb",
+    "cerebrospinal_fluid_between_paracentral_lobule_and_skull.glb",
+    "cerebrospinal_fluid_between_postcentral_gyrus_and_skull.glb",
+    "retrocalcarine_cortex_left_.glb",
+    "subcentral_gyrus_left.glb",
+    "subcentral_gyrus_posterior_right.glb"
+  ],
+  "num_source_meshes": 6,
+  "vertices": 2918,
+  "faces": 5828,
+  "bounds": [
+    [
+      -49.253631591796875,
+      -87.82022094726562,
+      -56.30207824707031
+    ],
+    [
+      223.08078002929688,
+      134.7338409423828,
+      239.67259216308594
+    ]
+  ],
+  "centroid": [
+    81.93015380799544,
+    46.45653152216437,
+    84.07008531913132
+  ],
+  "file": "difumo_1024_limits.glb",
+  "file_size_bytes": 105740
+}

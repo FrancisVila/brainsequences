@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 202: Subcentral gyrus left",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_202_SUBCENTRAL_GYRUS_LEFT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 333,
+  "faces": 666,
+  "voxels": 247,
+  "bounds": [
+    [
+      -49.25363150357396,
+      89.18745247142957,
+      89.72204970385374
+    ],
+    [
+      -22.257778691816597,
+      134.7338450590351,
+      113.31896065225715
+    ]
+  ],
+  "centroid": [
+    -36.8140855949903,
+    111.3563288706675,
+    101.63329996175533
+  ],
+  "file": "component_202_subcentral_gyrus_left.glb",
+  "file_size_bytes": 17048
+}

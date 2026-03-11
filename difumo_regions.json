@@ -1997,5 +1997,14 @@
     "Component 99: Lateral ventricle right",
     "Component 9: Parahippocampal gyrus anterior",
     "DiFuMo Atlas (1024 dimensions)"
-  ]
+  ],
+  "limits (in difumo 1024)": 
+    ["Component 997: Subcentral gyrus posterior right",
+    "Component 202: Subcentral gyrus left",
+    "Component 685: Cerebrospinal fluid (between postcentral gyrus and skull)",
+    "Component 1021: Cerebellum IX",
+    "Component 839: Retrocalcarine cortex left ",
+    "Component 538: Cerebrospinal fluid (between paracentral lobule and skull)"
+]
+  
 }

@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 997: Subcentral gyrus posterior right",
+  "region_id": "DIFUMO_ATLAS_1024_DIMENSIONS_COMPONENT_997_SUBCENTRAL_GYRUS_POSTERIOR_RIGHT",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (1024 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 358,
+  "faces": 712,
+  "voxels": 301,
+  "bounds": [
+    [
+      188.32917985583776,
+      95.92815351317974,
+      96.48878726134619
+    ],
+    [
+      223.08077255267574,
+      130.76477360664595,
+      123.98176496637821
+    ]
+  ],
+  "centroid": [
+    206.78532362972513,
+    113.22315640631984,
+    110.36502724648085
+  ],
+  "file": "subcentral_gyrus_posterior_right.glb",
+  "file_size_bytes": 18200
+}

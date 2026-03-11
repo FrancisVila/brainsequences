@@ -104,10 +104,9 @@ def combine_meshes(mesh_paths, output_name, output_dir):
         import traceback
         traceback.print_exc()
         return None
-
-
-def main():
-    # 1. Define variables
+    
+def generate_combined_mesh_for_ancestor():
+       # 1. Define variables
     ancestor_name = "frontal cingulate gyrus"
     parcellation_name = "julich 3.1"
     
@@ -186,6 +185,20 @@ def main():
     print("🎉 PROCESS COMPLETE")
     print('='*60)
 
+def generate_list():
+    # generate_combined_mesh_for_ancestor()
+    mesh_paths=[Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebellum_ix.glb"), 
+Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebrospinal_fluid_between_paracentral_lobule_and_skull.glb"),
+Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebrospinal_fluid_between_postcentral_gyrus_and_skull.glb"),
+Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\retrocalcarine_cortex_left_.glb"),
+Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\subcentral_gyrus_left.glb"),
+Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\subcentral_gyrus_posterior_right.glb")]
+    output_name="DiFuMo_1024_limits"
+    output_dir=Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits")
+    combine_meshes(mesh_paths, output_name, output_dir)
+
+def main():
+    generate_list()
 
 if __name__ == "__main__":
     main()
