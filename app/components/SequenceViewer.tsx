@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
 import CitationModal from './CitationModal';
-import toto from '~/images/tim_taylor.svg';
+import atlasSvg from '~/images/tim_taylor.svg';
 
 interface StepLink {
   id?: number;
@@ -880,7 +880,7 @@ export default function SequenceViewer({
 
                             <div style={{ marginBottom: '1rem' }}>
                               <AtlasImage
-                                atlasSvg={toto}
+                                atlasSvg={atlasSvg}
                                 highlightedIds={step.brainpart_titles}
                                 stepLinks={step.step_links || []}
                               />
@@ -1165,7 +1165,7 @@ export default function SequenceViewer({
                           // View mode content
                           <>
                             <AtlasImage
-                              atlasSvg={toto}
+                              atlasSvg={atlasSvg}
                               highlightedIds={step.brainpart_titles}
                               stepLinks={step.step_links || []}
                             />

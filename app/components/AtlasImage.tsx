@@ -22,19 +22,21 @@ export interface AtlasImageProps {
     atlasSvg: string;
     backgroundImage?: string;
     highlightedIds?: (string | number)[];
+    className?: string;
     stepLinks?: StepLink[];
 }
 
-const AtlasImage: React.FC<AtlasImageProps> = ({ 
-    atlasSvg, 
-    backgroundImage, 
+const AtlasImage: React.FC<AtlasImageProps> = ({
+    atlasSvg,
+    backgroundImage,
     highlightedIds = [],
     stepLinks = [],
+    className = 'svg-container',
 }) => {
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const [view, setView] = useState<'sketch' | 'bitmap' | 'all'>('sketch');
     const [isFullscreen, setIsFullscreen] = useState(false);
-    
+
     // Select appropriate CSS based on view
     const cssContent = view === 'all' ? timTaylorAllCss : timTaylorCss;
 
@@ -51,7 +53,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 const parser = new DOMParser();
                 const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
                 const svgElement = svgDoc.documentElement;
-                
+
                 // Remove width and height attributes
                 svgElement.removeAttribute('width');
                 svgElement.removeAttribute('height');
@@ -59,7 +61,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 // Set visibility of background groups based on view parameter
                 const sketchBackgrounds = svgElement.querySelector('#sketch_backgrounds');
                 const bitmapBackgrounds = svgElement.querySelector('#bitmap_backgrounds');
-                
+
                 if (view === 'sketch') {
                     if (sketchBackgrounds) sketchBackgrounds.setAttribute('style', 'display:inline');
                     if (bitmapBackgrounds) bitmapBackgrounds.setAttribute('style', 'display:none');
@@ -73,7 +75,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
 
                 // Get all path elements
                 const paths_and_texts = svgElement.querySelectorAll('path, text');
-                
+
 
                 // Add body_part class to all paths inside body_parts group
                 const bodyPartsGroup = svgElement.querySelector('#body_parts');
@@ -91,12 +93,10 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 });
                 paths_and_texts.forEach((path_or_text) => {
                     const pathId = path_or_text.getAttribute('inkscape:label')?.toString().toLowerCase().trim().replace(/[\s_-]/g, '');
-                    if (pathId && 
-                        (normalizedHighlightedIds.includes(pathId) || 
-                        (normalizedHighlightedIds.includes(String(Number(pathId))) 
-                        )))
-                    
-                    {
+                    if (pathId &&
+                        (normalizedHighlightedIds.includes(pathId) ||
+                            (normalizedHighlightedIds.includes(String(Number(pathId)))
+                            ))) {
                         path_or_text.classList.add('atlas');
 
 
@@ -119,24 +119,24 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
     }, [atlasSvg, highlightedIds, view]);
 
 
-// function taking the coordinates of 2 points plus an extra offset parameter to adjust the curve
-const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, offset: number): string => {
-    const portion = 0.8;
-    // form factor required because the SVG viewBox of the lines is square but the displayed area is rectangular
-    // CHANGE THIS IF THE ASPECT RATIO CHANGES 
-    const formFactor = 1.88;
-    const intermediateX = x1 + (x2 - x1)*portion;
-    const intermediateY = y1 + (y2 - y1) * portion;
-    let offsetX = intermediateX + (y2-y1)*offset;
-    let offsetY = intermediateY + (x1-x2)*offset*formFactor ;
-    // x1=10; y1=20; x2=50; y2=60;  offsetX=50; offsetY=40;
-    return `M ${x1} ${y1} Q ${offsetX},${offsetY} ${x2},${y2}`;
-}
+    // function taking the coordinates of 2 points plus an extra offset parameter to adjust the curve
+    const generateCurvePoints = (x1: number, y1: number, x2: number, y2: number, offset: number): string => {
+        const portion = 0.8;
+        // form factor required because the SVG viewBox of the lines is square but the displayed area is rectangular
+        // CHANGE THIS IF THE ASPECT RATIO CHANGES 
+        const formFactor = 1.88;
+        const intermediateX = x1 + (x2 - x1) * portion;
+        const intermediateY = y1 + (y2 - y1) * portion;
+        let offsetX = intermediateX + (y2 - y1) * offset;
+        let offsetY = intermediateY + (x1 - x2) * offset * formFactor;
+        // x1=10; y1=20; x2=50; y2=60;  offsetX=50; offsetY=40;
+        return `M ${x1} ${y1} Q ${offsetX},${offsetY} ${x2},${y2}`;
+    }
 
-const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number=0.25, strokeWidth: number=0.5): JSX.Element => {
-    return     <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth={strokeWidth} fill="none" markerEnd="url(#arrowhead)" />
-                    
-}
+    const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offset: number = 0.25, strokeWidth: number = 0.5): JSX.Element => {
+        return <path d={generateCurvePoints(x1, y1, x2, y2, offset)} stroke="#AA1100" strokeWidth={strokeWidth} fill="none" markerEnd="url(#arrowhead)" />
+
+    }
 
     const handleSvgClick = (event: React.MouseEvent<SVGSVGElement>) => {
         const svg = event.currentTarget;
@@ -158,22 +158,22 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
             </style>
 
             <div id="atlas-image-container" style={{ position: 'relative', maxWidth: '700px' }}>
-                    <button
-                        id="fullscreen-button"
-                        onClick={() => setIsFullscreen(true)}
-                        title="View fullscreen"
-                    >
-                        ⛶
-                    </button>
-                
+                <button
+                    id="fullscreen-button"
+                    onClick={() => setIsFullscreen(true)}
+                    title="View fullscreen"
+                >
+                    ⛶
+                </button>
+
                 <div style={{ position: 'relative', lineHeight: 0, display: 'inline-block' }}>
-                    <div 
+                    <div
                         id="svg-container"
                         ref={svgContainerRef}
-                        className="svg-container"
+                        className={className}
                         style={{ lineHeight: 0, display: 'block' }}
                     />
-                    <svg 
+                    <svg
                         viewBox="0 0 100 100"
                         preserveAspectRatio="none"
                         style={{
@@ -183,7 +183,7 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                             width: '100%',
                             height: '100%',
                             pointerEvents: 'none',
-                            display:  'block'
+                            display: 'block'
                         }}
                     >
                         <defs>
@@ -198,54 +198,54 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                                 <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
                             </marker>
                         </defs>
-                    {!stepLinks? null : stepLinks.map((link, index) =>
+                        {!stepLinks ? null : stepLinks.map((link, index) =>
 
-                        generateCurvePath(
-                            link.x1, 
-                            link.y1, 
-                            link.x2, 
-                            link.y2, 
-                            link.curvature ?? 0.25,
-                            link.strokeWidth ?? 0.5
-                        )
-                    )}
+                            generateCurvePath(
+                                link.x1,
+                                link.y1,
+                                link.x2,
+                                link.y2,
+                                link.curvature ?? 0.25,
+                                link.strokeWidth ?? 0.5
+                            )
+                        )}
                     </svg>
 
                 </div>
-                 <div id="view-mode-controls">
+                <div id="view-mode-controls">
                     <label style={{ marginRight: '15px', fontWeight: 'bold' }}>
                         Atlas view mode:</label>
                     <label style={{ marginRight: '15px' }}>
-                        <input 
-                            type="radio" 
-                            value="sketch" 
-                            checked={view === 'sketch'} 
+                        <input
+                            type="radio"
+                            value="sketch"
+                            checked={view === 'sketch'}
                             onChange={(e) => setView(e.target.value as 'sketch')}
                             style={{ marginRight: '5px' }}
                         />
                         Sketch
                     </label>
                     <label style={{ marginRight: '15px' }}>
-                        <input 
-                            type="radio" 
-                            value="bitmap" 
-                            checked={view === 'bitmap'} 
+                        <input
+                            type="radio"
+                            value="bitmap"
+                            checked={view === 'bitmap'}
                             onChange={(e) => setView(e.target.value as 'bitmap')}
                             style={{ marginRight: '5px' }}
                         />
                         Bitmap
                     </label>
                     <label>
-                        <input 
-                            type="radio" 
-                            value="all" 
-                            checked={view === 'all'} 
+                        <input
+                            type="radio"
+                            value="all"
+                            checked={view === 'all'}
                             onChange={(e) => setView(e.target.value as 'all')}
                             style={{ marginRight: '5px' }}
                         />
                         All
                     </label>
-                    
+
 
                 </div>
             </div>
@@ -262,15 +262,15 @@ const generateCurvePath = (x1: number, y1: number, x2: number, y2: number, offse
                     >
                         ✕
                     </button>
-                    
+
                     <div
                         onClick={(e) => e.stopPropagation()}
                         className="fullscreen-content"
                     >
-                        <div 
+                        <div
                             className="fullscreen-svg-container"
-                            dangerouslySetInnerHTML={{ 
-                                __html: svgContainerRef.current?.innerHTML || '' 
+                            dangerouslySetInnerHTML={{
+                                __html: svgContainerRef.current?.innerHTML || ''
                             }}
                         />
                     </div>

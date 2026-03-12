@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { Route } from './+types/brainparts';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import { Brain3DViewer } from '~/components/Brain3DViewer';
+import atlasSvg from '~/images/tim_taylor.svg';
+import AtlasImage from '~/components/AtlasImage';
 
 export async function loader({ request }: Route.LoaderArgs) {
   // Allow anyone to view brainparts, but check if admin for edit buttons
@@ -51,7 +53,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   return (
     <div>
       <h2>Brainparts</h2>
-      
+      <div style={{display: 'flex', gap: '20px', flexDirection: 'column' }}>
       <div style={{ 
         display: 'flex', 
         gap: '20px',
@@ -64,10 +66,19 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
         </div>
         
         {/* Right side - Multi-view 3D Viewer */}
-        <div style={{ flex: '1', minWidth: '800px' }}>
+        <div style={{ flex: '1', minWidth: '800px', flexDirection: 'column'  }}>
           <Brain3DViewer region={selectedRegion} description={selectedBrainpart?.description} />
+          <AtlasImage 
+            atlasSvg={atlasSvg} 
+            className="svg-container-in-brainparts" 
+            highlightedIds={selectedBrainpart ? [selectedBrainpart.title] : []} 
+            />
         </div>
+        
       </div>
+      
+      </div>
+      
       
       {user?.role === 'admin' && (
         <div className='big-plus'>

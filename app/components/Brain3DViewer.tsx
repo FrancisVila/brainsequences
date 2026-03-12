@@ -25,7 +25,7 @@ interface DualBrainMeshProps {
 // Helper component to set camera target and up vector
 function CameraController({ target, up }: { target: [number, number, number]; up?: [number, number, number] }) {
   const { camera } = useThree();
-  
+
   useEffect(() => {
     if (up) {
       camera.up.set(up[0], up[1], up[2]);
@@ -33,24 +33,24 @@ function CameraController({ target, up }: { target: [number, number, number]; up
     camera.lookAt(target[0], target[1], target[2]);
     camera.updateProjectionMatrix();
   }, [camera, target, up]);
-  
+
   return null;
 }
 
 // Orthogonal slice view - single plane with clipping
-function OrthogonalSliceView({ 
+function OrthogonalSliceView({
   wholeBrainUrl,
   regionUrl,
-  axis, 
+  axis,
   slicePosition,
   currentHorizontalSlice,
   currentVerticalSlice,
   onSliceChangeHorizontal,
   onSliceChangeVertical
-}: { 
+}: {
   wholeBrainUrl: string;
   regionUrl: string;
-  axis: 'x' | 'y' | 'z'; 
+  axis: 'x' | 'y' | 'z';
   slicePosition: number;
   currentHorizontalSlice: number;
   currentVerticalSlice: number;
@@ -60,39 +60,39 @@ function OrthogonalSliceView({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartRef = useRef<{ x: number; y: number; horizontalSlice: number; verticalSlice: number } | null>(null);
-  
+
   // Brain center from metadata
   const brainCenter: [number, number, number] = [84, 81, 110];
-  
+
   // changed [brainCenter[0] - 300 to [brainCenter[0] - 350 to better fit the view in the x-axis slice view
   // Set up camera based on axis - position relative to brain center
-  const cameraPosition = 
-    axis === 'x' ? [brainCenter[0] - 350, brainCenter[1], brainCenter[2]] : 
-    axis === 'y' ? [brainCenter[0], brainCenter[1] + 330, brainCenter[2]] : 
-    [brainCenter[0], brainCenter[1], brainCenter[2] + 450];
-  
+  const cameraPosition =
+    axis === 'x' ? [brainCenter[0] - 350, brainCenter[1], brainCenter[2]] :
+      axis === 'y' ? [brainCenter[0], brainCenter[1] + 330, brainCenter[2]] :
+        [brainCenter[0], brainCenter[1], brainCenter[2] + 450];
+
   // Set up vector for each axis view
   // X axis: Z up (top of brain at top), Y horizontal (front at left)
   // Y axis: Z up (top of brain at top), X horizontal
   // Z axis: default Y up
-  const cameraUp: [number, number, number] = 
+  const cameraUp: [number, number, number] =
     axis === 'x' ? [0, 0, 1] :
-    axis === 'y' ? [0, 0, 1] :
-    [0, 1, 0];
+      axis === 'y' ? [0, 0, 1] :
+        [0, 1, 0];
 
   function SlicedMesh() {
     const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
     const { scene: regionScene } = useGLTF(regionUrl);
     const clonedWholeBrain = wholeBrainScene.clone();
     const clonedRegion = regionScene.clone();
-    
+
     useEffect(() => {
       // Create single clipping plane for this axis
-      const plane = 
+      const plane =
         axis === 'x' ? new THREE.Plane(new THREE.Vector3(-1, 0, 0), slicePosition) :
-        axis === 'y' ? new THREE.Plane(new THREE.Vector3(0, -1, 0), slicePosition) :
-        new THREE.Plane(new THREE.Vector3(0, 0, -1), slicePosition);
-      
+          axis === 'y' ? new THREE.Plane(new THREE.Vector3(0, -1, 0), slicePosition) :
+            new THREE.Plane(new THREE.Vector3(0, 0, -1), slicePosition);
+
       // Style whole brain
       clonedWholeBrain.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material) {
@@ -106,7 +106,7 @@ function OrthogonalSliceView({
           });
         }
       });
-      
+
       // Style region
       clonedRegion.traverse((child) => {
         if (child instanceof THREE.Mesh && child.material) {
@@ -120,7 +120,7 @@ function OrthogonalSliceView({
         }
       });
     }, [clonedWholeBrain, clonedRegion, slicePosition]);
-    
+
     return (
       <>
         <primitive object={clonedWholeBrain} scale={1.0} />
@@ -131,11 +131,11 @@ function OrthogonalSliceView({
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canvasRef.current) return;
-    
+
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Store initial mouse position and slice values
     dragStartRef.current = {
       x,
@@ -143,26 +143,26 @@ function OrthogonalSliceView({
       horizontalSlice: currentHorizontalSlice,
       verticalSlice: currentVerticalSlice
     };
-    
+
     setIsDragging(true);
   };
-  
+
   const handleMouseUp = () => {
     setIsDragging(false);
     dragStartRef.current = null;
   };
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging || !canvasRef.current || !dragStartRef.current) return;
-    
+
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Calculate delta from initial position
     const deltaX = x - dragStartRef.current.x;
     const deltaY = y - dragStartRef.current.y;
-    
+
     // Scale drag so full canvas sweep = full brain range for each axis
     // X view: horizontal=Y(336), vertical=Z(230)
     // Y view: horizontal=X(267), vertical=Z(230)
@@ -197,11 +197,11 @@ function OrthogonalSliceView({
     // const vRange = axis === 'x' ? 230 : axis === 'y' ? 230 : 336;
     const horizontalDelta = (deltaX / rect.width) * hRange;
     const verticalDelta = (deltaY / rect.height) * vRange;
-    
+
     // Apply delta to initial slice positions
     const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
     const newVerticalSlice = dragStartRef.current.verticalSlice + verticalDelta;
-    
+
     // Clamp to actual brain bounds
     onSliceChangeHorizontal(Math.max(hBounds.min, Math.min(hBounds.max, newHorizontalSlice)));
     onSliceChangeVertical(Math.max(vBounds.min, Math.min(vBounds.max, newVerticalSlice)));
@@ -230,10 +230,10 @@ function OrthogonalSliceView({
   }
   const hRange = hBounds.max - hBounds.min;
   const vRange = vBounds.max - vBounds.min;
-  
+
   const verticalLineLeft = ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
   const horizontalLineTop = ((currentVerticalSlice - vBounds.min) / vRange) * 100;
-  
+
   // Determine colors based on which axes are being shown
   // X view: horizontal=Y(green), vertical=Z(blue)
   // Y view: horizontal=X(red), vertical=Z(blue)
@@ -242,7 +242,7 @@ function OrthogonalSliceView({
   const horizontalLineColor = axis === 'z' ? '#66ff66' : '#6666ff'; // Y=green, Z=blue
 
   return (
-    <div 
+    <div
       style={{ position: 'relative', cursor: isDragging ? 'grabbing' : 'grab' }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -251,10 +251,10 @@ function OrthogonalSliceView({
     >
       <div>
 
-</div>
-      <Canvas 
+      </div>
+      <Canvas
         ref={canvasRef}
-        camera={{ 
+        camera={{
           position: cameraPosition as [number, number, number],
           fov: 50
         }}
@@ -264,11 +264,11 @@ function OrthogonalSliceView({
         <CameraController target={brainCenter} up={cameraUp} />
         <ambientLight intensity={0.6} />
         <directionalLight position={cameraPosition as [number, number, number]} intensity={1} />
-        
+
         <Suspense fallback={null}>
           <SlicedMesh />
         </Suspense>
-        
+
         <Environment preset="studio" />
       </Canvas>
       {/* Crosshair indicator */}
@@ -295,7 +295,7 @@ function OrthogonalSliceView({
           backgroundColor: 'rgba(255, 255, 0, 0.5)'
         }} />
       </div>
-      
+
       {/* Slice position crosshairs */}
       {/* Vertical line showing horizontal slice position */}
       <div style={{
@@ -308,7 +308,7 @@ function OrthogonalSliceView({
         opacity: 0.7,
         pointerEvents: 'none'
       }} />
-      
+
       {/* Horizontal line showing vertical slice position */}
       <div style={{
         position: 'absolute',
@@ -320,7 +320,7 @@ function OrthogonalSliceView({
         opacity: 0.7,
         pointerEvents: 'none'
       }} />
-      
+
       {/* Axis label */}
       <div style={{
         position: 'absolute',
@@ -354,7 +354,7 @@ const BRAIN_BOUNDS = {
   z: { min: -10, max: 230 },
 };
 
-export function Brain3DViewer({ 
+export function Brain3DViewer({
   wholeBrainUrl = '/meshes/whole_brain.glb',
   region = 'cuneus',
   description
@@ -366,15 +366,15 @@ export function Brain3DViewer({
   const defaultSliceX = (BRAIN_BOUNDS.x.max - BRAIN_BOUNDS.x.min) / 2 + BRAIN_BOUNDS.x.min;
   const defaultSliceY = (BRAIN_BOUNDS.y.max - BRAIN_BOUNDS.y.min) / 2 + BRAIN_BOUNDS.y.min;
   const defaultSliceZ = (BRAIN_BOUNDS.z.max - BRAIN_BOUNDS.z.min) / 2 + BRAIN_BOUNDS.z.min;
-  
+
   // Start at max bounds so full brain is visible
   const [sliceX, setSliceX] = useState(defaultSliceX);
   const [sliceY, setSliceY] = useState(defaultSliceY);
   const [sliceZ, setSliceZ] = useState(defaultSliceZ);
-  
+
   // Track if mesh file exists
   const [meshExists, setMeshExists] = useState<boolean | null>(null);
-  
+
   // Check if region mesh exists (case insensitive)
   useEffect(() => {
     const checkMeshExists = async () => {
@@ -391,10 +391,10 @@ export function Brain3DViewer({
   // Show loading state while checking
   if (meshExists === null) {
     return (
-      <div style={{ 
-        padding: '40px', 
-        textAlign: 'center', 
-        border: '1px solid #ddd', 
+      <div style={{
+        padding: '40px',
+        textAlign: 'center',
+        border: '1px solid #ddd',
         borderRadius: '8px',
         backgroundColor: '#f9f9f9'
       }}>
@@ -404,14 +404,14 @@ export function Brain3DViewer({
       </div>
     );
   }
-  
+
   // Show error message if mesh file doesn't exist
   if (meshExists === false) {
     return (
-      <div style={{ 
-        padding: '40px', 
-        textAlign: 'center', 
-        border: '2px solid #ff6b35', 
+      <div style={{
+        padding: '40px',
+        textAlign: 'center',
+        border: '2px solid #ff6b35',
         borderRadius: '8px',
         backgroundColor: '#fff5f0'
       }}>
@@ -430,23 +430,21 @@ export function Brain3DViewer({
   }
 
   return (
-    <div >
+    <div className='brainviewer' >
       {/* Control Panel */}
       <div className="brainviewer-header" >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <strong>{region}</strong>
+            <h2 className="brainviewer-title">{region}</h2>
             {description && (
-              <div style={{ fontSize: '0.9em', color: '#666', marginTop: '4px', fontStyle: 'italic' }}>
+              <div className='brainviewer-comments'>
                 {description}
               </div>
             )}
-            <div style={{ fontSize: '0.85em', color: '#aaa', marginTop: '4px' }}>
-              Drag in any slice view to change position
-            </div>
+
           </div>
           <div >
-            <button 
+            <button
               onClick={() => { setSliceX(defaultSliceX); setSliceY(defaultSliceY); setSliceZ(defaultSliceZ); }}
               className='brainviewer-reset'
             >
@@ -454,7 +452,7 @@ export function Brain3DViewer({
             </button>
           </div>
         </div>
-        
+
         {/* Slice position indicators */}
         <div className='brainviewer-XYZ' >
           <div>
@@ -471,39 +469,40 @@ export function Brain3DViewer({
 
       {/* Top Row: Three Orthogonal Slice Views */}
       <div className='brainviewer-sliceviews'>
-        <OrthogonalSliceView 
+        <OrthogonalSliceView
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
-          axis="x" 
-          slicePosition={-75+sliceX*1.8}
+          axis="x"
+          slicePosition={-75 + sliceX * 1.8}
           currentHorizontalSlice={sliceY}
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceY}
           onSliceChangeVertical={setSliceZ}
         />
-        <OrthogonalSliceView 
+        <OrthogonalSliceView
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
-          axis="y" 
-          slicePosition={180-(sliceY*1.25)}
+          axis="y"
+          slicePosition={180 - (sliceY * 1.25)}
           currentHorizontalSlice={sliceX}
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceX}
           onSliceChangeVertical={setSliceZ}
         />
-        <OrthogonalSliceView 
+        <OrthogonalSliceView
           wholeBrainUrl={wholeBrainUrl}
           regionUrl={regionUrl}
-          axis="z" 
-          slicePosition={(sliceZ-30)*1.6}
+          axis="z"
+          slicePosition={(sliceZ - 30) * 1.6}
           currentHorizontalSlice={sliceX}
           currentVerticalSlice={sliceY}
           onSliceChangeHorizontal={setSliceX}
           onSliceChangeVertical={setSliceY}
         />
-      </div>
 
-     
+      </div>
+      <p className="brainviewer-comments">Built using the Siibra API, from the humman brain project, see <a href='https://siibra.io/explorer/' target='_blank' rel='noopener noreferrer'>https://siibra.io/explorer/</a> for a more detailed viewer.</p>
+
     </div>
   );
 }
