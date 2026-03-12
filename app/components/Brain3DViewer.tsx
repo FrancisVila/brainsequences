@@ -200,7 +200,10 @@ function OrthogonalSliceView({
 
     // Apply delta to initial slice positions
     const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
-    const newVerticalSlice = dragStartRef.current.verticalSlice + verticalDelta;
+    // Invert vertical drag for X and Y views where camera up is Z — dragging up should increase Z
+    const newVerticalSlice = (axis === 'x' || axis === 'y')
+      ? dragStartRef.current.verticalSlice - verticalDelta
+      : dragStartRef.current.verticalSlice + verticalDelta;
 
     // Clamp to actual brain bounds
     onSliceChangeHorizontal(Math.max(hBounds.min, Math.min(hBounds.max, newHorizontalSlice)));
@@ -232,7 +235,10 @@ function OrthogonalSliceView({
   const vRange = vBounds.max - vBounds.min;
 
   const verticalLineLeft = ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
-  const horizontalLineTop = ((currentVerticalSlice - vBounds.min) / vRange) * 100;
+  // Invert vertical crosshair for X and Y views where camera up is Z — high Z should be at the top of screen
+  const horizontalLineTop = (axis === 'x' || axis === 'y')
+    ? 100 - ((currentVerticalSlice - vBounds.min) / vRange) * 100
+    : ((currentVerticalSlice - vBounds.min) / vRange) * 100;
 
   // Determine colors based on which axes are being shown
   // X view: horizontal=Y(green), vertical=Z(blue)
