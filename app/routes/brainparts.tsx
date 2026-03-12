@@ -66,20 +66,23 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     <div>
       <h2>Brainparts</h2>
       <div style={{display: 'flex', gap: '20px', flexDirection: 'column' }}>
-      <div style={{ 
-        display: 'flex', 
-        gap: '20px',
-        alignItems: 'flex-start',
-        marginTop: '20px'
-      }}>
+      <div className='brainparts-left-right'>
         {/* Left side - Tree */}
         <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
           {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} onRegionChange={handleRegionChange} />}
         </div>
         
         {/* Right side - Multi-view 3D Viewer */}
-        <div style={{ flex: '1', minWidth: '800px', flexDirection: 'column'  }}>
-          <Brain3DViewer region={selectedRegion} description={selectedBrainpart?.description} />
+        <div className='brainparts-right'>
+          <div>
+            <h3 className="brainviewer-title">{selectedRegion}</h3>
+            {selectedBrainpart?.description && (
+              <div className='brainviewer-comments'>
+                {selectedBrainpart.description}
+              </div>
+            )}
+          </div>
+          <Brain3DViewer region={selectedRegion} />
           <AtlasImage 
             atlasSvg={atlasSvg} 
             className="svg-container-in-brainparts" 

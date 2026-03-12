@@ -127,7 +127,7 @@ function OrthogonalSliceView({
         case 'x': planeNormal = new THREE.Vector3(-1, 0, 0); break;
         case 'y': planeNormal = new THREE.Vector3(0, -1, 0); break;
         case 'z':
-        default:  planeNormal = new THREE.Vector3(0, 0, -1); break;
+        default: planeNormal = new THREE.Vector3(0, 0, -1); break;
       }
       const plane = new THREE.Plane(planeNormal, slicePosition);
 
@@ -331,7 +331,6 @@ function OrthogonalSliceView({
 interface Brain3DViewerProps {
   wholeBrainUrl?: string;
   region?: string;
-  description?: string;
 }
 
 // Brain bounding box from metadata (in mm)
@@ -344,7 +343,6 @@ const BRAIN_BOUNDS = {
 export function Brain3DViewer({
   wholeBrainUrl: wholeBrainMeshUrl = '/meshes/whole_brain.glb',
   region = 'cuneus',
-  description
 }: Brain3DViewerProps) {
   // Sanitize region name: lowercase, replace non-alphanumeric chars and spaces with underscores
   const sanitizedRegion = region.toLowerCase().replace(/[^\w\s-]/g, '_').replace(/[-\s]+/g, '_');
@@ -420,25 +418,7 @@ export function Brain3DViewer({
     <div className='brainviewer' >
       {/* Control Panel */}
       <div className="brainviewer-header" >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <h2 className="brainviewer-title">{region}</h2>
-            {description && (
-              <div className='brainviewer-comments'>
-                {description}
-              </div>
-            )}
 
-          </div>
-          <div >
-            <button
-              onClick={() => { setSliceX(defaultSliceX); setSliceY(defaultSliceY); setSliceZ(defaultSliceZ); }}
-              className='brainviewer-reset'
-            >
-              Reset Slices
-            </button>
-          </div>
-        </div>
 
         {/* Slice position indicators */}
         <div className='brainviewer-XYZ' >
@@ -451,7 +431,13 @@ export function Brain3DViewer({
           <div>
             <span style={{ color: '#6666ff' }}>Z:</span> {sliceZ.toFixed(1)}
           </div>
+          <button
+          onClick={() => { setSliceX(defaultSliceX); setSliceY(defaultSliceY); setSliceZ(defaultSliceZ); }}
+          className='brainviewer-reset'>
+          Reset Slices
+        </button>
         </div>
+
       </div>
 
       {/* Top Row: Three Orthogonal Slice Views */}

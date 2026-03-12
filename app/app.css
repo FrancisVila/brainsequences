@@ -165,7 +165,7 @@ h1 {
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   margin-top: 1.5rem;
 }
 
@@ -431,6 +431,19 @@ h3.step-title {
     padding-left: 20px;
 }
 
+.brainparts-left-right {
+  display: flex; 
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.brainparts-right {
+  flex: 1;
+  min-width: 800px;
+  flex-direction: column;
+}
+
 .graphic-placeholder {
     padding: 30px;
     border: 2px dashed #ccc;
@@ -642,6 +655,7 @@ h3.step-title {
   background-color: #535d66;
   color: #fff;
   padding: 10px;
+  padding-top:0;
 }
 
 .brainviewer-title {
@@ -662,7 +676,7 @@ h3.step-title {
     padding-bottom: 0;
     margin: 0;
     font-size: 0.85em;
-    color: #aaa;
+    color: #666;
 }
 
 .brainviewer-comments a {
