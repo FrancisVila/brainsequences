@@ -1,0 +1,1 @@
+In brainparts.tsx, when the user selects a brainpart in the tree that has descendants (other brainparts that point to it in their is_part_of attribute), add those brainparts to the highlightedIds parameter of the AtlasImage component.

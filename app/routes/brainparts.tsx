@@ -45,10 +45,22 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
     p.title.toLowerCase().trim() === selectedRegion.toLowerCase().trim()
   );
   
+  // Find all descendant brainparts (those that have the selected brainpart as their parent)
+  const descendantBrainparts = selectedBrainpart 
+    ? parts.filter(p => p.isPartOf === selectedBrainpart.id)
+    : [];
+  
+  // Combine selected brainpart and its descendants for highlighting
+  const highlightedBrainpartTitles = selectedBrainpart 
+    ? [selectedBrainpart.title, ...descendantBrainparts.map(p => p.title)]
+    : [];
+  
   // Debug logging
   console.log('Selected region:', selectedRegion);
   console.log('Selected brainpart:', selectedBrainpart);
   console.log('Description:', selectedBrainpart?.description);
+  console.log('Descendant brainparts:', descendantBrainparts);
+  console.log('Highlighted brainpart titles:', highlightedBrainpartTitles);
 
   return (
     <div>
@@ -71,7 +83,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
           <AtlasImage 
             atlasSvg={atlasSvg} 
             className="svg-container-in-brainparts" 
-            highlightedIds={selectedBrainpart ? [selectedBrainpart.title] : []} 
+            highlightedIds={highlightedBrainpartTitles} 
             />
         </div>
         
