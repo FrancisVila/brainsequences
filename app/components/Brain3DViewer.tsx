@@ -355,13 +355,13 @@ const BRAIN_BOUNDS = {
 };
 
 export function Brain3DViewer({
-  wholeBrainUrl = '/meshes/whole_brain.glb',
+  wholeBrainUrl: wholeBrainMeshUrl = '/meshes/whole_brain.glb',
   region = 'cuneus',
   description
 }: Brain3DViewerProps) {
   // Sanitize region name: lowercase, replace non-alphanumeric chars and spaces with underscores
   const sanitizedRegion = region.toLowerCase().replace(/[^\w\s-]/g, '_').replace(/[-\s]+/g, '_');
-  const regionUrl = `/meshes/${sanitizedRegion}.glb`;
+  const regionMeshUrl = `/meshes/${sanitizedRegion}.glb`;
   // TODO: change default slice positions to be at the center of the highlighted region (ex: cuneus) instead of the whole brain center
   const defaultSliceX = (BRAIN_BOUNDS.x.max - BRAIN_BOUNDS.x.min) / 2 + BRAIN_BOUNDS.x.min;
   const defaultSliceY = (BRAIN_BOUNDS.y.max - BRAIN_BOUNDS.y.min) / 2 + BRAIN_BOUNDS.y.min;
@@ -379,14 +379,14 @@ export function Brain3DViewer({
   useEffect(() => {
     const checkMeshExists = async () => {
       try {
-        const response = await fetch(regionUrl, { method: 'HEAD' });
+        const response = await fetch(regionMeshUrl, { method: 'HEAD' });
         setMeshExists(response.ok);
       } catch (error) {
         setMeshExists(false);
       }
     };
     checkMeshExists();
-  }, [regionUrl]);
+  }, [regionMeshUrl]);
 
   // Show loading state while checking
   if (meshExists === null) {
@@ -470,8 +470,8 @@ export function Brain3DViewer({
       {/* Top Row: Three Orthogonal Slice Views */}
       <div className='brainviewer-sliceviews'>
         <OrthogonalSliceView
-          wholeBrainUrl={wholeBrainUrl}
-          regionUrl={regionUrl}
+          wholeBrainUrl={wholeBrainMeshUrl}
+          regionUrl={regionMeshUrl}
           axis="x"
           slicePosition={-75 + sliceX * 1.8}
           currentHorizontalSlice={sliceY}
@@ -480,8 +480,8 @@ export function Brain3DViewer({
           onSliceChangeVertical={setSliceZ}
         />
         <OrthogonalSliceView
-          wholeBrainUrl={wholeBrainUrl}
-          regionUrl={regionUrl}
+          wholeBrainUrl={wholeBrainMeshUrl}
+          regionUrl={regionMeshUrl}
           axis="y"
           slicePosition={180 - (sliceY * 1.25)}
           currentHorizontalSlice={sliceX}
@@ -490,8 +490,8 @@ export function Brain3DViewer({
           onSliceChangeVertical={setSliceZ}
         />
         <OrthogonalSliceView
-          wholeBrainUrl={wholeBrainUrl}
-          regionUrl={regionUrl}
+          wholeBrainUrl={wholeBrainMeshUrl}
+          regionUrl={regionMeshUrl}
           axis="z"
           slicePosition={(sliceZ - 30) * 1.6}
           currentHorizontalSlice={sliceX}
