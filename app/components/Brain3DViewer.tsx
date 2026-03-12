@@ -64,21 +64,55 @@ function OrthogonalSliceView({
   // Brain center from metadata
   const brainCenter: [number, number, number] = [84, 81, 110];
 
-  // changed [brainCenter[0] - 300 to [brainCenter[0] - 350 to better fit the view in the x-axis slice view
-  // Set up camera based on axis - position relative to brain center
-  const cameraPosition =
-    axis === 'x' ? [brainCenter[0] - 350, brainCenter[1], brainCenter[2]] :
-      axis === 'y' ? [brainCenter[0], brainCenter[1] + 330, brainCenter[2]] :
-        [brainCenter[0], brainCenter[1], brainCenter[2] + 450];
-
-  // Set up vector for each axis view
-  // X axis: Z up (top of brain at top), Y horizontal (front at left)
-  // Y axis: Z up (top of brain at top), X horizontal
-  // Z axis: default Y up
-  const cameraUp: [number, number, number] =
-    axis === 'x' ? [0, 0, 1] :
-      axis === 'y' ? [0, 0, 1] :
-        [0, 1, 0];
+  // Per-axis configuration: camera, bounds, drag ranges, inversion flag, crosshair colors
+  let cameraPosition: [number, number, number];
+  let cameraUp: [number, number, number];
+  let hBounds: { min: number; max: number };
+  let vBounds: { min: number; max: number };
+  let hDragRange: number;
+  let vDragRange: number;
+  let invertVertical: boolean;
+  let verticalLineColor: string;
+  let horizontalLineColor: string;
+  switch (axis) {
+    case 'x':
+      // X view: looking from left; horizontal=Y(green), vertical=Z(blue), Z up
+      cameraPosition = [brainCenter[0] - 350, brainCenter[1], brainCenter[2]];
+      cameraUp = [0, 0, 1];
+      hBounds = BRAIN_BOUNDS.y;
+      vBounds = BRAIN_BOUNDS.z;
+      hDragRange = 336;
+      vDragRange = 230;
+      invertVertical = true;
+      verticalLineColor = '#66ff66'; // Y axis = green
+      horizontalLineColor = '#6666ff'; // Z axis = blue
+      break;
+    case 'y':
+      // Y view: looking from front; horizontal=X(red), vertical=Z(blue), Z up
+      cameraPosition = [brainCenter[0], brainCenter[1] + 330, brainCenter[2]];
+      cameraUp = [0, 0, 1];
+      hBounds = BRAIN_BOUNDS.x;
+      vBounds = BRAIN_BOUNDS.z;
+      hDragRange = 267;
+      vDragRange = 230;
+      invertVertical = true;
+      verticalLineColor = '#ff6666'; // X axis = red
+      horizontalLineColor = '#6666ff'; // Z axis = blue
+      break;
+    case 'z':
+    default:
+      // Z view: looking from top; horizontal=X(red), vertical=Y(green), Y up
+      cameraPosition = [brainCenter[0], brainCenter[1], brainCenter[2] + 450];
+      cameraUp = [0, 1, 0];
+      hBounds = BRAIN_BOUNDS.x;
+      vBounds = BRAIN_BOUNDS.y;
+      hDragRange = 267;
+      vDragRange = 336;
+      invertVertical = false;
+      verticalLineColor = '#ff6666'; // X axis = red
+      horizontalLineColor = '#66ff66'; // Y axis = green
+      break;
+  }
 
   function SlicedMesh() {
     const { scene: wholeBrainScene } = useGLTF(wholeBrainUrl);
@@ -88,10 +122,14 @@ function OrthogonalSliceView({
 
     useEffect(() => {
       // Create single clipping plane for this axis
-      const plane =
-        axis === 'x' ? new THREE.Plane(new THREE.Vector3(-1, 0, 0), slicePosition) :
-          axis === 'y' ? new THREE.Plane(new THREE.Vector3(0, -1, 0), slicePosition) :
-            new THREE.Plane(new THREE.Vector3(0, 0, -1), slicePosition);
+      let planeNormal: THREE.Vector3;
+      switch (axis) {
+        case 'x': planeNormal = new THREE.Vector3(-1, 0, 0); break;
+        case 'y': planeNormal = new THREE.Vector3(0, -1, 0); break;
+        case 'z':
+        default:  planeNormal = new THREE.Vector3(0, 0, -1); break;
+      }
+      const plane = new THREE.Plane(planeNormal, slicePosition);
 
       // Style whole brain
       clonedWholeBrain.traverse((child) => {
@@ -163,45 +201,13 @@ function OrthogonalSliceView({
     const deltaX = x - dragStartRef.current.x;
     const deltaY = y - dragStartRef.current.y;
 
-    // Scale drag so full canvas sweep = full brain range for each axis
-    // X view: horizontal=Y(336), vertical=Z(230)
-    // Y view: horizontal=X(267), vertical=Z(230)
-    // Z view: horizontal=X(267), vertical=Y(336)
-    let hRange, vRange, hBounds, vBounds;
-    switch (axis) {
-      case 'x':
-        // X view: horizontal=Y, vertical=Z
-        hRange = 336;
-        vRange = 230;
-        hBounds = BRAIN_BOUNDS.y;
-        vBounds = BRAIN_BOUNDS.z;
-        break;
-      case 'y':
-        // Y view: horizontal=X, vertical=Z
-        hRange = 267;
-        vRange = 230;
-        hBounds = BRAIN_BOUNDS.x;
-        vBounds = BRAIN_BOUNDS.z;
-        break;
-      case 'z':
-        // Z view: horizontal=X, vertical=Y
-
-        hRange = 267;
-        vRange = 336;
-        hBounds = BRAIN_BOUNDS.x;
-        vBounds = BRAIN_BOUNDS.y;
-        break;
-    }
-
-    // const hRange = axis === 'x' ? 336 : axis === 'y' ? 267 : 267;
-    // const vRange = axis === 'x' ? 230 : axis === 'y' ? 230 : 336;
-    const horizontalDelta = (deltaX / rect.width) * hRange;
-    const verticalDelta = (deltaY / rect.height) * vRange;
+    const horizontalDelta = (deltaX / rect.width) * hDragRange;
+    const verticalDelta = (deltaY / rect.height) * vDragRange;
 
     // Apply delta to initial slice positions
+    // Vertical drag is inverted for X and Y views (camera up is Z — dragging up should increase Z)
     const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
-    // Invert vertical drag for X and Y views where camera up is Z — dragging up should increase Z
-    const newVerticalSlice = (axis === 'x' || axis === 'y')
+    const newVerticalSlice = invertVertical
       ? dragStartRef.current.verticalSlice - verticalDelta
       : dragStartRef.current.verticalSlice + verticalDelta;
 
@@ -213,39 +219,14 @@ function OrthogonalSliceView({
   // Calculate crosshair positions as percentages
   // currentHorizontalSlice maps to vertical line position (left percentage)
   // currentVerticalSlice maps to horizontal line position (top percentage)
-  let hBounds, vBounds;
-  switch (axis) {
-    case 'x':
-      // X view: horizontal=Y, vertical=Z
-      hBounds = BRAIN_BOUNDS.y;
-      vBounds = BRAIN_BOUNDS.z;
-      break;
-    case 'y':
-      // Y view: horizontal=X, vertical=Z
-      hBounds = BRAIN_BOUNDS.x;
-      vBounds = BRAIN_BOUNDS.z;
-      break;
-    case 'z':
-      // Z view: horizontal=X, vertical=Y
-      hBounds = BRAIN_BOUNDS.x;
-      vBounds = BRAIN_BOUNDS.y;
-      break;
-  }
   const hRange = hBounds.max - hBounds.min;
   const vRange = vBounds.max - vBounds.min;
 
   const verticalLineLeft = ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
-  // Invert vertical crosshair for X and Y views where camera up is Z — high Z should be at the top of screen
-  const horizontalLineTop = (axis === 'x' || axis === 'y')
+  // Vertical crosshair is inverted for X and Y views (camera up is Z — high Z at top of screen)
+  const horizontalLineTop = invertVertical
     ? 100 - ((currentVerticalSlice - vBounds.min) / vRange) * 100
     : ((currentVerticalSlice - vBounds.min) / vRange) * 100;
-
-  // Determine colors based on which axes are being shown
-  // X view: horizontal=Y(green), vertical=Z(blue)
-  // Y view: horizontal=X(red), vertical=Z(blue)
-  // Z view: horizontal=X(red), vertical=Y(green)
-  const verticalLineColor = axis === 'x' ? '#66ff66' : '#ff6666'; // Y=green, X=red
-  const horizontalLineColor = axis === 'z' ? '#66ff66' : '#6666ff'; // Y=green, Z=blue
 
   return (
     <div
