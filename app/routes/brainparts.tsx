@@ -16,7 +16,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedRegion, setSelectedRegion] = useState<string>('cuneus');
+  const [selectedRegion, setSelectedRegion] = useState<string>('Fornix');
 
   async function load() {
     setLoading(true);
@@ -77,7 +77,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
           <div>
             <h3 className="brainviewer-title">{selectedRegion}</h3>
             {selectedBrainpart?.description && (
-              <div className='brainviewer-comments'>
+              <div className='comments'>
                 {selectedBrainpart.description}
               </div>
             )}

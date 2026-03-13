@@ -671,17 +671,26 @@ h3.step-title {
   text-transform: uppercase; 
 }
 
-.brainviewer-comments {
-    padding-left: 12px;
+.comments, .brainviewer-comments {
+    padding-left: 13px;
     padding-bottom: 0;
     margin: 0;
     font-size: 0.85em;
     color: #666;
 }
 
-.brainviewer-comments a {
+.comments a, .brainviewer-comments a {
     color: #aac;
 }
+
+.brainviewer-comments {
+    color: #ddd;
+}
+
+.brainviewer-comments a {
+    color: #ccf;
+}
+
 
 .brainviewer-reset {
   padding: 6px 12px; 

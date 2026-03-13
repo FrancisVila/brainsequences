@@ -2,6 +2,9 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import { Suspense, useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import xFeaturesSvg from '~/images/Xfeatures.svg';
+import yFeaturesSvg from '~/images/Yfeatures.svg';
+import zFeaturesSvg from '~/images/Zfeatures.svg';
 
 interface BrainMeshProps {
   url: string;
@@ -46,7 +49,8 @@ function OrthogonalSliceView({
   currentHorizontalSlice,
   currentVerticalSlice,
   onSliceChangeHorizontal,
-  onSliceChangeVertical
+  onSliceChangeVertical,
+  backgroundFeatures,
 }: {
   wholeBrainUrl: string;
   regionUrl: string;
@@ -56,6 +60,7 @@ function OrthogonalSliceView({
   currentVerticalSlice: number;
   onSliceChangeHorizontal: (pos: number) => void;
   onSliceChangeVertical: (pos: number) => void;
+  backgroundFeatures: string;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -258,6 +263,21 @@ function OrthogonalSliceView({
 
         <Environment preset="studio" />
       </Canvas>
+      {/* SVG background features overlay (behind crosshairs) */}
+      {backgroundFeatures && (
+        <img
+          src={backgroundFeatures}
+          alt=""
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+          }}
+        />
+      )}
       {/* Crosshair indicator */}
       <div style={{
         position: 'absolute',
@@ -342,7 +362,7 @@ const BRAIN_BOUNDS = {
 
 export function Brain3DViewer({
   wholeBrainUrl: wholeBrainMeshUrl = '/meshes/whole_brain.glb',
-  region = 'cuneus',
+  region = 'fornix',
 }: Brain3DViewerProps) {
   // Sanitize region name: lowercase, replace non-alphanumeric chars and spaces with underscores
   const sanitizedRegion = region.toLowerCase().replace(/[^\w\s-]/g, '_').replace(/[-\s]+/g, '_');
@@ -451,6 +471,7 @@ export function Brain3DViewer({
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceY}
           onSliceChangeVertical={setSliceZ}
+          backgroundFeatures={xFeaturesSvg}
         />
         <OrthogonalSliceView
           wholeBrainUrl={wholeBrainMeshUrl}
@@ -461,6 +482,7 @@ export function Brain3DViewer({
           currentVerticalSlice={sliceZ}
           onSliceChangeHorizontal={setSliceX}
           onSliceChangeVertical={setSliceZ}
+          backgroundFeatures={yFeaturesSvg}
         />
         <OrthogonalSliceView
           wholeBrainUrl={wholeBrainMeshUrl}
@@ -471,10 +493,11 @@ export function Brain3DViewer({
           currentVerticalSlice={sliceY}
           onSliceChangeHorizontal={setSliceX}
           onSliceChangeVertical={setSliceY}
+          backgroundFeatures={zFeaturesSvg}
         />
 
       </div>
-      <p className="brainviewer-comments">Built using the Siibra API, from the humman brain project, see <a href='https://siibra.io/explorer/' target='_blank' rel='noopener noreferrer'>https://siibra.io/explorer/</a> for a more detailed viewer.</p>
+      <p className="brainviewer-comments">Built using the Siibra API, from the human brain project, see <a href='https://siibra.io/explorer/' target='_blank' rel='noopener noreferrer'>https://siibra.io/explorer/</a> for a more detailed viewer.</p>
 
     </div>
   );

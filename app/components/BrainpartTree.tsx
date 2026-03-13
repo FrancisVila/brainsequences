@@ -22,8 +22,8 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange }: Br
   const OTHERS_ID = -999; // Special ID for "Others" section
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
   
-  // Track selected brainpart (default: "cuneus")
-  const [selectedTitle, setSelectedTitle] = useState<string>('cuneus');
+  // Track selected brainpart (default: "fornix")
+  const [selectedTitle, setSelectedTitle] = useState<string>('Fornix');
   
   // Helper to normalize isPartOf values to numbers
   const normalizeValue = (val: any): number | null => {
