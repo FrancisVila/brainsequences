@@ -77,6 +77,7 @@ function OrthogonalSliceView({
   let hDragRange: number;
   let vDragRange: number;
   let invertVertical: boolean;
+  let invertHorizontal: boolean;
   let verticalLineColor: string;
   let horizontalLineColor: string;
   switch (axis) {
@@ -89,11 +90,13 @@ function OrthogonalSliceView({
       hDragRange = 336;
       vDragRange = 230;
       invertVertical = true;
+      invertHorizontal = false;
       verticalLineColor = '#66ff66'; // Y axis = green
       horizontalLineColor = '#6666ff'; // Z axis = blue
       break;
     case 'y':
       // Y view: looking from front; horizontal=X(red), vertical=Z(blue), Z up
+      // Camera right = cross(up, z) = cross((0,0,1),(0,1,0)) = (-1,0,0), so +X is on the LEFT of screen
       cameraPosition = [brainCenter[0], brainCenter[1] + 330, brainCenter[2]];
       cameraUp = [0, 0, 1];
       hBounds = BRAIN_BOUNDS.x;
@@ -101,6 +104,7 @@ function OrthogonalSliceView({
       hDragRange = 267;
       vDragRange = 230;
       invertVertical = true;
+      invertHorizontal = true;
       verticalLineColor = '#ff6666'; // X axis = red
       horizontalLineColor = '#6666ff'; // Z axis = blue
       break;
@@ -114,6 +118,7 @@ function OrthogonalSliceView({
       hDragRange = 267;
       vDragRange = 336;
       invertVertical = false;
+      invertHorizontal = false;
       verticalLineColor = '#ff6666'; // X axis = red
       horizontalLineColor = '#66ff66'; // Y axis = green
       break;
@@ -211,7 +216,10 @@ function OrthogonalSliceView({
 
     // Apply delta to initial slice positions
     // Vertical drag is inverted for X and Y views (camera up is Z — dragging up should increase Z)
-    const newHorizontalSlice = dragStartRef.current.horizontalSlice + horizontalDelta;
+    // Horizontal drag is inverted for Y view (+X is on left of screen when looking from front)
+    const newHorizontalSlice = invertHorizontal
+      ? dragStartRef.current.horizontalSlice - horizontalDelta
+      : dragStartRef.current.horizontalSlice + horizontalDelta;
     const newVerticalSlice = invertVertical
       ? dragStartRef.current.verticalSlice - verticalDelta
       : dragStartRef.current.verticalSlice + verticalDelta;
@@ -227,7 +235,9 @@ function OrthogonalSliceView({
   const hRange = hBounds.max - hBounds.min;
   const vRange = vBounds.max - vBounds.min;
 
-  const verticalLineLeft = ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
+  const verticalLineLeft = invertHorizontal
+    ? 100 - ((currentHorizontalSlice - hBounds.min) / hRange) * 100
+    : ((currentHorizontalSlice - hBounds.min) / hRange) * 100;
   // Vertical crosshair is inverted for X and Y views (camera up is Z — high Z at top of screen)
   const horizontalLineTop = invertVertical
     ? 100 - ((currentVerticalSlice - vBounds.min) / vRange) * 100
