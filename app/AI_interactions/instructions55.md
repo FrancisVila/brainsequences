@@ -6,4 +6,4 @@ Ignore paragraphs starting with ✓ , they are already done:
 
 ✓ The brainparts route opens with a default brainpart. Automatically add the query for the default brainpart to the url when opening the brainparts route.
 
-Automatically open all the parents of the selected brainpart when the selection comes from the url
+✓  Automatically open all the parents of the selected brainpart when the selection comes from the url
