@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 import type { Route } from './+types/brainparts';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import { Brain3DViewer } from '~/components/Brain3DViewer';
@@ -16,7 +17,8 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedRegion, setSelectedRegion] = useState<string>('Fornix');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedRegion = searchParams.get('brainpart') || 'Fornix';
 
   async function load() {
     setLoading(true);
@@ -29,6 +31,12 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
 
   useEffect(() => { load(); }, []);
 
+  useEffect(() => {
+    if (!searchParams.get('brainpart')) {
+      setSearchParams({ brainpart: 'Fornix' }, { replace: true });
+    }
+  }, []);
+
   async function handleDelete(p: any) {
     const ok = window.confirm('Delete this brainpart: ' + p.title + '?');
     if (!ok) return;
@@ -37,7 +45,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   }
   
   const handleRegionChange = (region: string) => {
-    setSelectedRegion(region);
+    setSearchParams({ brainpart: region });
   };
   
   // Find the selected brainpart to get its description (case-insensitive, trimmed)
@@ -69,7 +77,7 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
       <div className='brainparts-left-right'>
         {/* Left side - Tree */}
         <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
-          {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} onRegionChange={handleRegionChange} />}
+          {!loading && <BrainpartTree brainparts={parts} user={user} onDelete={handleDelete} onRegionChange={handleRegionChange} selectedTitle={selectedRegion} />}
         </div>
         
         {/* Right side - Multi-view 3D Viewer */}

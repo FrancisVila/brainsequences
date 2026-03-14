@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../app.css';
 
 interface Brainpart {
@@ -15,16 +15,14 @@ interface BrainpartTreeProps {
   user?: any;
   onDelete?: (brainpart: Brainpart) => void;
   onRegionChange?: (region: string) => void;
+  selectedTitle?: string;
 }
 
-export function BrainpartTree({ brainparts, user, onDelete, onRegionChange }: BrainpartTreeProps) {
+export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, selectedTitle = 'Fornix' }: BrainpartTreeProps) {
   // Track which items are expanded (default: all closed)
   const OTHERS_ID = -999; // Special ID for "Others" section
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
-  
-  // Track selected brainpart (default: "fornix")
-  const [selectedTitle, setSelectedTitle] = useState<string>('Fornix');
-  
+
   // Helper to normalize isPartOf values to numbers
   const normalizeValue = (val: any): number | null => {
     if (val === null || val === undefined) return null;
@@ -32,6 +30,31 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange }: Br
     return isNaN(num) ? null : num;
   };
   
+  // When selectedTitle changes, expand all ancestors of the selected brainpart
+  useEffect(() => {
+    if (!brainparts.length) return;
+    const selected = brainparts.find(bp => bp.title.toLowerCase().trim() === selectedTitle.toLowerCase().trim());
+    if (!selected) return;
+    const ancestorIds: number[] = [];
+    let current = selected;
+    const idMap = new Map(brainparts.map(bp => [bp.id, bp]));
+    while (true) {
+      const parentId = normalizeValue(current.isPartOf);
+      if (parentId === null || parentId === -1) break;
+      const parent = idMap.get(parentId);
+      if (!parent) break;
+      ancestorIds.push(parent.id);
+      current = parent;
+    }
+    if (ancestorIds.length > 0) {
+      setExpandedIds(prev => {
+        const next = new Set(prev);
+        ancestorIds.forEach(id => next.add(id));
+        return next;
+      });
+    }
+  }, [selectedTitle, brainparts]);
+
   // Toggle expand/collapse
   const toggleExpanded = (id: number) => {
     setExpandedIds(prev => {
@@ -47,7 +70,6 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange }: Br
   
   // Handle brainpart selection
   const handleSelect = (title: string) => {
-    setSelectedTitle(title);
     onRegionChange?.(title);
   };
   
