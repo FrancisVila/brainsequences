@@ -180,40 +180,7 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
                 ({others.length})
               </span>
             </div>
-            {expandedIds.has(OTHERS_ID) && others.sort((a, b) => a.title.localeCompare(b.title)).map(bp => {
-              const isSelected = bp.title.toLowerCase() === selectedTitle.toLowerCase();
-              return (
-              <div key={bp.id} style={{ 
-                marginLeft: 20,
-                padding: '4px 8px',
-                marginBottom: '2px',
-                cursor: 'pointer'
-              }}
-                className={isSelected ? 'selected' : ''}
-                onClick={() => handleSelect(bp.title)}
-              >
-                <span style={{ marginRight: 4 }}>📄</span>
-                {bp.title}
-                {bp.description && (
-                  <span style={{ fontSize: '0.85em', color: '#666', marginLeft: 8 }}>
-                    ({bp.description})
-                  </span>
-                )}
-                {user?.role === 'admin' && (
-                  <div className="brainpart-icons">
-                    <a href={`/brainparts/update?id=${bp.id}`}>✎</a>
-                    {' '}
-                    <button 
-                      onClick={() => onDelete?.(bp)} 
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-            })}
+            {expandedIds.has(OTHERS_ID) && others.sort((a, b) => a.title.localeCompare(b.title)).map(bp => renderBrainpart(bp, 1))}
           </div>
         )}
       </div>
