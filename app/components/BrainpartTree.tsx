@@ -22,6 +22,7 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
   // Track which items are expanded (default: all closed)
   const OTHERS_ID = -999; // Special ID for "Others" section
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Helper to normalize isPartOf values to numbers
   const normalizeValue = (val: any): number | null => {
@@ -144,6 +145,10 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
     );
   };
   
+  const searchResults = searchQuery.trim()
+    ? brainparts.filter(bp => bp.title.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+    : null;
+
   return (
     <div style={{ 
       marginBottom: 24, 
@@ -151,11 +156,31 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
       border: '1px solid #ddd',
       borderRadius: 4,
     }}>
+      <input
+        type="text"
+        placeholder="Search brain parts..."
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+        style={{
+          width: '100%',
+          marginBottom: 12,
+          padding: '6px 10px',
+          fontSize: '0.95em',
+          border: '1px solid #ccc',
+          borderRadius: 4,
+          boxSizing: 'border-box',
+        }}
+      />
       
       <div style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
-        {topLevel.sort((a, b) => a.title.localeCompare(b.title)).map(bp => renderBrainpart(bp))}
+        {searchResults && (
+          searchResults.length === 0
+            ? <div style={{ color: '#999', padding: '4px 8px' }}>No results found.</div>
+            : searchResults.sort((a, b) => a.title.localeCompare(b.title)).map(bp => renderBrainpart(bp, 0))
+        )}
+        {!searchResults && topLevel.sort((a, b) => a.title.localeCompare(b.title)).map(bp => renderBrainpart(bp))}
         
-        {others.length > 0 && (
+        {!searchResults && others.length > 0 && (
           <div style={{ marginTop: 16 }}>
             <div 
               style={{ 
