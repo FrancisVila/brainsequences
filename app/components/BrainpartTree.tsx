@@ -156,21 +156,40 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
       border: '1px solid #ddd',
       borderRadius: 4,
     }}>
-      <input
-        type="text"
-        placeholder="Search brain parts..."
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-        style={{
-          width: '100%',
-          marginBottom: 12,
-          padding: '6px 10px',
-          fontSize: '0.95em',
-          border: '1px solid #ccc',
-          borderRadius: 4,
-          boxSizing: 'border-box',
-        }}
-      />
+      <div style={{ position: 'relative', marginBottom: 12 }}>
+        <input
+          type="text"
+          placeholder="Search brain parts..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '6px 28px 6px 10px',
+            fontSize: '0.95em',
+            border: '1px solid #ccc',
+            borderRadius: 4,
+            boxSizing: 'border-box',
+          }}
+        />
+        {searchQuery && (
+          <span
+            onClick={() => setSearchQuery('')}
+            style={{
+              position: 'absolute',
+              right: 8,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              color: '#999',
+              fontSize: '1.1em',
+              lineHeight: 1,
+              userSelect: 'none',
+            }}
+          >
+            ✕
+          </span>
+        )}
+      </div>
       
       <div style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
         {searchResults && (
