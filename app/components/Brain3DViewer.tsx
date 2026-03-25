@@ -410,7 +410,6 @@ export function Brain3DViewer({
         padding: '40px',
         textAlign: 'center',
         border: '1px solid #ddd',
-        borderRadius: '8px',
         backgroundColor: '#f9f9f9'
       }}>
         <div style={{ fontSize: '1.2em', color: '#666' }}>
@@ -435,13 +434,13 @@ export function Brain3DViewer({
     const matched = knownImages.find(img => normalize(img.replace(/\.[^.]+$/, '')) === normalizedRegion);
     if (!matched) return null;
     return (
-      <div style={{ textAlign: 'center', padding: '16px' }}>
+
         <img
           src={`/images/${matched}`}
           alt={region}
-          style={{ maxWidth: '100%', borderRadius: 8 }}
+          style={{ maxWidth: '100%' }}
         />
-      </div>
+
     );
   }
 
