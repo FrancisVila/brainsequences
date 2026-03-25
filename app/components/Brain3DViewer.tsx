@@ -420,26 +420,27 @@ export function Brain3DViewer({
     );
   }
 
-  // Show error message if mesh file doesn't exist
+  // Show fallback image or nothing if mesh file doesn't exist
   if (meshExists === false) {
+    const knownImages = [
+      'brain_stem.gif',
+      'Frontal_lobe.gif',
+      'Occipital_lobe.gif',
+      'optic_chiasm.png',
+      'Parietal_lobe.gif',
+      'temporal_lobe.gif',
+    ];
+    const normalize = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
+    const normalizedRegion = normalize(region);
+    const matched = knownImages.find(img => normalize(img.replace(/\.[^.]+$/, '')) === normalizedRegion);
+    if (!matched) return null;
     return (
-      <div style={{
-        padding: '40px',
-        textAlign: 'center',
-        border: '2px solid #ff6b35',
-        borderRadius: '8px',
-        backgroundColor: '#fff5f0'
-      }}>
-        <div style={{ fontSize: '1.5em', marginBottom: '10px' }}>⚠️</div>
-        <div style={{ fontSize: '1.2em', fontWeight: 'bold', color: '#ff6b35', marginBottom: '10px' }}>
-          Mesh Not Found
-        </div>
-        <div style={{ color: '#666', marginBottom: '10px' }}>
-          The 3D mesh for <strong>{region}</strong> could not be found.
-        </div>
-        <div style={{ fontSize: '0.9em', color: '#999' }}>
-          Expected file: <code>{sanitizedRegion}.glb</code>
-        </div>
+      <div style={{ textAlign: 'center', padding: '16px' }}>
+        <img
+          src={`/images/${matched}`}
+          alt={region}
+          style={{ maxWidth: '100%', borderRadius: 8 }}
+        />
       </div>
     );
   }
