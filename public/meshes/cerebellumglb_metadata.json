@@ -1,0 +1,31 @@
+{
+  "name": "cerebellum.glb",
+  "type": "combined_mesh",
+  "source_meshes": [
+    "cerebellum_ix.glb",
+    "cerebellum_i_v.glb",
+    "cerebellum_crus_ii.glb"
+  ],
+  "num_source_meshes": 3,
+  "vertices": 6299,
+  "faces": 12606,
+  "bounds": [
+    [
+      -12.665733337402344,
+      -57.38761520385742,
+      -56.30207824707031
+    ],
+    [
+      185.0468292236328,
+      80.44633483886719,
+      57.481380462646484
+    ]
+  ],
+  "centroid": [
+    86.72374928904034,
+    3.839250060274921,
+    -0.27087330347379723
+  ],
+  "file": "cerebellumglb.glb",
+  "file_size_bytes": 227648
+}

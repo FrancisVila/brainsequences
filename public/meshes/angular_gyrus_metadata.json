@@ -1,0 +1,30 @@
+{
+  "region_name": "Component 110: Angular gyrus inferior",
+  "region_id": "DIFUMO_ATLAS_128_DIMENSIONS_COMPONENT_110_ANGULAR_GYRUS_INFERIOR",
+  "atlas": "Multilevel Human Atlas",
+  "parcellation": "DiFuMo Atlas (128 dimensions)",
+  "reference_space": "MNI 152 ICBM 2009c Nonlinear Asymmetric",
+  "siibra_version": "1.0.1-alpha.11",
+  "vertices": 1052,
+  "faces": 2104,
+  "voxels": 1291,
+  "bounds": [
+    [
+      -41.30723894078874,
+      -28.01970561168268,
+      104.97201456379398
+    ],
+    [
+      206.23792367831996,
+      23.63338927834158,
+      144.27678487402667
+    ]
+  ],
+  "centroid": [
+    12.005943889538766,
+    0.1118238719333475,
+    120.86671119443993
+  ],
+  "file": "angular_gyrus_inferior.glb",
+  "file_size_bytes": 51536
+}

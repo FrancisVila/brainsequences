@@ -70,7 +70,7 @@ def combine_meshes(mesh_paths, output_name, output_dir):
         safe_filename = re.sub(r'[-\s]+', '_', safe_filename)
         
         # Save combined mesh
-        output_file = output_dir / f'{safe_filename}.glb'
+        output_file = output_dir / f'{safe_filename}'
         combined.export(str(output_file))
         file_size = output_file.stat().st_size
         
@@ -88,7 +88,7 @@ def combine_meshes(mesh_paths, output_name, output_dir):
             'faces': len(combined.faces),
             'bounds': combined.bounds.tolist(),
             'centroid': combined.centroid.tolist(),
-            'file': f'{safe_filename}.glb',
+            'file': f'{safe_filename}',
             'file_size_bytes': file_size
         }
         
@@ -150,7 +150,7 @@ def generate_combined_mesh_for_ancestor():
             import re
             safe_filename = re.sub(r'[^\w\s-]', '', region_name.lower())
             safe_filename = re.sub(r'[-\s]+', '_', safe_filename)
-            mesh_path = output_dir / f'{safe_filename}.glb'
+            mesh_path = output_dir / f'{safe_filename}'
             
             if mesh_path.exists():
                 generated_meshes.append(mesh_path)
@@ -187,14 +187,13 @@ def generate_combined_mesh_for_ancestor():
 
 def generate_list():
     # generate_combined_mesh_for_ancestor()
-    mesh_paths=[Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebellum_ix.glb"), 
-Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebrospinal_fluid_between_paracentral_lobule_and_skull.glb"),
-Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\cerebrospinal_fluid_between_postcentral_gyrus_and_skull.glb"),
-Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\retrocalcarine_cortex_left_.glb"),
-Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\subcentral_gyrus_left.glb"),
-Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits\\subcentral_gyrus_posterior_right.glb")]
-    output_name="DiFuMo_1024_limits"
-    output_dir=Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\1024_limits")
+    mesh_paths=[
+        Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\difumo64\\cerebellum_ix.glb"), 
+        Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\difumo64\\cerebellum_i_v.glb"),
+        Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes\\difumo64\\cerebellum_crus_ii.glb"),
+    ]
+    output_name="cerebellum.glb"
+    output_dir=Path("C:\\projects\\brainsequences\\brainsequences\\public\\meshes")
     combine_meshes(mesh_paths, output_name, output_dir)
 
 def main():

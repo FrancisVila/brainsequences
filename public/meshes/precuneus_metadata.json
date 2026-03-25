@@ -1,0 +1,30 @@
+{
+  "name": "precuneus.glb",
+  "type": "combined_mesh",
+  "source_meshes": [
+    "precuneus_anterior.glb",
+    "precuneus_superior.glb"
+  ],
+  "num_source_meshes": 2,
+  "vertices": 2163,
+  "faces": 4338,
+  "bounds": [
+    [
+      52.115848541259766,
+      -24.940643310546875,
+      150.9728240966797
+    ],
+    [
+      119.82878112792969,
+      48.534549713134766,
+      218.39352416992188
+    ]
+  ],
+  "centroid": [
+    85.16204987596288,
+    14.609453598999883,
+    181.02931922637438
+  ],
+  "file": "precuneusglb.glb",
+  "file_size_bytes": 78800
+}

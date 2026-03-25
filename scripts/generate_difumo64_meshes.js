@@ -1,5 +1,5 @@
 /**
- * Generate 3D meshes for difumo 1024 regions
+ * Generate 3D meshes for difumo nnn regions
  * Processes region names, sanitizes names,
  * and calls the Python script to generate meshes
  */
@@ -12,12 +12,19 @@ import { existsSync } from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// difumo 1024 regions list
-const difumo64Regions = [
-    "Component 202: Subcentral gyrus left",
-    "Component 685: Cerebrospinal fluid (between postcentral gyrus and skull)",
-    "Component 1021: Cerebellum IX",
+// difumo nnn regions list
+const difumoRegions = [
+       "Component 26: Cingulate gyrus mid-anterior",
+    "Component 26: Cingulate gyrus mid-anterior",
+  
+// 256 "Component 168: Hippocampus anterior",
+// interthalamic : not in difumo
+// lamina : not in difumo
+// paraterminal : not in difumo
+// septum : not in difumo
+"Component 36: Angular gyrus superior",
 ];
+const parcellationName = 'difumo 1024'; // Default parcellation to use for mesh generation
 
 /**
  * Process region name: sanitize for use as filename
@@ -55,15 +62,15 @@ function meshExists(sanitizedName) {
 /**
  * Execute Python script to generate mesh for a specific brain region
  * @param {string} regionName - Name of the brain region (without Component prefix)
- * @param {string} parcellation - Parcellation to use (default: 'difumo 1024')
+ * @param {string} parcellationName - Parcellation to use (default: 'difumo 1024')
  * @returns {Promise<boolean>} - True if successful, false otherwise
  */
-function generateMesh(regionName, parcellation = 'difumo 1024') {
+function generateMesh(regionName, parcellationName = 'difumo 1024') {
   return new Promise((resolve, reject) => {
     console.log(`\n${'='.repeat(60)}`);
     console.log(`🧠 Starting mesh generation for: ${regionName}`);
-    if (parcellation !== 'difumo 1024') {
-      console.log(`   🔄 Retry with parcellation: ${parcellation}`);
+    if (parcellationName !== 'difumo 1024') {
+      console.log(`   🔄 Retry with parcellation: ${parcellationName}`);
     }
     console.log('='.repeat(60));
 
@@ -73,7 +80,7 @@ function generateMesh(regionName, parcellation = 'difumo 1024') {
     // Using python from virtual environment
     const pythonPath = join(__dirname, '..', '.venv', 'Scripts', 'python.exe');
     
-    const pythonProcess = spawn(pythonPath, [scriptPath, regionName, parcellation], {
+    const pythonProcess = spawn(pythonPath, [scriptPath, regionName, parcellationName], {
       cwd: __dirname,
       stdio: 'inherit' // Show Python output in real-time
     });
@@ -106,13 +113,13 @@ function generateMesh(regionName, parcellation = 'difumo 1024') {
 
 async function main() {
   console.log('🔍 Processing difumo 1024 regions...');
-  console.log(`Total regions: ${difumo64Regions.length}\n`);
+  console.log(`Total regions: ${difumoRegions.length}\n`);
 
   // Process regions and check which ones already have meshes
   const regionsToProcess = [];
   const alreadyExist = [];
 
-  for (const fullName of difumo64Regions) {
+  for (const fullName of difumoRegions) {
     const cleanName = getCleanRegionName(fullName);
     const sanitizedName = sanitizeRegionName(fullName);
     
@@ -127,7 +134,7 @@ async function main() {
   console.log('\n' + '='.repeat(60));
   console.log('📊 PRE-GENERATION SUMMARY');
   console.log('='.repeat(60));
-  console.log(`Total regions: ${difumo64Regions.length}`);
+  console.log(`Total regions: ${difumoRegions.length}`);
   console.log(`✅ Already exist: ${alreadyExist.length}`);
   console.log(`🔨 To generate: ${regionsToProcess.length}`);
 
@@ -154,7 +161,7 @@ async function main() {
     console.log(`\n[${i + 1}/${regionsToProcess.length}] Processing: ${cleanName}`);
     console.log(`   📝 Filename will be: ${sanitizedName}.glb`);
     
-    const success = await generateMesh(cleanName, 'difumo 1024');
+    const success = await generateMesh(cleanName, parcellationName);
     
     if (success) {
       results.successful++;
@@ -164,10 +171,10 @@ async function main() {
     }
   }
 
-  // Retry failed regions with difumo 128
+  // Retry failed regions with difumo nnn
   if (results.failedRegions.length > 0) {
     console.log('\n' + '='.repeat(60));
-    console.log(`🔄 RETRYING ${results.failedRegions.length} FAILED REGIONS WITH 'difumo 128'`);
+    console.log(`🔄 RETRYING ${results.failedRegions.length} FAILED REGIONS WITH '${parcellationName}'`);
     console.log('='.repeat(60));
 
     const retryResults = {
@@ -180,7 +187,7 @@ async function main() {
       const regionName = results.failedRegions[i];
       console.log(`\n[Retry ${i + 1}/${results.failedRegions.length}] Processing: ${regionName}`);
       
-      const success = await generateMesh(regionName, 'difumo 128');
+      const success = await generateMesh(regionName, parcellationName);
       
       if (success) {
         retryResults.successful++;
@@ -207,7 +214,7 @@ async function main() {
   console.log('\n' + '='.repeat(60));
   console.log('📊 FINAL SUMMARY');
   console.log('='.repeat(60));
-  console.log(`Total difumo 1024 regions: ${difumo64Regions.length}`);
+  console.log(`Total difumo {parcellationName} regions: ${difumoRegions.length}`);
   console.log(`⏭️  Already existed: ${alreadyExist.length}`);
   console.log(`🔨 Attempted to generate: ${results.total}`);
   console.log(`✅ Successfully generated: ${results.successful}`);
