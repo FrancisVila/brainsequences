@@ -79,8 +79,11 @@ export default function App() {
           <a href="/" className={(location.pathname === '/' || location.pathname.startsWith('/sequences'))? 'selected':''}>
             Brain Sequences
           </a>
-          <a href="/brainparts" className={(location.pathname.startsWith('/brainparts'))? 'selected':''}>
+          <a href="/brainparts" className={(location.pathname === '/brainparts' || location.pathname.startsWith('/brainparts/'))? 'selected':''}>
             Brain parts
+          </a>
+          <a href="/brainparts2" className={(location.pathname.startsWith('/brainparts2'))? 'selected':''}>
+            Brain parts 2
           </a>
           <a href="/about" className={(location.pathname.startsWith('/about'))? 'selected':''}>
             About

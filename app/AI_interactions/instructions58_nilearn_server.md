@@ -1,3 +1,1 @@
-I want to try to use python modules such as nilearn inside the react application.
-My application is currently uploaded to vercel.
-I'm wondering what complexity and constraints this will add to the application.
+based on the answer, I think it is best to build a local python service to try out functions and generate images. Is it better to use a separate vscode folder from the react one? 

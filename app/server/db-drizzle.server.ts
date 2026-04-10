@@ -144,8 +144,8 @@ export async function updateStepLinks(stepId: number, links: any[]) {
   }
 }
 
-export async function createBrainpart({ title, description, isPartOf }: { title: string; description?: string | null; isPartOf?: number | null }) {
-  const result = await db.insert(brainparts).values({ title, description, isPartOf }).returning({ id: brainparts.id });
+export async function createBrainpart({ title, description, isPartOf, version }: { title: string; description?: string | null; isPartOf?: number | null; version?: number }) {
+  const result = await db.insert(brainparts).values({ title, description, isPartOf, version: version ?? 1 }).returning({ id: brainparts.id });
   return result[0];
 }
 
@@ -161,7 +161,10 @@ export async function getBrainpart(id: number) {
   };
 }
 
-export async function getAllBrainparts(limit = 1000) {
+export async function getAllBrainparts(limit = 1000, version?: number) {
+  if (version !== undefined) {
+    return await db.select().from(brainparts).where(eq(brainparts.version, version)).orderBy(brainparts.id).limit(limit);
+  }
   return await db.select().from(brainparts).orderBy(brainparts.id).limit(limit);
 }
 

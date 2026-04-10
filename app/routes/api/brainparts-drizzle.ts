@@ -15,7 +15,9 @@ export async function loader({ request }) {
       });
     }
 
-    const parts = await getAllBrainparts();
+    const versionParam = url.searchParams.get('version');
+    const version = versionParam !== null ? Number(versionParam) : undefined;
+    const parts = await getAllBrainparts(1000, version);
     return new Response(JSON.stringify(parts), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
