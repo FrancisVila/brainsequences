@@ -4,7 +4,17 @@ import DOMPurify from 'dompurify';
 import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
 import CitationModal from './CitationModal';
-import atlasSvg from '~/images/tim_taylor.svg';
+
+// Dynamically import all SVG files from the atlasSvg folder
+const atlasSvgModules = import.meta.glob('../images/atlasSvg/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
+
+// Extract available filenames and URL map
+const availableAtlasSvgFiles = Object.keys(atlasSvgModules).map(key => key.split('/').pop()!);
+function getAtlasSvgUrl(filename: string | null | undefined): string {
+  const fallback = atlasSvgModules['../images/atlasSvg/tim_taylor.svg'] || '';
+  if (!filename) return fallback;
+  return atlasSvgModules[`../images/atlasSvg/${filename}`] || fallback;
+}
 
 interface StepLink {
   id?: number;
@@ -29,6 +39,7 @@ interface Step {
   id?: number;
   title: string;
   description?: string;
+  atlasSvgFile?: string;
   brainpart_ids: number[];
   brainpart_titles: string[];
   step_links?: StepLink[];
@@ -44,6 +55,7 @@ interface Brainpart {
 interface Sequence {
   id: number;
   title: string;
+  atlasSvgFile?: string;
   steps: Step[];
   draft?: number;
   publishedVersionId?: number | null;
@@ -83,6 +95,7 @@ export default function SequenceViewer({
 
   // Edit mode state
   const [title, setTitle] = useState('');
+  const [atlasSvgFile, setAtlasSvgFile] = useState<string>('tim_taylor.svg');
   const [steps, setSteps] = useState<Step[]>([]);
   const [allBrainparts, setAllBrainparts] = useState<Brainpart[]>([]);
   
@@ -200,6 +213,7 @@ export default function SequenceViewer({
         const loadedTitle = data.title || '';
         const loadedSteps = data.steps || [];
         setTitle(loadedTitle);
+        setAtlasSvgFile(data.atlasSvgFile || 'tim_taylor.svg');
         setSteps(loadedSteps);
         // Store original values for comparison
         setOriginalTitle(loadedTitle);
@@ -226,7 +240,7 @@ export default function SequenceViewer({
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title, atlasSvgFile }),
       });
 
       if (!res.ok) {
@@ -270,6 +284,7 @@ export default function SequenceViewer({
             body: JSON.stringify({
               title: step.title,
               description: step.description,
+              atlasSvgFile: step.atlasSvgFile || null,
               brainpartIds: step.brainpart_ids,
               stepLinks: step.step_links || [],
             }),
@@ -283,6 +298,7 @@ export default function SequenceViewer({
               sequenceId,
               title: step.title,
               description: step.description,
+              atlasSvgFile: step.atlasSvgFile || null,
               brainpartIds: step.brainpart_ids,
             }),
           });
@@ -409,6 +425,12 @@ export default function SequenceViewer({
   function updateStepTitle(index: number, newTitle: string) {
     const updated = [...steps];
     updated[index].title = newTitle;
+    setSteps(updated);
+  }
+
+  function updateStepAtlasSvgFile(index: number, value: string) {
+    const updated = [...steps];
+    updated[index].atlasSvgFile = value || undefined;
     setSteps(updated);
   }
 
@@ -632,6 +654,23 @@ export default function SequenceViewer({
                 required
                 className="form-input"
               />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="atlasSvgFile" className="form-label">
+                Atlas SVG File
+              </label>
+              <select
+                id="atlasSvgFile"
+                value={atlasSvgFile}
+                onChange={(e) => setAtlasSvgFile(e.target.value)}
+                className="form-input"
+              >
+                <option value="">— none —</option>
+                {availableAtlasSvgFiles.map(file => (
+                  <option key={file} value={file}>{file}</option>
+                ))}
+              </select>
             </div>
 
             {error && (
@@ -873,6 +912,22 @@ export default function SequenceViewer({
                           </div>
                         ) :
                           (<h3 className="step-title">#{index + 1} {step.title}</h3>)}
+                        {editMode && (
+                          <div className="form-field" style={{ marginTop: '0.5rem' }}>
+                            <label className="form-label" style={{ fontSize: '0.85rem' }}>Step Atlas SVG File (overrides sequence default)</label>
+                            <select
+                              value={step.atlasSvgFile || ''}
+                              onChange={(e) => updateStepAtlasSvgFile(index, e.target.value)}
+                              className="form-input"
+                              style={{ fontSize: '0.85rem' }}
+                            >
+                              <option value="">— use sequence default —</option>
+                              {availableAtlasSvgFiles.map(file => (
+                                <option key={file} value={file}>{file}</option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
                         {editMode ? (
                           // Edit mode content
                           <div>
@@ -880,7 +935,8 @@ export default function SequenceViewer({
 
                             <div style={{ marginBottom: '1rem' }}>
                               <AtlasImage
-                                atlasSvg={atlasSvg}
+                                atlasSvg={getAtlasSvgUrl(step.atlasSvgFile || atlasSvgFile)}
+                                atlasSvgFile={step.atlasSvgFile || atlasSvgFile}
                                 highlightedIds={step.brainpart_titles}
                                 stepLinks={step.step_links || []}
                               />
@@ -1165,7 +1221,8 @@ export default function SequenceViewer({
                           // View mode content
                           <>
                             <AtlasImage
-                              atlasSvg={atlasSvg}
+                              atlasSvg={getAtlasSvgUrl(step.atlasSvgFile || sequence?.atlasSvgFile)}
+                              atlasSvgFile={step.atlasSvgFile || sequence?.atlasSvgFile}
                               highlightedIds={step.brainpart_titles}
                               stepLinks={step.step_links || []}
                             />

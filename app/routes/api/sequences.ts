@@ -81,7 +81,7 @@ export async function action({ request }) {
     const user = await requireAuth(request);
     
     const body = await request.json();
-    const { title, description } = body;
+    const { title, description, atlasSvgFile } = body;
     
     if (!title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Title is required' }), {
@@ -94,6 +94,7 @@ export async function action({ request }) {
     const result = await db.insert(sequences).values({
       title: title.trim(),
       description,
+      atlasSvgFile: atlasSvgFile || null,
       userId: user.id,
       draft: 1, // Default to draft
     }).returning({ id: sequences.id });
@@ -128,7 +129,7 @@ export async function action({ request }) {
     }
     
     const body = await request.json();
-    const { title, description } = body;
+    const { title, description, atlasSvgFile } = body;
     
     if (!title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Title is required' }), {
@@ -137,7 +138,7 @@ export async function action({ request }) {
       });
     }
     
-    const result = await updateSequence(Number(id), { title: title.trim(), description });
+    const result = await updateSequence(Number(id), { title: title.trim(), description, atlasSvgFile: atlasSvgFile ?? null });
     return new Response(JSON.stringify(result), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },

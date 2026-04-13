@@ -80,14 +80,14 @@ export async function createSequence({ title, description }: { title: string; de
   return result[0];
 }
 
-export async function updateSequence(id: number, { title, description }: { title: string; description?: string | null }) {
-  await db.update(sequences).set({ title, description }).where(eq(sequences.id, id));
+export async function updateSequence(id: number, { title, description, atlasSvgFile }: { title: string; description?: string | null; atlasSvgFile?: string | null }) {
+  await db.update(sequences).set({ title, description, atlasSvgFile }).where(eq(sequences.id, id));
   return { id };
 }
 
 // Steps operations
-export async function createStep({ sequenceId, title, description, brainpartIds }: { sequenceId: number; title: string; description?: string | null; brainpartIds?: number[] }) {
-  const result = await db.insert(steps).values({ sequenceId, title, description }).returning({ id: steps.id });
+export async function createStep({ sequenceId, title, description, atlasSvgFile, brainpartIds }: { sequenceId: number; title: string; description?: string | null; atlasSvgFile?: string | null; brainpartIds?: number[] }) {
+  const result = await db.insert(steps).values({ sequenceId, title, description, atlasSvgFile }).returning({ id: steps.id });
   const stepId = result[0].id;
   
   // Add brainpart associations if provided
@@ -100,8 +100,8 @@ export async function createStep({ sequenceId, title, description, brainpartIds 
   return result[0];
 }
 
-export async function updateStep(id: number, { title, description, brainpartIds }: { title: string; description?: string | null; brainpartIds?: number[] }) {
-  await db.update(steps).set({ title, description }).where(eq(steps.id, id));
+export async function updateStep(id: number, { title, description, atlasSvgFile, brainpartIds }: { title: string; description?: string | null; atlasSvgFile?: string | null; brainpartIds?: number[] }) {
+  await db.update(steps).set({ title, description, atlasSvgFile }).where(eq(steps.id, id));
   
   // Update brainpart associations if provided
   if (brainpartIds !== undefined) {

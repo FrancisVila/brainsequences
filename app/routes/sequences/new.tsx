@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router';
 import type { Route } from './+types/new';
 import { requireAuth } from '~/server/auth.server';
 
+const atlasSvgModules = import.meta.glob('../../images/atlasSvg/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
+const availableAtlasSvgFiles = Object.keys(atlasSvgModules).map(key => key.split('/').pop()!);
+
 export async function loader({ request }: Route.LoaderArgs) {
   // Require authentication to create sequences
   const user = await requireAuth(request);
@@ -12,6 +15,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function SequenceNew() {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
+  const [atlasSvgFile, setAtlasSvgFile] = useState('tim_taylor.svg');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -24,7 +28,7 @@ export default function SequenceNew() {
       const res = await fetch('/api/sequences', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title, atlasSvgFile: atlasSvgFile || null }),
       });
 
       if (!res.ok) {
@@ -65,6 +69,29 @@ export default function SequenceNew() {
               borderRadius: '4px',
             }}
           />
+        </div>
+
+        <div style={{ marginBottom: '1rem' }}>
+          <label htmlFor="atlasSvgFile" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+            Atlas SVG File
+          </label>
+          <select
+            id="atlasSvgFile"
+            value={atlasSvgFile}
+            onChange={(e) => setAtlasSvgFile(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              fontSize: '1rem',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+            }}
+          >
+            <option value="">— none —</option>
+            {availableAtlasSvgFiles.map(file => (
+              <option key={file} value={file}>{file}</option>
+            ))}
+          </select>
         </div>
 
         {error && (

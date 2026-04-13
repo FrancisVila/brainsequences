@@ -27,7 +27,7 @@ export async function action({ request }) {
   
   if (method === 'POST') {
     const body = await request.json();
-    const { sequenceId, title, description, brainpartIds } = body;
+    const { sequenceId, title, description, atlasSvgFile, brainpartIds } = body;
     
     if (!sequenceId || !title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Sequence ID and title are required' }), {
@@ -49,6 +49,7 @@ export async function action({ request }) {
       sequenceId: Number(sequenceId), 
       title: title.trim(), 
       description,
+      atlasSvgFile: atlasSvgFile || null,
       brainpartIds: brainpartIds || []
     });
     
@@ -86,7 +87,7 @@ export async function action({ request }) {
     }
     
     const body = await request.json();
-    const { title, description, brainpartIds, stepLinks } = body;
+    const { title, description, atlasSvgFile, brainpartIds, stepLinks } = body;
     
     if (!title || !title.trim()) {
       return new Response(JSON.stringify({ error: 'Title is required' }), {
@@ -98,6 +99,7 @@ export async function action({ request }) {
     const result = await updateStep(Number(id), { 
       title: title.trim(), 
       description,
+      atlasSvgFile: atlasSvgFile ?? null,
       brainpartIds: brainpartIds || []
     });
     

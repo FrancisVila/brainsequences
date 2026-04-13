@@ -26,6 +26,7 @@ export const sequences = sqliteTable("sequences", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	title: text().notNull(),
 	description: text(),
+	atlasSvgFile: text("atlas_svg_file"),
 	userId: integer("user_id").references(() => users.id, { onDelete: "set null" }),
 	draft: integer().notNull().default(1), // 0 = published, 1 = draft
 	publishedVersionId: integer("published_version_id").references((): any => sequences.id, { onDelete: "set null" }), // References the published version if this is a draft
@@ -40,6 +41,7 @@ export const steps = sqliteTable("steps", {
 	sequenceId: integer("sequence_id").notNull().references(() => sequences.id, { onDelete: "cascade" } ),
 	title: text().notNull(),
 	description: text(),
+	atlasSvgFile: text("atlas_svg_file"),
 	draft: integer().notNull().default(1), // 0 = published, 1 = draft (mirrors parent sequence)
 	createdAt: numeric("created_at").default(sql`(CURRENT_TIMESTAMP)`),
 });

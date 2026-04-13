@@ -20,6 +20,7 @@ export interface StepLink {
 
 export interface AtlasImageProps {
     atlasSvg: string;
+    atlasSvgFile?: string;
     backgroundImage?: string;
     highlightedIds?: (string | number)[];
     className?: string;
