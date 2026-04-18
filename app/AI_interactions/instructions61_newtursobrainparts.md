@@ -1,0 +1,2 @@
+(done) : in the brainparts2 route page, add an AtlasImage based on nilearn.svg. Make the selected item in the brainparts tree highlighted in the AtlasImage
+(todo) : clicking in the brainpart tree does not highlight the brainpart in the atlasImage. Looking in the browser inspector, I can't find the 

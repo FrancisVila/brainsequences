@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import type { Route } from './+types/brainparts2';
 import { BrainpartTree } from '~/components/BrainpartTree';
+import AtlasImage from '~/components/AtlasImage';
+import nilearSvg from '~/images/nilearn.svg';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { getCurrentUser } = await import('~/server/auth.server');
@@ -42,10 +44,18 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
     p.title.toLowerCase().trim() === selectedRegion.toLowerCase().trim()
   );
 
+  const descendantBrainparts = selectedBrainpart
+    ? parts.filter(p => p.isPartOf === selectedBrainpart.id)
+    : [];
+
+  const highlightedBrainpartTitles = selectedBrainpart
+    ? [selectedBrainpart.title, ...descendantBrainparts.map((p: any) => p.title)]
+    : [];
+
   return (
     <div>
       <h2>Brain parts 2</h2>
-      <div style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
+      <div  style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
         <div className='brainparts-left-right'>
           <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
             {!loading && (
@@ -70,6 +80,11 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
                 )}
               </div>
             )}
+            <AtlasImage
+              atlasSvg={nilearSvg}
+              className="svg-container-in-brainparts"
+              highlightedIds={highlightedBrainpartTitles}
+            />
           </div>
         </div>
       </div>

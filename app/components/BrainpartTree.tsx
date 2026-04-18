@@ -98,7 +98,7 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
     const isSelected = brainpart.title.toLowerCase() === selectedTitle.toLowerCase();
     
     return (
-      <div key={brainpart.id} style={{ marginLeft: level * 20 }}>
+      <div id={`brainpartTree`} key={brainpart.id} style={{ marginLeft: level * 20 }}>
         <div 
         className = {`${hasChildren ? 'brainpart-section parent' : 'brainpart-section leaf'}${isSelected ? ' selected' : ''}`}
           onClick={() => handleSelect(brainpart.title)}
