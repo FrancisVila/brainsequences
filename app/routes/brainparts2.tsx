@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import type { Route } from './+types/brainparts2';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import AtlasImage from '~/components/AtlasImage';
-import nilearSvg from '~/images/nilearn.svg';
+import nilearSvg from '~/images/nilearn_new.svg';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { getCurrentUser } = await import('~/server/auth.server');
@@ -82,7 +82,7 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
             )}
             <AtlasImage
               atlasSvg={nilearSvg}
-              className="svg-container-in-brainparts"
+              className="svg-brainparts2"
               highlightedIds={highlightedBrainpartTitles}
             />
           </div>

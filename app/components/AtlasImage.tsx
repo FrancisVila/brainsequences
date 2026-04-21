@@ -158,7 +158,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 {cssContent}
             </style>
 
-            <div id="atlas-image-container" style={{ position: 'relative', maxWidth: '700px' }}>
+            <div id="atlas-image-container" className={className} style={{ position: 'relative', maxWidth: '700px' }}>
                 <button
                     id="fullscreen-button"
                     onClick={() => setIsFullscreen(true)}
