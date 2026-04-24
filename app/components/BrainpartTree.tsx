@@ -8,6 +8,7 @@ interface Brainpart {
   isPartOf: number | null;  // Changed from is_part_of to isPartOf (camelCase)
   visible: number;
   createdAt: string;  // Changed from created_at to createdAt (camelCase)
+  folder?: number;
 }
 
 interface BrainpartTreeProps {
@@ -100,7 +101,7 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
     return (
       <div id={`brainpartTree`} key={brainpart.id} style={{ marginLeft: level * 20 }}>
         <div 
-        className = {`${hasChildren ? 'brainpart-section parent' : 'brainpart-section leaf'}${isSelected ? ' selected' : ''}`}
+        className = {`${hasChildren ? 'brainpart-section parent' : 'brainpart-section leaf'}${isSelected ? ' selected' : ''}${brainpart.folder ? ' folder' : ''}`}
           onClick={() => handleSelect(brainpart.title)}
         >
           {hasChildren ? (

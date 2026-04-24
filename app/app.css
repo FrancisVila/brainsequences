@@ -621,6 +621,11 @@ h3.step-title {
   border-left: 4px solid #aad400;
 }
 
+.brainpart-section.folder {
+  background-color: #eee;
+  font-style: italic;  
+}
+
 .brainpart-icons {
   float: right;
 }

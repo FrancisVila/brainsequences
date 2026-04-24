@@ -55,6 +55,7 @@ export const brainparts = sqliteTable("brainparts", {
 	isPartOf: integer("is_part_of"),
 	visible: integer().notNull().default(1),
 	version: integer().notNull().default(1),
+	folder: integer().notNull().default(0),
 });
 
 export const brainpartLinks = sqliteTable("brainpart_links", {

@@ -54,12 +54,13 @@ export default function Brainparts({ loaderData }: Route.ComponentProps) {
   );
   
   // Find all descendant brainparts (those that have the selected brainpart as their parent)
-  const descendantBrainparts = selectedBrainpart 
+  // But skip them if the selected brainpart is a folder
+  const descendantBrainparts = selectedBrainpart && !selectedBrainpart.folder
     ? parts.filter(p => p.isPartOf === selectedBrainpart.id)
     : [];
   
-  // Combine selected brainpart and its descendants for highlighting
-  const highlightedBrainpartTitles = selectedBrainpart 
+  // Combine selected brainpart and its descendants for highlighting (skip if selected is a folder)
+  const highlightedBrainpartTitles = selectedBrainpart && !selectedBrainpart.folder
     ? [selectedBrainpart.title, ...descendantBrainparts.map(p => p.title)]
     : [];
   

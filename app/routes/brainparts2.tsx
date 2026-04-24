@@ -44,11 +44,11 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
     p.title.toLowerCase().trim() === selectedRegion.toLowerCase().trim()
   );
 
-  const descendantBrainparts = selectedBrainpart
+  const descendantBrainparts = selectedBrainpart && !selectedBrainpart.folder
     ? parts.filter(p => p.isPartOf === selectedBrainpart.id)
     : [];
 
-  const highlightedBrainpartTitles = selectedBrainpart
+  const highlightedBrainpartTitles = selectedBrainpart && !selectedBrainpart.folder
     ? [selectedBrainpart.title, ...descendantBrainparts.map((p: any) => p.title)]
     : [];
 
