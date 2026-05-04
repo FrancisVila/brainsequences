@@ -1239,154 +1239,154 @@
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#corpus_callosum_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-687"
              style="stroke-width:0.264583">Corpus Callosum</textPath></text><text
            id="dentate_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#dentate_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-90"
              style="stroke-width:0.264583">Dentate</textPath></text><text
            id="hippocampus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#hippocampus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1"
              style="stroke-width:0.264583">Hippocampus</textPath></text><text
            id="hypothalamus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#hypothalamus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-4"
              style="stroke-width:0.264583">Hypothalamus</textPath></text><text
            id="lateral_dorsal_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#lateral_dorsal_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-1"
              style="stroke-width:0.264583">Lateral Dorsal Nucleus</textPath></text><text
            id="lateral_globus_pallidus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#lateral_globus_pallidus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-2"
              style="stroke-width:0.264583">Lateral Globus Pallidus</textPath></text><text
            id="lateral_posterior_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#lateral_posterior_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-26"
              style="stroke-width:0.264583">Lateral Posterior Nucleus</textPath></text><text
            id="mammillary_body_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#mammillary_body_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-7"
              style="stroke-width:0.264583">Mammillary Body</textPath></text><text
            id="medial_dorsal_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#medial_dorsal_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-8"
              style="stroke-width:0.264583">Medial Dorsal Nucleus</textPath></text><text
            id="medial_geniculum_body_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#medial_geniculum_body_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-76"
              style="stroke-width:0.264583">Medial Geniculum Body</textPath></text><text
            id="medial_globus_pallidus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#medial_globus_pallidus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-78"
              style="stroke-width:0.264583">Medial Globus Pallidus</textPath></text><text
            id="midline_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#midline_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-73"
              style="stroke-width:0.264583">Midline Nucleus</textPath></text><text
            id="optic_tract_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#optic_tract_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-10"
              style="stroke-width:0.264583">Optic Tract</textPath></text><text
            id="pulvinar_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#pulvinar_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-5"
              style="stroke-width:0.264583">Pulvinar</textPath></text><text
            id="putamen_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#putamen_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-20"
              style="stroke-width:0.264583">Putamen</textPath></text><text
            id="red_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#red_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-24"
              style="stroke-width:0.264583">Red Nucleus</textPath></text><text
            id="substania_nigra_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#substania_nigra_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-9"
              style="stroke-width:0.264583">Substania Nigra</textPath></text><text
            id="subthalamic_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#subthalamic_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-28"
              style="stroke-width:0.264583">Subthalamic Nucleus</textPath></text><text
            id="ventral_anterior_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#ventral_anterior_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-83"
              style="stroke-width:0.264583">Ventral Anterior Nucleus</textPath></text><text
            id="ventral_lateral_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#ventral_lateral_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-284"
              style="stroke-width:0.264583">Ventral Lateral Nucleus</textPath></text><text
            id="ventral_posterior_lateral_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#ventral_posterior_lateral_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-81"
              style="stroke-width:0.264583">Ventral Posterior Lateral Nucleus</textPath></text><text
            id="ventral_posterior_medial_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#ventral_posterior_medial_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-13"
              style="stroke-width:0.264583">Ventral Posterior Medial Nucleus</textPath></text><text
            id="amygdala_label"
@@ -1394,315 +1394,318 @@
            transform="rotate(-80.740158,77.957983,21.084857)"><textPath
              xlink:href="#amygdala_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-56"
              style="stroke-width:0.264583">Amygdala</textPath></text><text
            id="anterior_nucleus_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#anterior_nucleus_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-82"
              style="stroke-width:0.264583">Anterior Nucleus</textPath></text><text
            id="brodmann_area_1_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_1_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-97"
              style="stroke-width:0.264583">Brodmann Area 1</textPath></text><text
            id="brodmann_area_2_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_2_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-94"
              style="stroke-width:0.264583">Brodmann Area 2</textPath></text><text
            id="brodmann_area_3_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_3_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-25"
              style="stroke-width:0.264583">Brodmann Area 3</textPath></text><text
            id="brodmann_area_4_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_4_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-51"
              style="stroke-width:0.264583">Brodmann Area 4</textPath></text><text
            id="brodmann_area_5_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_5_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-14"
              style="stroke-width:0.264583">Brodmann Area 5</textPath></text><text
            id="brodmann_area_6_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_6_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-79"
              style="stroke-width:0.264583">Brodmann Area 6</textPath></text><text
            id="brodmann_area_7_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_7_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
              id="textPath1-795"
              style="stroke-width:0.264583">Brodmann Area 7</textPath></text><text
            id="brodmann_area_8_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_8_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
+             dominant-baseline="middle"
              id="textPath1-104"
              style="stroke-width:0.264583">Brodmann Area 8</textPath></text><text
            id="brodmann_area_9_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_9_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
+             dominant-baseline="middle"
              id="textPath1-512"
              style="stroke-width:0.264583">Brodmann Area 9</textPath></text><text
            id="brodmann_area_10_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_10_curve"
              startOffset="50%"
-             text-anchor="middle"
+             dominant-baseline="middle"
+             dominant-baseline="middle"
              id="textPath1-733"
              style="stroke-width:0.264583">Brodmann Area 10</textPath></text><text
            id="brodmann_area_11_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_11_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-89"
              style="stroke-width:0.264583">Brodmann Area 11</textPath></text><text
            id="brodmann_area_13_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_13_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-208"
              style="stroke-width:0.264583">Brodmann Area 13</textPath></text><text
            id="brodmann_area_17_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_17_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-764"
              style="stroke-width:0.264583">Brodmann Area 17</textPath></text><text
            id="brodmann_area_18_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_18_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-0"
              style="stroke-width:0.264583">Brodmann Area 18</textPath></text><text
            id="brodmann_area_19_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_19_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-143"
              style="stroke-width:0.264583">Brodmann Area 19</textPath></text><text
            id="brodmann_area_20_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_20_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-96"
              style="stroke-width:0.264583">Brodmann Area 20</textPath></text><text
            id="brodmann_area_21_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_21_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-760"
              style="stroke-width:0.264583">Brodmann Area 21</textPath></text><text
            id="brodmann_area_22_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_22_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-15"
              style="stroke-width:0.264583">Brodmann Area 22</textPath></text><text
            id="brodmann_area_23_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_23_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-87"
              style="stroke-width:0.264583">Brodmann Area 23</textPath></text><text
            id="brodmann_area_24_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_24_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-6"
              style="stroke-width:0.264583">Brodmann Area 24</textPath></text><text
            id="brodmann_area_25_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_25_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-823"
              style="stroke-width:0.264583">Brodmann Area 25</textPath></text><text
            id="brodmann_area_27_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_27_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-3"
              style="stroke-width:0.264583">Brodmann Area 27</textPath></text><text
            id="brodmann_area_28_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_28_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-67"
              style="stroke-width:0.264583">Brodmann Area 28</textPath></text><text
            id="brodmann_area_29_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_29_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-92"
              style="stroke-width:0.264583">Brodmann Area 29</textPath></text><text
            id="brodmann_area_30_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_30_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-02"
              style="stroke-width:0.264583">Brodmann Area 30</textPath></text><text
            id="brodmann_area_31_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_31_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-53"
              style="stroke-width:0.264583">Brodmann Area 31</textPath></text><text
            id="brodmann_area_32_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_32_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-31"
              style="stroke-width:0.264583">Brodmann Area 32</textPath></text><text
            id="brodmann_area_33_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_33_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-75"
              style="stroke-width:0.264583">Brodmann Area 33</textPath></text><text
            id="brodmann_area_34_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_34_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-35"
              style="stroke-width:0.264583">Brodmann Area 34</textPath></text><text
            id="brodmann_area_35_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_35_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-72"
              style="stroke-width:0.264583">Brodmann Area 35</textPath></text><text
            id="brodmann_area_36_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_36_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-59"
              style="stroke-width:0.264583">Brodmann Area 36</textPath></text><text
            id="brodmann_area_37_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_37_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-69"
              style="stroke-width:0.264583">Brodmann Area 37</textPath></text><text
            id="brodmann_area_38_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_38_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-40"
              style="stroke-width:0.264583">Brodmann Area 38</textPath></text><text
            id="brodmann_area_39_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_39_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-12"
              style="stroke-width:0.264583">Brodmann Area 39</textPath></text><text
            id="brodmann_area_40_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_40_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-61"
              style="stroke-width:0.264583">Brodmann Area 40</textPath></text><text
            id="brodmann_area_41_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_41_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-564"
              style="stroke-width:0.264583">Brodmann Area 41</textPath></text><text
            id="brodmann_area_42_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_42_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-538"
              style="stroke-width:0.264583">Brodmann Area 42</textPath></text><text
            id="brodmann_area_43_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_43_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-80"
              style="stroke-width:0.264583">Brodmann Area 43</textPath></text><text
            id="brodmann_area_44_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_44_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-63"
              style="stroke-width:0.264583">Brodmann Area 44</textPath></text><text
            id="brodmann_area_45_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_45_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-17"
              style="stroke-width:0.264583">Brodmann Area 45</textPath></text><text
            id="brodmann_area_46_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_46_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-126"
              style="stroke-width:0.264583">Brodmann Area 46</textPath></text><text
            id="brodmann_area_47_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#brodmann_area_47_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-22"
              style="stroke-width:0.264583">Brodmann Area 47</textPath></text><text
            id="caudate_body_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#caudate_body_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-68"
              style="stroke-width:0.264583">Caudate Body</textPath></text><text
            id="caudate_head_label"
@@ -1711,14 +1714,14 @@
            y="0"><textPath
              xlink:href="#caudate_head_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-70"
              style="stroke-width:0.264583">Caudate Head </textPath></text><text
            id="caudate_tail_label"
            style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
              xlink:href="#caudate_tail_curve"
              startOffset="50%"
-             text-anchor="middle"
+             
              id="textPath1-98"
              style="stroke-width:0.264583">Caudate Tail</textPath></text><path
            id="brodmann_area_43_curve"
@@ -2247,7 +2250,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#hippocampus_curve-5"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-171"
            style="stroke-width:0.264583">Hippocampus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2272,7 +2275,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#hypothalamus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-4-2"
            style="stroke-width:0.264583">Hypothalamus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2297,7 +2300,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#lateral_dorsal_nucleus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-1-8"
            style="stroke-width:0.264583">Lateral Dorsal Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2322,7 +2325,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#lateral_globus_pallidus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-2-9"
            style="stroke-width:0.264583">Lateral Globus Pallidus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2347,7 +2350,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#lateral_posterior_nucleus_curve-5"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-26-3"
            style="stroke-width:0.264583">Lateral Posterior Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2372,7 +2375,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#mammillary_body_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-7-1"
            style="stroke-width:0.264583">Mammillary Body</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2397,7 +2400,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#medial_dorsal_nucleus_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-8-2"
            style="stroke-width:0.264583">Medial Dorsal Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2422,7 +2425,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#medial_geniculum_body_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-76-9"
            style="stroke-width:0.264583">Medial Geniculum Body</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2447,7 +2450,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#medial_globus_pallidus_curve-0"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-78-8"
            style="stroke-width:0.264583">Medial Globus Pallidus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2472,7 +2475,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#midline_nucleus_curve-4"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-73-6"
            style="stroke-width:0.264583">Midline Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2497,7 +2500,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#optic_tract_curve-0"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-10-6"
            style="stroke-width:0.264583">Optic Tract</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2522,7 +2525,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#pulvinar_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-5-4"
            style="stroke-width:0.264583">Pulvinar</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2547,7 +2550,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#putamen_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-20-1"
            style="stroke-width:0.264583">Putamen</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2572,7 +2575,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#red_nucleus_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-24-7"
            style="stroke-width:0.264583">Red Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2597,7 +2600,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#substania_nigra_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-9-3"
            style="stroke-width:0.264583">Substania Nigra</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2622,7 +2625,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#subthalamic_nucleus_curve-4"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-28-7"
            style="stroke-width:0.264583">Subthalamic Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2647,7 +2650,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#ventral_anterior_nucleus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-83-4"
            style="stroke-width:0.264583">Ventral Anterior Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2672,7 +2675,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#ventral_lateral_nucleus_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-284-7"
            style="stroke-width:0.264583">Ventral Lateral Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2697,7 +2700,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#ventral_posterior_lateral_nucleus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-81-5"
            style="stroke-width:0.264583">Ventral Posterior Lateral Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2722,7 +2725,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#ventral_posterior_medial_nucleus_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-13-0"
            style="stroke-width:0.264583">Ventral Posterior Medial Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2749,7 +2752,7 @@
          transform="rotate(-80.740158,77.957984,21.084857)"><textPath
            xlink:href="#amygdala_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-56-7"
            style="stroke-width:0.264583">Amygdala</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2774,7 +2777,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#anterior_nucleus_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-82-3"
            style="stroke-width:0.264583">Anterior Nucleus</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2799,7 +2802,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_1_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-97-1"
            style="stroke-width:0.264583">Brodmann Area 1</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2824,7 +2827,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_2_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-94-3"
            style="stroke-width:0.264583">Brodmann Area 2</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2849,7 +2852,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_3_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-25-0"
            style="stroke-width:0.264583">Brodmann Area 3</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2874,7 +2877,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_4_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-51-5"
            style="stroke-width:0.264583">Brodmann Area 4</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2900,7 +2903,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_5_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-14-4"
            style="stroke-width:0.264583">Brodmann Area 5</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2926,7 +2929,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_6_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-79-8"
            style="stroke-width:0.264583">Brodmann Area 6</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2952,7 +2955,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_7_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-795-8"
            style="stroke-width:0.264583">Brodmann Area 7</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -2978,7 +2981,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_8_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-104-8"
            style="stroke-width:0.264583">Brodmann Area 8</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3003,7 +3006,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_9_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-512-0"
            style="stroke-width:0.264583">Brodmann Area 9</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3028,7 +3031,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_10_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-733-5"
            style="stroke-width:0.264583">Brodmann Area 10</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3053,7 +3056,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_11_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-89-8"
            style="stroke-width:0.264583">Brodmann Area 11</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3078,7 +3081,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_13_curve-4"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-208-9"
            style="stroke-width:0.264583">Brodmann Area 13</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3103,7 +3106,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_17_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-764-3"
            style="stroke-width:0.264583">Brodmann Area 17</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3128,7 +3131,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_18_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-0-8"
            style="stroke-width:0.264583">Brodmann Area 18</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3153,7 +3156,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_19_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-143-9"
            style="stroke-width:0.264583">Brodmann Area 19</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3178,7 +3181,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_20_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-96-8"
            style="stroke-width:0.264583">Brodmann Area 20</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3203,7 +3206,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_21_curve-0"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-760-8"
            style="stroke-width:0.264583">Brodmann Area 21</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3228,7 +3231,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_22_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-15-2"
            style="stroke-width:0.264583">Brodmann Area 22</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3253,7 +3256,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_23_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-87-2"
            style="stroke-width:0.264583">Brodmann Area 23</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3278,7 +3281,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_24_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-6-4"
            style="stroke-width:0.264583">Brodmann Area 24</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3303,7 +3306,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_25_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-823-1"
            style="stroke-width:0.264583">Brodmann Area 25</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3328,7 +3331,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_27_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-3-5"
            style="stroke-width:0.264583">Brodmann Area 27</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3353,7 +3356,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_28_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-67-1"
            style="stroke-width:0.264583">Brodmann Area 28</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3378,7 +3381,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_29_curve-5"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-92-2"
            style="stroke-width:0.264583">Brodmann Area 29</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3403,7 +3406,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_30_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-02-7"
            style="stroke-width:0.264583">Brodmann Area 30</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3428,7 +3431,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_31_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-53-1"
            style="stroke-width:0.264583">Brodmann Area 31</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3453,7 +3456,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_32_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-31-5"
            style="stroke-width:0.264583">Brodmann Area 32</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3478,7 +3481,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_33_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-75-5"
            style="stroke-width:0.264583">Brodmann Area 33</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3503,7 +3506,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_34_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-35-9"
            style="stroke-width:0.264583">Brodmann Area 34</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3528,7 +3531,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_35_curve-9"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-72-6"
            style="stroke-width:0.264583">Brodmann Area 35</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3553,7 +3556,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_36_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-59-6"
            style="stroke-width:0.264583">Brodmann Area 36</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3578,7 +3581,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_37_curve-5"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-69-4"
            style="stroke-width:0.264583">Brodmann Area 37</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3603,7 +3606,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_38_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-40-3"
            style="stroke-width:0.264583">Brodmann Area 38</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3628,7 +3631,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_39_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-12-2"
            style="stroke-width:0.264583">Brodmann Area 39</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3653,7 +3656,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_40_curve-1"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-61-6"
            style="stroke-width:0.264583">Brodmann Area 40</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3678,7 +3681,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_41_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-564-9"
            style="stroke-width:0.264583">Brodmann Area 41</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3703,7 +3706,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_42_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-538-4"
            style="stroke-width:0.264583">Brodmann Area 42</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3728,7 +3731,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_43_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-80-4"
            style="stroke-width:0.264583">Brodmann Area 43</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3753,7 +3756,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_44_curve-6"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-63-4"
            style="stroke-width:0.264583">Brodmann Area 44</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3778,7 +3781,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_45_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-17-8"
            style="stroke-width:0.264583">Brodmann Area 45</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3803,7 +3806,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_46_curve-7"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-126-4"
            style="stroke-width:0.264583">Brodmann Area 46</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3828,7 +3831,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#brodmann_area_47_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-22-3"
            style="stroke-width:0.264583">Brodmann Area 47</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3853,7 +3856,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#caudate_body_curve-8"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-68-3"
            style="stroke-width:0.264583">Caudate Body</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3882,7 +3885,7 @@
          y="0"><textPath
            xlink:href="#caudate_head_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-70-2"
            style="stroke-width:0.264583">Caudate Head </textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3907,7 +3910,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#caudate_tail_curve-2"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-98-7"
            style="stroke-width:0.264583">Caudate Tail</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3932,7 +3935,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#corpus_callosum_curve-3"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-687-1"
            style="stroke-width:0.264583">Corpus Callosum</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
@@ -3957,7 +3960,7 @@
          style="font-size:3.70417px;font-family:'Roboto Condensed';fill:#333333;stroke-width:0.264583"><textPath
            xlink:href="#dentate_curve-5"
            startOffset="50%"
-           text-anchor="middle"
+           
            id="textPath1-90-5"
            style="stroke-width:0.264583">Dentate</textPath></text><rect
          style="fill:none;stroke:#000000;stroke-width:0"
