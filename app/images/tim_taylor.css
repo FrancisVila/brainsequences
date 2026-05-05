@@ -22,5 +22,42 @@
 	font-size:28px !important;
 	fill:#600000 !important;
 	font-family: 'Roboto Condensed', sans-serif;
-	
 }
+
+.body_part.atlas.color-1 {
+	fill:#FF0000 !important;
+	stroke:#FF0000 !important;
+}
+
+.body_part_text.atlas.color-1 {
+	fill:#600000 !important;
+}
+
+.body_part.atlas.color-2 {
+	fill:#00FF00 !important;
+	stroke:#00FF00 !important;
+}
+
+.body_part_text.color-2 {
+	fill:#006000 !important;
+}
+
+.body_part.atlas.color-3 {
+	fill:#0000FF !important;
+	stroke:#0000FF !important;
+}
+
+.body_part_text.color-3 {
+	fill:#000060 !important;
+}
+
+.body_part.atlas.color-4 {
+	fill:#999900 !important;
+	stroke:#999900 !important;
+}
+
+
+.body_part_text.color-4 {
+	fill:#406000 !important;
+}
+

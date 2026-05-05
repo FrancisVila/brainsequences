@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, type JSX } from 'react';
 import './atlasImage.css';
 import timTaylorCss from '../images/tim_taylor.css?raw';
 import timTaylorAllCss from '../images/tim_taylor_all.css?raw';
+import path from 'path';
 
 export interface Link {
     from: string;
@@ -92,15 +93,27 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                     const strId = String(label).toLowerCase().trim().replace(/[\s_-]/g, '');
                     return [strId, strId + 'text'];
                 });
+                let colorIndex = 0;
+                const colorMap = new Map<string, number>();
+                
                 paths_and_texts.forEach((path_or_text) => {
                     const pathId = path_or_text.getAttribute('inkscape:label')?.toString().toLowerCase().trim().replace(/[\s_-]/g, '');
                     if (pathId &&
                         (normalizedHighlightedIds.includes(pathId) ||
                             (normalizedHighlightedIds.includes(String(Number(pathId)))
                             ))) {
+                        // Get base ID (remove 'text' suffix if present)
+                        const baseId = pathId.endsWith('text') ? pathId.slice(0, -4) : pathId;
+                        
+                        // Assign color if this is a new brain part
+                        if (!colorMap.has(baseId)) {
+                            colorIndex++;
+                            colorMap.set(baseId, colorIndex);
+                        }
+                        
+                        const assignedColor = colorMap.get(baseId);
                         path_or_text.classList.add('atlas');
-
-
+                        path_or_text.classList.add(`color-${assignedColor}`);
                     }
                 });
 
