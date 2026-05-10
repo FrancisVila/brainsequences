@@ -1,5 +1,5 @@
 import AtlasImage from "../components/AtlasImage";
-import toto from '../images/tim_taylor.svg';
+import toto from '../images/atlasSvg/tim_taylor.svg';
 
 export default function About() {
   return (

@@ -10,7 +10,7 @@
 	display:inline !important;
 	fill:#FF0000 !important;
 	fill-opacity:0.2 !important;
-	stroke-width:3 !important;
+	stroke-width:1 !important;
 	display:inline !important;
 	stroke:#FF0000 !important;
 	stroke-opacity:1 !important;
@@ -43,12 +43,12 @@
 }
 
 .body_part.atlas.color-3 {
-	fill:#0000FF !important;
-	stroke:#0000FF !important;
+	fill:#4040ff !important;
+	stroke:#4040ff !important;
 }
 
 .body_part_text.color-3 {
-	fill:#000060 !important;
+	fill:#0000CC !important;
 }
 
 .body_part.atlas.color-4 {

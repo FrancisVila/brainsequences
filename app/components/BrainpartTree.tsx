@@ -117,7 +117,7 @@ export function BrainpartTree({ brainparts, user, onDelete, onRegionChange, sele
           ) : (
             <span style={{ marginRight: 4 }}>📄</span>
           )}
-          {brainpart.title}
+          {brainpart.title.replace(/_/g, ' ')}
           {hasChildren && (
             <span style={{ fontSize: '0.85em', color: '#999', marginLeft: 8 }}>
               ({children.length})

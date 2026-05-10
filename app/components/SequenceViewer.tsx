@@ -11,7 +11,7 @@ const atlasSvgModules = import.meta.glob('../images/atlasSvg/*.svg', { query: '?
 // Extract available filenames and URL map
 const availableAtlasSvgFiles = Object.keys(atlasSvgModules).map(key => key.split('/').pop()!);
 function getAtlasSvgUrl(filename: string | null | undefined): string {
-  const fallback = atlasSvgModules['../images/atlasSvg/tim_taylor.svg'] || '';
+  const fallback = atlasSvgModules['../images/atlasSvg/nilearn_new.svg'] || '';
   if (!filename) return fallback;
   return atlasSvgModules[`../images/atlasSvg/${filename}`] || fallback;
 }
@@ -95,7 +95,7 @@ export default function SequenceViewer({
 
   // Edit mode state
   const [title, setTitle] = useState('');
-  const [atlasSvgFile, setAtlasSvgFile] = useState<string>('tim_taylor.svg');
+  const [atlasSvgFile, setAtlasSvgFile] = useState<string>('nilearn_new.svg');
   const [steps, setSteps] = useState<Step[]>([]);
   const [allBrainparts, setAllBrainparts] = useState<Brainpart[]>([]);
   
@@ -213,7 +213,7 @@ export default function SequenceViewer({
         const loadedTitle = data.title || '';
         const loadedSteps = data.steps || [];
         setTitle(loadedTitle);
-        setAtlasSvgFile(data.atlasSvgFile || 'tim_taylor.svg');
+        setAtlasSvgFile(data.atlasSvgFile || 'nilearn_new.svg');
         setSteps(loadedSteps);
         // Store original values for comparison
         setOriginalTitle(loadedTitle);
