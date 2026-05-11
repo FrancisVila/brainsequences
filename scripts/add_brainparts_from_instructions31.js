@@ -10,61 +10,61 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const brainpartsToAdd = [
-"inferior_semi_lunar_lobule",
+"angular_gyrus",
+"anterior_cingulate",
+"caudate",
+"cerebellar_lingual",
 "cerebellar_tonsil",
-"inferior_temporal_gyrus",
-"uncus",
-"middle_temporal_gyrus",
-"superior_temporal_gyrus",
-"sub_gyral",
-"pyramis",
-"uvula",
-"uvula_of_vermis",
-"fourth_ventricle",
-"tuber",
-"pyramis_of_vermis",
-"nodule",
+"cingulate_gyrus",
+"claustrum",
 "culmen",
-"orbital_gyrus",
-"tuber_of_vermis",
-"fusiform_gyrus",
-"parahippocampal_gyrus",
-"rectal_gyrus",
-"superior_frontal_gyrus",
+"culmen_of_vermis",
+"cuneus",
 "declive",
 "declive_of_vermis",
-"fastigium",
-"lateral_ventricle",
-"inferior_frontal_gyrus",
-"middle_frontal_gyrus",
-"cerebellar_lingual",
-"medial_frontal_gyrus",
-"lingual_gyrus",
-"inferior_occipital_gyrus",
-"subcallosal_gyrus",
-"middle_occipital_gyrus",
-"culmen_of_vermis",
 "extra_nuclear",
-"caudate",
-"third_ventricle",
-"anterior_cingulate",
-"lentiform_nucleus",
-"thalamus",
+"fastigium",
+"fourth_ventricle",
+"fusiform_gyrus",
+"inferior_frontal_gyrus",
+"inferior_occipital_gyrus",
+"inferior_parietal_lobule",
+"inferior_semi_lunar_lobule",
+"inferior_temporal_gyrus",
 "insula",
-"claustrum",
-"cuneus",
+"lateral_ventricle",
+"lentiform_nucleus",
+"lingual_gyrus",
+"medial_frontal_gyrus",
+"middle_frontal_gyrus",
+"middle_occipital_gyrus",
+"middle_temporal_gyrus",
+"nodule",
+"orbital_gyrus",
+"paracentral_lobule",
+"parahippocampal_gyrus",
+"postcentral_gyrus",
 "posterior_cingulate",
 "precentral_gyrus",
-"transverse_temporal_gyrus",
-"postcentral_gyrus",
 "precuneus",
+"pyramis",
+"pyramis_of_vermis",
+"rectal_gyrus",
+"subcallosal_gyrus",
+"sub_gyral",
+"superior_frontal_gyrus",
 "superior_occipital_gyrus",
-"supramarginal_gyrus",
-"inferior_parietal_lobule",
-"cingulate_gyrus",
-"angular_gyrus",
 "superior_parietal_lobule",
-"paracentral_lobule",
+"superior_temporal_gyrus",
+"supramarginal_gyrus",
+"thalamus",
+"third_ventricle",
+"transverse_temporal_gyrus",
+"tuber",
+"tuber_of_vermis",
+"uncus",
+"uvula",
+"uvula_of_vermis"
 ];
 
 // Convert underscore names to proper titles
@@ -89,22 +89,22 @@ async function addBrainparts() {
   for (const brainpart of brainpartsToAdd) {
     const title = toTitle(brainpart);
     
-    // Check if brainpart already exists
+    // Check if brainpart already exists in version 2
     const existing = await db.execute({
-      sql: 'SELECT id FROM brainparts WHERE title = ?',
+      sql: 'SELECT id FROM brainparts WHERE title = ? AND version = 2',
       args: [title]
     });
 
     if (existing.rows.length > 0) {
-      console.log(`⏭️  Skipped (already exists): ${title}`);
+      console.log(`⏭️  Skipped (already exists in version 2): ${title}`);
       skipped++;
     } else {
-      // Insert the brainpart
+      // Insert the brainpart with version 2
       await db.execute({
-        sql: 'INSERT INTO brainparts (title, visible) VALUES (?, 1)',
+        sql: 'INSERT INTO brainparts (title, visible, version) VALUES (?, 1, 2)',
         args: [title]
       });
-      console.log(`✅ Added: ${title}`);
+      console.log(`✅ Added: ${title} (version 2)`);
       added++;
     }
   }
