@@ -54,9 +54,12 @@ export default function About() {
             <li><a href="https://fontawesome.com/">Font Awesome</a> for the icons of the senses.</li>
             <li>Tim Taylor's <a href="https://www.innerbody.com/image/nerv02.html">map of the Human Brain on Innerbody</a> for the initial brain illustrations and vector graphic. </li>
             <li><a href="https://ebrains.eu/">EBRAIN</a>'s  <a href="https://siibra-python.readthedocs.io/">Siibra API</a> for visualizing the brain in 3D. </li>
-          </ul>
+           <li><a href="https://iros.github.io/patternfills/">PatternFields</a> by Iros for pattern fills in SVG illustrations. </li>
+           </ul>
         </section>
       </div>
+      <div className="circles-1 color-1" >AAA AAA AAA</div>
+
     </main>
   );
 }

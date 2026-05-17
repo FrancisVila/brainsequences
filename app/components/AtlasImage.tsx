@@ -211,6 +211,53 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                             >
                                 <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
                             </marker>
+                            <pattern
+                                id="circles-1-pattern"
+                                x="0"
+                                y="0"
+                                width="10"
+                                height="10"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <rect width="10" height="10" fill="#FF000020" />
+                                <circle cx="1" cy="1" r="2" fill="#FF000040" />
+                            </pattern>
+                            <pattern
+                                id="circles-2-pattern"
+                                x="0"
+                                y="0"
+                                width="10"
+                                height="10"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <rect width="10" height="10" fill="#00FF0020" />
+                                <path d='M-1,1 l2,-2 M0,10 l10,-10 M9,11 l2,-2' 
+                                    stroke='#00FF0040' 
+                                    fill="#00FF0020" 
+                                    stroke-width='1'/>
+                            </pattern>
+                            <pattern
+                                id="circles-3-pattern"
+                                x="0"
+                                y="0"
+                                width="10"
+                                height="10"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <rect width="10" height="10" fill="#4040FF20" />
+                                <rect x='0' y='0' width='10' height='1' fill='#4040FF40' />
+                            </pattern>
+                            <pattern
+                                id="circles-4-pattern"
+                                x="0"
+                                y="0"
+                                width="7"
+                                height="7"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <rect width="7" height="7" fill="#99990020" />
+                                <rect x='0' y='0' width='1' height='7' fill='#99990040' />
+                            </pattern>
                         </defs>
                         {!stepLinks ? null : stepLinks.map((link, index) =>
 

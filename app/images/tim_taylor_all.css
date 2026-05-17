@@ -1,6 +1,5 @@
 .body_part {
 	fill:#008000 !important;
-	fill-opacity:0.2 !important;
 	stroke-width:1 !important;
 	display:inline !important;
 	stroke:#008000 !important;
@@ -13,7 +12,6 @@
 
 .body_part.atlas {
 	fill:#FF0000 !important;
-	fill-opacity:0.2 !important;
 	stroke-width:3 !important;
 	display:inline !important;
 	stroke:#FF0000 !important;

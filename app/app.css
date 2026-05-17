@@ -239,7 +239,7 @@ p {
 }
 
 .delete-button {
-  color: red; cursor: pointer; border: medium; background: none; font-size: 1.2rem;"
+  color: red; cursor: pointer; border: medium; background: none; font-size: 1.2rem;
 }
 
 .edit-section-brainpart:hover {
@@ -723,3 +723,8 @@ h3.step-title {
   gap: 1px;
   padding-bottom: 10px;
 } 
+
+.circles-1 {
+  background-image: url('./images/circles-1.svg');
+  background-repeat: repeat;
+}

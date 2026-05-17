@@ -11,6 +11,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./patterns.css";
 import { getCurrentUser } from "./server/auth.server";
 import UserMenu from "./components/UserMenu";
 import brainIcon from "./images/brain_icons.svg";
