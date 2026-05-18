@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import type { Route } from './+types/brainparts';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import { Brain3DViewer } from '~/components/Brain3DViewer';
-import atlasSvg from '~/images/tim_taylor.svg';
+import atlasSvg from '~/images/atlasSvg/tim_taylor.svg';
 import AtlasImage from '~/components/AtlasImage';
 
 export async function loader({ request }: Route.LoaderArgs) {

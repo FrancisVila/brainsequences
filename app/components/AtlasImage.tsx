@@ -60,6 +60,13 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                 svgElement.removeAttribute('width');
                 svgElement.removeAttribute('height');
 
+                // Inject pattern definitions into the loaded SVG's defs
+                let defsElement = svgElement.querySelector('defs');
+                if (!defsElement) {
+                    defsElement = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                    svgElement.insertBefore(defsElement, svgElement.firstChild);
+                }
+
                 // Set visibility of background groups based on view parameter
                 const sketchBackgrounds = svgElement.querySelector('#sketch_backgrounds');
                 const bitmapBackgrounds = svgElement.querySelector('#bitmap_backgrounds');
@@ -218,6 +225,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 width="10"
                                 height="10"
                                 patternUnits="userSpaceOnUse"
+                                patternContentUnits="userSpaceOnUse"
                             >
                                 <rect width="10" height="10" fill="#FF000020" />
                                 <circle cx="1" cy="1" r="2" fill="#FF000040" />
@@ -229,6 +237,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 width="10"
                                 height="10"
                                 patternUnits="userSpaceOnUse"
+                                patternContentUnits="userSpaceOnUse"
                             >
                                 <rect width="10" height="10" fill="#00FF0020" />
                                 <path d='M-1,1 l2,-2 M0,10 l10,-10 M9,11 l2,-2' 
@@ -243,6 +252,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 width="10"
                                 height="10"
                                 patternUnits="userSpaceOnUse"
+                                patternContentUnits="userSpaceOnUse"
                             >
                                 <rect width="10" height="10" fill="#4040FF20" />
                                 <rect x='0' y='0' width='10' height='1' fill='#4040FF40' />
@@ -254,6 +264,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 width="7"
                                 height="7"
                                 patternUnits="userSpaceOnUse"
+                                patternContentUnits="userSpaceOnUse"
                             >
                                 <rect width="7" height="7" fill="#99990020" />
                                 <rect x='0' y='0' width='1' height='7' fill='#99990040' />

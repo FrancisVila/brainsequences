@@ -1,7 +1,7 @@
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 import { useEffect, useState } from "react";
-import tim_taylor from '../images/tim_taylor.svg';
+import tim_taylor from '../images/atlasSvg/tim_taylor.svg';
 import AtlasImage from "~/components/AtlasImage"; 
 
 

@@ -15,8 +15,15 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     return { user: null, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
   }
   
+  const parsedId = Number(sequenceId);
+  
+  // Validate that the ID is a valid number
+  if (isNaN(parsedId) || !isFinite(parsedId)) {
+    return { user: null, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
+  }
+  
   const user = await getCurrentUser(request);
-  const sequence = await getSequence(Number(sequenceId));
+  const sequence = await getSequence(parsedId);
   
   if (!sequence) {
     return { user, canEdit: false, isCreator: false, sequence: null, hasDraft: false, publishedVersionId: null };
