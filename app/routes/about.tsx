@@ -58,7 +58,7 @@ export default function About() {
            </ul>
         </section>
       </div>
-      <div className="circles-1 color-1" >AAA AAA AAA</div>
+      <div className="color-1 color-1" >AAA AAA AAA</div>
 
     </main>
   );

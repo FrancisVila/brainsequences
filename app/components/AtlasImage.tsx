@@ -219,46 +219,46 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 <path d="M 0,0 L 4,2 L 0,4 z" fill="#AA1100" />
                             </marker>
                             <pattern
-                                id="circles-1-pattern"
+                                id="color-1-pattern"
                                 x="0"
                                 y="0"
-                                width="10"
-                                height="10"
+                                width="20"
+                                height="20"
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="10" height="10" fill="#FF000020" />
-                                <circle cx="1" cy="1" r="2" fill="#FF000040" />
+                                <rect width="20" height="20" fill="#FF000020" />
+                                <circle cx="10" cy="10" r="2.5" fill="#FF000050" />
                             </pattern>
                             <pattern
-                                id="circles-2-pattern"
+                                id="color-2-pattern"
                                 x="0"
                                 y="0"
-                                width="10"
-                                height="10"
+                                width="20"
+                                height="20"
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="10" height="10" fill="#00FF0020" />
-                                <path d='M-1,1 l2,-2 M0,10 l10,-10 M9,11 l2,-2' 
+                                <rect width="20" height="20" fill="#00FF0020" />
+                                <path d='m 400,50 20,20' 
                                     stroke='#00FF0040' 
                                     fill="#00FF0020" 
-                                    stroke-width='1'/>
+                                    stroke-width='3'/>
                             </pattern>
                             <pattern
-                                id="circles-3-pattern"
+                                id="color-3-pattern"
                                 x="0"
                                 y="0"
-                                width="10"
-                                height="10"
+                                width="8"
+                                height="8"
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="10" height="10" fill="#4040FF20" />
-                                <rect x='0' y='0' width='10' height='1' fill='#4040FF40' />
+                                <rect width="8" height="8" fill="#4040FF20" />
+                                <rect x='0' y='0' width='8' height='1' fill='#4040FF40' />
                             </pattern>
                             <pattern
-                                id="circles-4-pattern"
+                                id="color-4-pattern"
                                 x="0"
                                 y="0"
                                 width="7"

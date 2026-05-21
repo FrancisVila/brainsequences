@@ -24,7 +24,7 @@
 }
 
 .body_part.atlas.color-1 {
-	fill: url(#circles-1-pattern) !important;
+	fill: url(#color-1-pattern) !important;
 	stroke:#FF0000 !important;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .body_part.atlas.color-2 {
-	fill: url(#circles-2-pattern) !important;
+	fill: url(#color-2-pattern) !important;
 	stroke:#00FF00 !important;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .body_part.atlas.color-3 {
-	fill: url(#circles-3-pattern) !important;
+	fill: url(#color-3-pattern) !important;
 	stroke:#4040ff !important;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .body_part.atlas.color-4 {
-	fill: url(#circles-4-pattern) !important;
+	fill: url(#color-4-pattern) !important;
 	stroke:#999900 !important;
 }
 
