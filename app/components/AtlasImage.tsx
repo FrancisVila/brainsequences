@@ -114,7 +114,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                         
                         // Assign color if this is a new brain part
                         if (!colorMap.has(baseId)) {
-                            colorIndex++;
+                            colorIndex = (colorIndex + 1) % NUMBER_OF_COLORS;
                             colorMap.set(baseId, colorIndex);
                         }
                         
@@ -172,6 +172,8 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
         console.log(`SVG coordinates: x=${svgPoint.x}, y=${svgPoint.y}`);
     };
 
+    const NUMBER_OF_COLORS = 5; // Adjust this based on how many colors you have defined in JSX of the SVG below
+
     return (
         <>
             <style>
@@ -207,6 +209,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                             display: 'block'
                         }}
                     >
+                        {/* We CANT copy-paste the patterns directly into the SVG because they are dynamically generated into a separate SVG file */}
                         <defs>
                             <marker
                                 id="arrowhead"
@@ -271,6 +274,18 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                             </pattern>
                             <pattern
                                 id="color-4-pattern"
+                                x="0"
+                                y="0"
+                                width="15"
+                                height="15"
+                                patternUnits="userSpaceOnUse"
+                                patternContentUnits="userSpaceOnUse"
+                            >
+                                <rect width="15" height="15" fill="#99990020" />
+                                <rect x='0' y='0' width='2' height='10' fill='#99990080' />
+                            </pattern>
+                            <pattern
+                                id="color-5-pattern"
                                 x="0"
                                 y="0"
                                 width="15"

@@ -33,6 +33,7 @@
 }
 
 .body_part.atlas.color-2 {
+	fill: #00FF0020 !important;
 	fill: url(#color-2-pattern) !important;
 	stroke:#00FF00 !important;
 }
