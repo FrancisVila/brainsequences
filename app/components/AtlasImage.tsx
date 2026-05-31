@@ -228,7 +228,7 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 patternContentUnits="userSpaceOnUse"
                             >
                                 <rect width="20" height="20" fill="#FF000020" />
-                                <circle cx="10" cy="10" r="2.5" fill="#FF000050" />
+                                <circle cx="10" cy="10" r="2.5" fill="#ee000080" />
                             </pattern>
                             <pattern
                                 id="color-2-pattern"
@@ -239,23 +239,35 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="20" height="20" fill="#00FF0020" />
-                                <path d='m 400,50 20,20' 
-                                    stroke='#00FF0040' 
-                                    fill="#00FF0020" 
-                                    stroke-width='3'/>
+                                <path
+                                    fill="#008000"
+                                    fillOpacity="0.179138"
+                                    stroke="#006120"
+                                    strokeWidth="1"
+                                    strokeOpacity="1"
+                                    d="M 0,20 20,0"
+                                />
+                                <rect
+                                    fill="#00ff00"
+                                    fillOpacity="0.179138"
+                                    strokeWidth="0.23539"
+                                    width="20"
+                                    height="20"
+                                    x="0"
+                                    y="0"
+                                />
                             </pattern>
                             <pattern
                                 id="color-3-pattern"
                                 x="0"
                                 y="0"
-                                width="8"
-                                height="8"
+                                width="15"
+                                height="15"
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="8" height="8" fill="#4040FF20" />
-                                <rect x='0' y='0' width='8' height='1' fill='#4040FF40' />
+                                <rect width="15" height="15" fill="#4040FF20" />
+                                <rect x='0' y='0' width='15' height='1' fill='#4040FF80' />
                             </pattern>
                             <pattern
                                 id="color-4-pattern"
