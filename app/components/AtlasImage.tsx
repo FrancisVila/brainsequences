@@ -273,13 +273,13 @@ const AtlasImage: React.FC<AtlasImageProps> = ({
                                 id="color-4-pattern"
                                 x="0"
                                 y="0"
-                                width="7"
-                                height="7"
+                                width="15"
+                                height="15"
                                 patternUnits="userSpaceOnUse"
                                 patternContentUnits="userSpaceOnUse"
                             >
-                                <rect width="7" height="7" fill="#99990020" />
-                                <rect x='0' y='0' width='1' height='7' fill='#99990040' />
+                                <rect width="15" height="15" fill="#99990020" />
+                                <rect x='0' y='0' width='2' height='10' fill='#99990080' />
                             </pattern>
                         </defs>
                         {!stepLinks ? null : stepLinks.map((link, index) =>
