@@ -54,6 +54,8 @@ turso db shell brainsequences "INSERT INTO brainparts (title, visible, version, 
 # Duplicate a row and modify the title
 turso db shell brainsequences "INSERT INTO brainparts (title, visible, version, folder) SELECT title || ' (Copy)', visible, version, folder FROM brainparts WHERE id = 123"
 
+turso db shell brainsequences "INSERT INTO sequences (title, user_id, visible, version, steps) SELECT title || ' (Copy)', user_id, visible, version, steps FROM sequences WHERE id = 58"
+
 turso db shell brainsequences "INSERT INTO brainparts (title, visible, version, folder, is_part_of) SELECT 'Tailarach Gyrus', visible, version, folder, is_part_of FROM brainparts WHERE id = 490"
 (id=604)
 
