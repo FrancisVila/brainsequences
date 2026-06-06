@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify';
 import AtlasImage from './AtlasImage';
 import RichTextEditor from './RichTextEditor';
 import CitationModal from './CitationModal';
+import SvgSelectorModal from './SvgSelectorModal';
 
 // Dynamically import all SVG files from the atlasSvg folder
 const atlasSvgModules = import.meta.glob('../images/atlasSvg/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
@@ -116,6 +117,10 @@ export default function SequenceViewer({
   const [editingCitationStepIndex, setEditingCitationStepIndex] = useState<number | null>(null);
   const [editingCitation, setEditingCitation] = useState<Citation | null>(null);
   const [editingCitationIndex, setEditingCitationIndex] = useState<number | null>(null);
+  
+  // SVG selector modal state
+  const [svgSelectorModalOpen, setSvgSelectorModalOpen] = useState(false);
+  const [svgSelectorForStepIndex, setSvgSelectorForStepIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (editMode) {
@@ -657,20 +662,28 @@ export default function SequenceViewer({
             </div>
 
             <div className="form-field">
-              <label htmlFor="atlasSvgFile" className="form-label">
+              <label className="form-label">
                 Atlas SVG File
               </label>
-              <select
-                id="atlasSvgFile"
-                value={atlasSvgFile}
-                onChange={(e) => setAtlasSvgFile(e.target.value)}
-                className="form-input"
-              >
-                <option value="">— none —</option>
-                {availableAtlasSvgFiles.map(file => (
-                  <option key={file} value={file}>{file}</option>
-                ))}
-              </select>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <input
+                  type="text"
+                  value={atlasSvgFile || '— none —'}
+                  readOnly
+                  className="form-input"
+                  style={{ flex: 1 }}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSvgSelectorForStepIndex(null);
+                    setSvgSelectorModalOpen(true);
+                  }}
+                  className="btn-primary"
+                >
+                  Select SVG
+                </button>
+              </div>
             </div>
 
             {error && (
@@ -915,17 +928,26 @@ export default function SequenceViewer({
                         {editMode && (
                           <div className="form-field" style={{ marginTop: '0.5rem' }}>
                             <label className="form-label" style={{ fontSize: '0.85rem' }}>Step Atlas SVG File (overrides sequence default)</label>
-                            <select
-                              value={step.atlasSvgFile || ''}
-                              onChange={(e) => updateStepAtlasSvgFile(index, e.target.value)}
-                              className="form-input"
-                              style={{ fontSize: '0.85rem' }}
-                            >
-                              <option value="">— use sequence default —</option>
-                              {availableAtlasSvgFiles.map(file => (
-                                <option key={file} value={file}>{file}</option>
-                              ))}
-                            </select>
+                            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                              <input
+                                type="text"
+                                value={step.atlasSvgFile || '— use sequence default —'}
+                                readOnly
+                                className="form-input"
+                                style={{ fontSize: '0.85rem', flex: 1 }}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setSvgSelectorForStepIndex(index);
+                                  setSvgSelectorModalOpen(true);
+                                }}
+                                className="btn-primary"
+                                style={{ fontSize: '0.85rem' }}
+                              >
+                                Select SVG
+                              </button>
+                            </div>
                           </div>
                         )}
                         {editMode ? (
@@ -1311,6 +1333,29 @@ export default function SequenceViewer({
         initialUrl={editingCitation?.url || ''}
         initialHover={editingCitation?.hover || ''}
         isEditing={editingCitation !== null}
+      />
+      
+      {/* SVG Selector Modal */}
+      <SvgSelectorModal
+        isOpen={svgSelectorModalOpen}
+        onClose={() => {
+          setSvgSelectorModalOpen(false);
+          setSvgSelectorForStepIndex(null);
+        }}
+        onSelect={(svgFilename) => {
+          if (svgSelectorForStepIndex !== null) {
+            // Selecting for a specific step
+            updateStepAtlasSvgFile(svgSelectorForStepIndex, svgFilename);
+          } else {
+            // Selecting for the sequence
+            setAtlasSvgFile(svgFilename);
+          }
+        }}
+        currentSelection={
+          svgSelectorForStepIndex !== null 
+            ? steps[svgSelectorForStepIndex]?.atlasSvgFile 
+            : atlasSvgFile
+        }
       />
     </div>
   );
