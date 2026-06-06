@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import re
 
 # Parse the SVG file
-svg_file = r'c:\projects\brainsequences\brainsequences\app\images\tim_taylor.svg'
+svg_file = r'c:\projects\brainsequences\brainsequences\app\images\slices_view.svg'
 tree = ET.parse(svg_file)
 root = tree.getroot()
 

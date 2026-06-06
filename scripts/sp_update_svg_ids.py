@@ -2,9 +2,9 @@ import xml.etree.ElementTree as ET
 import re
 
 # File paths
-svg_file = 'app/images/tim_taylor.svg'
+svg_file = 'app/images/slices_view.svg'
 replace_file = 'svg_tags_replace.txt'
-output_svg = 'app/images/tim_taylor.svg'
+output_svg = 'app/images/slices_view.svg'
 
 # Define the Inkscape namespace
 namespaces = {

@@ -13,7 +13,7 @@ for prefix, uri in namespaces.items():
     ET.register_namespace(prefix, uri)
 
 # Parse the SVG file
-tree = ET.parse('app/images/tim_taylor.svg')
+tree = ET.parse('app/images/slices_view.svg')
 root = tree.getroot()
 
 # Function to recursively process elements
@@ -31,5 +31,5 @@ def sync_ids(element):
 sync_ids(root)
 
 # Write back to file
-tree.write('app/images/tim_taylor.svg', encoding='UTF-8', xml_declaration=True)
+tree.write('app/images/slices_view.svg', encoding='UTF-8', xml_declaration=True)
 print('IDs synced successfully')

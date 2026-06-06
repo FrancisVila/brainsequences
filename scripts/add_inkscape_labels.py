@@ -54,7 +54,7 @@ def process_svg_file(input_file, output_file):
     return modifications
 
 if __name__ == '__main__':
-    input_file = r'c:\projects\brainsequences\brainsequences\app\images\tim_taylor.svg'
+    input_file = r'c:\projects\brainsequences\brainsequences\app\images\slices_view.svg'
     output_file = input_file  # Overwrite the original file
     
     print(f"Processing {input_file}...")

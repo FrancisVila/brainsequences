@@ -15,7 +15,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function SequenceNew() {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
-  const [atlasSvgFile, setAtlasSvgFile] = useState('nilearn_new.svg');
+  const [atlasSvgFile, setAtlasSvgFile] = useState('XYZ_view.svg');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 

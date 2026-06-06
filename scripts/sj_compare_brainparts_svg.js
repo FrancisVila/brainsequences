@@ -37,7 +37,7 @@ async function findSvgPathsWithoutBrainparts() {
   const normalizedBrainparts = new Set(brainparts.map(bp => normalize(bp.title)));
   
   // Read SVG file
-  const svgPath = path.join(__dirname, '..', 'public', 'images', 'tim_taylor.svg');
+  const svgPath = path.join(__dirname, '..', 'public', 'images', 'slices_view.svg');
   const svgContent = fs.readFileSync(svgPath, 'utf-8');
   
   // Extract all path elements with inkscape:label using regex

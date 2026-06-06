@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import type { Route } from './+types/xyzView';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import AtlasImage from '~/components/AtlasImage';
-import nilearSvg from '~/images/atlasSvg/nilearn_new.svg';
+import nilearSvg from '~/images/atlasSvg/XYZ_view.svg';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { getCurrentUser } = await import('~/server/auth.server');
