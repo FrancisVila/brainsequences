@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import type { Route } from './+types/brainparts2';
+import type { Route } from './+types/xyzView';
 import { BrainpartTree } from '~/components/BrainpartTree';
 import AtlasImage from '~/components/AtlasImage';
 import nilearSvg from '~/images/atlasSvg/nilearn_new.svg';
@@ -11,7 +11,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { user };
 }
 
-export default function Brainparts2({ loaderData }: Route.ComponentProps) {
+export default function xyzView({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const [parts, setParts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -54,7 +54,7 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
 
   return (
     <div>
-      <h2>Brain parts 2</h2>
+      <h2>XYZ view</h2>
       <div  style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
         <div className='brainparts-left-right'>
           <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
@@ -82,7 +82,7 @@ export default function Brainparts2({ loaderData }: Route.ComponentProps) {
             )}
             <AtlasImage
               atlasSvg={nilearSvg}
-              className="svg-brainparts2"
+              className="svg-xyzView"
               highlightedIds={highlightedBrainpartTitles}
             />
           </div>

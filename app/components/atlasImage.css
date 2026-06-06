@@ -2,14 +2,14 @@
     width: 700px;
 }
 
-.svg-container-in-brainparts, .svg-brainparts2 {
+.svg-container-in-brainparts, .svg-xyzView {
     width: 1000px;
     background-color: #fff;
     padding: 15px;
 }
 
 
-.svg-container, .svg-container-in-brainparts, .svg-brainparts2   {
+.svg-container, .svg-container-in-brainparts, .svg-xyzView   {
     max-width: 100%;
     height: auto;
     overflow: visible;

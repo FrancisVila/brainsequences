@@ -86,10 +86,10 @@ export default function App() {
             Brain Sequences
           </a>
           <a href="/brainparts" className={(location.pathname === '/brainparts' || location.pathname.startsWith('/brainparts/'))? 'selected':''}>
-            Brain parts
+            Slices view
           </a>
-          <a href="/brainparts2" className={(location.pathname.startsWith('/brainparts2'))? 'selected':''}>
-            Brain parts 2
+          <a href="/xyzView" className={(location.pathname.startsWith('/xyzView'))? 'selected':''}>
+            XYZ view
           </a>
           <a href="/about" className={(location.pathname.startsWith('/about'))? 'selected':''}>
             About

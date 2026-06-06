@@ -12,7 +12,7 @@ export default [
 	route("/logout", "routes/logout.tsx"),
 	// Brainparts pages
 	route("/brainparts", "routes/brainparts.tsx"),
-	route("/brainparts2", "routes/brainparts2.tsx"),
+	route("/xyzView", "routes/xyzView.tsx"),
 	route("/brainparts/create", "routes/brainparts/create.tsx"),
 	route("/brainparts/update", "routes/brainparts/update.tsx"),
 	// Sequences pages
